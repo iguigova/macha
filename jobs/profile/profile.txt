@@ -1,0 +1,475 @@
+================================================================================
+                        ILKA GUIGOVA - CANDIDATE PROFILE
+                          For Job Search Assistance
+================================================================================
+
+CONTACT INFORMATION
+-------------------
+Location:       Brackendale, BC, Canada (V0N 1H0)
+Phone:          604-338-4242
+Email:          iguigova@gmail.com
+Website:        http://urgh.weebly.com/curriculum-vitae.html
+GitHub:         https://github.com/iguigova (16 public repos, Arctic Code Vault Contributor)
+LinkedIn:       https://www.linkedin.com/in/iguigova/
+
+
+================================================================================
+PROFESSIONAL SUMMARY
+================================================================================
+
+Senior Software Engineer with 20+ years building systems where correctness 
+matters. Strong background in high-reliability, performance-critical systems 
+across marine, automotive, hospitality, cannabis tech, IoT/building management, 
+identity/security, and communications industries.
+
+Self-described as "a kernel of laughter" - combines deep technical expertise 
+with creativity and problem-solving enthusiasm.
+
+
+================================================================================
+EXPERIENCE QUANTIFICATION (for application forms)
+================================================================================
+
+Use these estimates when filling out application questions:
+
+STRONG AREAS (can claim with confidence):
+• REST API design & development:              ~15 years
+• Authentication/authorization systems:       ~15 years (OAuth, OIDC, SAML expertise)
+• Relational databases (PostgreSQL, etc.):    ~10+ years (schema design, query optimization)
+• Docker in production:                       ~4-5 years
+• Microservices architecture:                 ~5 years
+
+GAPS (be honest about these):
+• Python/Django/Flask/FastAPI:                No expert-level experience
+                                              (Primary languages: Go, C#, Java, TypeScript)
+• Celery/RQ/message queues:                   No direct experience
+                                              (Has adjacent async patterns from high-throughput APIs)
+• Elasticsearch:                              No experience listed
+• Kafka/Airflow:                              No experience listed
+
+NOTE: Has consistently ramped quickly on new stacks. Gaps are real but surmountable.
+
+
+================================================================================
+0→1 BACKEND SYSTEMS OWNERSHIP
+================================================================================
+
+Strong track record of building backend systems from scratch:
+
+1. BREAD & BUTTER - OAuth Integration System (2019-2021)
+   Built the authentication infrastructure from scratch, implementing OAuth 1.0, 
+   2.0, OIDC, and SAML 2.0 protocols. Integrated 35+ identity providers (Google, 
+   Microsoft, Apple, social platforms, enterprise SSO). This became the core 
+   infrastructure powering the platform's social login and identity verification.
+
+2. FLOURISH SOFTWARE - Zapier Integration (2024-2026)
+   Owned the Zapier integration end-to-end. Designed the framework and built it 
+   out to connect the regulatory compliance platform with the Zapier ecosystem.
+
+3. KLEIN SYSTEMS GROUP - Self-Learning Mapping Engine (2008-2010)
+   Built a mapping engine for marine traffic from scratch, processing 300+ 
+   calls/second.
+
+4. DELIVERYSLIP - Dynamic Rules Engine (2011-2019)
+   Designed and built the rules engine from scratch, plus the indexed caching 
+   layer that improved maintainability by 80%.
+
+5. POINTYHAT - Unlimited Undo/Redo System (2010-2011)
+   Designed and delivered a novel unlimited undo/redo solution in two weeks. 
+   It worked well enough that it was later repurposed as the auto-recovery 
+   mechanism.
+
+
+================================================================================
+TECHNICAL SKILLS
+================================================================================
+
+LANGUAGES (Strongest to Familiar)
+---------------------------------
+• Primary:      Go, C#, Java, Kotlin, Delphi/Pascal, C++
+• Functional:   Clojure, Erlang, Haskell
+• Web:          JavaScript, TypeScript, React, Angular, Node.js, CSS
+• Scripting:    Shell/Bash
+• Other:        R
+
+NOTE: No primary language—polyglot background. Python is NOT a strength.
+
+DATABASES & DATA
+----------------
+• SQL:          PostgreSQL, MySQL, MS SQL Server, Oracle
+• NoSQL:        MongoDB, DynamoDB, Redis, Memcached, Datomic
+• APIs:         GraphQL, REST
+
+CLOUD & DEVOPS
+--------------
+• AWS:          EC2, Lambda, S3
+• Containers:   Kubernetes, Docker
+• CI/CD:        Infrastructure as code, automated deployments, environment management
+• Tools:        Git, Jira, Slack, Teams, Discord
+
+SECURITY & COMPLIANCE
+---------------------
+• Protocols:    OAuth 1.0, OAuth 2.0, OIDC, SAML 2.0
+• Standards:    OWASP, SOC2, PA-DSS (Payment Application Data Security)
+• Regulatory:   METRC, Biotrack (cannabis compliance)
+• Practices:    Audit trails, immutable logging, data privacy, compliance reporting
+
+DOMAIN EXPERTISE
+----------------
+• Cannabis Industry Software & Regulatory Compliance (METRC, Biotrack)
+• Enterprise SaaS Platforms & Multi-tenant Architecture
+• Smart Buildings / Digital Twin / IoT Platforms
+• Identity Management & Authentication Systems (OAuth, OIDC, SAML, Social Login)
+• First-Party Data & Privacy-Compliant Marketing Technology
+• Real-time Data Synchronization & Event-Driven Architecture
+• Payment Processing Systems (PA-DSS certified)
+
+
+================================================================================
+CAREER HISTORY
+================================================================================
+
+FLOURISH SOFTWARE | Vancouver, BC | May 2024 - Jan 2026
+-------------------------------------------------------
+Role: Senior Full-Stack Engineer
+Industry: Cannabis/ERP (seed-to-sale platform serving 1,000+ licensed facilities)
+Stack: Node.js/TypeScript backend, Angular/TypeScript frontend, 14 microservices
+
+COMPANY CONTEXT: Flourish is an award-winning enterprise-grade cannabis ERP platform 
+(named "Best for Cannabis ERP Scaling & API Integrations" by Benzinga). The platform 
+unifies cultivation, manufacturing, distribution, and retail operations with automated 
+compliance for METRC and Biotrack track-and-trace systems. Serves 300+ leading brands 
+including Alpine, Theraplant, and Surterra/Parallel across multiple US states. 100% 
+remote company with industry-best API and extensive third-party integrations (Zapier, 
+LeafLink, QuickBooks, HubSpot, etc.).
+
+NOTE: Did NOT own deployment orchestration at Flourish—do not claim this.
+FRAMING: Prefer "regulatory compliance platform" over "cannabis compliance platform."
+
+MAJOR FEATURE INITIATIVES LED
+
+1. FEAT1-12209 - Enterprise Platform Enhancement
+   • Led backend and frontend modernization across core platform
+   • Implemented advanced package management and inventory tracking
+   • Coordinated cross-team development between API and web teams
+
+2. FEAT1-13885 - Trade Sample Regulatory Compliance
+   • Developed METRC-compliant trade sample package flagging system
+   • Implemented automatic METRC API synchronization
+   • Built audit trails and logging for regulatory tracking
+
+3. FEAT1-11224 - Biotrack State Compliance Integration
+   • Architected multi-state Biotrack compliance (AR, CT, etc.)
+   • Built automated category export with facility-specific filtering
+   • Implemented state-specific validation rules and compliance reporting
+
+4. FEAT1-13251 - Advanced Manufacturing Workflow
+   • Real-time production tracking and quality control systems
+   • Employee assignment and time tracking capabilities
+   • Inventory management integration for raw materials
+
+5. FEAT1-13188 - External System Synchronization
+   • Architected external API integration framework
+   • Real-time data sync with error handling and retry logic
+   • Monitoring and alerting for synchronization failures
+
+6. FEAT1-11746 - Enhanced Reporting & Analytics
+   • Advanced reporting dashboard with customizable metrics
+   • Complex data aggregation and filtering
+   • Real-time analytics for operational decision-making
+
+7. FEAT1-13513 - Inventory Optimization Engine
+   • Intelligent inventory management algorithms
+   • Predictive reorder point calculations
+   • Automated inventory adjustment workflows
+
+8. FEAT1-13564 - Compliance Audit Framework
+   • Comprehensive audit trail for regulatory compliance
+   • Immutable logging for business-critical operations
+   • Forensic analysis tools for compliance investigations
+
+TECHNICAL CONTRIBUTIONS
+• Bartender Cloud Integration: OAuth2 authentication for automated label printing
+• PDF Processing Engine: Document parsing for regulatory compliance
+• Data Fix CLI Tool: 50+ commands for production data corrections
+• Service Orchestration: Deployment scripts across 15+ services
+• DevOps: Environment management, infrastructure automation
+
+
+WILLOW INC | 2021-2024
+---------------------
+Industry: IoT / Smart Buildings / Digital Twin Technology
+
+COMPANY CONTEXT: Willow is the world's #1 Operational AI platform for the built 
+environment, transforming how buildings and infrastructure are managed. Their digital 
+twin platform unifies spatial, static, and live data to provide complete visibility 
+across systems, spaces, and infrastructure. Won "AI Startup of the Year" from AI 
+Breakthrough Awards. Major clients include Walmart (saved millions), DFW Airport, 
+Northern Arizona University, BNP Paribas Real Estate, and Georgia Southern University. 
+Microsoft strategic partner. Platform enables 25% reduction in maintenance costs and 
+20% reduction in downtime for critical systems.
+
+KEY CONTRIBUTIONS:
+• Integrated insights, tickets, inspections, notifications, reports on 
+  digitized environments with Asset Digital Twin (ADT) models
+• Worked with live and historical data using GraphQL
+• Enacted QA standards in CI/CD infrastructure
+• Contributed to platform serving major enterprise clients in retail, 
+  aviation, higher education, and real estate sectors
+
+
+BREAD & BUTTER IO | 2019-2021
+-----------------------------
+Industry: Identity Management / Marketing Technology / Security
+
+COMPANY CONTEXT: Bread & Butter is an AI-powered lead intelligence and first-party 
+data marketing platform. Originally focused on identity/authentication services, the 
+platform provides social login, lead scoring, attribution tracking, and marketing 
+automation. Addresses the post-cookie privacy landscape with GDPR/CCPA-compliant 
+first-party data solutions. Integrates with major platforms including Salesforce, 
+HubSpot, Mailchimp, and WordPress ecosystem.
+
+KEY CONTRIBUTIONS:
+• [0→1] Built OAuth/OIDC/SAML authentication system from scratch
+• Implemented OAuth 1.0, OAuth 2.0, OIDC, SAML 2.0 protocols
+• Integrated 35+ identity providers (Google, Microsoft, Apple, social platforms, 
+  enterprise SSO systems)
+• OWASP security practices
+• Built comprehensive unit and user acceptance test suites
+• Enabled rapid deployments and easy onboarding of new providers
+• Core authentication infrastructure that powers the platform's social login 
+  and identity verification features
+
+
+DELIVERYSLIP (Email2 SCP Solutions) | 2011-2019
+-----------------------------------------------
+Industry: Secure Communications
+
+• Secure email messaging with large file sharing, electronic signatures, 
+  campaigns with non-repudiable audit trail
+• [0→1] Designed dynamic rules engine from scratch
+• [0→1] Built indexed caching layer from scratch
+• Created comprehensive settings management framework
+• Improved maintainability by 80%
+• Supervised QA and testing teams
+
+
+POINTYHAT | 2010-2011
+---------------------
+Industry: Arts/Theater Technology
+
+• Built online theater production script editor and resource manager
+• [0→1] Designed unlimited undo/redo solution (delivered in 2 weeks)
+• Solution reused as auto-recovery mechanism
+
+
+KLEIN SYSTEMS GROUP | 2008-2010
+-------------------------------
+Industry: Marine Traffic / Port Management
+
+• Expanded ERP system for marine traffic authorities (KleinPort)
+• [0→1] Built self-learning mapping engine processing 300+ calls/second
+• Cargo and Container Manager - configurable data import/validation 
+  across multiple message formats and protocols
+
+
+VIVONET (Halo Platform) | 2007-2008
+-----------------------------------
+Industry: Hospitality / Payment Processing
+
+• Refactored code processing millions of payment transactions/month
+• Reduced complexity, increased response time by 40%
+• Cut QA turnaround time by 33%
+• Moderated software inspections - improved early error detection by 5x
+• System achieved PA-DSS certification
+
+
+EARLIER EXPERIENCE | 2000-2007
+------------------------------
+• Automotive: Floor operations for assembly plants (PINpoint - SmartCart)
+• Aerospace: Led ultrasound localization feasibility study (RANSAC algorithms)
+• Space: Robot simulation system (Canadian Space Agency sub-contract)
+• Mobile: Researched mobile web technologies
+• 3D: VRML models for peer-to-peer 3D design collaboration
+
+
+================================================================================
+EDUCATION & CERTIFICATIONS
+================================================================================
+
+DEGREES
+-------
+• B.Sc. Mathematics (Honors Specialist) - University of Toronto, 2002
+  - Ranked 6th in class
+  - Took most Computer Science courses including Computational Complexity
+
+• High School Diploma - Software Specialist, College of Electronic Systems, 
+  Sofia, Bulgaria, 1996 (Top 3 Student Distinction)
+
+• Business Informatics Certificate - University of Economics, Sofia, 1997
+
+TECHNICAL CERTIFICATIONS
+------------------------
+• Machine Learning - Stanford Online, 2011
+• Introduction to Artificial Intelligence - Stanford Online, 2011
+• Introduction to Databases - Stanford Online, 2011
+• Dynamic Programming & Stochastic Control - MIT OCW, 2010
+• Microsoft Certification Exam 70-536 (Application Development Foundation), 2008
+• Project Management Certificate - Centennial College, 2007
+
+LANGUAGES
+---------
+• French (Level 12, Institut Français)
+• German (Level 4, Goethe Institut)
+
+
+================================================================================
+NOTABLE ACCOMPLISHMENTS & OPEN SOURCE
+================================================================================
+
+PUBLISHED ALGORITHMS
+--------------------
+• FIFF (File Comparison Algorithm): Runs as fast as LCS but handles 
+  non-sequential differences. Used by Code Project "Lean and Mean" winner.
+
+• Poker Hand Evaluation: Elegant solution avoiding sorting and lookups, 
+  works for both 5-card and 7-card games
+
+GITHUB PRESENCE
+---------------
+• 16 public repositories
+• Arctic Code Vault Contributor
+• Notable repos: fribs.netcore (ServiceStack skeleton), snippets_js, 
+  snippets_r, snippets_cs
+
+MENTORSHIP
+----------
+• Microsoft TEALS program - built sustainable CS programs in high schools
+
+
+================================================================================
+PERSONALITY & WORK STYLE
+================================================================================
+
+PHILOSOPHY
+----------
+• "Identify multiple solutions, choose the simplest that meets the need"
+• Values integrity and enthusiasm
+• Motivated by challenges requiring creativity and discipline
+• Favorite technical reading: Roy Fielding's dissertation on REST
+
+SELF-DESCRIPTION
+----------------
+"A kernel of laughter. I find freedom in the second law of thermodynamics."
+"Stay curious."
+"I am an agile problem solver."
+
+EARLY SPARK
+-----------
+Solved an assembler problem in high school that her professor had declared 
+"unsolvable" - demonstrated early aptitude for creative problem-solving.
+
+INTERESTS
+---------
+• Climbing, scrambling, hiking, swimming, kayaking, skiing, dancing
+• Travel, reading, writing
+• Holds motorcycle and wilderness first aid certifications
+
+
+================================================================================
+INTERVIEW PREPARATION
+================================================================================
+
+GOOD "PROUDEST ACHIEVEMENT" OPTIONS:
+• Bread & Butter auth infrastructure (security angle)
+• Vivonet payment processing improvements (scale/fintech angle)
+• FIFF algorithm publication (technical elegance angle)
+
+GOOD "TECHNICAL PROBLEM" EXAMPLE:
+Vivonet refactor—state management, error handling consolidation, 
+40% faster response, PA-DSS certification, 5x earlier error detection.
+
+GOOD "WHY INTERESTED" ANGLE (for distributed/financial systems):
+Correctness under concurrency, real-time sync, event-driven architectures.
+
+
+================================================================================
+IDEAL ROLE CHARACTERISTICS
+================================================================================
+
+Based on career history, Ilka appears best suited for roles involving:
+
+✓ Backend/systems engineering with performance-critical requirements
+✓ Security and compliance-sensitive environments
+✓ API design and integration work (REST, GraphQL, third-party integrations)
+✓ QA automation and testing frameworks
+✓ Complex algorithm development
+✓ Cross-functional team collaboration
+✓ Mentoring junior engineers
+✓ Enterprise SaaS platforms with regulatory/compliance requirements
+✓ Digital twin / IoT / real-time data platforms
+✓ Building new systems from scratch (0→1)
+
+Industries with strong fit:
+• Enterprise Software / SaaS (especially regulated industries)
+• PropTech / Smart Buildings / Digital Twin platforms
+• Security / Identity Management / Authentication
+• FinTech / Payment Processing
+• Healthcare / Life Sciences (compliance-heavy)
+• Cannabis Tech / RegTech
+• IoT / Building Management
+• Any domain requiring high-reliability systems
+
+COMPANY CULTURE FIT:
+• Remote-first or distributed teams (recent experience at 100% remote Flourish)
+• Product companies with complex technical challenges
+• Environments that value both creativity and discipline
+• Teams that prioritize code quality and maintainability
+
+
+================================================================================
+REFERENCES AVAILABLE
+================================================================================
+
+• Bennett Adams, CTO, Flourish Software
+• Esteban Astudillo, Co-founder, Bread&Butter IO
+• Matt McLean, Co-founder, Bread&Butter IO
+• Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip
+• Additional references from Klein Systems Group, Vivonet, PointyHat
+
+================================================================================
+SOURCES
+================================================================================
+
+Primary Sources (provided by candidate):
+• Resume: https://docs.google.com/document/d/e/2PACX-1vSYFbEmvQ7StABH6gRqKSFY1KAZiSUOyUpxafufcdMm1yEJDskK6hUuNzcCkubqiOuBWma3zQ5_wX7a/pub
+• Highlights: https://docs.google.com/document/d/e/2PACX-1vTJ5gWhdN4a9s6JSzLLjrUHnUbhL-6KCfH2Ci4LwJaOG4pGYWoQ9xyJhW1rXauIfWZqqBYIj3QAgevD/pub
+• Flourish Detail: https://docs.google.com/document/d/e/2PACX-1vSE54fR-0Q7qVgVdtLpt9McxpnXipFqYvxE9H1kFtpPjYI1lKIbPyyWA85Ts_Qntjq1KXJWOSaohLG4/pub
+• Interview: https://urgh.weebly.com/interview.html
+• Curriculum Vitae: https://urgh.weebly.com/curriculum-vitae.html
+• GitHub: https://github.com/iguigova/
+• LinkedIn: https://www.linkedin.com/in/iguigova/ (not accessible via fetch)
+
+Company Websites (for context):
+• Flourish Software: https://www.flourishsoftware.com/
+• Willow Inc: https://willowinc.com/
+• Bread & Butter IO: https://breadbutter.io/
+
+================================================================================
+DOCUMENT VERSION HISTORY
+================================================================================
+
+v1.0 - 2026-01-12: Initial profile created from resume, highlights, interview, CV, GitHub
+v2.0 - 2026-01-12: Added detailed Flourish metrics and feature initiatives
+v3.0 - 2026-01-12: Added company context from employer websites, expanded domain expertise
+v4.0 - 2026-01-14: Added dedicated "0→1 Backend Systems Ownership" section, tagged 0→1 
+                   work throughout career history, added "Building new systems from 
+                   scratch" to ideal role characteristics
+v5.0 - 2026-01-15: Added "Experience Quantification" section with years of experience 
+                   estimates for application forms. Added "Known Gaps" (Python, Celery/RQ, 
+                   Elasticsearch, Kafka). Added "Interview Preparation" section with 
+                   pre-selected examples. Added Flourish stack details (Node.js/TypeScript, 
+                   Angular). Added notes about deployment orchestration and framing 
+                   preferences. Fixed character encoding issues.
+
+================================================================================
