@@ -1,12 +1,18 @@
 # Macha Job Pipeline - Final Plan
 
-## Architecture: Two Processes
+## Architecture: Four Commands
 
-### Process 1: `/job-scrape`
+### `/job:scrape`
 Playwright MCP → Dedupe → Filter → Fetch → Queue
 
-### Process 2: `/job-analyze`
+### `/job:analyze`
 Job + Profile → Fit Assessment → Cover Letter → Application
+
+### `/job:interview` (future)
+Application → Practice Interview Questions → Mock Answers
+
+### `/job:answer` (future)
+Profile + Application + Question → Tailored Answer
 
 ---
 
@@ -25,19 +31,22 @@ claude mcp add --transport stdio playwright -- npx -y @microsoft/playwright-mcp
 
 ```
 macha/
-├── profile.txt                    # (exists)
-├── profile/cover_letter_style.md  # (exists)
 ├── jobs/
-│   ├── sources.txt                # URLs of job boards
-│   ├── urls.txt                   # Seen URLs (dedup)
-│   ├── queue/                     # Jobs to analyze
+│   ├── profile/
+│   │   ├── profile.txt              # User profile
+│   │   └── cover_letter_style.md    # Cover letter guidelines
+│   ├── sources.txt                  # URLs of job boards
+│   ├── urls.txt                     # Seen URLs (dedup)
+│   ├── queue/                       # Jobs to analyze
 │   │   └── {company}_{role}.md
-│   └── applications/              # Analyzed jobs
+│   └── applications/                # Analyzed jobs
 │       └── {company}_{role}.md
-
-.claude/commands/
-├── job-scrape.md
-└── job-analyze.md
+│
+├── .claude/commands/
+│   ├── job:scrape.md
+│   ├── job:analyze.md
+│   ├── job:interview.md             # (future)
+│   └── job:answer.md                # (future)
 ```
 
 ---
@@ -63,9 +72,9 @@ https://linkedin.com/jobs/view/456
 
 ---
 
-## Command 1: `/job-scrape`
+## Command 1: `/job:scrape`
 
-`.claude/commands/job-scrape.md`
+`.claude/commands/job:scrape.md`
 
 ```markdown
 ---
@@ -111,9 +120,9 @@ Scrape job listings and queue new ones for analysis.
 
 ---
 
-## Command 2: `/job-analyze`
+## Command 2: `/job:analyze`
 
-`.claude/commands/job-analyze.md`
+`.claude/commands/job:analyze.md`
 
 ```markdown
 ---
@@ -129,14 +138,14 @@ Analyze job fit and generate cover letter.
 
 1. Read the job from queue file
 
-2. Read profile.txt
+2. Read jobs/profile/profile.txt
 
 3. **Fit Assessment**: Am I a good fit for this job?
    - Compare requirements to my skills
    - Note where I align
    - Note gaps honestly
 
-4. Read profile/cover_letter_style.md
+4. Read jobs/profile/cover_letter_style.md
 
 5. **Generate Cover Letter** following guidelines:
    - Direct, factual, no fluff
@@ -207,20 +216,24 @@ I'm applying for the Senior Backend Engineer position...
 ## Workflow
 
 ```bash
-/job-scrape 100        # Scrape, dedupe, filter, queue
-/job-analyze all       # Process all queued jobs
+/job:scrape 100        # Scrape, dedupe, filter, queue
+/job:analyze all       # Process all queued jobs
 ```
 
 ---
 
 ## Files to Create
 
-1. `.claude/commands/job-scrape.md`
-2. `.claude/commands/job-analyze.md`
-3. `jobs/sources.txt`
-4. `jobs/urls.txt` (empty)
-5. `jobs/queue/` directory
-6. `jobs/applications/` directory
+1. `.claude/commands/job:scrape.md`
+2. `.claude/commands/job:analyze.md`
+3. `.claude/commands/job:interview.md` (future)
+4. `.claude/commands/job:answer.md` (future)
+5. `jobs/profile/profile.txt`
+6. `jobs/profile/cover_letter_style.md`
+7. `jobs/sources.txt`
+8. `jobs/urls.txt` (empty)
+9. `jobs/queue/` directory
+10. `jobs/applications/` directory
 
 ---
 
@@ -229,7 +242,7 @@ I'm applying for the Senior Backend Engineer position...
 - **Dedup before filter**: Don't waste time filtering already-seen jobs
 - **URL only**: No source tracking needed, URL is unique identifier
 - **Single urls.txt**: Flat file, one URL per line, grep for dedup
-- **Batch analyze**: `/job-analyze all` processes entire queue
+- **Batch analyze**: `/job:analyze all` processes entire queue
 - **Playwright session**: Persists login, no re-auth needed for ~30 days
 
 ---
@@ -238,14 +251,14 @@ I'm applying for the Senior Backend Engineer position...
 
 ```bash
 # Test scrape
-/job-scrape 5
+/job:scrape 5
 # Check: jobs/queue/ has files, jobs/urls.txt updated
 
 # Test analyze
-/job-analyze jobs/queue/[file].md
+/job:analyze jobs/queue/[file].md
 # Check: jobs/applications/ has result, queue file deleted
 
 # Test dedup
-/job-scrape 5
+/job:scrape 5
 # Check: same URLs not added again
 ```
