@@ -1,5 +1,31 @@
+# JSON APIs (no auth required)
+# RemoteOK - all remote jobs, no reliable server-side filtering
 https://remoteok.com/api
-https://weworkremotely.com
-https://remotive.com/api/remote-jobs
+
+# Remotive - category-filtered (software-development)
+https://remotive.com/api/remote-jobs?category=software-development
+
+# Jobicy - tag+geo filtered, max 50 per request
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=developer
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=software
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=qa
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=frontend
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=backend
+
+# Working Nomads - all remote, no filtering params
+https://www.workingnomads.com/api/exposed_jobs/
+
+# HTML sources (WebFetch, parse HTML)
+https://weworkremotely.com/categories/remote-programming-jobs
+
+# Company career pages (WebFetch, parse HTML)
+# Shopify - remote Americas, 25+ engineering roles
+https://www.shopify.com/careers/disciplines/engineering-data
+# Wrapbook - remote Canada, fintech/payroll, multiple engineering levels
+https://jobs.ashbyhq.com/wrapbook
+# AuditBoard - remote Canada, 12+ engineering roles
+https://jobs.ashbyhq.com/auditboard
+
+# Playwright sources (require authenticated browser)
 https://linkedin.com/jobs
 https://indeed.com/jobs

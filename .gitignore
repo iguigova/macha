@@ -21,3 +21,7 @@ cabal.project.local
 cabal.project.local~
 .cabal-sandbox/
 cabal.sandbox.config
+
+# Job pipeline runtime data
+jobs/queue/
+jobs/applications/

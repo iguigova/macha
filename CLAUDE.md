@@ -47,3 +47,7 @@ Automated job search and application system. Primary goal: **50-100 applications
 - Eager and willing
 - Enthusiastic problem solver
 
+## Working Style
+
+- After completing a set of changes, include a suggested commit message at the end of the report and log it to `.claude/session_history.md`.
+

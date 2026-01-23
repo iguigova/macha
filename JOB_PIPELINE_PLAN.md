@@ -1,9 +1,12 @@
 # Macha Job Pipeline - Final Plan
 
-## Architecture: Four Commands
+## Architecture: Five Commands
+
+### `/job:source`
+Validate → Remove Inactive → Discover APIs → Discover Career Pages → Update Scrape Command
 
 ### `/job:scrape`
-Playwright MCP → Dedupe → Filter → Fetch → Queue
+Fetch All Sources → Dedupe → Filter → Queue
 
 ### `/job:analyze`
 Job + Profile → Fit Assessment → Cover Letter → Application
@@ -43,6 +46,7 @@ macha/
 │       └── {company}_{role}.md
 │
 ├── .claude/commands/
+│   ├── job:source.md
 │   ├── job:scrape.md
 │   ├── job:analyze.md
 │   ├── job:interview.md             # (future)
@@ -54,9 +58,25 @@ macha/
 ## sources.txt
 
 ```
+# JSON APIs (no auth required)
 https://remoteok.com/api
-https://weworkremotely.com
-https://remotive.com/api/remote-jobs
+https://remotive.com/api/remote-jobs?category=software-development
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=developer
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=software
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=qa
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=frontend
+https://jobicy.com/api/v2/remote-jobs?count=50&tag=backend
+https://www.workingnomads.com/api/exposed_jobs/
+
+# HTML sources
+https://weworkremotely.com/categories/remote-programming-jobs
+
+# Company career pages (added by /job:source)
+https://www.shopify.com/careers/disciplines/engineering-data
+https://jobs.ashbyhq.com/wrapbook
+https://jobs.ashbyhq.com/auditboard
+
+# Playwright sources (require authenticated browser)
 https://linkedin.com/jobs
 https://indeed.com/jobs
 ```
@@ -72,55 +92,61 @@ marketerx_senior_devops_engineer
 
 ---
 
-## Command 1: `/job:scrape`
+## Command 1: `/job:source`
+
+`.claude/commands/job:source.md`
+
+Validates existing sources, removes inactive ones, discovers new job board APIs and company career pages, and updates the scrape command's source handling.
+
+**Steps:**
+1. Read jobs/sources.txt
+2. Validate each source (fetch, check for fresh relevant jobs)
+3. Remove inactive sources (stale, empty, dead) from file entirely
+4. Discover new job board APIs via web search
+5. Discover company career pages hiring remote devs/QA
+6. Update .claude/commands/job:scrape.md step 3 with any new source types
+7. Report stats
+
+---
+
+## Command 2: `/job:scrape`
 
 `.claude/commands/job:scrape.md`
 
 ```markdown
 ---
 description: Scrape jobs from sources
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Grep
+allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Grep, Bash
 ---
 
 Scrape job listings and queue new ones for analysis.
 
-**Input:** $ARGUMENTS = number of jobs (default: 50)
-
 **Steps:**
 
-1. Read jobs/sources.txt
+1. Read jobs/sources.txt (skip comment lines)
 
-2. For each source, fetch job listings:
-   - LinkedIn/Indeed: Playwright MCP
-   - Others: WebFetch
+2. Fetch from ALL sources (respect URL params, max 50 per URL otherwise)
 
-3. **DEDUPE FIRST**: Check each company+role key against jobs/seen.txt
-   - Skip if URL already exists
+3. For each source, fetch using appropriate method:
+   - JSON APIs: WebFetch, parse response
+   - HTML pages: WebFetch, parse listings
+   - Playwright: authenticated browser (LinkedIn, Indeed)
 
-4. **THEN FILTER**: Keep only titles containing:
-   - software, engineer, developer, backend, frontend, fullstack
-   - QA, SDET, test, quality
-   - Skip: manager, director, designer, data scientist
+4. **DEDUPE**: Check company+role key against jobs/seen.txt - skip if exists
 
-5. For each new job passing both checks:
-   - Fetch full description
-   - Save to jobs/queue/{company}_{role}.md:
-     ```
-     # {Company} - {Role}
+5. **FILTER**: Keep titles containing:
+   - software, developer, backend, frontend, fullstack
+   - QA, test, quality
+   - Skip: manager, director, designer, data scientist, ML, machine learning, devops
 
-     **URL:** {url}
+6. For each passing job: fetch description, save to queue, append to seen.txt
 
-     ## Description
-     {job description}
-     ```
-   - Append company+role key to jobs/seen.txt
-
-6. Report: "Added X jobs to queue"
+7. Report: "Queued X jobs (fetched Y, deduped Z, filtered W)"
 ```
 
 ---
 
-## Command 2: `/job:analyze`
+## Command 3: `/job:analyze`
 
 `.claude/commands/job:analyze.md`
 
@@ -216,7 +242,8 @@ I'm applying for the Senior Backend Engineer position...
 ## Workflow
 
 ```bash
-/job:scrape 100        # Scrape, dedupe, filter, queue
+/job:source            # Validate sources, discover new ones, update scrape command
+/job:scrape            # Fetch all sources, dedupe, filter, queue
 /job:analyze all       # Process all queued jobs
 ```
 
@@ -224,34 +251,41 @@ I'm applying for the Senior Backend Engineer position...
 
 ## Files to Create
 
-1. `.claude/commands/job:scrape.md`
-2. `.claude/commands/job:analyze.md`
-3. `.claude/commands/job:interview.md` (future)
-4. `.claude/commands/job:answer.md` (future)
-5. `jobs/profile/profile.txt`
-6. `jobs/profile/cover_letter_style.md`
-7. `jobs/sources.txt`
-8. `jobs/seen.txt` (empty)
-9. `jobs/queue/` directory
-10. `jobs/applications/` directory
+1. `.claude/commands/job:source.md`
+2. `.claude/commands/job:scrape.md`
+3. `.claude/commands/job:analyze.md`
+4. `.claude/commands/job:interview.md` (future)
+5. `.claude/commands/job:answer.md` (future)
+6. `jobs/profile/profile.txt`
+7. `jobs/profile/cover_letter_style.md`
+8. `jobs/sources.txt`
+9. `jobs/seen.txt` (empty)
+10. `jobs/queue/` directory
+11. `jobs/applications/` directory
 
 ---
 
 ## Efficiency Notes
 
+- **Source validation first**: Run `/job:source` to prune dead sources before scraping
 - **Dedup before filter**: Don't waste time filtering already-seen jobs
-- **URL only**: No source tracking needed, URL is unique identifier
-- **Single seen.txt**: Flat file, one company_role key per line, grep for dedup
+- **Company+role key**: Catches cross-source duplicates (same job on multiple boards)
+- **Single seen.txt**: Flat file, one company_role key per line, Grep tool (ripgrep) for dedup
 - **Batch analyze**: `/job:analyze all` processes entire queue
 - **Playwright session**: Persists login, no re-auth needed for ~30 days
+- **Career pages**: Direct company pages often have roles not yet on aggregators
 
 ---
 
 ## Verification
 
 ```bash
+# Test source validation
+/job:source
+# Check: dead sources removed, new sources added, scrape command updated
+
 # Test scrape
-/job:scrape 5
+/job:scrape
 # Check: jobs/queue/ has files, jobs/seen.txt updated
 
 # Test analyze
@@ -259,6 +293,6 @@ I'm applying for the Senior Backend Engineer position...
 # Check: jobs/applications/ has result, queue file deleted
 
 # Test dedup
-/job:scrape 5
-# Check: same URLs not added again
+/job:scrape
+# Check: same company+role keys not added again
 ```
