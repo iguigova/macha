@@ -29,31 +29,41 @@ mkApp dir indexHtml = scottyApp $ do
     setHeader "Content-Type" "text/html; charset=utf-8"
     raw . LTE.encodeUtf8 . LT.fromStrict $ indexHtml
 
-  get "/api/files" $ do
-    files <- liftIO $ listFiles dir
+  get "/api/:dir/files" $ do
+    dirParam <- captureParam "dir" :: ActionM Text
+    let targetDir = parentDir </> T.unpack dirParam
+    files <- liftIO $ listFiles targetDir
     json files
 
-  get "/api/file/:name" $ do
+  get "/api/:dir/file/:name" $ do
+    dirParam <- captureParam "dir" :: ActionM Text
     name <- captureParam "name" :: ActionM Text
-    rendered <- liftIO $ renderFile dir name
+    let targetDir = parentDir </> T.unpack dirParam
+    rendered <- liftIO $ renderFile targetDir name
     setHeader "Content-Type" "text/html; charset=utf-8"
     raw . LTE.encodeUtf8 . LT.fromStrict $ rendered
 
-  post "/api/file/:name/apply" $ do
+  post "/api/:dir/file/:name/apply" $ do
+    dirParam <- captureParam "dir" :: ActionM Text
     name <- captureParam "name" :: ActionM Text
-    liftIO $ moveFile dir name (parentDir </> "done")
+    let targetDir = parentDir </> T.unpack dirParam
+    liftIO $ moveFile targetDir name (parentDir </> "done")
     json $ object ["status" .= ("ok" :: Text)]
 
-  post "/api/file/:name/discard" $ do
+  post "/api/:dir/file/:name/discard" $ do
+    dirParam <- captureParam "dir" :: ActionM Text
     name <- captureParam "name" :: ActionM Text
-    liftIO $ moveFile dir name (parentDir </> "discarded")
+    let targetDir = parentDir </> T.unpack dirParam
+    liftIO $ moveFile targetDir name (parentDir </> "discarded")
     json $ object ["status" .= ("ok" :: Text)]
 
-  post "/api/file/:name/notes" $ do
+  post "/api/:dir/file/:name/notes" $ do
+    dirParam <- captureParam "dir" :: ActionM Text
     name <- captureParam "name" :: ActionM Text
     reqBody <- body
-    let notes = TE.decodeUtf8 (BL.toStrict reqBody)
-    liftIO $ updateNotes dir name (T.strip notes)
+    let targetDir = parentDir </> T.unpack dirParam
+        notes = TE.decodeUtf8 (BL.toStrict reqBody)
+    liftIO $ updateNotes targetDir name (T.strip notes)
     json $ object ["status" .= ("ok" :: Text)]
 
   get "/api/stats" $ do
@@ -90,42 +100,66 @@ spec = do
         BL.toStrict (simpleBody resp) `shouldSatisfy` \b ->
           "Macha Viewer" `T.isInfixOf` TE.decodeUtf8 b
 
-  describe "GET /api/files" $ do
+  describe "GET /api/:dir/files" $ do
     it "returns JSON array with file info" $
-      withSystemTempDirectory "viewer-test" $ \dir -> do
+      withSystemTempDirectory "viewer-test" $ \tmpDir -> do
+        let dir = tmpDir </> "applications"
+        createDirectoryIfMissing True dir
         TIO.writeFile (dir </> "test.md") "# Test Co - Dev\n**Fit:** Good fit\n**URL:** http://x.com"
         app <- mkApp dir "<html></html>"
-        resp <- runSession (request (setPath defaultRequest "/api/files")) app
+        resp <- runSession (request (setPath defaultRequest "/api/applications/files")) app
         simpleStatus resp `shouldBe` status200
         let respBody = TE.decodeUtf8 (BL.toStrict (simpleBody resp))
         respBody `shouldSatisfy` T.isInfixOf "Test Co - Dev"
         respBody `shouldSatisfy` T.isInfixOf "Good fit"
 
     it "returns empty array for empty directory" $
-      withSystemTempDirectory "viewer-test" $ \dir -> do
+      withSystemTempDirectory "viewer-test" $ \tmpDir -> do
+        let dir = tmpDir </> "applications"
+        createDirectoryIfMissing True dir
         app <- mkApp dir "<html></html>"
-        resp <- runSession (request (setPath defaultRequest "/api/files")) app
+        resp <- runSession (request (setPath defaultRequest "/api/applications/files")) app
         BL.toStrict (simpleBody resp) `shouldBe` "[]"
 
-  describe "GET /api/file/:name" $ do
+    it "lists files from different directories" $
+      withSystemTempDirectory "viewer-test" $ \tmpDir -> do
+        let dir = tmpDir </> "applications"
+            doneDir' = tmpDir </> "done"
+        createDirectoryIfMissing True dir
+        createDirectoryIfMissing True doneDir'
+        TIO.writeFile (dir </> "app.md") "# App Job"
+        TIO.writeFile (doneDir' </> "done.md") "# Done Job"
+        app <- mkApp dir "<html></html>"
+        respApps <- runSession (request (setPath defaultRequest "/api/applications/files")) app
+        respDone <- runSession (request (setPath defaultRequest "/api/done/files")) app
+        let appsBody = TE.decodeUtf8 (BL.toStrict (simpleBody respApps))
+            doneBody = TE.decodeUtf8 (BL.toStrict (simpleBody respDone))
+        appsBody `shouldSatisfy` T.isInfixOf "App Job"
+        appsBody `shouldSatisfy` (not . T.isInfixOf "Done Job")
+        doneBody `shouldSatisfy` T.isInfixOf "Done Job"
+        doneBody `shouldSatisfy` (not . T.isInfixOf "App Job")
+
+  describe "GET /api/:dir/file/:name" $ do
     it "renders markdown to HTML" $
-      withSystemTempDirectory "viewer-test" $ \dir -> do
+      withSystemTempDirectory "viewer-test" $ \tmpDir -> do
+        let dir = tmpDir </> "applications"
+        createDirectoryIfMissing True dir
         TIO.writeFile (dir </> "job.md") "# Hello World\n\nSome text."
         app <- mkApp dir "<html></html>"
-        resp <- runSession (request (setPath defaultRequest "/api/file/job.md")) app
+        resp <- runSession (request (setPath defaultRequest "/api/applications/file/job.md")) app
         simpleStatus resp `shouldBe` status200
         let respBody = TE.decodeUtf8 (BL.toStrict (simpleBody resp))
         respBody `shouldSatisfy` T.isInfixOf "<h1>"
         respBody `shouldSatisfy` T.isInfixOf "Hello World"
 
-  describe "POST /api/file/:name/apply" $ do
+  describe "POST /api/:dir/file/:name/apply" $ do
     it "moves file to done directory" $
       withSystemTempDirectory "viewer-test" $ \tmpDir -> do
         let dir = tmpDir </> "applications"
         createDirectoryIfMissing True dir
         TIO.writeFile (dir </> "job.md") "# Test Job"
         app <- mkApp dir "<html></html>"
-        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/file/job.md/apply") ""
+        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/applications/file/job.md/apply") ""
         resp <- runSession (srequest req) app
         simpleStatus resp `shouldBe` status200
         srcExists <- doesFileExist (dir </> "job.md")
@@ -133,14 +167,14 @@ spec = do
         srcExists `shouldBe` False
         destExists `shouldBe` True
 
-  describe "POST /api/file/:name/discard" $ do
+  describe "POST /api/:dir/file/:name/discard" $ do
     it "moves file to discarded directory" $
       withSystemTempDirectory "viewer-test" $ \tmpDir -> do
         let dir = tmpDir </> "applications"
         createDirectoryIfMissing True dir
         TIO.writeFile (dir </> "job.md") "# Test Job"
         app <- mkApp dir "<html></html>"
-        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/file/job.md/discard") ""
+        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/applications/file/job.md/discard") ""
         resp <- runSession (srequest req) app
         simpleStatus resp `shouldBe` status200
         srcExists <- doesFileExist (dir </> "job.md")
@@ -148,19 +182,19 @@ spec = do
         srcExists `shouldBe` False
         destExists `shouldBe` True
 
-  describe "POST /api/file/:name/notes" $ do
+  describe "POST /api/:dir/file/:name/notes" $ do
     it "updates notes in the file" $
       withSystemTempDirectory "viewer-test" $ \tmpDir -> do
         let dir = tmpDir </> "applications"
         createDirectoryIfMissing True dir
         TIO.writeFile (dir </> "job.md") "# Test Job\n\nContent.\n"
         app <- mkApp dir "<html></html>"
-        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/file/job.md/notes") "My test notes"
+        let req = SRequest (setPath defaultRequest { requestMethod = methodPost } "/api/applications/file/job.md/notes") "My test notes"
         resp <- runSession (srequest req) app
         simpleStatus resp `shouldBe` status200
-        content <- TIO.readFile (dir </> "job.md")
-        content `shouldSatisfy` T.isInfixOf "## Notes"
-        content `shouldSatisfy` T.isInfixOf "My test notes"
+        fileContent <- TIO.readFile (dir </> "job.md")
+        fileContent `shouldSatisfy` T.isInfixOf "## Notes"
+        fileContent `shouldSatisfy` T.isInfixOf "My test notes"
 
   describe "GET /api/stats" $ do
     it "returns stats for all directories" $

@@ -41,47 +41,47 @@ spec :: Spec
 spec = do
   describe "parseMetadata" $ do
     it "extracts title from first heading" $ do
-      let info = parseMetadata "test.md" sampleApplication
+      let info = parseMetadata "test.md" 0 sampleApplication
       fiTitle info `shouldBe` "Acme Corp - Software Engineer"
 
     it "extracts URL field" $ do
-      let info = parseMetadata "test.md" sampleApplication
+      let info = parseMetadata "test.md" 0 sampleApplication
       fiUrl info `shouldBe` "https://example.com/jobs/123"
 
     it "extracts fit rating" $ do
-      let info = parseMetadata "test.md" sampleApplication
+      let info = parseMetadata "test.md" 0 sampleApplication
       fiFit info `shouldBe` "Strong fit"
 
     it "preserves filename" $ do
-      let info = parseMetadata "acme_corp.md" sampleApplication
+      let info = parseMetadata "acme_corp.md" 0 sampleApplication
       fiFilename info `shouldBe` "acme_corp.md"
 
     it "uses filename as title when no heading exists" $ do
-      let info = parseMetadata "fallback.md" "No heading here\nJust text"
+      let info = parseMetadata "fallback.md" 0 "No heading here\nJust text"
       fiTitle info `shouldBe` "fallback.md"
 
     it "returns empty string for missing URL" $ do
-      let info = parseMetadata "test.md" "# Title\n\n**Fit:** Good fit"
+      let info = parseMetadata "test.md" 0 "# Title\n\n**Fit:** Good fit"
       fiUrl info `shouldBe` ""
 
     it "returns empty string for missing fit" $ do
-      let info = parseMetadata "test.md" "# Title\n\n**URL:** http://x.com"
+      let info = parseMetadata "test.md" 0 "# Title\n\n**URL:** http://x.com"
       fiFit info `shouldBe` ""
 
     it "handles empty content" $ do
-      let info = parseMetadata "empty.md" ""
+      let info = parseMetadata "empty.md" 0 ""
       fiTitle info `shouldBe` "empty.md"
       fiUrl info `shouldBe` ""
       fiFit info `shouldBe` ""
 
     it "takes first heading when multiple exist" $ do
       let content = "# First Title\n\n# Second Title\n**URL:** http://x.com"
-      let info = parseMetadata "test.md" content
+      let info = parseMetadata "test.md" 0 content
       fiTitle info `shouldBe` "First Title"
 
     it "strips whitespace from extracted fields" $ do
       let content = "# Title  \n**URL:**   http://x.com   \n**Fit:**  Good fit  "
-      let info = parseMetadata "test.md" content
+      let info = parseMetadata "test.md" 0 content
       fiUrl info `shouldBe` "http://x.com"
       fiFit info `shouldBe` "Good fit"
 
