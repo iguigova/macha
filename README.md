@@ -38,6 +38,7 @@ jobs/
 │   └── cover_letter_style.md    # Cover letter guidelines
 ├── sources.txt                  # Job board URLs to scrape
 ├── seen.txt                     # Seen company+role keys (dedup)
+├── last_scrape                  # Last scrape timestamp (date filter for JSON APIs)
 ├── queue/                       # Jobs awaiting analysis
 │   └── {company}_{role}.md
 └── applications/                # Analyzed jobs with cover letters
@@ -57,6 +58,9 @@ jobs/
 - [Shopify Careers](https://www.shopify.com/careers/disciplines/engineering-data) - remote Americas engineering
 - [Wrapbook Careers](https://jobs.ashbyhq.com/wrapbook) - remote Canada engineering
 - [AuditBoard Careers](https://jobs.ashbyhq.com/auditboard) - remote Canada engineering
+- [Fieldguide Careers](https://jobs.ashbyhq.com/fieldguide) - remote USA, cybersecurity/audit
+- [TENEX.AI Careers](https://jobs.ashbyhq.com/tenex) - remote USA, AI security
+- [Cohere Careers](https://jobs.ashbyhq.com/cohere) - remote Canada, AI/ML
 
 **Authenticated (Playwright):**
 - LinkedIn Jobs
@@ -73,11 +77,14 @@ jobs/
 
 **Scraping** (`/job:scrape`):
 1. Reads `jobs/sources.txt` for board URLs (skips comment lines)
-2. Fetches from ALL sources (respects URL params like count=50, limit=20)
-3. Deduplicates by company+role key against `jobs/seen.txt`
-4. Filters by role title (software, developer, backend, frontend, fullstack, QA, test, quality)
-5. Queues all passing jobs (never discards matches)
-6. Reports full stats: fetched, deduped, filtered, queued
+2. Reads `jobs/last_scrape` timestamp (skips entries older than this for JSON APIs)
+3. Fetches from ALL sources (respects URL params like count=50, limit=20)
+4. Date-filters JSON API results (RemoteOK, Remotive, Jobicy, Working Nomads) - skips entries published before last scrape
+5. Deduplicates by company+role key against `jobs/seen.txt`
+6. Filters by role title (software, developer, backend, frontend, fullstack, QA, test, quality)
+7. Queues all passing jobs (never discards matches)
+8. Writes current timestamp to `jobs/last_scrape`
+9. Reports full stats and logs to `.claude/session_history.md`
 
 **Analysis** (`/job:analyze`):
 1. Reads job description from queue

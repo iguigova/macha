@@ -25,3 +25,4 @@ cabal.sandbox.config
 # Job pipeline runtime data
 jobs/queue/
 jobs/applications/
+jobs/last_scrape

@@ -57,4 +57,8 @@ Analyze job fit and generate cover letter.
 
    h. Show the cover letter for review
 
-3. Report: "Analyzed X jobs, saved to jobs/applications/"
+3. Report:
+   - "Analyzed X jobs, saved to jobs/applications/"
+   - List each analyzed job: `- {company}: {role} ({fit rating})`
+
+4. Log to session history: Append the report (from step 3) to `.claude/session_history.md` under a new dated heading `## {date} /job:analyze`.

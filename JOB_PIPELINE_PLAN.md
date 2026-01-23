@@ -40,6 +40,7 @@ macha/
 │   │   └── cover_letter_style.md    # Cover letter guidelines
 │   ├── sources.txt                  # URLs of job boards
 │   ├── seen.txt                     # Seen company+role keys (dedup)
+│   ├── last_scrape                  # ISO 8601 timestamp of last scrape (date filter)
 │   ├── queue/                       # Jobs to analyze
 │   │   └── {company}_{role}.md
 │   └── applications/                # Analyzed jobs
@@ -75,6 +76,9 @@ https://weworkremotely.com/categories/remote-programming-jobs
 https://www.shopify.com/careers/disciplines/engineering-data
 https://jobs.ashbyhq.com/wrapbook
 https://jobs.ashbyhq.com/auditboard
+https://jobs.ashbyhq.com/fieldguide
+https://jobs.ashbyhq.com/tenex
+https://jobs.ashbyhq.com/cohere
 
 # Playwright sources (require authenticated browser)
 https://linkedin.com/jobs
@@ -125,23 +129,31 @@ Scrape job listings and queue new ones for analysis.
 
 1. Read jobs/sources.txt (skip comment lines)
 
-2. Fetch from ALL sources (respect URL params, max 50 per URL otherwise)
+2. Read jobs/last_scrape (ISO 8601 timestamp). If missing, treat as first run.
 
-3. For each source, fetch using appropriate method:
+3. Fetch from ALL sources (respect URL params, max 50 per URL otherwise)
+
+4. For each source, fetch using appropriate method:
    - JSON APIs: WebFetch, parse response
    - HTML pages: WebFetch, parse listings
    - Playwright: authenticated browser (LinkedIn, Indeed)
 
-4. **DEDUPE**: Check company+role key against jobs/seen.txt - skip if exists
+5. **DATE FILTER** (JSON APIs only): Skip entries with publication date older than last_scrape timestamp. Uses date fields: epoch/date (RemoteOK), publication_date (Remotive), pubDate (Jobicy), pub_date (Working Nomads). HTML sources skip this step.
 
-5. **FILTER**: Keep titles containing:
+6. **DEDUPE**: Check company+role key against jobs/seen.txt - skip if exists
+
+7. **FILTER**: Keep titles containing:
    - software, developer, backend, frontend, fullstack
    - QA, test, quality
    - Skip: manager, director, designer, data scientist, ML, machine learning, devops
 
-6. For each passing job: fetch description, save to queue, append to seen.txt
+8. For each passing job: fetch description, save to queue, append to seen.txt
 
-7. Report: "Queued X jobs (fetched Y, deduped Z, filtered W)"
+9. Write current ISO 8601 timestamp (UTC) to jobs/last_scrape
+
+10. Report: "Queued X jobs (fetched Y, old Z, deduped D, filtered F)"
+
+11. Append report to .claude/session_history.md
 ```
 
 ---
@@ -260,20 +272,23 @@ I'm applying for the Senior Backend Engineer position...
 7. `jobs/profile/cover_letter_style.md`
 8. `jobs/sources.txt`
 9. `jobs/seen.txt` (empty)
-10. `jobs/queue/` directory
-11. `jobs/applications/` directory
+10. `jobs/last_scrape` (created automatically on first scrape)
+11. `jobs/queue/` directory
+12. `jobs/applications/` directory
 
 ---
 
 ## Efficiency Notes
 
 - **Source validation first**: Run `/job:source` to prune dead sources before scraping
+- **Date filter (JSON APIs)**: `jobs/last_scrape` timestamp skips entries already processed in previous runs
 - **Dedup before filter**: Don't waste time filtering already-seen jobs
 - **Company+role key**: Catches cross-source duplicates (same job on multiple boards)
 - **Single seen.txt**: Flat file, one company_role key per line, Grep tool (ripgrep) for dedup
 - **Batch analyze**: `/job:analyze all` processes entire queue
 - **Playwright session**: Persists login, no re-auth needed for ~30 days
 - **Career pages**: Direct company pages often have roles not yet on aggregators
+- **Session history**: All commands log reports to `.claude/session_history.md`
 
 ---
 
