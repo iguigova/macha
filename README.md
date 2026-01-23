@@ -15,7 +15,8 @@ On first use with LinkedIn/Indeed, manually log in when the browser opens. The s
 
 | Command | Description |
 |---------|-------------|
-| `/job:scrape [n]` | Scrape job boards, dedupe, filter, queue (minimum n jobs, default: 50) |
+| `/job:source` | Validate sources, remove inactive, discover new APIs + career pages |
+| `/job:scrape` | Scrape all sources, dedupe, filter, queue |
 | `/job:analyze [file\|all]` | Assess fit and generate cover letter |
 | `/job:interview` | Practice interview questions (planned) |
 | `/job:answer` | Generate tailored answers from profile (planned) |
@@ -23,7 +24,8 @@ On first use with LinkedIn/Indeed, manually log in when the browser opens. The s
 ## Workflow
 
 ```bash
-/job:scrape 100       # Scrape → dedupe → filter → queue
+/job:source           # Validate → prune dead → discover new APIs + career pages
+/job:scrape           # Fetch all sources → dedupe → filter → queue
 /job:analyze all      # Assess fit → cover letter → save application
 ```
 
@@ -44,22 +46,38 @@ jobs/
 
 ## Sources
 
-- [Remote OK](https://remoteok.com) (JSON API)
-- [We Work Remotely](https://weworkremotely.com)
-- [Remotive](https://remotive.com) (JSON API)
-- LinkedIn Jobs (via Playwright)
-- Indeed (via Playwright)
+**JSON APIs (no auth):**
+- [Remote OK](https://remoteok.com/api) - all remote jobs, bulk JSON
+- [Remotive](https://remotive.com/api/remote-jobs) - category-filtered (software-development)
+- [Jobicy](https://jobicy.com/api/v2/remote-jobs) - tag-filtered (developer, software, qa, frontend, backend)
+- [Working Nomads](https://www.workingnomads.com/api/exposed_jobs/) - all remote, category-tagged
+
+**HTML (WebFetch):**
+- [We Work Remotely](https://weworkremotely.com) - programming categories
+- [Shopify Careers](https://www.shopify.com/careers/disciplines/engineering-data) - remote Americas engineering
+- [Wrapbook Careers](https://jobs.ashbyhq.com/wrapbook) - remote Canada engineering
+- [AuditBoard Careers](https://jobs.ashbyhq.com/auditboard) - remote Canada engineering
+
+**Authenticated (Playwright):**
+- LinkedIn Jobs
+- Indeed
 
 ## How It Works
 
+**Source Management** (`/job:source`):
+1. Fetches each source URL and checks: responds, has jobs, fresh (< 7 days), relevant
+2. Removes all inactive sources (stale, empty, dead) from sources.txt
+3. Discovers new job board APIs via web search
+4. Discovers company career pages hiring remote devs/QA
+5. Updates the scrape command's source handling for new source types
+
 **Scraping** (`/job:scrape`):
-1. Reads `jobs/sources.txt` for board URLs
-2. Calculates fetch size: `target * 3 / active_sources` per source (3x overfetch to guarantee at least N jobs survive filtering)
-3. Fetches candidates (Playwright for auth-required sites, WebFetch for APIs)
-4. Deduplicates by company+role key against `jobs/seen.txt`
-5. Filters by role title (software, engineer, developer, QA, etc.)
-6. Queues all passing jobs (target is a minimum, never discards matches)
-7. Reports full stats: fetched, deduped, filtered, queued
+1. Reads `jobs/sources.txt` for board URLs (skips comment lines)
+2. Fetches from ALL sources (respects URL params like count=50, limit=20)
+3. Deduplicates by company+role key against `jobs/seen.txt`
+4. Filters by role title (software, developer, backend, frontend, fullstack, QA, test, quality)
+5. Queues all passing jobs (never discards matches)
+6. Reports full stats: fetched, deduped, filtered, queued
 
 **Analysis** (`/job:analyze`):
 1. Reads job description from queue
