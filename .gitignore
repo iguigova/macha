@@ -27,3 +27,5 @@ cabal.sandbox.config
 jobs/queue/
 jobs/applications/
 jobs/last_scrape
+jobs/done
+jobs/discarded

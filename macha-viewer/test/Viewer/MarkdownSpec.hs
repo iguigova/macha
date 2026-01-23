@@ -6,9 +6,10 @@ import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.IO.Temp (withSystemTempDirectory)
 import System.FilePath ((</>))
+import System.Directory (createDirectoryIfMissing, doesFileExist)
 
-import Viewer.Markdown (parseMetadata, listFiles, renderFile)
-import Viewer.Types (FileInfo(..))
+import Viewer.Markdown (parseMetadata, listFiles, renderFile, moveFile, updateNotes, dirStats)
+import Viewer.Types (FileInfo(..), DirStats(..))
 
 sampleApplication :: T.Text
 sampleApplication = T.unlines
@@ -134,3 +135,96 @@ spec = do
         TIO.writeFile (dir </> "strike.md") "This is ~~deleted~~ text."
         html <- renderFile dir "strike.md"
         html `shouldSatisfy` T.isInfixOf "<del>"
+
+  describe "moveFile" $ do
+    it "moves file from source to destination directory" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        let srcDir = dir </> "applications"
+            destDir = dir </> "done"
+        createDirectoryIfMissing True srcDir
+        TIO.writeFile (srcDir </> "job.md") "# Test Job"
+        moveFile srcDir "job.md" destDir
+        srcExists <- doesFileExist (srcDir </> "job.md")
+        destExists <- doesFileExist (destDir </> "job.md")
+        srcExists `shouldBe` False
+        destExists `shouldBe` True
+
+    it "creates destination directory if it does not exist" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        let srcDir = dir </> "applications"
+            destDir = dir </> "new-dir"
+        createDirectoryIfMissing True srcDir
+        TIO.writeFile (srcDir </> "job.md") "# Test"
+        moveFile srcDir "job.md" destDir
+        destExists <- doesFileExist (destDir </> "job.md")
+        destExists `shouldBe` True
+
+    it "preserves file content after move" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        let srcDir = dir </> "src"
+            destDir = dir </> "dest"
+        createDirectoryIfMissing True srcDir
+        let content = "# Job\n\n**Fit:** Strong fit\n"
+        TIO.writeFile (srcDir </> "job.md") content
+        moveFile srcDir "job.md" destDir
+        result <- TIO.readFile (destDir </> "job.md")
+        result `shouldBe` content
+
+  describe "updateNotes" $ do
+    it "appends notes section to file without existing notes" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "job.md") "# Title\n\nSome content.\n"
+        updateNotes dir "job.md" "My notes here"
+        result <- TIO.readFile (dir </> "job.md")
+        result `shouldSatisfy` T.isInfixOf "## Notes"
+        result `shouldSatisfy` T.isInfixOf "My notes here"
+
+    it "replaces existing notes section" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "job.md") "# Title\n\nContent.\n\n## Notes\n\nOld notes\n"
+        updateNotes dir "job.md" "New notes"
+        result <- TIO.readFile (dir </> "job.md")
+        result `shouldSatisfy` T.isInfixOf "New notes"
+        result `shouldSatisfy` (not . T.isInfixOf "Old notes")
+
+    it "preserves content before notes section" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "job.md") "# Title\n\n**Fit:** Good fit\n\n## Notes\n\nOld\n"
+        updateNotes dir "job.md" "Updated"
+        result <- TIO.readFile (dir </> "job.md")
+        result `shouldSatisfy` T.isInfixOf "# Title"
+        result `shouldSatisfy` T.isInfixOf "**Fit:** Good fit"
+
+    it "handles empty notes" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "job.md") "# Title\n"
+        updateNotes dir "job.md" ""
+        result <- TIO.readFile (dir </> "job.md")
+        result `shouldSatisfy` T.isInfixOf "## Notes"
+
+  describe "dirStats" $ do
+    it "counts markdown files in directory" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "a.md") "# A"
+        TIO.writeFile (dir </> "b.md") "# B"
+        TIO.writeFile (dir </> "c.txt") "not markdown"
+        stats <- dirStats dir
+        dsTotal stats `shouldBe` 2
+
+    it "returns zeros for nonexistent directory" $ do
+      stats <- dirStats "/tmp/nonexistent-dir-viewer-test-xyz"
+      stats `shouldBe` DirStats 0 0 0 0
+
+    it "returns zeros for empty directory" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        stats <- dirStats dir
+        stats `shouldBe` DirStats 0 0 0 0
+
+    it "counts recent files in today/week/month" $
+      withSystemTempDirectory "viewer-test" $ \dir -> do
+        TIO.writeFile (dir </> "recent.md") "# Recent"
+        stats <- dirStats dir
+        dsTotal stats `shouldBe` 1
+        dsToday stats `shouldBe` 1
+        dsWeek stats `shouldBe` 1
+        dsMonth stats `shouldBe` 1
