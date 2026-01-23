@@ -78,12 +78,12 @@ jobs/
 **Scraping** (`/job:scrape`):
 1. Reads `jobs/sources.txt` for board URLs (skips comment lines)
 2. Reads `jobs/last_scrape` timestamp (skips entries older than this for JSON APIs)
-3. Fetches from ALL sources (respects URL params like count=50, limit=20)
-4. Date-filters JSON API results (RemoteOK, Remotive, Jobicy, Working Nomads) - skips entries published before last scrape
-5. Deduplicates by company+role key against `jobs/seen.txt`
-6. Filters by role title (software, developer, backend, frontend, fullstack, QA, test, quality)
-7. Queues all passing jobs (never discards matches)
-8. Writes current timestamp to `jobs/last_scrape`
+3. Fetches from ALL sources, extracting descriptions from JSON API responses
+4. Date-filters JSON API results - skips entries published before last scrape
+5. Deduplicates: first within-batch (cross-source overlaps), then against `jobs/seen.txt`
+6. Filters by normalized title (removes hyphens, case-insensitive match: software, developer, backend, frontend, fullstack, QA, test, quality, sdet)
+7. Gets descriptions: JSON API jobs already have them; HTML source jobs are batch-fetched in parallel
+8. Queues all passing jobs, writes timestamp to `jobs/last_scrape`
 9. Reports full stats and logs to `.claude/session_history.md`
 
 **Analysis** (`/job:analyze`):
