@@ -19,10 +19,10 @@ Scrape job listings and queue new ones for analysis.
 4. For each source URL in sources.txt (skip lines starting with #), fetch candidates:
    - **linkedin.com**: Playwright MCP. Navigate to https://www.linkedin.com/jobs/search/?keywords=software+developer&f_WT=2&sortBy=DD, then also search "QA engineer remote". Use browser_navigate, then browser_snapshot to read listings. Extract: title, company, job URL. If login required, tell user to log in and retry.
    - **indeed.com**: Playwright MCP. Navigate to https://www.indeed.com/jobs?q=software+developer&l=remote&sort=date, then also search "QA engineer remote". Use browser_navigate, then browser_snapshot to read listings. Extract: title, company, job URL. If login required, tell user to log in and retry.
-   - **remoteok.com/api**: WebFetch, JSON array (first element is metadata, skip it). Fields: position, company, url, description. **Date field:** `epoch` (unix timestamp) or `date` (ISO string)
-   - **remotive.com/api**: WebFetch, JSON object with `jobs` array. Fields: title, company_name, url, description. **Date field:** `publication_date` (ISO string)
-   - **jobicy.com/api**: WebFetch, JSON object with `jobs` array. Fields: jobTitle, companyName, url, jobDescription. **Date field:** `pubDate` (ISO string)
-   - **workingnomads.com/api**: WebFetch, JSON array. Fields: title, company_name, url, description, category_name. **Date field:** `pub_date` (ISO string)
+   - **remoteok.com/api**: WebFetch, JSON array (first element is metadata, skip it). Extract ALL fields: position, company, url, **description**, epoch, date. **Date field:** `epoch` (unix timestamp) or `date` (ISO string)
+   - **remotive.com/api**: WebFetch, JSON object with `jobs` array. Extract ALL fields: title, company_name, url, **description**, publication_date. **Date field:** `publication_date` (ISO string)
+   - **jobicy.com/api**: WebFetch, JSON object with `jobs` array. Extract ALL fields: jobTitle, companyName, url, **jobDescription**, pubDate. **Date field:** `pubDate` (ISO string)
+   - **workingnomads.com/api**: WebFetch, JSON array. Extract ALL fields: title, company_name, url, **description**, category_name, pub_date. **Date field:** `pub_date` (ISO string)
    - **weworkremotely.com**: WebFetch, parse HTML for job listings. Extract title, company, and job URL from listing links. No date filtering (use dedup only).
    - **shopify.com/careers**: WebFetch, parse HTML. Look for job titles with "Apply" links. Company is "Shopify". Only keep roles marked "Remote". No date filtering.
    - **jobs.ashbyhq.com/{company}**: WebFetch, parse HTML. Each listing has a title and department. Extract title and link. Company name from URL path segment. Only keep roles mentioning "Remote" in location. No date filtering.
@@ -32,17 +32,18 @@ Scrape job listings and queue new ones for analysis.
 
 5. **DATE FILTER** (JSON APIs only): If `jobs/last_scrape` exists, skip any entry whose publication date is older than the last scrape timestamp. This avoids reprocessing entries from previous runs. Only applies to sources with a date field (remoteok, remotive, jobicy, workingnomads). HTML sources skip this step.
 
-6. **DEDUPE**: Use the Grep tool (ripgrep) to check each remaining job against jobs/seen.txt (by company+role key)
-   - Generate key: sanitized {company}_{role} (same as filename)
-   - Grep for the key in seen.txt - skip if found
+6. **DEDUPE** (two-phase):
+   a. **Within-batch**: Collect all candidates from all sources into a single list keyed by sanitized company_role. If the same key appears from multiple sources, keep the first occurrence and discard duplicates.
+   b. **Against seen.txt**: Use the Grep tool (ripgrep) to check each remaining key against jobs/seen.txt. Skip if found.
 
-7. **THEN FILTER**: Keep only titles containing (case-insensitive):
-   - software, developer, backend, frontend, fullstack
-   - QA, test, quality
-   - Skip: manager, director, designer, data scientist, ML, machine learning, devops
+7. **THEN FILTER**: Normalize each title by removing hyphens, then apply case-insensitive substring matching.
+   - Keep titles containing: software, developer, backend, frontend, fullstack, QA, test, quality, sdet
+   - Skip titles containing: manager, director, designer, data scientist, ML, machine learning, devops
 
 8. For each new job passing all checks:
-   - Fetch full description
+   - **Get description**:
+     - JSON API jobs (remoteok, remotive, jobicy, workingnomads): use the description already extracted from the API response in step 4
+     - HTML source jobs (weworkremotely, shopify, ashbyhq, other career pages): batch-fetch individual job page URLs in parallel groups (~9 concurrent WebFetch calls per batch). Extract full job description, requirements, and qualifications from each page.
    - Save to jobs/queue/{company}_{role}.md:
      ```
      # {Company} - {Role}
@@ -50,7 +51,7 @@ Scrape job listings and queue new ones for analysis.
      **URL:** {url}
 
      ## Description
-     {job description}
+     {full job description}
      ```
    - Append key to jobs/seen.txt
 
@@ -59,10 +60,11 @@ Scrape job listings and queue new ones for analysis.
 10. Report stats:
    - Fetched: total candidates retrieved from sources
    - Skipped (old): entries older than last scrape (JSON APIs only)
-   - Deduped: skipped (company+role already in seen.txt)
+   - Deduped (batch): cross-source duplicates within this batch
+   - Deduped (seen): already in seen.txt from previous runs
    - Filtered: dropped (title didn't match)
    - Queued: saved to jobs/queue/
-   - Format: "Queued X jobs (fetched Y, old Z, deduped D, filtered F)"
+   - Format: "Queued X jobs (fetched Y, old Z, deduped-batch B, deduped-seen S, filtered F)"
    - List each queued job: `- {company}: {role}`
 
 11. Log to session history: Append the report (from step 10) to `.claude/session_history.md` under a new dated heading `## {date} /job:scrape`.

@@ -134,20 +134,19 @@ Scrape job listings and queue new ones for analysis.
 3. Fetch from ALL sources (respect URL params, max 50 per URL otherwise)
 
 4. For each source, fetch using appropriate method:
-   - JSON APIs: WebFetch, parse response
+   - JSON APIs: WebFetch, parse response (extract descriptions from API response)
    - HTML pages: WebFetch, parse listings
    - Playwright: authenticated browser (LinkedIn, Indeed)
 
 5. **DATE FILTER** (JSON APIs only): Skip entries with publication date older than last_scrape timestamp. Uses date fields: epoch/date (RemoteOK), publication_date (Remotive), pubDate (Jobicy), pub_date (Working Nomads). HTML sources skip this step.
 
-6. **DEDUPE**: Check company+role key against jobs/seen.txt - skip if exists
+6. **DEDUPE** (two-phase): First deduplicate within-batch by key (cross-source overlaps). Then check against jobs/seen.txt.
 
-7. **FILTER**: Keep titles containing:
-   - software, developer, backend, frontend, fullstack
-   - QA, test, quality
+7. **FILTER**: Normalize title (remove hyphens), then case-insensitive match:
+   - Keep: software, developer, backend, frontend, fullstack, QA, test, quality, sdet
    - Skip: manager, director, designer, data scientist, ML, machine learning, devops
 
-8. For each passing job: fetch description, save to queue, append to seen.txt
+8. Get descriptions (JSON: from API response; HTML: batch-fetch job pages in parallel). Save to queue, append to seen.txt
 
 9. Write current ISO 8601 timestamp (UTC) to jobs/last_scrape
 
