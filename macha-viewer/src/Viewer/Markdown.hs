@@ -60,10 +60,10 @@ parseFile dir filename = do
   content <- TIO.readFile path
   mtime <- getModificationTime path
   let epoch = floor (utcTimeToPOSIXSeconds mtime) :: Int
-  pure $ (parseMetadata (T.pack filename) content) { fiTimestamp = epoch }
+  pure $ parseMetadata (T.pack filename) epoch content
 
-parseMetadata :: Text -> Text -> FileInfo
-parseMetadata filename content =
+parseMetadata :: Text -> Int -> Text -> FileInfo
+parseMetadata filename timestamp content =
   let ls = T.lines content
       title = case filter (T.isPrefixOf headingPrefix) ls of
                 (l:_) -> T.strip (T.drop (T.length headingPrefix) l)
@@ -75,7 +75,7 @@ parseMetadata filename content =
     , fiTitle     = title
     , fiUrl       = url
     , fiFit       = fit
-    , fiTimestamp = 0
+    , fiTimestamp = timestamp
     }
 
 extractField :: Text -> [Text] -> Text
