@@ -99,3 +99,7 @@ Removed (reason):
 - {url}: {reason - e.g., "0 jobs", "no relevant titles", "stale"}
 - ...
 ```
+
+## 8. Log to session history
+
+Append the report (from step 7) to `.claude/session_history.md` under a new dated heading `## {date} /job:source`.

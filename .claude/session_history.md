@@ -1,5 +1,54 @@
 # Session History
 
+## 2026-01-22 (last_scrape timestamp + session history logging)
+
+**Done:**
+- Added `jobs/last_scrape` timestamp to `/job:scrape` - reads before fetching, skips JSON API entries older than last scrape, writes current time after successful run
+- Date fields per source: `epoch`/`date` (RemoteOK), `publication_date` (Remotive), `pubDate` (Jobicy), `pub_date` (Working Nomads)
+- HTML sources (WeWorkRemotely, Shopify, Ashby pages) skip date filtering, rely on dedup only
+- Added session history logging step to all 3 job commands (`/job:source`, `/job:scrape`, `/job:analyze`)
+- Added `jobs/last_scrape` to `.gitignore` (runtime state)
+- Updated `JOB_PIPELINE_PLAN.md`: file tree, scrape steps, efficiency notes, files-to-create list, new career pages
+- Updated `README.md`: structure, sources list, scrape pipeline description
+
+**Suggested commit:**
+```
+Add last_scrape date filter and session history logging to job commands
+
+Scrape command now reads jobs/last_scrape timestamp and skips JSON API
+entries published before the last run. Writes new timestamp after each
+successful scrape. All three job commands (/job:source, /job:scrape,
+/job:analyze) now append their reports to .claude/session_history.md.
+Updated plan and README to match.
+```
+
+---
+
+## 2026-01-22 (source validation round 2 - add company career pages)
+
+**Done:**
+- Ran `/job:source` - validated all existing sources against freshness, effectiveness, and responsiveness
+- All existing sources confirmed ACTIVE (RemoteOK, Remotive, Jobicy x5, Working Nomads, WeWorkRemotely, Shopify, Wrapbook, AuditBoard)
+- LinkedIn/Indeed confirmed NEEDS_LOGIN (Playwright required)
+- Discovered and added 3 new company career pages (all Ashby-hosted, WebFetch-compatible):
+  - Fieldguide: 35 jobs, 8 engineering, remote USA (cybersecurity/audit)
+  - TENEX.AI: 47 jobs, 27 engineering, remote USA (AI security)
+  - Cohere: 70+ jobs, many engineering, remote/Canada (AI/ML, Toronto/Montreal)
+- Evaluated but rejected: Arbeitnow (mostly German, only 1 remote), Himalayas (no category filtering, 100k+ unfiltered jobs), GitLab (0 current openings), Automattic/Zapier (no listings on careers page), Ramp (hybrid only), Suno (on-site), Nevoya (no dev roles), Arc.dev (no public API)
+- No changes needed to scrape command (existing Ashby handler covers new sources)
+
+**Suggested commit:**
+```
+Add Fieldguide, TENEX.AI, Cohere career pages to job sources
+
+Validated all existing sources (all active). Added 3 new Ashby-hosted
+career pages with remote engineering roles: Fieldguide (8 eng, remote
+USA), TENEX.AI (27 eng, remote USA), Cohere (70+ roles, remote Canada).
+All compatible with existing WebFetch Ashby handler in scrape command.
+```
+
+---
+
 ## 2026-01-22 (source validation + Playwright + effectiveness filter)
 
 **Done:**
