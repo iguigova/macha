@@ -1,5 +1,24 @@
 # Session History
 
+## 2026-01-23 (permissions & settings consolidation)
+
+**Done:**
+- Added global instruction to `~/.claude/CLAUDE.md`: suggest commit message + log to session history after each prompt
+- Consolidated all tool permissions into `~/.claude/settings.json` (global): Edit, Write, WebFetch domains, Bash patterns, Playwright tools
+- Cleaned up `.claude/settings.local.json` (removed broken multi-line bash fragments, cleared duplicates)
+
+**Suggested commit:**
+```
+Consolidate Claude Code permissions globally, add commit-per-prompt instruction
+
+Move all tool permissions (WebFetch domains, Bash patterns, Playwright
+tools) from project-local settings.local.json to global ~/.claude/settings.json.
+Add Edit/Write to global allow list. Add instruction to always suggest
+a commit message and log to session history after each prompt.
+```
+
+---
+
 ## 2026-01-23 /job:analyze
 
 **Analyzed 29 jobs, saved to jobs/applications/**
