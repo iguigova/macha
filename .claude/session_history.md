@@ -1,5 +1,212 @@
 # Session History
 
+## 2026-01-23 /job:analyze
+
+**Analyzed 29 jobs, saved to jobs/applications/**
+
+79 jobs remain in queue (minimal descriptions — Jobicy/Remotive/WeWorkRemotely/Ashby pages that couldn't be fetched via WebFetch due to JS rendering or site blocks).
+
+Jobs analyzed:
+- ChurnZero: Full Stack Software Engineer (Strong fit)
+- Higher Logic: Junior Software Developer (Strong fit)
+- Netflix: Software Engineer 5 (Good fit)
+- Netflix: Software Engineer - Open Connect Control Plane (Good fit)
+- SpruceID: Full-Stack Software Engineer – Remote (Strong fit)
+- Reddit: Junior Full-Stack Software Engineer (Strong fit)
+- Pomelo Care: Software Engineer (Good fit)
+- Crossing Hurdles: Software Engineer | $85/hr (Good fit)
+- Crossing Hurdles: Junior Software Engineer (Strong fit)
+- Flagler Health: Software Engineer - Frontend (Good fit)
+- Hashnode: Fullstack Developer (Good fit)
+- Socket: Software Engineer (Strong fit)
+- Runpod: Software Engineer (Full-Stack) (Good fit)
+- Ad Hoc Labs: Software Engineer - Web (Good fit)
+- Jasper: Software Engineer - Backend (Good fit)
+- ComboCurve: Full-Stack Developer (Stretch)
+- Flex: Software Engineer I, Backend (Strong fit)
+- Microsoft: Software Engineer (Good fit)
+- Wealthfront: Software Engineer, Frontend (Good fit)
+- Oracle: Software Developer (Strong fit)
+- PathAI: Software Engineer, Full Stack (Stretch)
+- PolicyMe: Junior Software Engineer (Good fit)
+- Posit PBC: Software Engineer (Stretch)
+- Shopify: Software Engineers (Good fit)
+- Jerry: Software Engineer (entry) (Good fit)
+- Clarvos: Junior Software Engineer (Good fit)
+- hackajob: Junior Software Engineer (Poor fit — grad program, US auth required)
+- Abridge: Software Engineer (Good fit — but HYBRID ONLY, skip)
+- Actionable.co: Senior Front-End Developer (Stretch)
+
+Summary: 8 Strong fit, 15 Good fit, 4 Stretch, 2 Skip (Poor fit / location mismatch)
+
+---
+
+## 2026-01-22 /job:scrape
+
+**Queued 27 jobs** (fetched 60, old 0, deduped-batch 8, deduped-seen 2, filtered 23)
+
+Source: LinkedIn (public, no login required for first page). Used Playwright to navigate to remote software developer search (f_WT=2 filter). Other sources commented out or removed from sources.txt (only linkedin.com/jobs active).
+
+Note: sources.txt was modified to only contain LinkedIn. Full source list preserved in sources.bak.
+
+Jobs queued:
+- SpruceID: Full-Stack Software Engineer (New Grad) – Remote
+- Crossing Hurdles: Software Engineer | $85/hr | Remote
+- PolicyMe: Junior Software Engineer (Remote)
+- Higher Logic: Junior Software Developer
+- Posit PBC: Software Engineer
+- Clarvos: Junior Software Engineer (Fresh Graduates)
+- hackajob: Junior Software Engineer
+- Jerry: Software Engineer (entry)
+- ChurnZero: Full Stack Software Engineer
+- Socket: Software Engineer
+- Hashnode: Fullstack Developer (Remote)
+- Crossing Hurdles: Junior Software Engineer | Remote
+- Pomelo Care: Software Engineer (Remote)
+- ComboCurve: Full-Stack Developer
+- Flagler Health: Software Engineer - Frontend (Remote)
+- Netflix: Software Engineer - Open Connect Control Plane
+- Netflix: Software Engineer 5
+- Abridge: Software Engineer (All Levels)
+- Microsoft: Software Engineer
+- Wealthfront: Software Engineer, Frontend
+- PathAI: Software Engineer, Full Stack
+- Runpod: Software Engineer (Full-Stack)
+- Ad Hoc Labs: Software Engineer - Web
+- Jasper: Software Engineer - Backend
+- Reddit: Junior Full-Stack Software Engineer - Business Manager
+- Oracle: Software Developer
+- Flex: Software Engineer I, Backend (New Grad)
+
+---
+
+## 2026-01-23 /job:scrape
+
+**Queued 1 jobs** (fetched 259, old 250, deduped-batch 0, deduped-seen 80, filtered 7)
+
+All JSON API entries older than last_scrape (2026-01-23T02:53:07Z) - 0 new from APIs. HTML sources checked for new listings.
+
+Jobs queued:
+- Shopify: Software Engineers (core/always-hiring, Remote Americas)
+
+Note: Most HTML source listings unchanged from previous scrape. LinkedIn/Indeed skipped (Playwright not available).
+
+---
+
+## 2026-01-22 (scrape command improvements)
+
+**Done:**
+- Fixed within-batch dedup: two-phase approach - first deduplicate cross-source overlaps by key within the batch, then check against seen.txt
+- Fixed description fetching: JSON API sources now explicitly extract descriptions from API response; HTML sources batch-fetch individual job pages in parallel (~9 concurrent)
+- Fixed title filter: normalize titles by removing hyphens before matching (full-stack→fullstack, front-end→frontend, back-end→backend). Added "sdet" keyword.
+- Updated stats format to show batch vs seen dedup counts separately
+- Updated JOB_PIPELINE_PLAN.md and README.md
+
+**Suggested commit:**
+```
+Fix scrape command: two-phase dedup, description extraction, title normalization
+
+Three fixes based on first full scrape run:
+1. Dedup now handles cross-source duplicates within a batch before
+   checking seen.txt (e.g. same job from multiple Jobicy tags)
+2. JSON API descriptions extracted from API response; HTML source
+   descriptions batch-fetched in parallel (~9 concurrent WebFetch)
+3. Title filter normalizes hyphens (full-stack matches fullstack)
+   and adds sdet keyword. Updated plan and README.
+```
+
+---
+
+## 2026-01-22 /job:scrape
+
+**Queued 80 jobs** (fetched 259, old 0, deduped 9, filtered 170)
+
+Sources scraped: RemoteOK, Remotive, Jobicy (x5 tags), Working Nomads, WeWorkRemotely, Shopify, Wrapbook, AuditBoard, Fieldguide, TENEX.AI, Cohere (LinkedIn/Indeed skipped - Playwright not available)
+
+Jobs queued:
+- Evolve Tech LLC: Backend Developer
+- A.Team: Senior Independent Software Developer
+- Mitre Media: Tech Lead Full-Stack Rails Engineer
+- Apexver: Software Engineer C++ (Senior)
+- Actionable.co: Senior Front-End Developer
+- Infor: .NET Developer Senior (AI integration)
+- Infor: .Net Principal Developer (Multi-tenant Integration)
+- Magic Media: Kotlin Game Developer
+- Mindrift: Freelance Software Developer (Kotlin)
+- Lumen Technologies: Senior Software Developer
+- Eurofins: D365 FO/.NET Developer
+- RemoteStar: Python Developer
+- Nacre Capital: Full Stack Developer
+- Mindrift: Freelance Software Developer (Java)
+- Binance: Android Developer/Architect
+- Trimble: Senior Software Developer – Fullstack
+- ECS: Microsoft Dynamics Developer
+- GiveDirectly: Senior Software Engineer
+- Flex: Staff Software Engineer, Risk Engineering
+- Kraken: Senior Software Engineer – Frontend – Onchain
+- Tines: Software Engineer
+- Autodesk: Principal Software Engineer
+- Akamai: Software QA Automation Engineer
+- Match Group: Senior Software Engineer, iOS
+- GoDaddy: Principal Engineer, Software Development
+- Motive: Staff Bluetooth Software Engineer
+- Teachable: Software Engineer II (mid-level)
+- TRM Labs: Senior Software Engineer, Data Platform
+- HubSpot: Senior Software Engineer, Frontend, Fintech
+- Socure: Senior Backend Engineer
+- Canva: Backend Engineer, User Platform – Java
+- Canva: Senior Backend Engineer, User Platform – Java
+- Turnitin: Senior Software Engineer, Fullstack/Backend
+- Turnitin: Software Engineer, Fullstack/Backend
+- Proxify: Senior Ruby on Rails Developer
+- Proxify: Senior Fullstack Developer (Vue.js & Python)
+- Proxify: Senior Backend Developer (Node.js / Nest.js)
+- Proxify: Senior Fullstack Developer (Python)
+- Proxify: Senior Django Developer
+- Proxify: Senior Backend Developer (Python)
+- Proxify: Senior MS Power BI Developer
+- Sticker Mule: Software Engineer
+- SerpNames: Passionate Full-Stack Engineer
+- Planning Center: Full Stack Engineer
+- Zencastr: Senior Fullstack Developer
+- fonio: Senior Software Engineer
+- Stellar AI: Senior Software Engineer
+- DynamiCare Health: Full-Stack Engineer
+- Lemon.io: Senior PHP Full-stack Developer
+- Lemon.io: Senior Full-stack Developer
+- OpsFlow: Senior Software Engineer (.NET, Node.js, React)
+- Karmah: Full Stack Developer
+- CodeSignal: Software Engineer, Business Experience
+- Cotiviti: SDET
+- DexCom: Sr Web Applications Developer
+- Vituity: Senior Web Applications Developer
+- Edgewater Federal Solutions: .Net Junior-level Software Engineer
+- Applied Imagination: BA/QA
+- EBG: PHP Web Application Developer
+- ImFusion: Backend / Web Application Developer
+- Lumenalta: Javascript Fullstack Engineer - Senior
+- Jiga: Full Stack Product Engineer
+- Storetasker: Senior Shopify Developer
+- WodBoard: Senior Rails Developer
+- KFC: Sr. Software Engineer II
+- comparis.ch: Experienced Full-Stack Software Engineer (.NET/React)
+- Stack Influence: Senior Full Stack Javascript Engineer
+- Shopify: Senior Software Engineer - Streaming Pipelines
+- Shopify: Staff Software Engineer - Internal Tools
+- Wrapbook: Senior Software Engineer II
+- Wrapbook: Senior Software Engineer I
+- Wrapbook: Software Engineer III
+- AuditBoard: Senior Software Engineer II (Full Stack), BCM
+- AuditBoard: Senior Software Engineer I, Localization
+- AuditBoard: Staff Software Engineer, Architecture Team
+- Fieldguide: Deployed Software Engineer
+- Fieldguide: Software Engineer (All Levels)
+- TENEX.AI: Senior Software Engineer
+- TENEX.AI: Staff Software Engineer
+- Cohere: Full-Stack Software Engineer, Inference
+
+---
+
 ## 2026-01-22 (last_scrape timestamp + session history logging)
 
 **Done:**
