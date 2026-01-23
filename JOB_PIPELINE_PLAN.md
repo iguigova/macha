@@ -36,7 +36,7 @@ macha/
 │   │   ├── profile.txt              # User profile
 │   │   └── cover_letter_style.md    # Cover letter guidelines
 │   ├── sources.txt                  # URLs of job boards
-│   ├── urls.txt                     # Seen URLs (dedup)
+│   ├── seen.txt                     # Seen company+role keys (dedup)
 │   ├── queue/                       # Jobs to analyze
 │   │   └── {company}_{role}.md
 │   └── applications/                # Analyzed jobs
@@ -63,11 +63,11 @@ https://indeed.com/jobs
 
 ---
 
-## urls.txt
+## seen.txt
 
 ```
-https://remoteok.com/remote-jobs/123
-https://linkedin.com/jobs/view/456
+acme_corp_senior_backend_engineer
+marketerx_senior_devops_engineer
 ```
 
 ---
@@ -94,7 +94,7 @@ Scrape job listings and queue new ones for analysis.
    - LinkedIn/Indeed: Playwright MCP
    - Others: WebFetch
 
-3. **DEDUPE FIRST**: Check each URL against jobs/urls.txt
+3. **DEDUPE FIRST**: Check each company+role key against jobs/seen.txt
    - Skip if URL already exists
 
 4. **THEN FILTER**: Keep only titles containing:
@@ -113,7 +113,7 @@ Scrape job listings and queue new ones for analysis.
      ## Description
      {job description}
      ```
-   - Append URL to jobs/urls.txt
+   - Append company+role key to jobs/seen.txt
 
 6. Report: "Added X jobs to queue"
 ```
@@ -231,7 +231,7 @@ I'm applying for the Senior Backend Engineer position...
 5. `jobs/profile/profile.txt`
 6. `jobs/profile/cover_letter_style.md`
 7. `jobs/sources.txt`
-8. `jobs/urls.txt` (empty)
+8. `jobs/seen.txt` (empty)
 9. `jobs/queue/` directory
 10. `jobs/applications/` directory
 
@@ -241,7 +241,7 @@ I'm applying for the Senior Backend Engineer position...
 
 - **Dedup before filter**: Don't waste time filtering already-seen jobs
 - **URL only**: No source tracking needed, URL is unique identifier
-- **Single urls.txt**: Flat file, one URL per line, grep for dedup
+- **Single seen.txt**: Flat file, one company_role key per line, grep for dedup
 - **Batch analyze**: `/job:analyze all` processes entire queue
 - **Playwright session**: Persists login, no re-auth needed for ~30 days
 
@@ -252,7 +252,7 @@ I'm applying for the Senior Backend Engineer position...
 ```bash
 # Test scrape
 /job:scrape 5
-# Check: jobs/queue/ has files, jobs/urls.txt updated
+# Check: jobs/queue/ has files, jobs/seen.txt updated
 
 # Test analyze
 /job:analyze jobs/queue/[file].md
