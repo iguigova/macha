@@ -162,6 +162,11 @@ async function loadFile(filename, li) {
   const res = await fetch('/api/' + currentDir + '/file/' + encodeURIComponent(filename));
   const html = await res.text();
   content.innerHTML = html;
+  // Make all links open in new tab
+  content.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
   const showActions = currentDir === 'applications' || currentDir === 'queue';
   actions.style.display = showActions ? 'flex' : 'none';
   notesWrap.style.display = 'block';
