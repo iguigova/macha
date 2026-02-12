@@ -17,16 +17,17 @@ On first use with LinkedIn/Indeed, manually log in when the browser opens. The s
 |---------|-------------|
 | `/job:source` | Validate sources, remove inactive, discover new APIs + career pages |
 | `/job:scrape` | Scrape all sources, dedupe, filter, queue |
-| `/job:analyze [file\|all]` | Assess fit and generate cover letter |
-| `/job:interview` | Practice interview questions (planned) |
-| `/job:answer` | Generate tailored answers from profile (planned) |
+| `/job:analyze [file\|all]` | Select relevant facts, assess fit, generate cover letter |
+| `/job:answer <question> [--app file]` | Generate answer from profile facts, update profile |
+| `/job:apply [file\|all]` | Auto-apply via browser: fill forms, upload resume, submit |
 
 ## Workflow
 
 ```bash
 /job:source           # Validate → prune dead → discover new APIs + career pages
 /job:scrape           # Fetch all sources → dedupe → filter → queue
-/job:analyze all      # Assess fit → cover letter → save application
+/job:analyze all      # Select relevant facts → assess fit → cover letter → application
+/job:apply all        # Browser automation → fill forms → submit → done/
 ```
 
 ## Structure
@@ -34,14 +35,15 @@ On first use with LinkedIn/Indeed, manually log in when the browser opens. The s
 ```
 jobs/
 ├── profile/
-│   ├── profile.txt              # Skills, experience, projects
-│   └── cover_letter_style.md    # Cover letter guidelines
+│   └── profile.txt              # Fact-based profile (identity, experience, career, style)
 ├── sources.txt                  # Job board URLs to scrape
 ├── seen.txt                     # Seen company+role keys (dedup)
 ├── last_scrape                  # Last scrape timestamp (date filter for JSON APIs)
 ├── queue/                       # Jobs awaiting analysis
 │   └── {company}_{role}.md
-└── applications/                # Analyzed jobs with cover letters
+├── applications/                # Analyzed jobs with cover letters
+│   └── {company}_{role}.md
+└── done/                        # Successfully submitted applications
     └── {company}_{role}.md
 ```
 
@@ -88,7 +90,25 @@ jobs/
 
 **Analysis** (`/job:analyze`):
 1. Reads job description from queue
-2. Compares requirements against `jobs/profile/profile.txt`
-3. Rates fit: Strong / Good / Stretch / Poor
-4. Generates cover letter per `jobs/profile/cover_letter_style.md`
-5. Saves complete application to `jobs/applications/`
+2. Reads fact-based profile from `jobs/profile/profile.txt`
+3. Selects 3-4 most relevant career facts for this specific job
+4. Rates fit: Strong / Good / Stretch / Poor
+5. Generates targeted cover letter from selected facts
+6. Saves complete application to `jobs/applications/`
+
+**Answering** (`/job:answer`):
+1. Reads the question and the profile facts
+2. Factual questions: returns the value from the profile
+3. Behavioral questions: composes 3-5 sentence answer from career facts
+4. Unknown answers: asks user, adds new fact to profile
+5. Optionally saves Q&A to application file
+
+**Applying** (`/job:apply`):
+1. Reads application file (URL, cover letter, fit rating)
+2. Navigates to job URL via Playwright browser automation
+3. Detects platform (LinkedIn, Indeed, Ashby, Greenhouse, Lever, generic)
+4. Fills form fields from profile identity facts
+5. Uploads resume (`IlkaGuigova+.pdf`), pastes cover letter
+6. Handles screening questions using `/job:answer` logic
+7. Takes screenshot before submit, then submits
+8. Moves successful applications to `jobs/done/`

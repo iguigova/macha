@@ -1,5 +1,36 @@
 # Session History
 
+## 2026-02-06 (fact-based profile + /job:answer + /job:apply)
+
+**Done:**
+- Rewrote `jobs/profile/profile.txt` as flat dump of ~120 natural language facts (was 476 lines with structured sections)
+- Merged `cover_letter_style.md` into profile.txt as facts, deleted the separate file
+- Created `.claude/commands/job:answer.md` — derives screening answers from profile facts, learns new facts from user
+- Created `.claude/commands/job:apply.md` — Playwright browser automation to fill forms, upload resume, submit applications
+- Updated `.claude/commands/job:analyze.md` — now selects 3-4 most relevant career facts per job instead of summarizing whole career
+- Updated `JOB_PIPELINE_PLAN.md` — documented all 5 commands, updated file list, workflow, verification
+- Updated `README.md` — new commands, workflow, structure, how-it-works sections
+
+**Key design decisions:**
+- Profile is a flat dump of natural language facts, no tags/metadata/structure — Claude infers relevance from content
+- Single source of truth: all form data, screening answers, cover letters derived from same facts
+- Learning loop: unknown answers → ask user → add fact → auto-answered next time
+- Platform detection by URL pattern: LinkedIn, Indeed, Ashby, Greenhouse, Lever, Workday, generic
+
+**Suggested commit:**
+```
+Add /job:apply, /job:answer commands and fact-based profile
+
+Restructure profile.txt as flat natural language facts (~120 statements)
+replacing 476-line structured document. Create /job:apply for browser
+automation (Playwright MCP) across LinkedIn, Indeed, Ashby, Greenhouse,
+Lever, Workday. Create /job:answer for screening question answers with
+profile learning loop. Update /job:analyze to select 3-4 relevant facts
+per job. Delete cover_letter_style.md (merged into profile).
+```
+
+---
+
 ## 2026-01-23 (permissions & settings consolidation)
 
 **Done:**
