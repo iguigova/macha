@@ -11,11 +11,11 @@ Fetch All Sources → Dedupe → Filter → Queue
 ### `/job:analyze`
 Job + Profile → Fit Assessment → Cover Letter → Application
 
-### `/job:interview` (future)
-Application → Practice Interview Questions → Mock Answers
+### `/job:answer`
+Profile Facts + Question → Tailored Answer → Profile Enriched
 
-### `/job:answer` (future)
-Profile + Application + Question → Tailored Answer
+### `/job:apply`
+Application + Browser Automation → Fill Form → Screenshot → Submit → done/
 
 ---
 
@@ -36,22 +36,23 @@ claude mcp add --transport stdio playwright -- npx -y @microsoft/playwright-mcp
 macha/
 ├── jobs/
 │   ├── profile/
-│   │   ├── profile.txt              # User profile
-│   │   └── cover_letter_style.md    # Cover letter guidelines
+│   │   └── profile.txt              # Fact-based profile (all data in one file)
 │   ├── sources.txt                  # URLs of job boards
 │   ├── seen.txt                     # Seen company+role keys (dedup)
 │   ├── last_scrape                  # ISO 8601 timestamp of last scrape (date filter)
 │   ├── queue/                       # Jobs to analyze
 │   │   └── {company}_{role}.md
-│   └── applications/                # Analyzed jobs
+│   ├── applications/                # Analyzed jobs with cover letters
+│   │   └── {company}_{role}.md
+│   └── done/                        # Successfully submitted applications
 │       └── {company}_{role}.md
 │
 ├── .claude/commands/
 │   ├── job:source.md
 │   ├── job:scrape.md
 │   ├── job:analyze.md
-│   ├── job:interview.md             # (future)
-│   └── job:answer.md                # (future)
+│   ├── job:answer.md
+│   └── job:apply.md
 ```
 
 ---
@@ -161,56 +162,49 @@ Scrape job listings and queue new ones for analysis.
 
 `.claude/commands/job:analyze.md`
 
-```markdown
----
-description: Analyze fit and generate cover letter
-allowed-tools: Read, Write, Glob
----
-
-Analyze job fit and generate cover letter.
-
-**Input:** $ARGUMENTS = queue file path (or "all")
+Select relevant facts from profile, assess fit, generate targeted cover letter.
 
 **Steps:**
-
-1. Read the job from queue file
-
+1. Read the job from queue file (or "all" to process entire queue)
 2. Read jobs/profile/profile.txt
-
-3. **Fit Assessment**: Am I a good fit for this job?
-   - Compare requirements to my skills
-   - Note where I align
-   - Note gaps honestly
-
-4. Read jobs/profile/cover_letter_style.md
-
-5. **Generate Cover Letter** following guidelines:
-   - Direct, factual, no fluff
-   - No "excited" or "passionate"
-   - No "20+ years"
-   - Single page
-   - Opening → Why fit → Technical → What I bring → Close
-
-6. Save to jobs/applications/{company}_{role}.md:
-   ```
-   # {Company} - {Role}
-
-   **URL:** {url}
-
-   ## Job Description
-   {description}
-
-   ## Fit Assessment
-   {assessment}
-
-   ## Cover Letter
-   {letter}
-   ```
-
+3. Select 3-4 most relevant career facts for THIS job
+4. Assess fit: Strong / Good / Stretch / Poor
+5. Generate cover letter from selected facts (following cover letter style facts in profile)
+6. Save to jobs/applications/{company}_{role}.md with fit rating
 7. Delete the queue file
-
 8. Show the cover letter
-```
+
+---
+
+## Command 4: `/job:answer`
+
+`.claude/commands/job:answer.md`
+
+Generate answers to screening questions from profile facts.
+
+**Steps:**
+1. Read jobs/profile/profile.txt
+2. Factual questions: return the value from the profile
+3. Behavioral questions: compose 3-5 sentence answer from career facts
+4. Unknown answers: ask user, add new fact to profile
+5. Optionally append Q&A to application file (with `--app`)
+
+---
+
+## Command 5: `/job:apply`
+
+`.claude/commands/job:apply.md`
+
+Auto-apply via Playwright browser automation.
+
+**Steps:**
+1. Read profile and application file(s)
+2. Navigate to URL, detect platform (LinkedIn, Indeed, Ashby, Greenhouse, Lever, Workday, generic)
+3. Fill form from profile identity facts
+4. Upload resume (`~/Downloads/IlkaGuigova+.pdf`)
+5. Paste cover letter, handle screening questions (same logic as `/job:answer`)
+6. Screenshot before submit, then submit
+7. On success: move to jobs/done/. On failure: log reason, continue.
 
 ---
 
@@ -233,6 +227,7 @@ We are looking for a Senior Backend Engineer...
 # Acme - Senior Backend Engineer
 
 **URL:** https://linkedin.com/jobs/view/123
+**Fit:** Strong fit
 
 ## Job Description
 We are looking for a Senior Backend Engineer...
@@ -255,25 +250,26 @@ I'm applying for the Senior Backend Engineer position...
 ```bash
 /job:source            # Validate sources, discover new ones, update scrape command
 /job:scrape            # Fetch all sources, dedupe, filter, queue
-/job:analyze all       # Process all queued jobs
+/job:analyze all       # Select relevant facts → assess fit → cover letter
+/job:apply all         # Browser automation → fill forms → submit → done/
 ```
 
 ---
 
-## Files to Create
+## Files
 
 1. `.claude/commands/job:source.md`
 2. `.claude/commands/job:scrape.md`
 3. `.claude/commands/job:analyze.md`
-4. `.claude/commands/job:interview.md` (future)
-5. `.claude/commands/job:answer.md` (future)
-6. `jobs/profile/profile.txt`
-7. `jobs/profile/cover_letter_style.md`
-8. `jobs/sources.txt`
-9. `jobs/seen.txt` (empty)
-10. `jobs/last_scrape` (created automatically on first scrape)
-11. `jobs/queue/` directory
-12. `jobs/applications/` directory
+4. `.claude/commands/job:answer.md`
+5. `.claude/commands/job:apply.md`
+6. `jobs/profile/profile.txt` — fact-based profile (single source of truth)
+7. `jobs/sources.txt`
+8. `jobs/seen.txt`
+9. `jobs/last_scrape` (created automatically on first scrape)
+10. `jobs/queue/` directory
+11. `jobs/applications/` directory
+12. `jobs/done/` directory
 
 ---
 
@@ -285,6 +281,9 @@ I'm applying for the Senior Backend Engineer position...
 - **Company+role key**: Catches cross-source duplicates (same job on multiple boards)
 - **Single seen.txt**: Flat file, one company_role key per line, Grep tool (ripgrep) for dedup
 - **Batch analyze**: `/job:analyze all` processes entire queue
+- **Batch apply**: `/job:apply all` processes all applications
+- **Fact-based profile**: Single source of truth — identity, career, answers all derived from same facts
+- **Learning loop**: Unknown screening answers → ask user → add fact to profile → auto-answered next time
 - **Playwright session**: Persists login, no re-auth needed for ~30 days
 - **Career pages**: Direct company pages often have roles not yet on aggregators
 - **Session history**: All commands log reports to `.claude/session_history.md`
@@ -304,7 +303,18 @@ I'm applying for the Senior Backend Engineer position...
 
 # Test analyze
 /job:analyze jobs/queue/[file].md
-# Check: jobs/applications/ has result, queue file deleted
+# Check: jobs/applications/ has result, queue file deleted, cover letter uses 3-4 specific facts
+
+# Test answer
+/job:answer "Are you authorized to work in Canada?"
+# Check: returns "Yes" from profile facts
+
+/job:answer "Describe a challenging bug you debugged" --app jobs/applications/[file].md
+# Check: 3-5 sentence answer from career facts, appended to application file
+
+# Test apply (dry run)
+/job:apply jobs/applications/[file].md
+# Check: navigates, fills form, screenshots, submits, moves to done/
 
 # Test dedup
 /job:scrape

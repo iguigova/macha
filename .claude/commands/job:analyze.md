@@ -21,15 +21,15 @@ Analyze job fit and generate cover letter.
 
    b. Read jobs/profile/profile.txt
 
-   c. **Fit Assessment**: Am I a good fit for this job?
+   c. **Select relevant facts**: Read the job requirements. Identify the 3-4 most relevant career facts from the profile. Use those specific facts (projects, metrics, tech) when composing the fit assessment and cover letter. Don't summarize the whole career — pick what matters for THIS job.
+
+   d. **Fit Assessment**: Am I a good fit for this job?
       - Compare requirements to my skills
       - Note where I align (be specific - mention relevant projects)
       - Note gaps honestly
       - Rate: Strong fit / Good fit / Stretch / Poor fit
 
-   d. Read jobs/profile/cover_letter_style.md
-
-   e. **Generate Cover Letter** following guidelines:
+   e. **Generate Cover Letter** following the cover letter style facts in the profile:
       - Direct, factual, no fluff
       - No "excited" or "passionate"
       - No "20+ years"
