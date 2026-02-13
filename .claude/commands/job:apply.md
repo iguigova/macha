@@ -1,104 +1,105 @@
 ---
-description: Auto-apply to jobs using browser automation
-allowed-tools: mcp__playwright__*, Read, Write, Edit, Glob, Grep, AskUserQuestion
+description: Find matching jobs and apply
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Read, Write, Edit, Glob, Grep, AskUserQuestion
 ---
 
-Auto-apply to jobs using Playwright browser automation.
+Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause before every submit, learn from corrections.
 
-**Input:** $ARGUMENTS = file path, or "all" to process all of `jobs/applications/`
+**Input:** $ARGUMENTS = a number (how many jobs to find and apply to), OR a URL (apply directly to this job)
 
-**Steps:**
+**Phase 1: Find**
 
-1. Read `jobs/profile/profile.txt` (the single source of truth for all form data and screening answers).
+1. Read `jobs/profile/profile.txt`.
 
-2. If $ARGUMENTS is "all":
-   - Glob `jobs/applications/*.md`
-   - Process each file
-   Otherwise:
-   - Process the single specified file
+2. Determine what to do from $ARGUMENTS:
+   - If it's a URL → skip to Phase 2 with that single job
+   - If it's a number N → search for N matching jobs
+   - If empty → treat as 1
 
-3. For each application file:
+3. Search for jobs using any available method:
+   - WebSearch for recent postings (try queries like "remote software engineer", "remote backend developer", "remote C# developer", "remote fullstack developer" — vary based on profile strengths)
+   - LinkedIn via Playwright if the browser is logged in
+   - Job board APIs via WebFetch (RemoteOK: https://remoteok.com/api, Remotive: https://remotive.com/api/remote-jobs)
+   - Direct career pages
+   - Use whatever finds relevant, recent postings. Prefer jobs posted in the last 7 days.
 
-   a. **Parse the file**: extract URL (from `**URL:**`), cover letter (from `## Cover Letter`), company, role
+4. Check each candidate against `jobs/done/` filenames to avoid re-applying (filename format: `{company}_{role}.md` with spaces replaced by underscores, lowercase).
 
-   b. **Navigate** to the URL with `browser_navigate`
+5. For each candidate, read the job description and do a quick fit assessment — 2-3 sentences: what matches, what gaps exist.
 
-   c. **Snapshot** the page with `browser_snapshot`
+6. Filter out obvious mismatches:
+   - Requires security clearance
+   - On-site only (not remote)
+   - Wrong country without remote option
+   - Completely unrelated with no transferable skills
+   - Bias toward applying — volume matters. If in doubt, keep it.
 
-   d. **Detect platform** from URL and choose strategy:
+7. Present results to the user:
+   > "Found N jobs matching your profile:
+   > 1. {Company} — {Role}: {fit summary}
+   > 2. {Company} — {Role}: {fit summary}
+   > ...
+   > Proceeding to apply."
 
-      | URL contains | Platform | Strategy |
-      |---|---|---|
-      | `linkedin.com` | LinkedIn Easy Apply | Click "Easy Apply" button → multi-page modal |
-      | `indeed.com` | Indeed | Click "Apply now" → form flow |
-      | `jobs.ashbyhq.com` | Ashby | Click "Apply" → single form |
-      | `boards.greenhouse.io` | Greenhouse | Click "Apply" → single form |
-      | `jobs.lever.co` | Lever | Click "Apply" → single form |
-      | `myworkdayjobs.com` | Workday | Click "Apply" → multi-step |
-      | anything else | Generic | Snapshot → find apply button → fill |
+**Phase 2: Apply** (for each job that passes fit)
 
-   e. **Fill the form** using profile facts:
-      - Name: Ilka Guigova
-      - Email: iguigova@gmail.com
-      - Phone: 604-338-4242
-      - Location: Brackendale, BC, Canada
-      - LinkedIn: https://www.linkedin.com/in/iguigova/
-      - GitHub: https://github.com/iguigova
-      - Website: https://urgh.weebly.com/
+8. Navigate to the job's page with `browser_navigate`.
 
-   f. **Upload resume**: `~/Downloads/IlkaGuigova+.pdf` via `browser_file_upload`
+9. `browser_snapshot` to understand the page. Find and click the Apply button.
+   - LinkedIn: prefer "Easy Apply" (modal flow). If only external "Apply" exists, follow it.
+   - Other platforms: click whatever apply/submit button is available.
+   - If login is required, tell the user and skip this job.
 
-   g. **Paste cover letter** from the `## Cover Letter` section of the application file. If the form has a cover letter textarea, paste it there. If it only accepts file upload, skip.
+10. Generate a cover letter from profile facts — pick the 3-4 career facts most relevant to THIS job's requirements. Follow the cover letter style facts from the profile.
 
-   h. **Handle screening questions** — follow the same logic as `/job:answer`:
-      - Factual questions (yes/no, years, dropdown): look up in profile facts
-      - Behavioral questions (free-form): compose from career facts, 3-5 sentences
-      - If the answer can't be found or inferred: use `AskUserQuestion` → add new fact to profile
-      - Record all answers in the application file under `## Screening Answers`
+11. Fill the form using profile facts:
+    - Identity: name, email, phone, location, LinkedIn, GitHub, website
+    - Upload resume: `~/Downloads/IlkaGuigova+.pdf` via `browser_file_upload`
+    - Paste cover letter if a textarea is available
+    - Answer screening questions from profile facts:
+      - Factual (yes/no, years, dropdown): look up the relevant fact
+      - Behavioral (free-form): compose 3-5 sentences from career facts
+      - Unknown: leave blank and flag for user
+    - For demographics (gender, veteran, disability, race): use profile facts
 
-   i. **Pre-submit screenshot**: Take `browser_take_screenshot` of the completed form before submitting.
+12. Take `browser_take_screenshot` of the completed form.
 
-   j. **Submit**: Click the submit/send/apply button.
+13. **PAUSE** — ask the user with `AskUserQuestion`:
+    > "Ready to submit to {Company} — {Role}:
+    > - [summary of key answers filled]
+    > - [any blanks or uncertainties]
+    > - Screenshot saved
+    > Approve, correct, or skip?"
+    Options: "Approve — submit", "Skip — next job", and user can type corrections via Other.
 
-   k. **Verify**: `browser_snapshot` after submit to check for confirmation message.
+14. Handle response:
+    - **Approve** → click submit → `browser_snapshot` to verify confirmation → save to `jobs/done/`
+    - **Correct** → apply the corrections to the form → add each correction as a new fact in `jobs/profile/profile.txt` (if a fact contradicts an existing one, update the existing fact instead of adding a duplicate) → re-screenshot → pause again
+    - **Skip** → log as skipped → move to next job
 
-   l. **On success**:
-      - Add `## Applied\n{ISO 8601 timestamp}` to the application file
-      - Move the file to `jobs/done/`
+15. On success, write `jobs/done/{company_role}.md` with:
+    ```
+    # {Company} — {Role}
+    URL: {url}
+    Applied: {ISO 8601 timestamp}
 
-   m. **On failure** (no apply button, login required, error after submit, external redirect):
-      - Add `## Apply Failed\n{ISO 8601 timestamp}: {reason}` to the application file
-      - Leave the file in `jobs/applications/`
-      - Continue to the next file
+    ## Cover Letter
+    {the cover letter used}
 
-4. Report:
-   - "Applied: X, Failed: Y, New facts learned: Z"
-   - List each: `- {company}: {role} (applied|failed: reason)`
+    ## Screening Answers
+    - {question}: {answer}
+    - ...
 
-5. Log to session history: Append the report to `.claude/session_history.md` under a new dated heading `## {date} /job:apply`.
+    ## Facts Learned
+    - {any new facts added during this application}
+    ```
 
-**Platform-specific notes:**
+16. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
 
-**LinkedIn Easy Apply:**
-- Click the "Easy Apply" button (NOT the "Apply" button which redirects to an external site)
-- The modal has multiple pages — click "Next" to advance through each page
-- Fill contact info, upload resume, answer questions on each page
-- Final page has "Review" then "Submit application"
-- If no "Easy Apply" button exists, the job uses external apply — log as "external application, skipped" and move on
-- If login is required, tell the user to log in manually and retry
+17. After all jobs processed, report:
+    > "Applied: X, Skipped: Y, Failed: Z
+    > - {Company}: {Role} (applied|skipped|failed: reason)
+    > - ...
+    > New facts learned: N"
 
-**Indeed:**
-- Click "Apply now" button
-- May ask to sign in — if so, tell the user to log in manually and retry
-- Form typically has resume upload + screening questions
-- Final "Submit your application" button
-
-**Ashby / Greenhouse / Lever (standard ATS forms):**
-- Usually a single-page form with: name, email, phone, resume upload, cover letter, LinkedIn URL, optional custom questions
-- Use `browser_fill_form` for text fields, `browser_file_upload` for resume
-- Cover letter may be a textarea or file upload — paste text if textarea, skip if file-upload only
-
-**Generic / Unknown:**
-- Take a snapshot and identify form fields by their labels
-- Fill fields that match recognizable patterns (name, email, phone, etc.)
-- If no application form is found, log "no application form detected" and skip
+18. Append the report to `.claude/session_history.md` under `## {date} /job:apply`.

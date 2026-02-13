@@ -23,9 +23,8 @@ cabal.project.local~
 .cabal-sandbox/
 cabal.sandbox.config
 
+# Playwright MCP
+.playwright-mcp/
+
 # Job pipeline runtime data
-jobs/queue/
-jobs/applications/
-jobs/last_scrape
-jobs/done
-jobs/discarded
+jobs/done/

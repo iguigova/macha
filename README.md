@@ -1,114 +1,107 @@
 # Macha - Job Search Automation
 
-Automated job search pipeline powered by Claude Code slash commands. Scrapes job boards, deduplicates listings, assesses fit against a profile, and generates tailored cover letters.
+Automated job search and application system powered by Claude Code. One command finds matching jobs, assesses fit, and applies — learning from corrections every time.
 
 ## Setup
 
 ```bash
-# Add Playwright MCP for authenticated scraping (LinkedIn, Indeed)
+# Add Playwright MCP for browser automation (LinkedIn, ATS forms)
 claude mcp add --transport stdio playwright -- npx -y @microsoft/playwright-mcp
 ```
 
-On first use with LinkedIn/Indeed, manually log in when the browser opens. The session persists for ~30 days.
+On first use with LinkedIn, manually log in when the browser opens. The session persists for ~30 days.
 
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/job:source` | Validate sources, remove inactive, discover new APIs + career pages |
-| `/job:scrape` | Scrape all sources, dedupe, filter, queue |
-| `/job:analyze [file\|all]` | Select relevant facts, assess fit, generate cover letter |
-| `/job:answer <question> [--app file]` | Generate answer from profile facts, update profile |
-| `/job:apply [file\|all]` | Auto-apply via browser: fill forms, upload resume, submit |
-
-## Workflow
+## Usage
 
 ```bash
-/job:source           # Validate → prune dead → discover new APIs + career pages
-/job:scrape           # Fetch all sources → dedupe → filter → queue
-/job:analyze all      # Select relevant facts → assess fit → cover letter → application
-/job:apply all        # Browser automation → fill forms → submit → done/
+/job:apply 1                            # Find 1 matching job, apply
+/job:apply 5                            # Find 5 matching jobs, apply to each
+/job:apply https://linkedin.com/...     # Apply directly to this job
 ```
+
+## How It Works
+
+### Phase 1: Find
+
+Given a count N (default 1), search for matching jobs using any available method:
+
+- **WebSearch** — recent postings for "remote software engineer", "remote backend developer", etc.
+- **LinkedIn** — via Playwright if logged in
+- **Job board APIs** — RemoteOK (`remoteok.com/api`), Remotive (`remotive.com/api/remote-jobs`)
+- **Career pages** — direct company job boards
+
+For each candidate:
+1. Read the job description
+2. Quick fit assessment (2-3 sentences: what matches, what gaps)
+3. Filter obvious mismatches: requires security clearance, on-site only, wrong country, completely unrelated stack
+4. Check against `jobs/done/` filenames to avoid re-applying
+5. Present results to user before proceeding
+
+Bias toward applying — volume matters. If in doubt, keep it.
+
+### Phase 2: Apply
+
+For each job that passes fit:
+
+1. Navigate to the job page via Playwright
+2. Find and click the Apply button (Easy Apply modal, external ATS, whatever exists)
+3. Generate a targeted cover letter — pick 3-4 career facts most relevant to this job
+4. Fill the form from profile facts:
+   - Identity: name, email, phone, location, LinkedIn, GitHub, website
+   - Resume upload: `~/Downloads/IlkaGuigova+.pdf`
+   - Cover letter (paste into textarea if available)
+   - Screening questions (factual from profile, behavioral composed from career facts)
+   - Demographics (gender, veteran status, disability, race from profile defaults)
+5. Screenshot the completed form
+6. **Pause for user review** — show summary of what's filled, flag uncertainties
+7. User approves, provides corrections, or skips
+8. On approve → submit → verify confirmation → save record to `jobs/done/`
+
+### Learning Loop
+
+User corrections become new facts in `jobs/profile/profile.txt`. The profile grows smarter with every application.
+
+| Correction | What happens |
+|---|---|
+| "Say 15 years for C#, not 10" | Existing fact updated |
+| "For 'willing to relocate' always say No" | New fact added |
+| "On ClearCompany, skip the account step" | New fact added (application pattern) |
+| "Shorten cover letters for small text fields" | New fact added (style guidance) |
+
+Facts that contradict existing ones are updated in place — never duplicated.
 
 ## Structure
 
 ```
-jobs/
-├── profile/
-│   └── profile.txt              # Fact-based profile (identity, experience, career, style)
-├── sources.txt                  # Job board URLs to scrape
-├── seen.txt                     # Seen company+role keys (dedup)
-├── last_scrape                  # Last scrape timestamp (date filter for JSON APIs)
-├── queue/                       # Jobs awaiting analysis
-│   └── {company}_{role}.md
-├── applications/                # Analyzed jobs with cover letters
-│   └── {company}_{role}.md
-└── done/                        # Successfully submitted applications
-    └── {company}_{role}.md
+macha/
+├── .claude/commands/
+│   └── job:apply.md        # The single command
+├── jobs/
+│   ├── profile/
+│   │   └── profile.txt     # Flat facts — the single source of truth
+│   └── done/               # Completed application records
+│       └── {company}_{role}.md
+├── CLAUDE.md               # Project context for Claude Code
+└── README.md               # This file
 ```
 
-## Sources
+## Profile
 
-**JSON APIs (no auth):**
-- [Remote OK](https://remoteok.com/api) - all remote jobs, bulk JSON
-- [Remotive](https://remotive.com/api/remote-jobs) - category-filtered (software-development)
-- [Jobicy](https://jobicy.com/api/v2/remote-jobs) - tag-filtered (developer, software, qa, frontend, backend)
-- [Working Nomads](https://www.workingnomads.com/api/exposed_jobs/) - all remote, category-tagged
+`jobs/profile/profile.txt` is flat facts — no sections, no headers. Every piece of information is a natural language statement: identity, experience, career history, education, application defaults, cover letter style, and learned application patterns.
 
-**HTML (WebFetch):**
-- [We Work Remotely](https://weworkremotely.com) - programming categories
-- [Shopify Careers](https://www.shopify.com/careers/disciplines/engineering-data) - remote Americas engineering
-- [Wrapbook Careers](https://jobs.ashbyhq.com/wrapbook) - remote Canada engineering
-- [AuditBoard Careers](https://jobs.ashbyhq.com/auditboard) - remote Canada engineering
-- [Fieldguide Careers](https://jobs.ashbyhq.com/fieldguide) - remote USA, cybersecurity/audit
-- [TENEX.AI Careers](https://jobs.ashbyhq.com/tenex) - remote USA, AI security
-- [Cohere Careers](https://jobs.ashbyhq.com/cohere) - remote Canada, AI/ML
+Everything (cover letters, screening answers, form data) is derived from these facts on demand.
 
-**Authenticated (Playwright):**
-- LinkedIn Jobs
-- Indeed
+### Updating the Profile
 
-## How It Works
+- Add new facts as natural language statements
+- If a fact changes, update the existing statement (don't add a second version)
+- If a fact contradicts another, remove the old one
+- The `/job:apply` command adds facts automatically when you provide corrections
 
-**Source Management** (`/job:source`):
-1. Fetches each source URL and checks: responds, has jobs, fresh (< 7 days), relevant
-2. Removes all inactive sources (stale, empty, dead) from sources.txt
-3. Discovers new job board APIs via web search
-4. Discovers company career pages hiring remote devs/QA
-5. Updates the scrape command's source handling for new source types
+## Application Records
 
-**Scraping** (`/job:scrape`):
-1. Reads `jobs/sources.txt` for board URLs (skips comment lines)
-2. Reads `jobs/last_scrape` timestamp (skips entries older than this for JSON APIs)
-3. Fetches from ALL sources, extracting descriptions from JSON API responses
-4. Date-filters JSON API results - skips entries published before last scrape
-5. Deduplicates: first within-batch (cross-source overlaps), then against `jobs/seen.txt`
-6. Filters by normalized title (removes hyphens, case-insensitive match: software, developer, backend, frontend, fullstack, QA, test, quality, sdet)
-7. Gets descriptions: JSON API jobs already have them; HTML source jobs are batch-fetched in parallel
-8. Queues all passing jobs, writes timestamp to `jobs/last_scrape`
-9. Reports full stats and logs to `.claude/session_history.md`
-
-**Analysis** (`/job:analyze`):
-1. Reads job description from queue
-2. Reads fact-based profile from `jobs/profile/profile.txt`
-3. Selects 3-4 most relevant career facts for this specific job
-4. Rates fit: Strong / Good / Stretch / Poor
-5. Generates targeted cover letter from selected facts
-6. Saves complete application to `jobs/applications/`
-
-**Answering** (`/job:answer`):
-1. Reads the question and the profile facts
-2. Factual questions: returns the value from the profile
-3. Behavioral questions: composes 3-5 sentence answer from career facts
-4. Unknown answers: asks user, adds new fact to profile
-5. Optionally saves Q&A to application file
-
-**Applying** (`/job:apply`):
-1. Reads application file (URL, cover letter, fit rating)
-2. Navigates to job URL via Playwright browser automation
-3. Detects platform (LinkedIn, Indeed, Ashby, Greenhouse, Lever, generic)
-4. Fills form fields from profile identity facts
-5. Uploads resume (`IlkaGuigova+.pdf`), pastes cover letter
-6. Handles screening questions using `/job:answer` logic
-7. Takes screenshot before submit, then submits
-8. Moves successful applications to `jobs/done/`
+Successful applications are saved to `jobs/done/{company}_{role}.md` with:
+- URL, company, role, timestamp
+- Cover letter used
+- Screening answers given
+- Any new facts learned during the application
