@@ -1,5 +1,74 @@
 # Session History
 
+## 2026-02-13 Pipeline simplification
+
+**Done:**
+- Collapsed 5 commands (source, scrape, analyze, answer, apply) into 1: `/job:apply N`
+- Flattened `profile.txt` — removed all `#` section headers, now pure flat facts (115 lines)
+- Rewrote `.claude/commands/job:apply.md` — two-phase flow: Find (search + assess fit) → Apply (fill + pause + learn + submit)
+- Deleted: `job:source.md`, `job:scrape.md`, `job:analyze.md`, `job:answer.md`
+- Deleted: `sources.txt`, `sources.bak`, `seen.txt`, `last_scrape`, `JOB_PIPELINE_PLAN.md`
+- Deleted: `jobs/queue/`, `jobs/applications/`, `jobs/discarded/` directories
+- Updated `CLAUDE.md` and `README.md` to reflect single-command pipeline
+
+**Design:**
+- `/job:apply N` finds N jobs, assesses fit, applies with human-in-the-loop (pause before every submit)
+- `/job:apply URL` applies directly to a specific job
+- Learning loop: user corrections become new facts in profile.txt
+- Dedup by checking `jobs/done/` filenames
+- All data derived from flat facts on demand (cover letters, screening answers, form data)
+
+**Suggested commit:**
+```
+Simplify pipeline to single /job:apply command
+
+Collapse 5 commands (source, scrape, analyze, answer, apply) into one.
+Two-phase flow: Find (search any source, assess fit) then Apply (fill
+form, pause for user review, learn from corrections). Flatten profile.txt
+to pure facts (no section headers). Delete all intermediate pipeline
+files and directories. Profile grows smarter with every application.
+```
+
+---
+
+## 2026-02-06 /job:source
+
+```
+Source Report
+=============
+ACTIVE:      9 sources kept
+NEEDS_LOGIN: 2 sources need authentication
+REMOVED:     5 inactive/ineffective sources
+NEW APIs:    0 (discovery skipped)
+NEW COs:     0 (discovery skipped)
+TOTAL:       11 sources in sources.txt
+
+Active sources:
+- remoteok.com/api: ~20 jobs, 7 relevant ("Software Development Engineer", "Senior Software Engineer Web")
+- remotive.com/api: ~4 jobs, 4 relevant ("Senior Python Backend Developer", "Full Stack Sr/Staff Software Engineer")
+- jobicy.com tag=developer: 8 jobs, 8 relevant ("Sr. Full Stack Developer", "Kotlin Game Developer")
+- jobicy.com tag=software: 21 jobs, 16 relevant ("Senior Software Engineer (backend)", "Senior Software Engineer, New Product")
+- jobicy.com tag=frontend: 5 jobs, 5 relevant ("Sr Frontend Engineer", "Staff Frontend Engineer")
+- jobicy.com tag=backend: 9 jobs, 9 relevant ("Senior Software Engineer (backend)", "Backend Engineer, Database Excellence")
+- workingnomads.com/api: 40 jobs, 26 relevant ("Senior Java & React Developer", "Senior Backend Developer")
+- weworkremotely.com: 42 jobs, 26 relevant ("Senior Java Full-stack Developer", "Senior Software Engineer")
+- jobs.ashbyhq.com/auditboard: 60 jobs, 5+ relevant ("Senior Software Engineer II Full Stack", "Staff Software Engineer Architecture")
+
+Needs login:
+- linkedin.com/jobs: requires manual authentication in browser
+- indeed.com/jobs: requires manual authentication in browser
+
+Removed:
+- jobicy.com tag=qa: only 2 jobs (below 5 threshold)
+- jobs.ashbyhq.com/wrapbook: only 3 relevant out of 19 (below 5 threshold)
+- jobs.ashbyhq.com/cohere: only 2 relevant out of 64 (below 5 threshold)
+- shopify.com/careers: not validated (fetch rejected)
+- jobs.ashbyhq.com/fieldguide: not validated (fetch rejected)
+- jobs.ashbyhq.com/tenex: not validated (fetch rejected)
+```
+
+---
+
 ## 2026-02-06 (fact-based profile + /job:answer + /job:apply)
 
 **Done:**

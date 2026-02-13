@@ -1,7 +1,13 @@
 # Macha - Job Search Automation
 
 ## Project Purpose
-Automated job search and application system. Primary goal: **50-100 applications per day**.
+Automated job search and application system. One command: find matching jobs, apply with human-in-the-loop.
+
+## How It Works
+
+`/job:apply N` finds N matching jobs from any source, assesses fit, and applies to each — pausing before every submit for user review. Corrections become new facts in the profile, so each run gets smarter.
+
+All data lives in `jobs/profile/profile.txt` — flat facts, no sections. Everything (cover letters, screening answers, form data) is derived from these facts on demand.
 
 ## User Profile (Quick Reference)
 
@@ -20,13 +26,6 @@ Automated job search and application system. Primary goal: **50-100 applications
 - Auth/authz (OAuth, OIDC, SAML) (~15 years)
 - Relational databases (~10+ years)
 - 0→1 systems building
-
-**Key 0→1 Systems:**
-1. Bread & Butter - OAuth infrastructure (35+ providers)
-2. Flourish - Zapier integration framework
-3. Klein Systems - Mapping engine (300+ calls/sec)
-4. DeliverySlip - Rules engine + caching (80% maintainability improvement)
-5. PointyHat - Unlimited undo/redo (2 weeks)
 
 ## Job Search Parameters
 
@@ -50,4 +49,3 @@ Automated job search and application system. Primary goal: **50-100 applications
 ## Working Style
 
 - After completing a set of changes, include a suggested commit message at the end of the report and log it to `.claude/session_history.md`.
-
