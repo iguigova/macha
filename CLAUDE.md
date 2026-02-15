@@ -5,7 +5,7 @@ Automated job search and application system. One command: find matching jobs, ap
 
 ## How It Works
 
-`/job:apply N` finds N matching jobs from any source, assesses fit, and applies to each — pausing before every submit for user review. Corrections become new facts in the profile, so each run gets smarter.
+`/job:apply N` finds N matching jobs from any source and applies to each — pausing before every submit for user review. Corrections become new facts in the profile, so each run gets smarter.
 
 All data lives in `jobs/profile/profile.txt` — flat facts, no sections. Everything (cover letters, screening answers, form data) is derived from these facts on demand.
 
