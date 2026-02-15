@@ -27,25 +27,6 @@ All data lives in `jobs/profile/profile.txt` — flat facts, no sections. Everyt
 - Relational databases (~10+ years)
 - 0→1 systems building
 
-## Job Search Parameters
-
-**Include:**
-- ANY software engineering role
-- ANY developer role
-- ANY QA role
-- ANY seniority level
-- ANY tech stack (position as quick learner)
-- FTE or contract
-
-**Requirements:**
-- Remote only
-- No salary filter
-
-**Positioning:**
-- Quick learner (polyglot: 10+ languages)
-- Eager and willing
-- Enthusiastic problem solver
-
 ## Working Style
 
 - After completing a set of changes, include a suggested commit message at the end of the report and log it to `.claude/session_history.md`.

@@ -1,5 +1,98 @@
 # Session History
 
+## 2026-02-15 /job:apply
+
+**Applied: 1, Skipped: 0, Failed: 0**
+- Metabase: Software Engineer (Backend) — **applied**
+  - URL: https://jobs.lever.co/metabase/85f454d8-e795-4978-8a2b-4b8bfa7d7c37
+  - Global Remote, fully distributed (50% outside US)
+  - Tech: Clojure, JavaScript/TypeScript, JDBC, JVM
+  - Fit: Strong on JVM/Java, JS/TS, relational databases, distributed teams, open source. Gap: Clojure is personal projects only.
+  - Source: WebSearch → Lever job board
+
+**New facts learned: 1**
+- Updated Java/Kotlin experience from "10+ years" to "4+ years" per user correction
+
+**Suggested commit:**
+```
+Apply to Metabase Software Engineer (Backend)
+
+Record application to Metabase via /job:apply. Update Java/Kotlin
+experience fact in profile.txt from "10+ years" to "4+ years" per
+user correction. Cover letter refined through two rounds of user
+feedback — removed technical namedropping, tightened language.
+```
+
+---
+
+## 2026-02-14 Streamline /job:apply and unify profile voice
+
+**Done:**
+- Unified cover letter style + screening tone into single "Writing voice" block in profile.txt (lines 109-119)
+- Merged steps 4 (fit assessment) and 5 (filter mismatches) into step 3b as skip criteria during search
+- Made cover letter generation conditional — only if form has a cover letter field (textarea or file upload)
+- Added PDF cover letter generation via `soffice --headless --convert-to pdf` for file upload fields
+- Changed screenshot path to `jobs/done/{company_role}_form.png`
+- Expanded done report to capture: form data with sources, facts used, facts learned, corrections applied
+- Renumbered all steps (17→15 total)
+
+**Suggested commit:**
+```
+Streamline /job:apply pipeline and unify profile voice
+
+Merge fit assessment and mismatch filtering into search step (skip
+criteria during search, not separate passes). Unify cover letter style
+and screening tone into single "Writing voice" block in profile.txt.
+Make cover letter conditional (only if form requires it, PDF via
+soffice for file uploads). Save screenshots to jobs/done/. Expand
+done report with form data sources, facts used, and corrections.
+```
+
+---
+
+## 2026-02-14 Improve /job:apply search, dedup, tone
+
+**Done:**
+- Removed "Job Search Parameters" section from CLAUDE.md (redundant — /job:apply derives everything from profile.txt)
+- Added 3 tone calibration facts to profile.txt (screening question voice, no pitch-back closing lines, "helped build" for team work)
+- Rewrote /job:apply steps 2-4: merged search + dedup into unified find-and-filter flow with exclusion list, early filtering, and pacing (sequential for N≤3, parallel for N>3)
+- Renumbered all steps (18→17 total)
+
+**Suggested commit:**
+```
+Improve /job:apply search, dedup, and tone calibration
+
+Remove redundant Job Search Parameters from CLAUDE.md. Add screening
+question tone facts to profile.txt. Merge search and dedup into unified
+step with exclusion list (filename + URL), early filtering, and pacing
+(sequential for N≤3, parallel for N>3).
+```
+
+---
+
+## 2026-02-14 /job:apply
+
+**Applied: 1, Skipped: 0, Failed: 0**
+- Coder: Senior Software Engineer (AI Tools) — **applied**
+  - URL: https://jobs.ashbyhq.com/Coder/1a767f93-8f59-4038-bb1c-8c7e93165bed
+  - Remote US/Canada, CA$150K–CA$202K + equity + bonus
+  - Tech: Go, TypeScript, React, Postgres, Kubernetes, GitHub Actions
+  - Fit: Strong on full-stack experience, TypeScript/React, Kotlin, Postgres, K8s, CI/CD. Gap: 1yr Go vs 3+ required.
+  - Source: Hacker News Who is Hiring (February 2026)
+
+**New facts learned: 1**
+- Updated race/ethnicity from "Prefer not to answer" to "White / Caucasian"
+
+**Suggested commit:**
+```
+Apply to Coder Senior Software Engineer (AI Tools)
+
+Record application to Coder via /job:apply. Update race/ethnicity
+fact in profile.txt from "Prefer not to answer" to "White / Caucasian".
+```
+
+---
+
 ## 2026-02-13 Pipeline simplification
 
 **Done:**
