@@ -1,6 +1,6 @@
 # Macha - Job Search Automation
 
-Automated job search and application system powered by Claude Code. One command finds matching jobs, assesses fit, and applies — learning from corrections every time.
+Automated job search and application system powered by Claude Code. One command finds matching jobs and applies — learning from corrections every time.
 
 ## Setup
 
@@ -30,14 +30,11 @@ Given a count N (default 1), search for matching jobs using any available method
 - **Job board APIs** — RemoteOK (`remoteok.com/api`), Remotive (`remotive.com/api/remote-jobs`)
 - **Career pages** — direct company job boards
 
-For each candidate:
-1. Read the job description
-2. Quick fit assessment (2-3 sentences: what matches, what gaps)
-3. Filter obvious mismatches: requires security clearance, on-site only, wrong country, completely unrelated stack
-4. Check against `jobs/done/` filenames to avoid re-applying
-5. Present results to user before proceeding
-
-Bias toward applying — volume matters. If in doubt, keep it.
+As each result comes in:
+1. Check against `jobs/done/` filenames and URLs to avoid re-applying
+2. Skip: requires security clearance, on-site only, wrong country without remote option
+3. Bias toward applying — volume matters. If in doubt, keep it.
+4. Present results to user before proceeding
 
 ### Phase 2: Apply
 
@@ -45,17 +42,16 @@ For each job that passes fit:
 
 1. Navigate to the job page via Playwright
 2. Find and click the Apply button (Easy Apply modal, external ATS, whatever exists)
-3. Generate a targeted cover letter — pick 3-4 career facts most relevant to this job
+3. **Cover letter (conditional)** — only if the form has a cover letter field. Pick 3-4 career facts most relevant to this job. If the form needs a file upload, generate a PDF via `soffice --headless --convert-to pdf`.
 4. Fill the form from profile facts:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website
    - Resume upload: `~/Downloads/IlkaGuigova+.pdf`
-   - Cover letter (paste into textarea if available)
+   - Cover letter (paste into textarea or upload PDF)
    - Screening questions (factual from profile, behavioral composed from career facts)
    - Demographics (gender, veteran status, disability, race from profile defaults)
-5. Screenshot the completed form
-6. **Pause for user review** — show summary of what's filled, flag uncertainties
-7. User approves, provides corrections, or skips
-8. On approve → submit → verify confirmation → save record to `jobs/done/`
+5. **Pause for user review** — show summary of what's filled, flag uncertainties
+6. User approves, provides corrections, or skips
+7. On approve → submit → verify confirmation → save record to `jobs/done/`
 
 ### Learning Loop
 
@@ -102,6 +98,9 @@ Everything (cover letters, screening answers, form data) is derived from these f
 
 Successful applications are saved to `jobs/done/{company}_{role}.md` with:
 - URL, company, role, timestamp
-- Cover letter used
-- Screening answers given
-- Any new facts learned during the application
+- Cover letter used (or "N/A" if no cover letter field)
+- Form data with sources (which profile fact informed each field)
+- Screening answers with sources
+- Profile facts used
+- New facts learned during the application
+- User corrections applied
