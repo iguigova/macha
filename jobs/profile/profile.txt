@@ -19,7 +19,7 @@ I am a polyglot — I have worked professionally in 10+ programming languages.
 
 I have 1 year of professional Go experience.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
-I have 10+ years of Java/Kotlin experience.
+I have 4+ years of Java/Kotlin experience.
 I have 5+ years of JavaScript/TypeScript experience from Flourish (Node.js backend, Angular frontend).
 I have 2+ years of React experience.
 I have 2+ years of Angular experience.
@@ -98,7 +98,7 @@ I hold motorcycle and wilderness first aid certifications.
 When asked about gender on applications: Female.
 When asked about veteran status: No.
 When asked about disability status: Prefer not to answer.
-When asked about race/ethnicity: Prefer not to answer.
+When asked about race/ethnicity: White / Caucasian.
 
 Bennett Adams, CTO, Flourish Software.
 Esteban Astudillo, Co-founder, Bread & Butter IO.
@@ -106,10 +106,17 @@ Matt McLean, Co-founder, Bread & Butter IO.
 Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip.
 Additional references available from Klein Systems Group, Vivonet, and PointyHat.
 
-Cover letters should sound like a senior engineer explaining fit clearly and professionally.
-Direct, factual, no fluff. Concrete. Lightly personal. Calm, confident, senior credible voice.
+Writing voice — for cover letters, screening answers, and any written communication:
+Smooth, professional, confident. Do not try too hard. Better concise but impactful.
 Never say "excited," "passionate," or "20+ years."
 Never use mission-driven language, abstract problem spaces, corporate enthusiasm, or meta commentary.
+Never say "I want to build that" or frame the company's own pitch back at them as a closing line.
+Do not oversell or frame the company's mission back at them.
+Prefer "I've helped build" over "I've built" when describing team work.
+Do not list technical inventory (years of X, Y, Z) — it reads like a laundry list, not a person talking.
+Do not namedrop algorithms, publications, or awards to impress — let the work speak.
+Do not claim specific counts of languages or technologies — "various" reads more honest than "10+."
+Do not use explicit section headers ("What I bring:") — just flow naturally between paragraphs.
 Light framing is acceptable (impact, scope, ownership).
-Single page maximum. Concise — do not pad to fill space.
-Structure: Opening (role + factual fit) → Why fit (concrete projects) → Technical alignment → What I bring (work style) → Close with "Thank you for your time and consideration."
+Cover letters: single page maximum. Flow: Opening (role + why this company) → concrete project examples → honest about gaps + how you close them → close with "Thank you for your time and consideration."
+Screening answers: 3-5 sentences. Say what you've built and why this specific thing matters to you.
