@@ -1,5 +1,57 @@
 # Session History
 
+## 2026-02-16 Redesign /job:apply Phase 1 (Find)
+
+**Done:**
+- Replaced ad-hoc search (steps 3-4) with deterministic 3-tier source ladder
+- Tier 1: Structured sources (HN Hiring, Jobicy API, RemoteOK API, Ashby pages) — 1 fetch = many jobs
+- Tier 2: WebSearch with strict rules (no year, no "Canada", use site: operators)
+- Tier 3: Playwright (LinkedIn, WeWorkRemotely, Working Nomads) — last resort
+- Added filter gate (skip before fetching full description)
+- Added 5-point fit rubric with score breakdown in results presentation
+- Removed dead sources (Remotive API → 410 errors)
+- Renumbered Phase 2 steps (8-17)
+
+**Suggested commit:**
+```
+Redesign /job:apply Phase 1 with source ladder + fit rubric
+
+Replace ad-hoc job search with deterministic 3-tier source ladder:
+structured APIs first (HN Hiring, Jobicy, RemoteOK, Ashby), then
+WebSearch with strict query rules, then Playwright as last resort.
+Add filter gate (skip before fetch) and 5-point fit rubric with
+score breakdown. Remove dead Remotive API. Phase 2 unchanged.
+```
+
+---
+
+## 2026-02-16 /job:apply
+
+**Applied: 0, Skipped: 0, Failed: 1**
+- Found: Staff Software Engineer, Platform — **failed: Playwright MCP not connected**
+  - URL: https://jobs.ashbyhq.com/found/9d31df05-8818-49b3-9647-d492ce1f2a1f
+  - Remote Canada, $240K-$278K CAD
+  - Tech: Ruby on Rails, React/TypeScript, PostgreSQL, AWS, Kubernetes
+  - Fit: Strong on backend infrastructure, SOC2/PA-DSS compliance, AWS/Docker/K8s, CI/CD. Platform/infra role aligns with career history of building systems other teams depend on.
+  - Source: HN Who is Hiring (Feb 2026) → Ashby job board
+  - Status: PENDING — form data and screening answer saved to jobs/done/found_staff_software_engineer_platform.md, ready to submit when Playwright available
+
+**New facts learned: 2**
+- Writing voice: Do not open with sweeping career narratives — lead with concrete work
+- Writing voice: Do not frame the company's stage or opportunity back at them
+
+**Suggested commit:**
+```
+Prepare Found Staff SWE Platform application, update writing voice
+
+Save application data for Found Staff Software Engineer (Platform) to
+jobs/done/. Add two writing voice rules to profile.txt: no sweeping
+career narratives as openers, no framing the company's stage back at
+them. Playwright MCP not connected — submission pending.
+```
+
+---
+
 ## 2026-02-15 /job:apply
 
 **Applied: 1, Skipped: 0, Failed: 0**
