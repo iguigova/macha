@@ -112,6 +112,8 @@ Never say "excited," "passionate," or "20+ years."
 Never use mission-driven language, abstract problem spaces, corporate enthusiasm, or meta commentary.
 Never say "I want to build that" or frame the company's own pitch back at them as a closing line.
 Do not oversell or frame the company's mission back at them.
+Do not open with sweeping career narratives ("I've spent most of my career...") — lead with concrete work.
+Do not frame the company's stage or opportunity back at them ("doing that work at a stage where...") — that's their pitch, not yours.
 Prefer "I've helped build" over "I've built" when describing team work.
 Do not list technical inventory (years of X, Y, Z) — it reads like a laundry list, not a person talking.
 Do not namedrop algorithms, publications, or awards to impress — let the work speak.

@@ -23,18 +23,17 @@ On first use with LinkedIn, manually log in when the browser opens. The session 
 
 ### Phase 1: Find
 
-Given a count N (default 1), search for matching jobs using any available method:
+Given a count N (default 1), search using a tiered source ladder — stop as soon as N candidates are found:
 
-- **WebSearch** — recent postings for "remote software engineer", "remote backend developer", etc.
-- **LinkedIn** — via Playwright if logged in
-- **Job board APIs** — RemoteOK (`remoteok.com/api`), Remotive (`remotive.com/api/remote-jobs`)
-- **Career pages** — direct company job boards
+1. **Tier 1 — Structured sources** (1 fetch = many jobs): HN Who is Hiring (`hnhiring.com`), Jobicy API, RemoteOK API, Ashby career pages
+2. **Tier 2 — WebSearch** (only if Tier 1 < N): targeted `site:` queries against Ashby, Lever, Greenhouse
+3. **Tier 3 — Playwright** (last resort): LinkedIn, WeWorkRemotely, Working Nomads
 
-As each result comes in:
-1. Check against `jobs/done/` filenames and URLs to avoid re-applying
-2. Skip: requires security clearance, on-site only, wrong country without remote option
-3. Bias toward applying — volume matters. If in doubt, keep it.
-4. Present results to user before proceeding
+Each candidate passes through:
+1. **Exclusion list** — check against `jobs/done/` to avoid re-applying
+2. **Filter gate** — skip on-site, US-auth-required, wrong timezone, irrelevant titles (iOS/ML/PHP-only, etc.)
+3. **Fit rubric** — 5-point score: language match, domain match, seniority, infra, location+comp. Include 2+, skip 0-1.
+4. **Present results** with score breakdown before proceeding
 
 ### Phase 2: Apply
 
