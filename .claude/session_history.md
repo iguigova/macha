@@ -1,5 +1,54 @@
 # Session History
 
+## 2026-02-17 Simplify /job:apply Phase 1 (Find)
+
+**Done:**
+- Replaced source ladder + fit rubric (steps 3-7) with simpler steps 3-5
+- No rigid tiers — use any source, start where results are most likely
+- LinkedIn promoted to first-listed source (was buried in Tier 3)
+- Removed 5-point fit rubric — replaced with 1-sentence "Why" per job
+- Email-apply jobs now accepted (was rejected for lacking ATS forms)
+- "Remote US" explicitly marked as fine (many hire Canadians)
+- Renumbered Phase 2 steps from 8-17 to 6-15
+- Updated README.md Phase 1 description to match
+
+**Suggested commit:**
+```
+Simplify /job:apply Phase 1: drop source ladder and fit rubric
+
+Replace rigid 3-tier source ladder and 5-point fit rubric with flexible
+source list and bias-toward-keeping rules. LinkedIn no longer buried in
+Tier 3. Email-apply and "Remote US" jobs now accepted. Results show a
+fit sentence instead of numeric scores. Phase 2 unchanged (renumbered).
+```
+
+---
+
+## 2026-02-16 /job:apply (source ladder test)
+
+**Applied: 0, Skipped: 1, Failed: 0**
+- Fortis Games: Staff Backend Engineer, Game Team — **skipped** (user declined)
+  - URL: https://boards.greenhouse.io/fortisgames/jobs/4646027005
+  - Remote Canada, C#/.NET, AWS, Unity, CI/CD
+  - Score: 3/5 Good: +lang(C#/.NET) +seniority(Staff) +infra(AWS, CI/CD) +location(Canada) −gap(Unity/games)
+  - Source: Tier 1 → Jobicy API (backend tag)
+
+**Source ladder performance:**
+- Tier 1 sources tried: HN Hiring (Go, TypeScript), Jobicy API (backend)
+- HN Go: 3 passed filter gate but all dropped on deeper inspection (Stream = Amsterdam only, AllSpice = no open roles, Shinzo = blockchain)
+- HN TypeScript: 4 passed filter gate but none had ATS URLs (Lift AI = email only, BetterDB = email only, Evervault = Dublin/London only, SpruceID = couldn't load Lever page)
+- Jobicy backend: Fortis Games found (Canada, Greenhouse URL, 3/5 Good)
+- Total fetches: ~14 (too many — Stream/AllSpice/Evervault/SpruceID fetches were wasted on dead ends)
+
+**Observations:**
+- Many HN postings are email-only (no ATS form) — Phase 2 can't handle these
+- Need to prioritize candidates with ATS URLs earlier in the pipeline
+- Game industry roles are the main Canada-remote C# jobs right now
+
+**New facts learned: 0**
+
+---
+
 ## 2026-02-16 Redesign /job:apply Phase 1 (Find)
 
 **Done:**

@@ -20,80 +20,49 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
    This gives you a set of (company, role, URL) tuples to skip. Normalize company/role names
    aggressively: lowercase, "Full Stack"="Fullstack"="Full-Stack", "Sr."="Senior", "Jr."="Junior".
 
-4. **Source ladder.** Try sources in tier order. Stop as soon as you have ≥ N candidates that pass the filter gate and score ≥ 2 on the fit rubric.
+4. **Search.** Use any combination of these sources. Start where you're most likely to find results quickly. Stop when you have ≥ N candidates.
 
-   **Tier 1 — Structured sources (WebFetch, 1 fetch = many jobs):**
+   Sources (use judgment on order — no rigid tiers):
+   - **LinkedIn** (via Playwright if connected) — search remote software engineer, filter by skills/location
+   - **RemoteOK API** — `https://remoteok.com/api` (JSON, skip first element)
+   - **Jobicy API** — `https://jobicy.com/api/v2/remote-jobs?count=50&tag=backend` (JSON, has jobGeo)
+   - **WebSearch** — vary queries, use `site:` for Greenhouse/Lever/Ashby boards
+   - **HN Who is Hiring** — `https://hnhiring.com/technologies/go` (and `/typescript`, `/csharp`)
+   - **Direct career pages** — Greenhouse/Lever/Ashby APIs for specific companies
 
-   | Source | URL | Notes |
-   |--------|-----|-------|
-   | HN Who is Hiring | `https://hnhiring.com/technologies/go`, then `/typescript`, `/csharp` | Best historical hit rate. Filter for "remote" in text. |
-   | Jobicy API | `https://jobicy.com/api/v2/remote-jobs?count=50&tag=backend`, then `&tag=software` | JSON. Filter `jobGeo` for "Anywhere"/"Americas"/"Canada"/"Worldwide". |
-   | RemoteOK API | `https://remoteok.com/api` | JSON array (skip first element = metadata). Low yield but cheap. |
-   | Ashby career pages | `https://jobs.ashbyhq.com/auditboard`, `https://jobs.ashbyhq.com/cohere` | HTML, parseable. Only pages with 5+ relevant hits historically. |
+   Rules:
+   - Check each result against the exclusion list. Skip matches silently.
+   - Bias toward keeping. "Remote US" is fine — many hire Canadians. Location unspecified is fine.
+   - Email-apply jobs are fine — send a cover letter email in Phase 2 if there's no web form.
+   - SKIP: on-site only, US-auth-required, Europe/APAC-timezone-locked, title is iOS/Android/Mobile/ML Engineer/Data Scientist/PHP/Ruby-only, security clearance required.
 
-   Try each source one at a time. After each fetch, apply the filter gate and fit rubric to the results. If you have ≥ N candidates, stop. Otherwise continue to the next source.
-
-   **Tier 2 — WebSearch (only if Tier 1 < N candidates):**
-
-   Rules: NEVER include the year. NEVER include "Canada". Use `site:` operators. Skip aggregator URLs (indeed, linkedin, glassdoor, ziprecruiter).
-
-   Queries to try in order:
-   - `site:jobs.ashbyhq.com "senior software engineer" remote`
-   - `site:jobs.lever.co "backend engineer" remote`
-   - `site:boards.greenhouse.io "software engineer" remote`
-   - `"software engineer" remote "REST API" golang OR "C#" OR typescript -"security clearance"`
-
-   **Tier 3 — Playwright (only if Tiers 1+2 < N, and Playwright connected):**
-
-   - LinkedIn (remote SWE search with Canada geo filter)
-   - WeWorkRemotely (programming jobs category)
-   - Working Nomads (development jobs)
-
-5. **Filter gate** (before fetching full description). Apply to every candidate from any source:
-
-   SKIP: exclusion list match, on-site only, US-auth-required without sponsorship, Europe/APAC-timezone-locked, title is iOS/Android/Mobile/ML Engineer/Data Scientist/PHP/Ruby-only, security clearance required.
-
-   KEEP: remote worldwide/Americas/Canada, location unspecified, title ambiguous. Bias toward keeping.
-
-6. **Fit rubric** (after reading full description). Score each candidate that passed the filter gate:
-
-   | Points | Criterion |
-   |--------|-----------|
-   | +1 | Language match: Go, C#/.NET, Java/Kotlin, or TypeScript required |
-   | +1 | Domain match: REST APIs, auth/authz, relational DBs, or compliance |
-   | +1 | Seniority match: Senior or Staff level |
-   | +1 | Infra match: AWS, Docker, K8s, CI/CD, or 0→1 building |
-   | +1 | Location+comp: Canada-remote-OK, salary ≥ $90K CAD |
-   | −1 | Hard gap: primary requirement is zero-experience tech |
-
-   4-5 = Strong → include. 3 = Good → include. 2 = Stretch → include only if short on candidates. 0-1 = Skip.
-
-7. **Present results** to the user:
+5. **Present results.**
    ```
    Found N jobs:
-   1. {Company} — {Role} [{score}/5 {label}]
-      +lang(...) +domain(...) −gap(...)
+   1. {Company} — {Role} ({location}, {key tech})
+      Why: {1 sentence on fit}
    2. ...
    Proceeding to apply.
    ```
+   No numeric scores. Just a sentence on why it fits.
 
 **Phase 2: Apply** (for each job)
 
-8. Navigate to the job's page with `browser_navigate`.
+6. Navigate to the job's page with `browser_navigate`.
 
-9. `browser_snapshot` to understand the page. Find and click the Apply button.
+7. `browser_snapshot` to understand the page. Find and click the Apply button.
    - LinkedIn: prefer "Easy Apply" (modal flow). If only external "Apply" exists, follow it.
    - Other platforms: click whatever apply/submit button is available.
    - If login is required, tell the user and skip this job.
 
-10. If the application form has a cover letter field (textarea or file upload):
+8. If the application form has a cover letter field (textarea or file upload):
    Generate a cover letter from profile facts — pick the 3-4 career facts most relevant to THIS job's requirements. Follow the writing voice facts from the profile.
    If the form accepts a file upload for cover letter (not a textarea), generate a PDF:
    write the cover letter as HTML, then convert with `soffice --headless --convert-to pdf`.
    Save the PDF to `jobs/done/{company_role}_cover_letter.pdf`.
    If no cover letter field exists, skip this step.
 
-11. Fill the form using profile facts:
+9. Fill the form using profile facts:
     - Identity: name, email, phone, location, LinkedIn, GitHub, website
     - Upload resume: `~/Downloads/IlkaGuigova+.pdf` via `browser_file_upload`
     - Paste cover letter if a textarea is available, or upload PDF if file upload
@@ -103,19 +72,19 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
       - Unknown: leave blank and flag for user
     - For demographics (gender, veteran, disability, race): use profile facts
 
-12. **PAUSE** — ask the user with `AskUserQuestion`:
+10. **PAUSE** — ask the user with `AskUserQuestion`:
     > "Ready to submit to {Company} — {Role}:
     > - [summary of key answers filled]
     > - [any blanks or uncertainties]
     > Approve, correct, or skip?"
     Options: "Approve — submit", "Skip — next job", and user can type corrections via Other.
 
-13. Handle response:
+11. Handle response:
     - **Approve** → click submit → `browser_snapshot` to verify confirmation → save to `jobs/done/`
     - **Correct** → apply the corrections to the form → add each correction as a new fact in `jobs/profile/profile.txt` (if a fact contradicts an existing one, update the existing fact instead of adding a duplicate) → pause again
     - **Skip** → log as skipped → move to next job
 
-14. On success, write `jobs/done/{company_role}.md` with:
+12. On success, write `jobs/done/{company_role}.md` with:
     ```
     # {Company} — {Role}
     URL: {url}
@@ -143,12 +112,12 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
     - {any user corrections during this application, or "None"}
     ```
 
-15. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
+13. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
 
-16. After all jobs processed, report:
+14. After all jobs processed, report:
     > "Applied: X, Skipped: Y, Failed: Z
     > - {Company}: {Role} (applied|skipped|failed: reason)
     > - ...
     > New facts learned: N"
 
-17. Append the report to `.claude/session_history.md` under `## {date} /job:apply`.
+15. Append the report to `.claude/session_history.md` under `## {date} /job:apply`.

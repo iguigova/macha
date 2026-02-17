@@ -23,17 +23,11 @@ On first use with LinkedIn, manually log in when the browser opens. The session 
 
 ### Phase 1: Find
 
-Given a count N (default 1), search using a tiered source ladder — stop as soon as N candidates are found:
+Given a count N (default 1), search across sources — LinkedIn, RemoteOK, Jobicy, WebSearch, HN Who is Hiring, direct career pages — starting wherever results are most likely. Stop as soon as N candidates are found.
 
-1. **Tier 1 — Structured sources** (1 fetch = many jobs): HN Who is Hiring (`hnhiring.com`), Jobicy API, RemoteOK API, Ashby career pages
-2. **Tier 2 — WebSearch** (only if Tier 1 < N): targeted `site:` queries against Ashby, Lever, Greenhouse
-3. **Tier 3 — Playwright** (last resort): LinkedIn, WeWorkRemotely, Working Nomads
-
-Each candidate passes through:
-1. **Exclusion list** — check against `jobs/done/` to avoid re-applying
-2. **Filter gate** — skip on-site, US-auth-required, wrong timezone, irrelevant titles (iOS/ML/PHP-only, etc.)
-3. **Fit rubric** — 5-point score: language match, domain match, seniority, infra, location+comp. Include 2+, skip 0-1.
-4. **Present results** with score breakdown before proceeding
+- **Exclusion list** — check against `jobs/done/` to avoid re-applying
+- **Bias toward keeping** — "Remote US" is fine (many hire Canadians), email-apply is fine, location unspecified is fine
+- **Present results** with a sentence on fit, no numeric scores
 
 ### Phase 2: Apply
 
