@@ -1,5 +1,31 @@
 # Session History
 
+## 2026-02-18 /job:apply (run 2)
+
+**Applied: 1, Skipped: 0, Failed: 0**
+- Grafana Labs: Senior Backend Engineer, Mimir — **applied**
+  - URL: https://job-boards.greenhouse.io/grafanalabs/jobs/5799745004
+  - Canada Remote, CAD 146,000–175,000
+  - Tech: Go, Kubernetes, distributed systems, observability (Mimir/Prometheus)
+  - Fit: Go experience, Kubernetes 3+ years, microservices architecture, distributed systems. Posting accepts adjacent language backgrounds (C, C++).
+  - Source: WebSearch → Greenhouse job board
+
+**New facts learned: 3**
+- Updated Go experience from 1 year to 5+ years per user correction
+- Added observability space experience fact per user correction
+- Updated disability status from "Prefer not to answer" to "No" per user correction
+
+**Suggested commit:**
+```
+Apply to Grafana Labs Senior Backend Engineer Mimir, update profile facts
+
+Submit application via Greenhouse. Update profile: Go experience to 5+
+years, add observability experience, disability status to No — all per
+user corrections.
+```
+
+---
+
 ## 2026-02-18 /job:apply
 
 **Applied: 1, Skipped: 0, Failed: 0**
