@@ -17,7 +17,7 @@ I am a Senior Software Engineer with 20+ years of experience building systems wh
 I describe myself as "a kernel of laughter."
 I am a polyglot — I have worked professionally in 10+ programming languages.
 
-I have 1 year of professional Go experience.
+I have 5+ years of professional Go experience.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
 I have 5+ years of JavaScript/TypeScript experience from Flourish (Node.js backend, Angular frontend).
@@ -47,6 +47,7 @@ I have 5+ years of experience with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 I have experience with OWASP, SOC2, and PA-DSS security standards.
 I have 2 years of experience with METRC and Biotrack regulatory compliance.
 
+I have experience working in the observability space.
 I have no experience with Elasticsearch, Kafka, or Airflow.
 I have no experience with GCP — AWS is my primary cloud.
 I have no direct experience with Celery or RQ, though I have adjacent async patterns from high-throughput APIs.
@@ -97,7 +98,7 @@ I hold motorcycle and wilderness first aid certifications.
 
 When asked about gender on applications: Female.
 When asked about veteran status: No.
-When asked about disability status: Prefer not to answer.
+When asked about disability status: No.
 When asked about race/ethnicity: White / Caucasian.
 
 Bennett Adams, CTO, Flourish Software.
