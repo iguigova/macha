@@ -1,5 +1,31 @@
 # Session History
 
+## 2026-02-18 /job:apply
+
+**Applied: 1, Skipped: 0, Failed: 0**
+- Coconut Software: Senior Developer (12 Month Contract) — **applied**
+  - URL: https://job-boards.greenhouse.io/coconutsoftware/jobs/5783875004
+  - Canada Remote, $110K-$140K CAD, 12-month contract
+  - Tech: React, TypeScript, PHP/Laravel, PostgreSQL/MariaDB, Docker, AWS, RESTful
+  - Fit: Strong on React, TypeScript, relational DBs, REST APIs, Docker, AWS, CI/CD, system design. Gap: PHP/Laravel.
+  - Source: LinkedIn (remote software engineer, Canada, sorted by most recent)
+
+**New facts learned: 7**
+- 6 new writing voice rules added to profile.txt (no jargon labels, no closing lines, no positioning statements, personality answers genuine and brief, each sentence a fact not a pitch, screening answers state what you built)
+- 1 correction: user is NOT a motorcyclist
+
+**Suggested commit:**
+```
+Apply to Coconut Software Senior Developer, update writing voice rules
+
+Submit application via Greenhouse. Add 6 writing voice rules to profile:
+no jargon labels, no try-hard closing lines, no positioning statements,
+genuine personality answers, each sentence a fact not a pitch. Answers
+refined through 4 rounds of user feedback.
+```
+
+---
+
 ## 2026-02-17 Simplify /job:apply Phase 1 (Find)
 
 **Done:**
