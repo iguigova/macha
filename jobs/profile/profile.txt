@@ -120,5 +120,10 @@ Do not namedrop algorithms, publications, or awards to impress — let the work 
 Do not claim specific counts of languages or technologies — "various" reads more honest than "10+."
 Do not use explicit section headers ("What I bring:") — just flow naturally between paragraphs.
 Light framing is acceptable (impact, scope, ownership).
+Do not frame with jargon labels ("B2B platforms," "enterprise systems") — let the examples speak for themselves.
+Do not add closing lines that try to tie everything together ("I tend to end up owning...") — just state the facts and stop.
+Do not front-load with positioning statements — get into the work immediately.
+For personality questions, be genuine and brief — don't connect everything back to the job or add a "what it taught me" spin.
+Each sentence should just be a fact, not a pitch.
 Cover letters: single page maximum. Flow: Opening (role + why this company) → concrete project examples → honest about gaps + how you close them → close with "Thank you for your time and consideration."
-Screening answers: 3-5 sentences. Say what you've built and why this specific thing matters to you.
+Screening answers: 3-5 sentences. State what you built. No framing, no pitch.
