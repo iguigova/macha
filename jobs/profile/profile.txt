@@ -5,11 +5,13 @@ I live in Brackendale, BC, Canada (V0N 1H0).
 My LinkedIn is https://www.linkedin.com/in/iguigova/
 My GitHub is https://github.com/iguigova — 16 public repositories, Arctic Code Vault Contributor.
 My website is https://urgh.weebly.com/
+My blog is https://oceanhue.blogspot.com/
 My pronouns are she/her.
+I speak Bulgarian (native), English (fluent), French (Level 12, Institut Français), and German (Level 4, Goethe Institut).
 
 I am authorized to work in Canada without sponsorship.
 I am not authorized to work in the US — I would require sponsorship.
-I am available to start immediately. I am not currently employed.
+I am currently employed at Wayleadr as a Software Engineer (started Feb 2026).
 My salary expectation is $90,000–$120,000 CAD, negotiable.
 I only work remotely.
 
@@ -39,6 +41,7 @@ I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3).
+I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
 I have 4-5 years of Docker experience in production.
 I have 3+ years of Kubernetes experience.
 I have 10+ years of CI/CD experience.
@@ -49,11 +52,14 @@ I have 2 years of experience with METRC and Biotrack regulatory compliance.
 
 I have experience working in the observability space.
 I have no experience with Elasticsearch, Kafka, or Airflow.
-I have no experience with GCP — AWS is my primary cloud.
+I have some experience with R from personal projects (GitHub: snippets_r).
+I have no experience with GCP — AWS is my primary cloud, with some Azure experience.
 I have no direct experience with Celery or RQ, though I have adjacent async patterns from high-throughput APIs.
 I have consistently ramped quickly on new stacks. My gaps are real but surmountable.
 
-At Flourish Software (May 2024–Jan 2026), I was a Senior Full-Stack Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript backend, Angular/TypeScript frontend, 14 microservices. I prefer framing this as "regulatory compliance platform" rather than "cannabis." I did NOT own deployment orchestration at Flourish — do not claim this.
+At Wayleadr (Feb 2026–present), I am a Software Engineer. (Details TBD — role is new.)
+
+At Flourish Software (Jan 2025–Jan 2026), I was a Backend Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript backend, Angular/TypeScript frontend, 14 microservices. I prefer framing this as "regulatory compliance platform" rather than "cannabis." I did NOT own deployment orchestration at Flourish — do not claim this.
 
 At Flourish, I led 8 major feature initiatives including multi-state METRC and Biotrack compliance integrations, enterprise platform modernization, manufacturing workflows, and compliance audit frameworks.
 
@@ -61,17 +67,19 @@ At Flourish, I built the Zapier integration layer end-to-end from scratch, expos
 
 At Flourish, I built a Data Fix CLI tool with 50+ commands for production data corrections, a PDF processing engine for regulatory compliance, and service orchestration across 15+ services.
 
-At Willow Inc (2021–2024), I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL. Clients included Walmart, DFW Airport, Northern Arizona University, and BNP Paribas. I enacted QA standards in CI/CD infrastructure. Willow won "AI Startup of the Year" from AI Breakthrough Awards.
+At Willow Inc (Oct 2021–Sep 2024), I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL. Clients included Walmart, DFW Airport, Northern Arizona University, and BNP Paribas. I enacted QA standards in CI/CD infrastructure using Pulumi and Azure Pipelines. Willow won "AI Startup of the Year" from AI Breakthrough Awards.
 
-At Bread & Butter IO (2019–2021), I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO). I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. OWASP security practices.
+At Bread & Butter IO (May 2019–Oct 2021), I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. OWASP security practices.
 
-At DeliverySlip (2011–2019), I designed a dynamic rules engine and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, and non-repudiable audit trails. I improved maintainability by 80%. I supervised QA and testing teams for 8 years.
+At Email2/Cirius (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product.
 
-At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism.
+At DeliverySlip (2013–2019), I designed a dynamic rules engine and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, and non-repudiable audit trails. I built a single-sign-on framework for 5,000+ login screens. I improved maintainability by 80%. I reduced codebase by 15,000+ lines. I supervised QA and testing teams for 8 years. DeliverySlip was acquired by Zix Corporation for $14 million.
+
+At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring improved response time 10x.
 
 At Klein Systems Group (2008–2010), I built a self-learning mapping engine for marine traffic from scratch, processing 300+ calls per second. I also worked on configurable data import and validation across multiple message formats.
 
-At Vivonet (2007–2008), I refactored a payment processing system handling millions of transactions per month. I reduced complexity by 40%, cut QA turnaround by 33%, and improved early error detection by 5x through moderated software inspections. The system achieved PA-DSS certification.
+At Vivonet (2007–2008), I refactored a payment processing system handling millions of transactions per month. I reduced the codebase by 15,000+ lines, reduced complexity by 40%, cut QA turnaround by 33%, and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The system achieved PA-DSS certification.
 
 Earlier (2000–2007): I implemented floor operations for automotive assembly plants (SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I worked on a robot simulation system as a Canadian Space Agency sub-contract. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
 
@@ -81,18 +89,24 @@ I have a Business Informatics Certificate from the University of Economics in So
 I completed Stanford Online courses in Machine Learning, AI, and Databases (2011).
 I completed MIT OCW Dynamic Programming & Stochastic Control (2010).
 I hold a Microsoft Certification Exam 70-536 (2008) and a Project Management Certificate from Centennial College (2007).
-I speak French (Level 12, Institut Français) and German (Level 4, Goethe Institut).
+I completed a Technical Writing course at George Brown College (2006).
 
 I published the FIFF file comparison algorithm — it runs as fast as LCS but handles non-sequential differences. It was used by the Code Project "Lean and Mean" winner.
 I published an elegant poker hand evaluation solution that avoids sorting and lookups, working for both 5-card and 7-card games.
-I mentored high school students through the Microsoft TEALS program, building sustainable CS curricula.
+I mentored high school students through the Microsoft TEALS program (Sep 2022–Jun 2023), building sustainable CS curricula. I hold a TEALS 2022-23 Volunteer Badge from Microsoft.
+I was a member of Toastmasters International (District 60 Toronto, 2003).
+I organized "Urgh! A Coding Garden" (2011–2012), a software development debate group focused on automation, algorithms, and data structures.
+I maintain three themed websites: "Urgh! A Coding War" (tech articles and resources), "Urgh! A Literary War" (haiku poetry, literary excerpts in English and Bulgarian), and "Urgh! A Media War" (philosophical quotes and visual art).
+I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
 My philosophy is: "Identify multiple solutions, choose the simplest that meets the need."
+My best advice: automate tasks repeated 3 or more times.
 I value integrity, enthusiasm, and constant learning.
 I am motivated by challenges that require creativity and discipline.
 In high school, I solved an assembler problem my professor declared "unsolvable."
 My favorite technical reading is Roy Fielding's dissertation on Architectural Styles.
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics."
+I write haiku poetry and curate philosophical quotes across multiple languages.
 My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, and dancing.
 I hold motorcycle and wilderness first aid certifications.
 

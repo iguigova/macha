@@ -11,7 +11,8 @@ All data lives in `jobs/profile/profile.txt` — flat facts, no sections. Everyt
 
 ## User Profile (Quick Reference)
 
-**Ilka Guigova** - Senior Software Engineer, 20+ years
+**Ilka Guigova** - Software Engineer, 20+ years
+- Current: Software Engineer at Wayleadr (Feb 2026–present)
 - Location: Brackendale, BC, Canada (Remote only)
 - Email: iguigova@gmail.com
 - GitHub: github.com/iguigova
