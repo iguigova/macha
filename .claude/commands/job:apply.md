@@ -16,9 +16,7 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
    - If it's a number N → search for at least N matching jobs
    - If empty → treat as 1
 
-3. **Build exclusion list.** Read all filenames in `jobs/done/` and grep URLs from those files.
-   This gives you a set of (company, role, URL) tuples to skip. Normalize company/role names
-   aggressively: lowercase, "Full Stack"="Fullstack"="Full-Stack", "Sr."="Senior", "Jr."="Junior".
+3. **Build exclusion list.** Read `jobs/done/.exclusions` — each line is a SHA-256 hash of a previously-applied URL. If the file doesn't exist, rebuild it: read URLs from all `jobs/done/*.md` files, hash each with SHA-256, write one hash per line to `jobs/done/.exclusions`, then proceed.
 
 4. **Search.** Use any combination of these sources. Start where you're most likely to find results quickly. Stop when you have ≥ N candidates.
 
@@ -31,7 +29,7 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
    - **Direct career pages** — Greenhouse/Lever/Ashby APIs for specific companies
 
    Rules:
-   - Check each result against the exclusion list. Skip matches silently.
+   - Check each result against the exclusion list by hashing its URL (SHA-256) and looking for a match. Skip matches silently.
    - Bias toward keeping. "Remote US" is fine — many hire Canadians. Location unspecified is fine.
    - Email-apply jobs are fine — send a cover letter email in Phase 2 if there's no web form.
    - SKIP: on-site only, US-auth-required, Europe/APAC-timezone-locked, title is iOS/Android/Mobile/ML Engineer/Data Scientist/PHP/Ruby-only, security clearance required.
@@ -111,6 +109,7 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
     ## Corrections Applied
     - {any user corrections during this application, or "None"}
     ```
+    Then append the SHA-256 hash of the job URL as a new line in `jobs/done/.exclusions`.
 
 13. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
 
