@@ -1,5 +1,9 @@
 # Session History
 
+## 2026-02-22 Cache exclusion list as URL hashes
+
+Updated `/job:apply` step 3 to use a `jobs/done/.exclusions` cache file (one SHA-256 hash per line) instead of re-reading all done files every invocation. Cache is rebuilt from `*.md` files if missing. Step 12 appends new hashes on successful application.
+
 ## 2026-02-18 /job:apply (run 2)
 
 **Applied: 1, Skipped: 0, Failed: 0**
