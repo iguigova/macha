@@ -1,30 +1,5 @@
-# Cabal build artifacts
-dist-newstyle/
+# Documents generated for the current application
+out/
 
-# Database
-*.db
-
-# Editor files
-*~
-*.swp
-*.bak
-.vscode/
-.idea/
-
-# GHC
-*.hi
-*.o
-*.dyn_hi
-*.dyn_o
-
-# Cabal
-cabal.project.local
-cabal.project.local~
-.cabal-sandbox/
-cabal.sandbox.config
-
-# Playwright MCP
+# Playwright MCP runtime files
 .playwright-mcp/
-
-# Job pipeline runtime data
-jobs/done/
