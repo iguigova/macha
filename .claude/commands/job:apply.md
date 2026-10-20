@@ -26,6 +26,7 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
    - **Jobicy API** — `https://jobicy.com/api/v2/remote-jobs?count=50&tag=backend` (JSON, has jobGeo)
    - **WebSearch** — vary queries, use `site:` for Greenhouse/Lever/Ashby boards
    - **HN Who is Hiring** — `https://hnhiring.com/technologies/go` (and `/typescript`, `/csharp`)
+   - **Jobgether** — browse `https://jobgether.com` via Playwright, search remote software engineer roles
    - **Direct career pages** — Greenhouse/Lever/Ashby APIs for specific companies
 
    Rules:
@@ -48,19 +49,43 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
 
 6. Navigate to the job's page with `browser_navigate`.
 
-7. `browser_snapshot` to understand the page. Find and click the Apply button.
+7. `browser_snapshot` to understand the page. Read the full job description.
+   - If login is required, tell the user and skip this job.
+
+8. **PAUSE — Gap analysis & cover letter draft.** Before touching the application form, output the following for user review:
+
+   > **Gap Analysis — {Company} — {Role}**
+   > **Strong matches:**
+   > - {requirement}: {matching profile fact}
+   > - ...
+   > **Gaps:**
+   > - {requirement}: {what's missing or weak, and how you'd address it}
+   > - ...
+   >
+   > **Cover Letter Draft:**
+   > {full cover letter text, following writing voice rules from profile}
+
+   Then ask the user with `AskUserQuestion`:
+   > "Review gap analysis and cover letter for {Company} — {Role}. Approve, revise, or skip?"
+   Options: "Approve — continue to form", "Skip — next job", and user can type revisions via Other.
+
+   - **Approve** → proceed to step 9 using the approved cover letter
+   - **Revise** → apply revisions, show updated draft, pause again
+   - **Skip** → move to next job
+
+9. Find and click the Apply button.
    - LinkedIn: prefer "Easy Apply" (modal flow). If only external "Apply" exists, follow it.
    - Other platforms: click whatever apply/submit button is available.
    - If login is required, tell the user and skip this job.
 
-8. If the application form has a cover letter field (textarea or file upload):
-   Generate a cover letter from profile facts — pick the 3-4 career facts most relevant to THIS job's requirements. Follow the writing voice facts from the profile.
+10. If the application form has a cover letter field (textarea or file upload):
+   Use the approved cover letter from step 8.
    If the form accepts a file upload for cover letter (not a textarea), generate a PDF:
    write the cover letter as HTML, then convert with `soffice --headless --convert-to pdf`.
    Save the PDF to `jobs/done/{company_role}_cover_letter.pdf`.
    If no cover letter field exists, skip this step.
 
-9. Fill the form using profile facts:
+11. Fill the form using profile facts:
     - Identity: name, email, phone, location, LinkedIn, GitHub, website
     - Upload resume: `~/Downloads/IlkaGuigova+.pdf` via `browser_file_upload`
     - Paste cover letter if a textarea is available, or upload PDF if file upload
@@ -70,23 +95,31 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
       - Unknown: leave blank and flag for user
     - For demographics (gender, veteran, disability, race): use profile facts
 
-10. **PAUSE** — ask the user with `AskUserQuestion`:
+12. **PAUSE** — ask the user with `AskUserQuestion`:
     > "Ready to submit to {Company} — {Role}:
     > - [summary of key answers filled]
     > - [any blanks or uncertainties]
     > Approve, correct, or skip?"
     Options: "Approve — submit", "Skip — next job", and user can type corrections via Other.
 
-11. Handle response:
+13. Handle response:
     - **Approve** → click submit → `browser_snapshot` to verify confirmation → save to `jobs/done/`
     - **Correct** → apply the corrections to the form → add each correction as a new fact in `jobs/profile/profile.txt` (if a fact contradicts an existing one, update the existing fact instead of adding a duplicate) → pause again
     - **Skip** → log as skipped → move to next job
 
-12. On success, write `jobs/done/{company_role}.md` with:
+14. On success, write `jobs/done/{company_role}.md` with:
     ```
     # {Company} — {Role}
     URL: {url}
     Applied: {ISO 8601 timestamp}
+
+    ## Gap Analysis
+    **Strong matches:**
+    - {requirement}: {matching profile fact}
+    - ...
+    **Gaps:**
+    - {requirement}: {what's missing or weak}
+    - ...
 
     ## Cover Letter
     {the cover letter text, or "N/A — no cover letter field"}
@@ -111,12 +144,12 @@ Find jobs matching the profile, assess fit, and apply. Human-in-the-loop: pause 
     ```
     Then append the SHA-256 hash of the job URL as a new line in `jobs/done/.exclusions`.
 
-13. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
+15. On failure (form error, login wall, broken page), tell the user what happened and move to the next job.
 
-14. After all jobs processed, report:
+16. After all jobs processed, report:
     > "Applied: X, Skipped: Y, Failed: Z
     > - {Company}: {Role} (applied|skipped|failed: reason)
     > - ...
     > New facts learned: N"
 
-15. Append the report to `.claude/session_history.md` under `## {date} /job:apply`.
+17. Append the report to `.claude/session_history.md` under `## {date} /job:apply`.
