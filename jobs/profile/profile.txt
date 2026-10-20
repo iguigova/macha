@@ -4,9 +4,9 @@ My phone number is 604-338-4242.
 I live at 1253 Depot Rd, Brackendale, BC, Canada, V0N 1H0.
 My CV is at https://urgh.weebly.com/curriculum-vitae.html
 My LinkedIn is https://www.linkedin.com/in/iguigova/
-My GitHub is https://github.com/iguigova — 16 public repositories, Arctic Code Vault Contributor.
+My GitHub is https://github.com/iguigova — 16 public repositories, Arctic Code Vault Contributor. Notable repositories: fribs.netcore (ServiceStack skeleton), snippets_js, snippets_r, snippets_cs.
 My website is https://urgh.weebly.com/
-My blog is https://oceanhue.blogspot.com/
+My Code Project profile is http://www.codeproject.com/Members/iguigova
 My pronouns are she/her.
 I speak Bulgarian (native), English (fluent), French (Level 12, Institut Français), and German (Level 4, Goethe Institut).
 
@@ -17,7 +17,6 @@ My salary expectation is $100,000+ CAD.
 I only work remotely.
 
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
-I describe myself as "a kernel of laughter."
 I am a polyglot — I have worked professionally in 10+ programming languages.
 
 I have 5+ years of professional Go experience.
@@ -41,6 +40,9 @@ I have 5+ years of Redis/Memcached experience.
 I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience.
+I have used Datomic and graph databases.
+I have about 5 years of microservices architecture experience.
+I use Shell/Bash for scripting.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
@@ -48,7 +50,7 @@ I have 4-5 years of Docker experience in production.
 I have 3+ years of Kubernetes experience.
 I have 10+ years of CI/CD experience, most recently GitHub Actions with an ephemeral deploy per pull request.
 
-I have 5+ years of experience with OAuth 1.0/2.0, OIDC, and SAML 2.0.
+I have about 15 years of experience building authentication and authorization systems, including 5+ years with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 I have experience with OWASP, SOC2, and PA-DSS security standards.
 I have 2 years of experience with METRC and Biotrack regulatory compliance.
 
@@ -71,30 +73,34 @@ At Wayleadr, I diagnosed dashboard latency by measurement: warm Lambda invocatio
 
 At Flourish Software (Jan 2025–Jan 2026), I was a Backend Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript backend, Angular/TypeScript frontend, 14 microservices. I prefer framing this as "regulatory compliance platform" rather than "cannabis." I did NOT own deployment orchestration at Flourish — do not claim this.
 
-At Flourish, I led 8 major feature initiatives including multi-state METRC and Biotrack compliance integrations, enterprise platform modernization, manufacturing workflows, and compliance audit frameworks.
+At Flourish, I made 1,097+ commits across 14 microservices and led 8 major feature initiatives: enterprise platform enhancement, METRC trade-sample compliance with automatic METRC API synchronization, multi-state Biotrack compliance (AR, CT and others), an advanced manufacturing workflow, external system synchronization with retry and failure alerting, reporting and analytics, inventory optimization, and a compliance audit framework with immutable logging.
 
 At Flourish, I built the Zapier integration layer end-to-end from scratch, exposing the platform API to customers. I also integrated Bartender Cloud API using OAuth2 for automated label printing.
 
 At Flourish, I built a Data Fix CLI tool with 50+ commands for production data corrections, a PDF processing engine for regulatory compliance, and service orchestration across 15+ services.
 
-At Willow Inc (Oct 2021–Sep 2024), I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL. Clients included Walmart, DFW Airport, Northern Arizona University, and BNP Paribas. I enacted QA standards in CI/CD infrastructure using Pulumi and Azure Pipelines. Willow won "AI Startup of the Year" from AI Breakthrough Awards.
+At Willow Inc (Oct 2021–Oct 2024), I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL, over live and historical data. Clients included Walmart, DFW Airport, Northern Arizona University, Georgia Southern University, and BNP Paribas Real Estate. I enacted QA standards in CI/CD infrastructure using Pulumi and Azure Pipelines. Willow won "AI Startup of the Year" from AI Breakthrough Awards.
 
-At Bread & Butter IO (May 2019–Oct 2021), I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. OWASP security practices.
+At Bread & Butter IO, also known as Logonlabs (May 2019–Oct 2021), I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. OWASP security practices.
 
-At Email2/Cirius (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product.
+At Email2 (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product.
 
-At DeliverySlip (2013–2019), I designed a dynamic rules engine and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, and non-repudiable audit trails. I built a single-sign-on framework for 5,000+ login screens. I improved maintainability by 80%. I reduced codebase by 15,000+ lines. I supervised QA and testing teams for 8 years. DeliverySlip was acquired by Zix Corporation for $14 million.
+At Cirius, later DeliverySlip (2013–2019), I designed a dynamic rules engine and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, and non-repudiable audit trails. I built a single-sign-on framework for 5,000+ login screens and a settings management framework. I improved maintainability by 80%. DeliverySlip was acquired by Zix Corporation for $14 million.
+
+Email2, Cirius and DeliverySlip are one company line: I supervised its QA and testing teams for 8 years (2011–2019).
 
 At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring improved response time 10x.
 
-At Klein Systems Group (2008–2010), I built a self-learning mapping engine for marine traffic from scratch, processing 300+ calls per second. I also worked on configurable data import and validation across multiple message formats.
+At Klein Systems Group (2008–2010), I expanded KleinPort, an ERP system for marine traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats.
 
-At Vivonet (2007–2008), I refactored a payment processing system handling millions of transactions per month. I reduced the codebase by 15,000+ lines, reduced complexity by 40%, cut QA turnaround by 33%, and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The system achieved PA-DSS certification.
+At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced the codebase by 15,000+ lines and reduced complexity, which made responses 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The system achieved PA-DSS certification.
 
-Earlier (2000–2007): I implemented floor operations for automotive assembly plants (SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I worked on a robot simulation system as a Canadian Space Agency sub-contract. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
+Earlier employers: PINpoint Information Systems, Burlington ON (Software Developer, 2002–2007); Intelsys Ltd, Toronto (Software Developer, 2000–2002); Epoch Integration, Toronto (Programmer, 2000); Expert Tutors, Toronto (Math and Computer Science Tutor, 1999–2002); Ministry of Tourism, Sofia (Assistant to Manager of Operations, 1996–1997); Datecs, Sofia (Assistant, 1995–1996). Alongside Email2, I also worked at Software Created (2011–2012).
+
+Earlier work (2000–2007): I implemented floor operations for automotive assembly plants (PINpoint SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I built a path-planning prototype that led to a Canadian Space Agency sub-contract, and worked on the resulting robot simulation system. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
 
 I have a B.Sc. Mathematics (Honors Specialist) from the University of Toronto (2002), ranked 6th in class. I took most Computer Science courses including Computational Complexity.
-I have a Software Specialist diploma from the College of Electronic Systems in Sofia, Bulgaria (1996), with Top 3 Student Distinction.
+I have a Software Specialist high-school diploma from the College of Electronic Systems (Technology School "Electronic Systems" of the Technical University of Sofia), Bulgaria (1996), with Top 3 Student Distinction.
 I have a Business Informatics Certificate from the University of Economics in Sofia (1997).
 I completed Stanford Online courses in Machine Learning, AI, and Databases (2011).
 I completed MIT OCW Dynamic Programming & Stochastic Control (2010).
@@ -103,10 +109,11 @@ I completed a Technical Writing course at George Brown College (2006).
 
 I published the FIFF file comparison algorithm — it runs as fast as LCS but handles non-sequential differences. It was used by the Code Project "Lean and Mean" winner.
 I published an elegant poker hand evaluation solution that avoids sorting and lookups, working for both 5-card and 7-card games.
+I have mentored junior engineers and coordinated cross-team development across backend, frontend and integration teams.
 I mentored high school students through the Microsoft TEALS program (Sep 2022–Jun 2023), building sustainable CS curricula. I hold a TEALS 2022-23 Volunteer Badge from Microsoft.
 I was a member of Toastmasters International (District 60 Toronto, 2003).
 I organized "Urgh! A Coding Garden" (2011–2012), a software development debate group focused on automation, algorithms, and data structures.
-I maintain three themed websites: "Urgh! A Coding War" (tech articles and resources), "Urgh! A Literary War" (haiku poetry, literary excerpts in English and Bulgarian), and "Urgh! A Media War" (philosophical quotes and visual art).
+I maintain three themed websites: "Urgh! A Coding War" (https://urgh.weebly.com/ — tech articles and resources), "Urgh! A Literary War" (https://urgh2.weebly.com/ — haiku poetry, literary excerpts in English and Bulgarian), and "Urgh! A Media War" (https://oceanhue.blogspot.com/ — philosophical quotes and visual art).
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
 My philosophy is: "Identify multiple solutions, choose the simplest that meets the need."
@@ -116,9 +123,12 @@ I am motivated by challenges that require creativity and discipline.
 In high school, I studied digital electronics, microcontrollers and assembler.
 In high school, I solved an assembler problem my professor declared "unsolvable."
 My favorite technical reading is Roy Fielding's dissertation on Architectural Styles.
-I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics."
+I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics." Also: "Stay curious." and "I am an agile problem solver."
 I write haiku poetry and curate philosophical quotes across multiple languages.
-My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, and dancing.
+My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, dancing, travel, reading, and writing.
+
+For "proudest achievement" questions: the Bread & Butter auth infrastructure (security), the Vivonet payment refactor (scale), or the FIFF algorithm (technical elegance).
+For "hardest technical problem" questions: the Vivonet refactor — state management and error-handling consolidation, 40% faster response, 5x earlier error detection, PA-DSS certification.
 I hold motorcycle and wilderness first aid certifications.
 
 When asked about gender on applications: Female.
