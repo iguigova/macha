@@ -1,7 +1,8 @@
 I am Ilka Guigova.
 My email is iguigova@gmail.com.
 My phone number is 604-338-4242.
-I live in Brackendale, BC, Canada (V0N 1H0).
+I live at 1253 Depot Rd, Brackendale, BC, Canada, V0N 1H0.
+My CV is at https://urgh.weebly.com/curriculum-vitae.html
 My LinkedIn is https://www.linkedin.com/in/iguigova/
 My GitHub is https://github.com/iguigova — 16 public repositories, Arctic Code Vault Contributor.
 My website is https://urgh.weebly.com/
@@ -12,7 +13,7 @@ I speak Bulgarian (native), English (fluent), French (Level 12, Institut França
 I am authorized to work in Canada without sponsorship.
 I am not authorized to work in the US — I would require sponsorship.
 I am currently employed at Wayleadr as a Software Engineer (started Feb 2026).
-My salary expectation is $90,000–$120,000 CAD, negotiable.
+My salary expectation is $100,000+ CAD.
 I only work remotely.
 
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
@@ -31,7 +32,8 @@ I have 3+ years of C++ experience.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have studied Erlang but have less than 1 year of experience.
-Python is not a primary language — I have no expert-level Python experience.
+I have used Python professionally since Feb 2026 at Wayleadr: AWS Lambda services with Pydantic, SQLAlchemy and psycopg.
+I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
 I have 15+ years of REST API design and development experience.
 I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Server, Oracle).
@@ -40,11 +42,11 @@ I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience.
 
-I have 5+ years of AWS experience (EC2, Lambda, S3).
+I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
 I have 4-5 years of Docker experience in production.
 I have 3+ years of Kubernetes experience.
-I have 10+ years of CI/CD experience.
+I have 10+ years of CI/CD experience, most recently GitHub Actions with an ephemeral deploy per pull request.
 
 I have 5+ years of experience with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 I have experience with OWASP, SOC2, and PA-DSS security standards.
@@ -57,7 +59,15 @@ I have no experience with GCP — AWS is my primary cloud, with some Azure exper
 I have no direct experience with Celery or RQ, though I have adjacent async patterns from high-throughput APIs.
 I have consistently ramped quickly on new stacks. My gaps are real but surmountable.
 
-At Wayleadr (Feb 2026–present), I am a Software Engineer. (Details TBD — role is new.)
+At Wayleadr (Feb 2026–present), a parking and workplace-mobility SaaS, I am a Software Engineer. I am the primary engineer on the greenfield Wayleadr 2.0 Occupancy Service (555 of its 591 commits), which collects occupancy events from access-control systems, sensors and bookings, rolls them up, and serves them through an HTTP API. The stack is Python on AWS Lambda, CDK, Aurora Postgres and a TypeScript/React 19 web app.
+
+At Wayleadr, I took the Occupancy Service to production in Sep 2026, running the cutover in phases and building parity checks against the legacy system first. Over the last measured week, AMAG and sensor data matched the legacy system on 7 of 7 days; a third source, gateworks, matched on 4 of 7.
+
+At Wayleadr, I built the AMAG access-control integration: a SOAP client extracted into a reusable SDK, then a migration to the REST API with OAuth token caching behind a feature flag, cut over in production with a written runbook. I also built a Flash/ParkWhiz access-control integration.
+
+At Wayleadr, I added observability to the occupancy pipeline: CloudWatch alarms routed to Slack, a drop-rate metric for aggregation, and hardening against EventBridge throttling.
+
+At Wayleadr, I diagnosed dashboard latency by measurement: warm Lambda invocations were paying Aurora connection setup on every call. Keeping the connection warm brought warm p90 from 770 ms to 408 ms, with p50 at 37–49 ms. I also moved dashboard aggregation from the browser into SQL view endpoints.
 
 At Flourish Software (Jan 2025–Jan 2026), I was a Backend Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript backend, Angular/TypeScript frontend, 14 microservices. I prefer framing this as "regulatory compliance platform" rather than "cannabis." I did NOT own deployment orchestration at Flourish — do not claim this.
 
@@ -103,6 +113,7 @@ My philosophy is: "Identify multiple solutions, choose the simplest that meets t
 My best advice: automate tasks repeated 3 or more times.
 I value integrity, enthusiasm, and constant learning.
 I am motivated by challenges that require creativity and discipline.
+In high school, I studied digital electronics, microcontrollers and assembler.
 In high school, I solved an assembler problem my professor declared "unsolvable."
 My favorite technical reading is Roy Fielding's dissertation on Architectural Styles.
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics."
@@ -122,7 +133,7 @@ Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip.
 Additional references available from Klein Systems Group, Vivonet, and PointyHat.
 
 Writing voice — for cover letters, screening answers, and any written communication:
-Smooth, professional, confident. Do not try too hard. Better concise but impactful.
+Smooth, professional, confident, lightly personal. Do not try too hard. Better concise but impactful; never pad to fill space.
 Never say "excited," "passionate," or "20+ years."
 Never use mission-driven language, abstract problem spaces, corporate enthusiasm, or meta commentary.
 Never say "I want to build that" or frame the company's own pitch back at them as a closing line.
@@ -142,3 +153,4 @@ For personality questions, be genuine and brief — don't connect everything bac
 Each sentence should just be a fact, not a pitch.
 Cover letters: single page maximum. Flow: Opening (role + why this company) → concrete project examples → honest about gaps + how you close them → close with "Thank you for your time and consideration."
 Screening answers: 3-5 sentences. State what you built. No framing, no pitch.
+Resumes: one page maximum, generated for each job. Header: address, phone, email, CV link. Tagline: "20+ years building systems where correctness matters. A kernel of laughter." Sections: Technical Skills, Key Accomplishments (most relevant to the job first), Contributions & Community, Philosophy, Education.
