@@ -5,13 +5,16 @@ allowed-tools: Read, Edit, Grep, Glob, Bash(git:*), Bash(find:*), AskUserQuestio
 ---
 
 Bring `jobs/profile/profile.txt` up to date from the work recorded in
-$ARGUMENTS since the last refresh. Only facts the user approves are written,
-and every fact rests on a source line that states it.
+$ARGUMENTS since the last refresh. Macha lives at `~/src/oceanhue/macha`;
+every Macha path below is relative to it, so the command runs the same from
+any directory. Only facts the user approves are written, and every fact
+rests on a source line that states it.
 
 1. **Find the window.** The last refresh is the newest commit whose subject
    starts with "Refresh profile":
    ```bash
-   git log -1 --grep='^Refresh profile' --format=%cs -- jobs/profile/profile.txt
+   git -C ~/src/oceanhue/macha log -1 --grep='^Refresh profile' --format=%cs \
+     -- jobs/profile/profile.txt
    ```
    With no such commit, the window starts at the start date of the current
    employer named in the profile.
