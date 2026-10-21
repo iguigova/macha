@@ -46,9 +46,9 @@ before the form, and the form before submit.
      with `.sites` (the three Urgh! sites) and an empty `.band`.
    - Resume: under the name a `.tagline`; one `<section>` per resume
      section, each an `<h2>` label and one content block; Skills as a
-     `<dl>`; each employer an `.entry` with a `.row` of one `<span>` holding
-     `.org` and `.role` (the title), then `.when`, and a `<ul>`. A second
-     line of detail under an entry is a `<br>` and a `.role` span.
+     `<dl>`; each employer an `.entry` with a `.row` of `.org` and `.when`
+     and a `<ul>`. A second line of detail under an entry is a `<br>` and
+     a `.role` span.
    - Cover letter: `<body class="letter">`, a `.meta` block with the date
      and "{Company} — {Role}", the paragraphs, and `.sign`.
 

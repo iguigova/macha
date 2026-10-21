@@ -167,5 +167,5 @@ Keep only numbers that show scale or impact (millions of transactions, 35+ ident
 Write every sentence the way a person would say it aloud. No constructed summary sentences such as "The role pairs X with Y, which is how I have worked."
 Cover letters: single page maximum. Flow: Opening (role + why this company) → concrete project examples → honest about gaps + how you close them → close with "Thank you for your time and consideration."
 Screening answers: 3-5 sentences. State what you built. No framing, no pitch.
-Resumes: one page maximum, generated for each job. Header: name, tagline "20+ years building systems where correctness matters. A kernel of laughter.", address, phone, email, CV link. Sections: Skills, Experience (by employer, newest first, the bullets most relevant to the job first), Community, Philosophy, Education.
+Resumes: one page maximum, generated for each job. Header: name, tagline "20+ years building systems where correctness matters. A kernel of laughter.", address, phone, email, CV link. Sections: Skills, Experience (by employer and dates, without job titles, newest first, the bullets most relevant to the job first), Community, Philosophy, Education.
 Resume and cover letter share the look of my website urgh.weebly.com, kept in jobs/templates/style.css.
