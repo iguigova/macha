@@ -29,6 +29,7 @@ h2 { font-size: 8.8pt; font-weight: 400; color: var(--link); margin: 0;
 .entry:last-child { margin-bottom: 0; }
 .row { display: flex; justify-content: space-between; gap: 8pt; }
 .org { font-weight: 700; }
+.role { color: var(--muted); }
 .when { color: var(--muted); font-size: 8.3pt; white-space: nowrap; }
 ul { margin: 1.5pt 0 0; padding-left: 11pt; }
 li { margin-bottom: 2pt; }

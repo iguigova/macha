@@ -46,8 +46,9 @@ before the form, and the form before submit.
      with `.sites` (the three Urgh! sites) and an empty `.band`.
    - Resume: under the name a `.tagline`; one `<section>` per resume
      section, each an `<h2>` label and one content block; Skills as a
-     `<dl>`; each employer an `.entry` with a `.row` of `.org` and `.when`
-     and a `<ul>`.
+     `<dl>`; each employer an `.entry` with a `.row` of one `<span>` holding
+     `.org` and `.role` (the title), then `.when`, and a `<ul>`. A second
+     line of detail under an entry is a `<br>` and a `.role` span.
    - Cover letter: `<body class="letter">`, a `.meta` block with the date
      and "{Company} — {Role}", the paragraphs, and `.sign`.
 
@@ -59,8 +60,10 @@ before the form, and the form before submit.
    ```
    and the same for `IlkaGuigova_CoverLetter.pdf`. `pdfinfo` must report
    `Pages: 1` for each; when it does not, `pdftotext -f 2` shows what
-   spilled, and the content is trimmed, never the stylesheet. Check the
-   look with `pdftoppm -png` before the form. `out/` holds only the
+   spilled. Fit by balance: reword a line that leaves one word on the next,
+   then adjust spacing in the stylesheet; a fact the job weighs is never
+   dropped to fit. Check the look with `pdftoppm -png` before the form: no
+   line ends with a lone word, and the space is even down to the footer. `out/` holds only the
    current application and is overwritten each run.
 
 6. **Fill the form.** Click Apply (on LinkedIn prefer Easy Apply). A

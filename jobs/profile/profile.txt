@@ -95,6 +95,7 @@ At Klein Systems Group (2008–2010), I expanded KleinPort, an ERP system for ma
 
 At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced the codebase by 15,000+ lines and reduced complexity, which made responses 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The system achieved PA-DSS certification.
 
+My title (from my CV) was Software Engineer at Willow, Bread & Butter, Email2, Cirius/DeliverySlip, Software Created, PointyHat, Klein and Vivonet.
 Earlier employers: PINpoint Information Systems, Burlington ON (Software Developer, 2002–2007); Intelsys Ltd, Toronto (Software Developer, 2000–2002); Epoch Integration, Toronto (Programmer, 2000); Expert Tutors, Toronto (Math and Computer Science Tutor, 1999–2002); Ministry of Tourism, Sofia (Assistant to Manager of Operations, 1996–1997); Datecs, Sofia (Assistant, 1995–1996). Alongside Email2, I also worked at Software Created (2011–2012).
 
 Earlier work (2000–2007): I implemented floor operations for automotive assembly plants (PINpoint SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I built a path-planning prototype that led to a Canadian Space Agency sub-contract, and worked on the resulting robot simulation system. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
