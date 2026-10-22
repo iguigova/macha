@@ -119,7 +119,7 @@ I maintain three themed websites: "Urgh! A Coding War" (https://urgh.weebly.com/
 I also keep "Soot" (https://soothue.blogspot.com/), a blog of images and quotes, posted since 2023.
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
-My philosophy is: "Identify multiple solutions, choose the simplest that meets the need."
+My philosophy is: "Curiosity first, code second. The simple solution is on the other side of the right question."
 My best advice: automate tasks repeated 3 or more times.
 I value integrity, enthusiasm, and constant learning.
 I am motivated by challenges that require creativity and discipline.
