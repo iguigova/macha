@@ -42,6 +42,8 @@ I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience.
 I have used Datomic and graph databases.
+I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
+I have worked a lot with tabular data formats and exports: Excel, CSV and others.
 I have about 5 years of microservices architecture experience.
 I use Shell/Bash for scripting.
 
