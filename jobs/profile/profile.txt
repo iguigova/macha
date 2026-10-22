@@ -50,6 +50,7 @@ I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
 At Wayleadr we started using Terraform in 2026, with plan and apply run in GitHub Actions.
 I have 4-5 years of Docker experience in production.
 I have 10+ years of CI/CD experience, most recently GitHub Actions with an ephemeral deploy per pull request.
+I have done plenty of enterprise deployment, updates and version management, at Vivonet, Bread & Butter, Willow and other roles.
 
 I have about 15 years of experience building authentication and authorization systems, including 5+ years with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 I have experience with OWASP, SOC2, and PA-DSS security standards.
