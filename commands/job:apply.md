@@ -67,11 +67,14 @@ before the form, and the form before submit.
    current application and is overwritten each run.
 
 6. **Fill the form.** Click Apply (on LinkedIn prefer Easy Apply). A
-   Greenhouse form sits in an iframe on the company's page: fill it there
-   through `page.frameLocator('iframe[src*="greenhouse"]')`, never by
-   opening the iframe's URL, which blocks reCAPTCHA and makes Greenhouse
-   demand an emailed code. Its dropdowns open with focus and `ArrowDown`,
-   then a click on the option. Then:
+   Greenhouse form embedded on the company's page sits in an iframe: fill
+   it there through `page.frameLocator('iframe[src*="greenhouse"]')`,
+   never by opening the iframe's URL, which blocks reCAPTCHA and makes
+   Greenhouse demand an emailed code. A company that links to its
+   `job-boards.greenhouse.io` page instead has the form on that page.
+   Its dropdowns open with focus and `ArrowDown`, then a click on the
+   option. A text field's `maxLength` is read before pasting into it, and
+   text that does not fit is shortened, never cut off. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
    - Upload `out/IlkaGuigova_Resume.pdf`.
    - Cover letter: paste the text into a textarea, or upload
@@ -88,8 +91,10 @@ before the form, and the form before submit.
    {Company} — {Role}" with a summary of every answer and every blank, and
    options "Approve — submit" and "Skip"; corrections come through Other.
    - **Approve** → submit and read the page. If it asks for an emailed
-     security code, ask the user for it at once: the code expires. Report
-     the confirmation the page shows.
+     security code, ask the user for it at once: the code expires. A form
+     left open for hours fails on submit; reload the page, refill the
+     approved values, read them back and submit again. Report the
+     confirmation the page shows.
    - **Correct** → change the form, update the profile (step 8), pause
      again.
    - **Skip** → stop without submitting.
