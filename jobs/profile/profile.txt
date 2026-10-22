@@ -47,7 +47,6 @@ I use Shell/Bash for scripting.
 I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
 I have 4-5 years of Docker experience in production.
-I have 3+ years of Kubernetes experience.
 I have 10+ years of CI/CD experience, most recently GitHub Actions with an ephemeral deploy per pull request.
 
 I have about 15 years of experience building authentication and authorization systems, including 5+ years with OAuth 1.0/2.0, OIDC, and SAML 2.0.
