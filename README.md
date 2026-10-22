@@ -8,12 +8,11 @@ cover letter and form answer is generated from it for the job at hand.
 
 ```bash
 claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/mcp
-ln -s ~/src/oceanhue/macha/commands/job:apply.md ~/.claude/commands/
-ln -s ~/src/oceanhue/macha/commands/job:refresh.md ~/.claude/commands/
+cd ~/src/oceanhue/macha && claude
 ```
 
-The commands live in `commands/` and are linked into `~/.claude/commands/`,
-so they run from any directory.
+The commands live in `.claude/commands/` and load when Claude Code starts
+in this directory.
 
 The browser keeps its logins, so a site that needs one (LinkedIn, an ATS)
 is logged into by hand once.

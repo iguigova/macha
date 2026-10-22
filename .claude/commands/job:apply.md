@@ -4,9 +4,8 @@ argument-hint: <job-url>
 allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), AskUserQuestion
 ---
 
-Apply to the job at $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`; every
-path below is relative to it, so the command runs the same from any
-directory. Every claim in every document and answer comes from a fact in
+Apply to the job at $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
+Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
 `jobs/profile/profile.txt`; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.

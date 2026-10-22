@@ -5,9 +5,9 @@ allowed-tools: Read, Edit, Grep, Glob, Bash(git:*), Bash(find:*), AskUserQuestio
 ---
 
 Bring `jobs/profile/profile.txt` up to date from the work recorded in
-$ARGUMENTS since the last refresh. Macha lives at `~/src/oceanhue/macha`;
-every Macha path below is relative to it, so the command runs the same from
-any directory. Only facts the user approves are written, and every fact
+$ARGUMENTS since the last refresh. Macha lives at `~/src/oceanhue/macha`,
+where Claude Code is started; every Macha path below is relative to it.
+Only facts the user approves are written, and every fact
 rests on a source line that states it.
 
 1. **Find the window.** The last refresh is the newest commit whose subject
