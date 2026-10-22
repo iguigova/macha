@@ -15,6 +15,7 @@ I am not authorized to work in the US — I would require sponsorship.
 I am currently employed at Wayleadr as a Software Engineer (started Feb 2026).
 My salary expectation is $100,000+ CAD.
 I only work remotely.
+I want to work more in Go and functional languages, on distributed systems, and less in .NET.
 
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
 I am a polyglot — I have worked professionally in 10+ programming languages.
