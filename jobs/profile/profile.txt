@@ -55,6 +55,8 @@ I have experience with OWASP, SOC2, and PA-DSS security standards.
 I have 2 years of experience with METRC and Biotrack regulatory compliance.
 
 I have experience working in the observability space.
+I have used Grafana and Prometheus at Flourish and at Wayleadr.
+I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, or Airflow.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP — AWS is my primary cloud, with some Azure experience.
