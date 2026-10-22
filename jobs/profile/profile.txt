@@ -91,6 +91,8 @@ At Flourish, I built a Data Fix CLI tool with 50+ commands for production data c
 
 At Willow Inc (Oct 2021–Oct 2024), I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL, over live and historical data. Clients included Walmart, DFW Airport, Northern Arizona University, Georgia Southern University, and BNP Paribas Real Estate. I enacted QA standards in CI/CD infrastructure using Pulumi and Azure Pipelines. Willow won "AI Startup of the Year" from AI Breakthrough Awards.
 
+At Willow, I worked on the rules engine that turns live building telemetry into insights: rules written in a domain expression language and evaluated against the digital-twin graph and its time series.
+
 At Bread & Butter IO, also known as Logonlabs (May 2019–Oct 2021), I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. OWASP security practices.
 
 At Email2 (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product.
