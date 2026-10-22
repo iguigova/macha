@@ -47,6 +47,7 @@ I use Shell/Bash for scripting.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
+At Wayleadr we started using Terraform in 2026, with plan and apply run in GitHub Actions.
 I have 4-5 years of Docker experience in production.
 I have 10+ years of CI/CD experience, most recently GitHub Actions with an ephemeral deploy per pull request.
 
@@ -56,11 +57,14 @@ I have 2 years of experience with METRC and Biotrack regulatory compliance.
 
 I have experience working in the observability space.
 I have used Grafana and Prometheus at Flourish and at Wayleadr.
+At Wayleadr we started using Datadog in 2026; the Rails platform reports APM traces to it.
 I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, or Airflow.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP — AWS is my primary cloud, with some Azure experience.
 I have no direct experience with Celery or RQ, though I have adjacent async patterns from high-throughput APIs.
+I have used AI coding assistants in my daily work since Flourish (2025).
+At Wayleadr I work with Claude Code every day. I built our project's Claude Code tooling: skills and commands that wrap tested scripts behind a selftest gate, a session journal written by one script, and Jira and Confluence access. I run code audits as parallel read-only subagents and verify every finding myself before acting on it.
 I have consistently ramped quickly on new stacks. My gaps are real but surmountable.
 
 At Wayleadr (Feb 2026–present), a parking and workplace-mobility SaaS, I am a Software Engineer. I am the primary engineer on the greenfield Wayleadr 2.0 Occupancy Service (555 of its 591 commits), which collects occupancy events from access-control systems, sensors and bookings, rolls them up, and serves them through an HTTP API. The stack is Python on AWS Lambda, CDK, Aurora Postgres and a TypeScript/React 19 web app.
