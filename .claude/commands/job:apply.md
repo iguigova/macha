@@ -71,8 +71,14 @@ before the form, and the form before submit.
    never by opening the iframe's URL, which blocks reCAPTCHA and makes
    Greenhouse demand an emailed code. A company that links to its
    `job-boards.greenhouse.io` page instead has the form on that page.
-   Its dropdowns open with focus and `ArrowDown`, then a click on the
-   option. A text field's `maxLength` is read before pasting into it, and
+   Its dropdowns open with focus and `pressSequentially` (or `ArrowDown`),
+   then a click on the option; `fill()` shows no options. After the resume
+   upload its first file input is gone, so the cover letter goes to
+   `#cover_letter`. On Rippling, a radio or the SMS opt-in is clicked
+   through the label its `aria-labelledby` names, a file chip is removed by
+   its last `div[role=button]`, and the resume upload pre-fills name,
+   email, phone, company and location, which are read back and corrected
+   like any other value. A text field's `maxLength` is read before pasting into it, and
    text that does not fit is shortened, never cut off. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
    - Upload `out/IlkaGuigova_Resume.pdf`.
@@ -91,8 +97,10 @@ before the form, and the form before submit.
    options "Approve — submit" and "Skip"; corrections come through Other.
    - **Approve** → submit and read the page. If it asks for an emailed
      security code, ask the user for it at once: the code expires. A form
-     left open for hours fails on submit; reload the page, refill the
-     approved values, read them back and submit again. Report the
+     left open for hours fails on submit, and a browser left idle
+     overnight comes back on `about:blank`; reopen the page, refill the
+     approved values, read them back and submit again. A letter drafted on
+     an earlier day is redated and re-rendered before upload. Report the
      confirmation the page shows.
    - **Correct** → change the form, update the profile (step 8), pause
      again.
@@ -106,3 +114,5 @@ before the form, and the form before submit.
    ```bash
    git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt
    ```
+   Then say it is a safe point to `/compact`: the committed profile and
+   the journal carry what the next application needs.
