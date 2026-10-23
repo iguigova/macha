@@ -1,7 +1,7 @@
 ---
 description: Apply to one job, from its link or the queue
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
@@ -18,7 +18,9 @@ before the form, and the form before submit.
    ```
    The argument is a URL, or a queued job's id; with none, take the first
    row, the oldest. A URL that a queued job carries is that job. With no
-   argument and no queued job, ask for a URL and stop.
+   argument and no queued job, ask for a URL and stop. A URL that
+   `.claude/scripts/job_log.sh` lists at any outcome but `queued` has been
+   seen before: name its row to the user and ask before going on.
 
 2. **Read the job.** `browser_navigate` to the URL and read the whole
    description with `browser_evaluate` returning `document.body.innerText`:

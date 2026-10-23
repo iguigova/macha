@@ -20,9 +20,15 @@ is logged into by hand once.
 ## Commands
 
 ```
+/job:batch [what to look for] # find open jobs that fit and queue the approved ones
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /job:refresh <work-folder>    # add facts from recent work to the profile
 ```
+
+`/job:batch` searches the ATS boards, HN Who's Hiring, the remote job boards
+and LinkedIn, confirms each posting is open at its source, and drops the ones
+the job log already holds. It shows a ranked shortlist and queues the jobs
+the user approves.
 
 `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
@@ -48,10 +54,11 @@ The session history, `.claude/session_history.md`, is the log of every job.
 Each job's entries share one topic, `job: <Company> — <Role>`, and each one's
 first bullet is the outcome and the link: `queued`, `applied`, `closed` or
 `skipped`, then the URL. `.claude/topic_kinds` lists `job`, so the journal
-writer takes that topic without a ticket key.
+writer takes that topic without a ticket key. `.claude/scripts/job_log.sh`
+prints every job at its latest outcome.
 
-A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`.
-`/job:apply` with no argument takes the oldest one and closes it when the
+A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`,
+which `/job:batch` opens. `/job:apply` with no argument takes the oldest one and closes it when the
 job is applied to, found closed or skipped. The queue lists them:
 
 ```bash
