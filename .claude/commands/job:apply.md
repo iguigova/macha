@@ -1,22 +1,31 @@
 ---
-description: Apply to one job from its link
-argument-hint: <job-url>
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), AskUserQuestion
+description: Apply to one job, from its link or the queue
+argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
+allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), AskUserQuestion
 ---
 
-Apply to the job at $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
+Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
 Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
 `jobs/profile/profile.txt`; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.
 
-1. **Read the profile.** Read `jobs/profile/profile.txt` in full. If
-   $ARGUMENTS is not a URL, ask for one and stop.
+1. **Read the profile and pick the job.** Read `jobs/profile/profile.txt`
+   in full. A queued job is a note, `<Company> — <Role>: <url>`, captured
+   under a `job: <Company> — <Role>` topic; list them with
+   ```bash
+   ~/.claude/scripts/journal_queue.sh --topic "job: "
+   ```
+   The argument is a URL, or a queued job's id; with none, take the first
+   row, the oldest. A URL that a queued job carries is that job. With no
+   argument and no queued job, ask for a URL and stop.
 
 2. **Read the job.** `browser_navigate` to the URL and read the whole
    description with `browser_evaluate` returning `document.body.innerText`:
    title, location rule, salary range, requirements, preferred
-   qualifications. If the page needs a login, tell the user and stop.
+   qualifications. If the page needs a login, tell the user and stop. If
+   the posting is gone or no longer open, the job is closed: record it
+   (step 9) and stop.
 
 3. **Draft.** Write three things, each from profile facts only and each
    following the writing-voice facts:
@@ -35,7 +44,7 @@ before the form, and the form before submit.
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
    continue to form" and "Skip"; revisions come through Other. On a
-   revision, redraft and pause again. On skip, stop. A revision that states
+   revision, redraft and pause again. On skip, record it (step 9) and stop. A revision that states
    a fact or a writing preference also updates `profile.txt` — see step 8.
 
 5. **Render the PDFs.** Write `out/resume.html` and `out/cover_letter.html`,
@@ -104,7 +113,7 @@ before the form, and the form before submit.
      confirmation the page shows.
    - **Correct** → change the form, update the profile (step 8), pause
      again.
-   - **Skip** → stop without submitting.
+   - **Skip** → record it (step 9) and stop without submitting.
 
 8. **Update the profile.** Each correction that states a fact or a writing
    preference updates the one line in `profile.txt` that covers it, or adds
@@ -114,5 +123,14 @@ before the form, and the form before submit.
    ```bash
    git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt
    ```
-   Then say it is a safe point to `/compact`: the committed profile and
-   the journal carry what the next application needs.
+
+9. **Record the outcome.** Every run ends with one journal entry under the
+   job's topic, its first bullet the outcome and the URL:
+   ```bash
+   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
+     -b "<applied|closed|skipped>: <url>" -b "<what the page showed, or why>" \
+     [--placed "<id>: - — <applied|closed|skipped>: <reason>"]
+   ```
+   `--placed` closes the queued job the run took; a URL nothing queued
+   has no note to close. Then say it is a safe point to `/compact`: the
+   committed profile and the journal carry what the next application needs.

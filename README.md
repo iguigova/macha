@@ -20,14 +20,15 @@ is logged into by hand once.
 ## Commands
 
 ```
-/job:apply <job-url>          # apply to one job
+/job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /job:refresh <work-folder>    # add facts from recent work to the profile
 ```
 
 `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
 fills the form, and pauses again before submitting. The documents take
-their look from `jobs/templates/style.css`.
+their look from `jobs/templates/style.css`. Every run ends with a journal
+entry recording the outcome: applied, closed or skipped.
 
 `/job:refresh` reads the work recorded in a folder since the last refresh —
 session histories and the user's commits — drafts facts with their sources,
@@ -40,3 +41,19 @@ history, education, application answers, and the writing voice. A fact
 appears once: a change updates its line, never adds a second version.
 Corrections made during `/job:apply` and facts approved in `/job:refresh`
 are the two ways it changes, and each is committed.
+
+## The job log
+
+The session history, `.claude/session_history.md`, is the log of every job.
+Each job's entries share one topic, `job: <Company> — <Role>`, and each one's
+first bullet is the outcome and the link: `queued`, `applied`, `closed` or
+`skipped`, then the URL. `.claude/topic_kinds` lists `job`, so the journal
+writer takes that topic without a ticket key.
+
+A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`.
+`/job:apply` with no argument takes the oldest one and closes it when the
+job is applied to, found closed or skipped. The queue lists them:
+
+```bash
+~/.claude/scripts/journal_queue.sh --topic "job: " --show
+```
