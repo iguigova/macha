@@ -40,7 +40,7 @@ I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Se
 I have 5+ years of Redis/Memcached experience.
 I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
-I have 2+ years of GraphQL experience.
+I have 2+ years of GraphQL experience, including designing and evolving GraphQL schemas.
 I have used Datomic and graph databases.
 I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
 I have worked a lot with tabular data formats and exports: Excel, CSV and others.
@@ -140,6 +140,7 @@ My favorite technical reading is Roy Fielding's dissertation on Architectural St
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics." Also: "Stay curious." and "I am an agile problem solver."
 I write haiku poetry and curate philosophical quotes across multiple languages.
 My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, dancing, travel, reading, and writing.
+I am more of a doer than a watcher of sports, and I don't use sports apps much.
 
 For "proudest achievement" questions: the Bread & Butter auth infrastructure (security), the Vivonet payment refactor (scale), or the FIFF algorithm (technical elegance).
 For "hardest technical problem" questions: the Vivonet refactor — state management and error-handling consolidation, 40% faster response, 5x earlier error detection, PA-DSS certification.
