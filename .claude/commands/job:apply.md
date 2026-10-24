@@ -1,17 +1,17 @@
 ---
 description: Apply to one job, from its link or the queue
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
 Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
-`jobs/profile/profile.txt` or `jobs/profile/ethos.txt`; nothing is invented, and a requirement no fact
+`jobs/profile/profile.txt` or the ethos the global CLAUDE.md loads; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.
 
 1. **Read the profile and pick the job.** Read `jobs/profile/profile.txt`
-   and `jobs/profile/ethos.txt` in full. A queued job is a note, `<Company> — <Role>: <url>`, captured
+   in full. A queued job is a note, `<Company> — <Role>: <url>`, captured
    under a `job: <Company> — <Role>` topic; list them with
    ```bash
    ~/.claude/scripts/journal_queue.sh --topic "job: "
@@ -31,16 +31,15 @@ before the form, and the form before submit.
    `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
 
 3. **Draft.** Write three things, each from profile facts only and each
-   following the writing voice in `ethos.txt`:
+   following the ethos voice and the application voice below:
    - **Gap analysis** — each requirement, paired with the fact that meets
      it or marked as a gap with how the user would close it. Flag a salary
      range or location rule that conflicts with the profile.
-   - **Resume** — one page in the format the resume fact gives.
-   - **Cover letter** — one page, in the flow the cover-letter fact gives.
+   - **Resume** — in the resume format below.
+   - **Cover letter** — in the cover-letter format below.
 
    Then read both as the hiring manager for this role would, and revise
-   before showing them: the closest match to the role leads, and every
-   sentence reads as something a person would say aloud.
+   before showing them: the closest match to the role leads.
 
    Then ask for what the profile lacks, before step 4 and never folded
    into its approval: one `AskUserQuestion` with one question per fact the
@@ -109,7 +108,8 @@ before the form, and the form before submit.
    - Cover letter: paste the text into a textarea, or upload
      `out/<Name>_CoverLetter.pdf`. No field, no cover letter.
    - Screening questions: factual ones (yes/no, years, dropdowns) from the
-     matching fact; free-form ones in 3–5 sentences from career facts.
+     matching fact; free-form ones in the screening-answer format below,
+     from career facts.
    - Demographics: from the profile's EEO facts.
    - A question no fact answers (how you heard of the job, a policy to
      agree to): leave it blank and ask the user, one `AskUserQuestion`
@@ -132,16 +132,18 @@ before the form, and the form before submit.
 
 8. **Update the profile.** Each answer or correction that states a fact or
    a writing preference updates the one line that covers it, or adds a
-   line where none does: a writing preference in `ethos.txt`, any other
-   fact in `profile.txt`. A fact never appears twice, and one that
+   line where none does: a fact about the user in `profile.txt`, a rule
+   for application writing under "Application voice" below, and any other
+   writing preference in `~/.claude/ethos.md`. A fact never appears twice, and one that
    contradicts another line is asked about, never written beside it. A
    number is quoted exactly as the user or the source states it, and a
    mixed result is stated whole. A fact drawn from work names no customer,
    account ID, hostname or colleague. Commit at once, after each round of
-   answers or corrections, those two files alone with a message naming
+   answers or corrections, the files changed alone with a message naming
    each fact changed:
    ```bash
-   git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt jobs/profile/ethos.txt
+   git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/job:apply.md
+   cd ~/.claude && ./scripts/tooling_commit.sh -m "<message>" -- ethos.md
    ```
 
 9. **Record the outcome.** Every run ends with one journal entry under the
@@ -154,20 +156,58 @@ before the form, and the form before submit.
    `--placed` closes the queued job the run took; a URL nothing queued
    has no note to close.
 
-10. **Check the profile's integrity**, by the principles in `ethos.txt`.
-    Read `profile.txt` and `ethos.txt` whole and list, with line numbers
+10. **Check the profile's integrity**, by the principles in the ethos.
+    Read `profile.txt` whole and list, with line numbers
     and both lines quoted:
     - two lines that contradict: a span of years against an employer's
       dates, a claim against a "no experience" line, one fact stated two
       ways;
     - a fact stated twice;
-    - a fact copied outside the two files, found by grepping its value in
+    - a fact copied outside `profile.txt`, found by grepping its value in
       `CLAUDE.md`, `README.md` and `.claude/`.
 
     Ask about each contradiction, one question each: which line is wrong.
     The wrong line is deleted, or corrected only to what the user states;
     the check that found it never supplies the replacement. A duplicate is
-    removed, and a copy becomes a pointer to its file. Commit the two files
-    as in step 8. With nothing found, say what was checked. Then say it is
+    removed, and a copy becomes a pointer to its file. Commit as in
+    step 8. With nothing found, say what was checked. Then say it is
     a safe point to `/compact`: the committed profile and the journal carry
     what the next application needs.
+
+## Application voice
+
+These add to the ethos voice, for letters and screening answers.
+
+- Let the work speak. Examples, not labels: no jargon such as "B2B
+  platforms" or "enterprise systems", no list of years and tools, no
+  algorithms, publications or awards dropped to impress, and no count of
+  languages or technologies ("various" reads more honest than "10+").
+  Light framing (impact, scope, ownership) is fine.
+- Keep a number only when it shows scale or impact (millions of
+  transactions, 35+ identity providers, 40% faster). Leave out numbers
+  that undersell: partial results, commit counts, small before-and-after
+  figures.
+- Their pitch is theirs. Never repeat a company's mission, stage or
+  opportunity back to it, and never close on "I want to build that". No
+  mission talk, no corporate enthusiasm, no meta commentary, and never
+  "excited", "passionate" or "20+ years".
+- Get into the work at once: no sweeping career opener, no positioning
+  statement, no section headers such as "What I bring:", and no closing
+  line that ties everything together.
+- A personal question gets a genuine, short answer, not tied back to the
+  job and with no "what it taught me".
+
+## Application formats
+
+- **Cover letter** — one page at most. Flow: the role and why this
+  company, then concrete project examples, then the gaps stated honestly
+  with how the user would close them, then "Thank you for your time and
+  consideration."
+- **Screening answer** — 3–5 sentences stating what the user built.
+- **Resume** — one page at most, made for each job. Header: name, the
+  tagline from `profile.txt`, address, phone, email, CV link. Sections:
+  Skills; Experience, by employer and dates, without job titles, newest
+  first, the bullets most relevant to the job first; Community;
+  Philosophy, from the ethos; Education.
+- Both documents share the look of the user's website urgh.weebly.com,
+  kept in `jobs/templates/style.css` (step 5).

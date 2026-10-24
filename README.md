@@ -38,15 +38,16 @@ fills the form, and pauses again before submitting. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
 entry recording the outcome (applied, closed or skipped), then checks the
 profile for contradictions, duplicates and copies by the principles in
-`ethos.txt`.
+the ethos.
 
 ## The profile
 
-The profile is flat facts, one per line, in two files. `profile.txt` holds
+The profile is flat facts, one per line, in `jobs/profile/profile.txt`:
 identity, experience, career history, education and application answers.
-`ethos.txt` holds the philosophy, principles, mission, values and writing
-voice, and is read in any project that writes in the user's name. A fact
-appears once: a change updates its line, never adds a second version.
+Who the user is (philosophy, mission, principles, way of working and
+voice) lives in `~/.claude/ethos.md`, which the global CLAUDE.md loads in
+every project. The application voice and formats live in `/job:apply`.
+A fact appears once: a change updates its line, never adds a second version.
 `/job:apply` asks for each fact a job weighs that the profile lacks, and
 writes the answers and corrections at once. Every change is committed.
 
