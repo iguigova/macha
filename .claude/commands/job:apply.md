@@ -1,7 +1,7 @@
 ---
-description: Apply to one job, from its link or the queue
+description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
@@ -18,7 +18,8 @@ before the form, and the form before submit.
    ```
    The argument is a URL, or a queued job's id; with none, take the first
    row, the oldest. A URL that a queued job carries is that job. With no
-   argument and no queued job, ask for a URL and stop. A URL that
+   argument and no queued job, find jobs (below), queue the ones the user
+   approves, and take the first. A URL that
    `.claude/scripts/job_log.sh` lists at any outcome but `queued` has been
    seen before: name its row to the user and ask before going on.
 
@@ -173,6 +174,84 @@ before the form, and the form before submit.
     step 8. With nothing found, say what was checked. Then say it is
     a safe point to `/compact`: the committed profile and the journal carry
     what the next application needs.
+
+## Finding jobs
+
+A search fills an empty queue. It follows the profile's facts: where the
+user lives, where they may work without sponsorship, that they work only
+remotely, the salary expectation, the kind of work they look for, and the
+stack they prefer. The kind of work decides whether a posting fits; the
+preferred stack only ranks one posting above another and never excludes
+one. Nothing outside the profile narrows the search.
+
+1. **Read the job log.**
+   ```bash
+   .claude/scripts/job_log.sh
+   ```
+   Each row is a job already seen, at its latest outcome. The check below
+   holds every candidate against it.
+
+2. **Search every source.** Collect candidates from each one, and note a
+   source that failed rather than dropping it silently:
+   - **Company boards.** List the whole board of every company a lead names
+     and every company in the log, since one fitting posting often has
+     siblings:
+     ```bash
+     .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
+     ```
+     Keep the engineering roles whose location rule includes where the user
+     may work. A board that answers "no board" is under another ATS or
+     another name; say which.
+   - **HN Who's Hiring.** The newest thread is the first hit of
+     `https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring&query=hiring`
+     whose title starts "Ask HN: Who is hiring?". Its comments come from
+     `https://hn.algolia.com/api/v1/items/<objectID>`; keep the ones naming
+     remote work open where the user may work.
+   - **Remote job boards:**
+     `https://remoteok.com/api`,
+     `https://remotive.com/api/remote-jobs?category=software-development`,
+     `https://jobicy.com/api/v2/remote-jobs?count=50&industry=engineering`,
+     `https://www.workingnomads.com/api/exposed_jobs/`,
+     `https://weworkremotely.com/categories/remote-programming-jobs.rss`, and
+     the `https://canadajobs.works/` page.
+   - **LinkedIn.** Its job search in the Playwright browser, remote only and
+     from the past week:
+     `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
+     Signed out, it still lists jobs; a login wall means the user logs in by
+     hand, so say so and go on.
+   - **Anything else** a `WebSearch` turns up that fits, named by where it
+     came from. A `site:` filter in the query is ignored, so search by the
+     kind of work instead.
+
+3. **Check each candidate at its source.** A board listing is a lead; the
+   posting is the fact. Follow each lead to the company's own posting, and
+   confirm it is open: `.claude/scripts/job_board.sh <ats> <board> <id>`
+   exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
+   is closed. Anything else is checked on the posting page itself.
+   Read the posting for its title, location rule, salary range and stack.
+   Keep it only if it is open, can be done remotely from where the user may
+   work, has a salary range that reaches the expectation or states none, and
+   is the kind of work the profile looks for, in any stack. A posting whose
+   URL the log holds is dropped. A posting at a company the log holds is
+   kept and marked with that row, so the user decides.
+
+4. **PAUSE — the shortlist.** Rank by fit, closest first: the kind of work
+   first, then the preferred stack. Show one table: rank, company, role,
+   location rule, salary, the profile facts it fits, the log row it shares a
+   company with if any, and the URL. Under it, list each source and how many
+   candidates it gave, and each source that failed. Then `AskUserQuestion`:
+   "Queue which of these?" with options "All" and "None"; a choice of ranks
+   comes through Other. On None, the run stops with no job.
+
+5. **Queue the approved jobs**, one journal call each, best fit first, so the
+   best fit is the oldest note and the first one taken:
+   ```bash
+   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
+     -b "queued: <url>" -b "<location rule>, <salary>; fits <the facts it fits>" \
+     -n "<Company> — <Role>: <url>"
+   ```
+   Then show the queue with `journal_queue.sh --topic "job: " --show` and
+   read its first row as the job, from step 2 above.
 
 ## Application voice
 

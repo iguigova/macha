@@ -20,19 +20,19 @@ is logged into by hand once.
 ## Commands
 
 ```
-/job:search [what to look for] # find open jobs that fit and queue the approved ones
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 ```
 
-`/job:search` lists company boards, HN Who's Hiring, the remote job boards
-and LinkedIn. It keeps a posting for the kind of work the profile looks
-for, in any stack; the preferred stack only ranks it. It confirms each
-posting is open at its source and drops the ones the job log already holds.
-It shows a ranked shortlist and queues the jobs the user approves.
+With no argument and an empty queue, `/job:apply` first searches company
+boards, HN Who's Hiring, the remote job boards and LinkedIn. It keeps a
+posting for the kind of work the profile looks for, in any stack; the
+preferred stack only ranks it. It confirms each posting is open at its
+source and drops the ones the job log already holds. It shows a ranked
+shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
 checks that one of its postings is open.
 
-`/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
+For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
 fills the form, and pauses again before submitting. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
@@ -61,8 +61,8 @@ writer takes that topic without a ticket key. `.claude/scripts/job_log.sh`
 prints every job at its latest outcome.
 
 A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`,
-which `/job:search` opens. `/job:apply` with no argument takes the oldest one and closes it when the
-job is applied to, found closed or skipped. The queue lists them:
+which the search opens. `/job:apply` with no argument takes the oldest one
+and closes it when the job is applied to, found closed or skipped. The queue lists them:
 
 ```bash
 ~/.claude/scripts/journal_queue.sh --topic "job: " --show
