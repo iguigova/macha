@@ -98,7 +98,11 @@ before the form, and the form before submit.
    through the label its `aria-labelledby` names, a file chip is removed by
    its last `div[role=button]`, and the resume upload pre-fills name,
    email, phone, company and location, which are read back and corrected
-   like any other value. A text field's `maxLength` is read before pasting into it, and
+   like any other value. On Ashby, `fill()` can show a value the form
+   never took and a label click can leave a radio unset; type into the
+   field with `pressSequentially` and set a radio with
+   `check({ force: true })` on its input. A refused submit lists each
+   field it found empty. A text field's `maxLength` is read before pasting into it, and
    text that does not fit is shortened, never cut off. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
    - Upload `out/<Name>_Resume.pdf`.
