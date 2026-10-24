@@ -71,8 +71,8 @@ At Wayleadr we started using Datadog in 2026; the Rails platform reports APM tra
 I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, Airflow, or Kubernetes.
 I have some experience with R from personal projects (GitHub: snippets_r).
-I have no experience with GCP — AWS is my primary cloud, with some Azure experience.
-I have no direct experience with Celery or RQ, though I have adjacent async patterns from high-throughput APIs.
+I have no experience with GCP.
+I have no direct experience with Celery or RQ.
 I have used AI coding assistants in my daily work since Flourish (2025).
 At Wayleadr I work with Claude Code every day. I built our project's Claude Code tooling: skills and commands that wrap tested scripts behind a selftest gate, a session journal written by one script, and Jira and Confluence access. I run code audits as parallel read-only subagents and verify every finding myself before acting on it.
 I have consistently ramped quickly on new stacks. My gaps are real but surmountable.
@@ -87,7 +87,7 @@ At Wayleadr, I added observability to the occupancy pipeline: CloudWatch alarms 
 
 At Wayleadr, I diagnosed dashboard latency by measurement: warm Lambda invocations were paying Aurora connection setup on every call. Keeping the connection warm brought warm p90 from 770 ms to 408 ms, with p50 at 37–49 ms. I also moved dashboard aggregation from the browser into SQL view endpoints.
 
-At Flourish Software (Jan 2025–Jan 2026), I was a Backend Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript and Go backend, Angular/TypeScript frontend, 14 microservices. I describe Flourish as a regulatory compliance platform, not as cannabis. I did not own deployment orchestration at Flourish. My work there was ERP scaling and API integrations covering compliance, inventory, order tracking and delivery.
+At Flourish Software (Jan 2025–Jan 2026), I was a Backend Engineer on a regulatory compliance platform serving 1,000+ licensed facilities across multiple US states. The stack was Node.js/TypeScript and Go backend, Angular/TypeScript frontend, 14 microservices. I describe Flourish as a regulatory compliance platform, not as cannabis. My work there was ERP scaling and API integrations covering compliance, inventory, order tracking and delivery.
 
 At Flourish, I made 1,097+ commits across 14 microservices and led 8 major feature initiatives: enterprise platform enhancement, METRC trade-sample compliance with automatic METRC API synchronization, multi-state Biotrack compliance (AR, CT and others), an advanced manufacturing workflow, external system synchronization with retry and failure alerting, reporting and analytics, inventory optimization, and a compliance audit framework with immutable logging.
 
