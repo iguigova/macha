@@ -25,7 +25,7 @@ I am a polyglot — I have worked professionally in 10+ programming languages.
 I have 1 year of professional Go experience, at Flourish.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
-I have 5+ years of JavaScript/TypeScript experience from Flourish (Node.js backend, Angular frontend).
+I have 5+ years of JavaScript/TypeScript experience, Flourish among them (Node.js backend, Angular frontend).
 I have 2+ years of React experience.
 I have 2+ years of Angular experience.
 I have 2+ years of Node.js experience.
@@ -61,7 +61,7 @@ I have done plenty of enterprise deployment, updates and version management, at 
 I have about 15 years of experience building authentication and authorization systems, including 5+ years with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 The Bread & Butter authentication infrastructure issued and validated JWTs and managed sessions and cookies.
 I have experience with OWASP, SOC2, and PA-DSS security standards.
-I have 2 years of experience with METRC and Biotrack regulatory compliance.
+I have 1 year of experience with METRC and Biotrack regulatory compliance, at Flourish.
 
 I have experience working in the observability space.
 I have used Grafana and Prometheus at Flourish and at Wayleadr.
@@ -146,7 +146,7 @@ My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, d
 I am more of a doer than a watcher of sports, and I don't use sports apps much.
 
 For "proudest achievement" questions: the Bread & Butter auth infrastructure (security), the Vivonet payment refactor (scale), or the FIFF algorithm (technical elegance).
-For "hardest technical problem" questions: the Vivonet refactor — state management and error-handling consolidation, 40% faster response, 5x earlier error detection, PA-DSS certification.
+For "hardest technical problem" questions: the Vivonet refactor — state management and error-handling consolidation; its results are in the Vivonet line.
 I hold motorcycle and wilderness first aid certifications.
 
 When asked about gender on applications: Female.

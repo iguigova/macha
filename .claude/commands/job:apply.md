@@ -61,7 +61,7 @@ before the form, and the form before submit.
    each linking `../jobs/templates/style.css`, which holds the look; the
    HTML holds only content in this markup:
    - Both: `<header>` with `<h1>` name and `.contact`; `<main>`; `<footer>`
-     with `.sites` (the three Urgh! sites) and an empty `.band`.
+     with `.sites` (the three themed websites the profile names) and an empty `.band`.
    - Resume: under the name a `.tagline`; one `<section>` per resume
      section, each an `<h2>` label and one content block; Skills as a
      `<dl>`; each employer an `.entry` with a `.row` of `.org` and `.when`
