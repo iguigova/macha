@@ -62,13 +62,14 @@ before the form, and the form before submit.
    - Cover letter: `<body class="letter">`, a `.meta` block with the date
      and "{Company} — {Role}", the paragraphs, and `.sign`.
 
-   Print each:
+   Print each, named for the user: `<Name>` is the profile's name with
+   its spaces removed.
    ```bash
    cd ~/src/oceanhue/macha/out
    google-chrome --headless --no-pdf-header-footer \
-     --print-to-pdf=$PWD/IlkaGuigova_Resume.pdf file://$PWD/resume.html
+     --print-to-pdf=$PWD/<Name>_Resume.pdf file://$PWD/resume.html
    ```
-   and the same for `IlkaGuigova_CoverLetter.pdf`. `pdfinfo` must report
+   and the same for `<Name>_CoverLetter.pdf`. `pdfinfo` must report
    `Pages: 1` for each; when it does not, `pdftotext -f 2` shows what
    spilled. Fit by balance: reword a line that leaves one word on the next,
    then adjust spacing in the stylesheet; a fact the job weighs is never
@@ -92,9 +93,9 @@ before the form, and the form before submit.
    like any other value. A text field's `maxLength` is read before pasting into it, and
    text that does not fit is shortened, never cut off. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
-   - Upload `out/IlkaGuigova_Resume.pdf`.
+   - Upload `out/<Name>_Resume.pdf`.
    - Cover letter: paste the text into a textarea, or upload
-     `out/IlkaGuigova_CoverLetter.pdf`. No field, no cover letter.
+     `out/<Name>_CoverLetter.pdf`. No field, no cover letter.
    - Screening questions: factual ones (yes/no, years, dropdowns) from the
      matching fact; free-form ones in 3–5 sentences from career facts.
    - Demographics: from the profile's EEO facts.

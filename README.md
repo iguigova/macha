@@ -20,12 +20,12 @@ is logged into by hand once.
 ## Commands
 
 ```
-/job:batch [what to look for] # find open jobs that fit and queue the approved ones
+/job:search [what to look for] # find open jobs that fit and queue the approved ones
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /job:refresh <work-folder>    # add facts from recent work to the profile
 ```
 
-`/job:batch` searches the ATS boards, HN Who's Hiring, the remote job boards
+`/job:search` searches the ATS boards, HN Who's Hiring, the remote job boards
 and LinkedIn, confirms each posting is open at its source, and drops the ones
 the job log already holds. It shows a ranked shortlist and queues the jobs
 the user approves.
@@ -58,7 +58,7 @@ writer takes that topic without a ticket key. `.claude/scripts/job_log.sh`
 prints every job at its latest outcome.
 
 A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`,
-which `/job:batch` opens. `/job:apply` with no argument takes the oldest one and closes it when the
+which `/job:search` opens. `/job:apply` with no argument takes the oldest one and closes it when the
 job is applied to, found closed or skipped. The queue lists them:
 
 ```bash

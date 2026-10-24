@@ -23,7 +23,7 @@ rests on a source line that states it.
    entry dated inside the window, and the commit subjects authored by the
    user in each repository under it:
    ```bash
-   git -C <repo> log --all --no-merges --author=Guigova --since=<date> \
+   git -C <repo> log --all --no-merges --author="$(git config user.name)" --since=<date> \
      --format='%cs %s'
    ```
    Read only these sources. Skip files that hold credentials, recovery

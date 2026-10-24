@@ -80,7 +80,7 @@ The job log). This command queues; it never applies.
 6. **Queue the approved jobs**, one journal call each, best fit first, so the
    best fit is the oldest note and `/job:apply` takes it first:
    ```bash
-   ~/.claude/scripts/journal.sh --via /job:batch -t "job: <Company> — <Role>" \
+   ~/.claude/scripts/journal.sh --via /job:search -t "job: <Company> — <Role>" \
      -b "queued: <url>" -b "<location rule>, <salary>; fits <the facts it fits>" \
      -n "<Company> — <Role>: <url>"
    ```
