@@ -25,10 +25,13 @@ is logged into by hand once.
 /job:refresh <work-folder>    # add facts from recent work to the profile
 ```
 
-`/job:search` searches the ATS boards, HN Who's Hiring, the remote job boards
-and LinkedIn, confirms each posting is open at its source, and drops the ones
-the job log already holds. It shows a ranked shortlist and queues the jobs
-the user approves.
+`/job:search` lists company boards, HN Who's Hiring, the remote job boards
+and LinkedIn. It keeps a posting for the kind of work the profile looks
+for, in any stack; the preferred stack only ranks it. It confirms each
+posting is open at its source and drops the ones the job log already holds.
+It shows a ranked shortlist and queues the jobs the user approves.
+`.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
+checks that one of its postings is open.
 
 `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,

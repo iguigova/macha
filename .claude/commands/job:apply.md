@@ -1,7 +1,7 @@
 ---
 description: Apply to one job, from its link or the queue
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
@@ -27,7 +27,8 @@ before the form, and the form before submit.
    title, location rule, salary range, requirements, preferred
    qualifications. If the page needs a login, tell the user and stop. If
    the posting is gone or no longer open, the job is closed: record it
-   (step 9) and stop.
+   (step 9) and stop. A Greenhouse, Ashby or Lever posting is closed when
+   `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
 
 3. **Draft.** Write three things, each from profile facts only and each
    following the writing-voice facts:

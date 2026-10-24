@@ -1,7 +1,7 @@
 ---
 description: Add new facts from recent work to the profile
 argument-hint: <work-folder>
-allowed-tools: Read, Edit, Grep, Glob, Bash(git:*), Bash(find:*), AskUserQuestion
+allowed-tools: Read, Edit, Grep, Glob, Bash(git:*), Bash(find:*), Bash(~/.claude/scripts/journal.sh:*), AskUserQuestion
 ---
 
 Bring `jobs/profile/profile.txt` up to date from the work recorded in
@@ -50,3 +50,10 @@ rests on a source line that states it.
    it supersedes or added beside the employer's other facts; a fact never
    appears twice. Commit `jobs/profile/profile.txt` alone with the subject
    `Refresh profile from <employer> work through <date>`.
+
+6. **Record it.** One journal entry naming each fact written, or that none
+   was approved:
+   ```bash
+   ~/.claude/scripts/journal.sh --via /job:refresh -t "chore: profile refresh" \
+     -b "<the facts written>" [--sha <commit>]
+   ```

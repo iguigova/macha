@@ -1,7 +1,7 @@
 ---
 description: Find open jobs that fit the profile and queue them
 argument-hint: "[what to look for]   (default: the profile's preferences)"
-allowed-tools: WebSearch, WebFetch, mcp__playwright__*, Read, Bash(curl:*), Bash(jq:*), Bash(.claude/scripts/job_log.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), AskUserQuestion
+allowed-tools: WebSearch, WebFetch, mcp__playwright__*, Read, Bash(curl:*), Bash(jq:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), AskUserQuestion
 ---
 
 Find open jobs that fit the profile and queue the ones the user approves.
@@ -29,11 +29,13 @@ The job log). This command queues; it never applies.
    source that failed rather than dropping it silently:
    - **Company boards.** List the whole board of every company a lead names
      and every company in the log, since one fitting posting often has
-     siblings: `https://boards-api.greenhouse.io/v1/boards/<board>/jobs`,
-     `https://api.ashbyhq.com/posting-api/job-board/<board>?includeCompensation=true`,
-     `https://api.lever.co/v0/postings/<company>`. Keep the engineering roles
-     whose location rule includes where the user may work. A board that
-     answers 404 is under another ATS or another name; say which.
+     siblings:
+     ```bash
+     .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
+     ```
+     Keep the engineering roles whose location rule includes where the user
+     may work. A board that answers "no board" is under another ATS or
+     another name; say which.
    - **HN Who's Hiring.** The newest thread is the first hit of
      `https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring&query=hiring`
      whose title starts "Ask HN: Who is hiring?". Its comments come from
@@ -57,11 +59,9 @@ The job log). This command queues; it never applies.
 
 4. **Check each candidate at its source.** A board listing is a lead; the
    posting is the fact. Follow each lead to the company's own posting, and
-   confirm it is open from its ATS API, where a closed posting answers 404:
-   - Greenhouse: `https://boards-api.greenhouse.io/v1/boards/<board>/jobs/<id>`
-   - Lever: `https://api.lever.co/v0/postings/<company>/<id>`
-   - Ashby: the job's id in `https://api.ashbyhq.com/posting-api/job-board/<board>`
-   - Anything else: the posting page itself.
+   confirm it is open: `.claude/scripts/job_board.sh <ats> <board> <id>`
+   exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
+   is closed. Anything else is checked on the posting page itself.
    Read the posting for its title, location rule, salary range and stack.
    Keep it only if it is open, can be done remotely from where the user may
    work, has a salary range that reaches the expectation or states none, and
