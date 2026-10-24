@@ -22,7 +22,6 @@ is logged into by hand once.
 ```
 /job:search [what to look for] # find open jobs that fit and queue the approved ones
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
-/job:refresh <work-folder>    # add facts from recent work to the profile
 ```
 
 `/job:search` lists company boards, HN Who's Hiring, the remote job boards
@@ -39,10 +38,6 @@ fills the form, and pauses again before submitting. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
 entry recording the outcome: applied, closed or skipped.
 
-`/job:refresh` reads the work recorded in a folder since the last refresh —
-session histories and the user's commits — drafts facts with their sources,
-and writes only the approved ones.
-
 ## The profile
 
 The profile is flat facts, one per line, in two files. `profile.txt` holds
@@ -50,8 +45,8 @@ identity, experience, career history, education and application answers.
 `ethos.txt` holds the philosophy, principles, mission, values and writing
 voice, and is read in any project that writes in the user's name. A fact
 appears once: a change updates its line, never adds a second version.
-Corrections made during `/job:apply` and facts approved in `/job:refresh`
-are the two ways it changes, and each is committed.
+`/job:apply` asks for each fact a job weighs that the profile lacks, and
+writes the answers and corrections at once. Every change is committed.
 
 ## The job log
 

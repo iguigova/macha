@@ -39,10 +39,17 @@ before the form, and the form before submit.
    - **Cover letter** — one page, in the flow the cover-letter fact gives.
 
    Then read both as the hiring manager for this role would, and revise
-   before showing them: the closest match to the role leads, every
-   sentence reads as something a person would say aloud, and a fact the
-   role weighs that the profile lacks is named to the user as a question,
-   never written in.
+   before showing them: the closest match to the role leads, and every
+   sentence reads as something a person would say aloud.
+
+   Then ask for what the profile lacks, before step 4 and never folded
+   into its approval: one `AskUserQuestion` with one question per fact the
+   role weighs that no fact covers, or that two facts state differently.
+   Each question names the requirement and offers concrete answers, each
+   option saying what it would write; a free answer comes through Other.
+   Write each answer into the profile at once (step 8) and redraft from
+   it. A fact is never written into a document before it is in the
+   profile.
 
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
@@ -119,11 +126,16 @@ before the form, and the form before submit.
      again.
    - **Skip** → record it (step 9) and stop without submitting.
 
-8. **Update the profile.** Each correction that states a fact or a writing
-   preference updates the one line that covers it, or adds a line where
-   none does: a writing preference in `ethos.txt`, any other fact in
-   `profile.txt`. A fact never appears twice. When the run ends, commit
-   those two files alone with a message naming each fact changed:
+8. **Update the profile.** Each answer or correction that states a fact or
+   a writing preference updates the one line that covers it, or adds a
+   line where none does: a writing preference in `ethos.txt`, any other
+   fact in `profile.txt`. A fact never appears twice, and one that
+   contradicts another line is asked about, never written beside it. A
+   number is quoted exactly as the user or the source states it, and a
+   mixed result is stated whole. A fact drawn from work names no customer,
+   account ID, hostname or colleague. Commit at once, after each round of
+   answers or corrections, those two files alone with a message naming
+   each fact changed:
    ```bash
    git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt jobs/profile/ethos.txt
    ```
