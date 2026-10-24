@@ -148,5 +148,22 @@ before the form, and the form before submit.
      [--placed "<id>: - — <applied|closed|skipped>: <reason>"]
    ```
    `--placed` closes the queued job the run took; a URL nothing queued
-   has no note to close. Then say it is a safe point to `/compact`: the
-   committed profile and the journal carry what the next application needs.
+   has no note to close.
+
+10. **Check the profile's integrity**, by the principles in `ethos.txt`.
+    Read `profile.txt` and `ethos.txt` whole and list, with line numbers
+    and both lines quoted:
+    - two lines that contradict: a span of years against an employer's
+      dates, a claim against a "no experience" line, one fact stated two
+      ways;
+    - a fact stated twice;
+    - a fact copied outside the two files, found by grepping its value in
+      `CLAUDE.md`, `README.md` and `.claude/`.
+
+    Ask about each contradiction, one question each: which line is wrong.
+    The wrong line is deleted, or corrected only to what the user states;
+    the check that found it never supplies the replacement. A duplicate is
+    removed, and a copy becomes a pointer to its file. Commit the two files
+    as in step 8. With nothing found, say what was checked. Then say it is
+    a safe point to `/compact`: the committed profile and the journal carry
+    what the next application needs.
