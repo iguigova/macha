@@ -9,14 +9,12 @@ My website is https://urgh.weebly.com/ — "Urgh! A Coding War", tech articles a
 My literary website is https://urgh2.weebly.com/ — "Urgh! A Literary War", haiku poetry and literary excerpts in English and Bulgarian.
 My media website is https://oceanhue.blogspot.com/ — "Urgh! A Media War", philosophical quotes and visual art.
 My blog "Soot" is https://soothue.blogspot.com/ — images and quotes, posted since 2023.
-My Code Project profile is http://www.codeproject.com/Members/iguigova
 My pronouns are she/her.
 I speak Bulgarian (native), English (fluent), French (Level 12, Institut Français de Sofia, 1996), and German (Level 4, Goethe Institut, Toronto, 2006).
 
 I am authorized to work in Canada without sponsorship.
 My passport is Canadian.
 I am not authorized to work in the US — I would require sponsorship.
-I am currently employed at Wayleadr as a Software Engineer (started Feb 2026).
 My salary expectation is $100,000+ CAD.
 I only work remotely.
 I want to work more in Go and functional languages, on distributed systems, and less in .NET.
@@ -64,7 +62,7 @@ I have done plenty of enterprise deployment, updates and version management, at 
 
 I have about 15 years of experience building authentication and authorization systems, including 5+ years with OAuth 1.0/2.0, OIDC, and SAML 2.0.
 The Bread & Butter authentication infrastructure issued and validated JWTs and managed sessions and cookies.
-I have experience with OWASP, SOC2, and PA-DSS security standards.
+I have experience with OWASP and SOC2 security standards.
 I have 1 year of experience with METRC and Biotrack regulatory compliance, at Flourish.
 
 I have experience working in the observability space.
@@ -109,11 +107,11 @@ At Cirius, later DeliverySlip (2013–2019), I designed a dynamic rules engine a
 
 Email2, Cirius and DeliverySlip are one company line: I supervised its QA and testing teams for 8 years (2011–2019).
 
-At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring improved response time 10x. I compiled a set of procedures to cover feature testing.
+At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring made responses up to 10x faster. I compiled a set of procedures to cover feature testing.
 
 At Klein Systems Group (2008–2010), I expanded KleinPort, a six-tier ERP system for port and vessel traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats. I took part in the go-live at three major ports and worked on 135 reports (grid, Fast Reports and Crystal Reports). I volunteered on the Content Management Committee.
 
-At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The system achieved PA-DSS certification. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices.
+At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices.
 
 My title (from my CV) was Software Engineer at Willow, Bread & Butter, Email2, Cirius/DeliverySlip, Software Created, PointyHat, Klein and Vivonet.
 Earlier employers: PINpoint Information Systems, Burlington ON (Software Developer, 2002–2007); Intelsys Ltd, Toronto (Software Developer, 2000–2002); Epoch Integration, Toronto (Programmer, 2000); Expert Tutors, Toronto (Math and Computer Science Tutor, 1999–2002); Ministry of Tourism, Sofia (Assistant to Manager of Operations, 1996–1997); Datecs, Sofia (Assistant, 1995–1996).
@@ -141,7 +139,7 @@ My other articles: "Efficiently accumulate Sliding Window Percentage Changes of 
 I have mentored junior engineers and coordinated cross-team development across backend, frontend and integration teams.
 I mentored high school students through the Microsoft TEALS program (Sep 2022–Jun 2023), building sustainable CS curricula. I hold a TEALS 2022-23 Volunteer Badge from Microsoft.
 I was a member of Toastmasters International (District 60 Toronto, 2003).
-I joined 4clojure (2020), Philosopher's Cafe (2012), Project Euler (2008) and Code Project (2007), and the Haskell (2010), Erlang, R and Data Visualization (2011) meetups.
+Groups, with the year my CV lists: 4clojure (2020), Philosopher's Cafe (2012), Project Euler (2008), Code Project (2007), and the Haskell (2010), Erlang, R and Data Visualization (2011) meetups.
 I organized "Urgh! A Coding Garden" (2011–2012), a software development debate group focused on automation, algorithms, and data structures.
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
