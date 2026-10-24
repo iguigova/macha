@@ -6,7 +6,7 @@ allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chro
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
 Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
-`jobs/profile/profile.txt` or the ethos the global CLAUDE.md loads; nothing is invented, and a requirement no fact
+`jobs/profile/profile.txt` or the credo the global CLAUDE.md loads; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.
 
@@ -31,7 +31,7 @@ before the form, and the form before submit.
    `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
 
 3. **Draft.** Write three things, each from profile facts only and each
-   following the ethos voice and the application voice below:
+   following the credo voice and the application voice below:
    - **Gap analysis** — each requirement, paired with the fact that meets
      it or marked as a gap with how the user would close it. Flag a salary
      range or location rule that conflicts with the profile.
@@ -134,7 +134,7 @@ before the form, and the form before submit.
    a writing preference updates the one line that covers it, or adds a
    line where none does: a fact about the user in `profile.txt`, a rule
    for application writing under "Application voice" below, and any other
-   writing preference in `~/.claude/ethos.md`. A fact never appears twice, and one that
+   writing preference in `~/.claude/credo.md`. A fact never appears twice, and one that
    contradicts another line is asked about, never written beside it. A
    number is quoted exactly as the user or the source states it, and a
    mixed result is stated whole. A fact drawn from work names no customer,
@@ -143,7 +143,7 @@ before the form, and the form before submit.
    each fact changed:
    ```bash
    git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/job:apply.md
-   cd ~/.claude && ./scripts/tooling_commit.sh -m "<message>" -- ethos.md
+   cd ~/.claude && ./scripts/tooling_commit.sh -m "<message>" -- credo.md
    ```
 
 9. **Record the outcome.** Every run ends with one journal entry under the
@@ -156,7 +156,7 @@ before the form, and the form before submit.
    `--placed` closes the queued job the run took; a URL nothing queued
    has no note to close.
 
-10. **Check the profile's integrity**, by the principles in the ethos.
+10. **Check the profile's integrity**, by the principles in the credo.
     Read `profile.txt` whole and list, with line numbers
     and both lines quoted:
     - two lines that contradict: a span of years against an employer's
@@ -176,7 +176,7 @@ before the form, and the form before submit.
 
 ## Application voice
 
-These add to the ethos voice, for letters and screening answers.
+These add to the credo voice, for letters and screening answers.
 
 - Let the work speak. Examples, not labels: no jargon such as "B2B
   platforms" or "enterprise systems", no list of years and tools, no
@@ -208,6 +208,6 @@ These add to the ethos voice, for letters and screening answers.
   tagline from `profile.txt`, address, phone, email, CV link. Sections:
   Skills; Experience, by employer and dates, without job titles, newest
   first, the bullets most relevant to the job first; Community;
-  Philosophy, from the ethos; Education.
+  Philosophy, from the credo; Education.
 - Both documents share the look of the user's website urgh.weebly.com,
   kept in `jobs/templates/style.css` (step 5).

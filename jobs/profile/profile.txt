@@ -134,7 +134,7 @@ I maintain three themed websites: "Urgh! A Coding War" (https://urgh.weebly.com/
 I also keep "Soot" (https://soothue.blogspot.com/), a blog of images and quotes, posted since 2023.
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
-My philosophy, mission, method, values, principles, way of working and voice are in ~/.claude/ethos.md.
+My philosophy, mission, method, values, principles, way of working and voice are in ~/.claude/credo.md.
 My best advice: automate tasks repeated 3 or more times.
 I am motivated by challenges that require creativity and discipline.
 In high school, I studied digital electronics, microcontrollers and assembler.
@@ -160,4 +160,4 @@ Matt McLean, Co-founder, Bread & Butter IO.
 Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip.
 Additional references available from Klein Systems Group, Vivonet, and PointyHat.
 
-My resume tagline: "20+ years building systems where correctness matters. A kernel of laughter."
+My resume tagline: "Building systems where correctness matters. A kernel of laughter."
