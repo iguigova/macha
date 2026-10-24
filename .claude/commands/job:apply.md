@@ -143,7 +143,7 @@ before the form, and the form before submit.
    each fact changed:
    ```bash
    git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/job:apply.md
-   cd ~/.claude && ./scripts/tooling_commit.sh -m "<message>" -- credo.md
+   ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
    ```
 
 9. **Record the outcome.** Every run ends with one journal entry under the

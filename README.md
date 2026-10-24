@@ -44,12 +44,12 @@ the credo.
 
 The profile is flat facts, one per line, in `jobs/profile/profile.txt`:
 identity, experience, career history, education and application answers.
-Who the user is (philosophy, mission, principles, way of working and
-voice) lives in `~/.claude/credo.md`, which the global CLAUDE.md loads in
-every project. The application voice and formats live in `/job:apply`.
-A fact appears once: a change updates its line, never adds a second version.
-`/job:apply` asks for each fact a job weighs that the profile lacks, and
-writes the answers and corrections at once. Every change is committed.
+Who the user is and how they work lives in `~/.claude/credo.md`, which the
+global CLAUDE.md loads in every project. The application voice and formats
+live in `/job:apply`. A fact appears once: a change updates its line,
+never adds a second version. `/job:apply` asks for each fact a job weighs
+that the profile lacks, and writes the answers and corrections at once.
+Every change is committed.
 
 ## The job log
 
