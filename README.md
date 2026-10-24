@@ -1,8 +1,8 @@
 # Macha
 
 Job applications from one profile of facts, run through Claude Code.
-`jobs/profile/profile.txt` is the single source of truth: every resume,
-cover letter and form answer is generated from it for the job at hand.
+`jobs/profile/` is the single source of truth: every resume, cover letter
+and form answer is generated from it for the job at hand.
 
 ## Setup
 
@@ -45,8 +45,10 @@ and writes only the approved ones.
 
 ## The profile
 
-`profile.txt` is flat facts, one per line: identity, experience, career
-history, education, application answers, and the writing voice. A fact
+The profile is flat facts, one per line, in two files. `profile.txt` holds
+identity, experience, career history, education and application answers.
+`ethos.txt` holds the philosophy, principles, mission, values and writing
+voice, and is read in any project that writes in the user's name. A fact
 appears once: a change updates its line, never adds a second version.
 Corrections made during `/job:apply` and facts approved in `/job:refresh`
 are the two ways it changes, and each is committed.

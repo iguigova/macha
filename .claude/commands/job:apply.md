@@ -6,12 +6,12 @@ allowed-tools: mcp__playwright__*, WebFetch, Read, Write, Edit, Bash(google-chro
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
 Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
-`jobs/profile/profile.txt`; nothing is invented, and a requirement no fact
+`jobs/profile/profile.txt` or `jobs/profile/ethos.txt`; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.
 
 1. **Read the profile and pick the job.** Read `jobs/profile/profile.txt`
-   in full. A queued job is a note, `<Company> — <Role>: <url>`, captured
+   and `jobs/profile/ethos.txt` in full. A queued job is a note, `<Company> — <Role>: <url>`, captured
    under a `job: <Company> — <Role>` topic; list them with
    ```bash
    ~/.claude/scripts/journal_queue.sh --topic "job: "
@@ -31,7 +31,7 @@ before the form, and the form before submit.
    `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
 
 3. **Draft.** Write three things, each from profile facts only and each
-   following the writing-voice facts:
+   following the writing voice in `ethos.txt`:
    - **Gap analysis** — each requirement, paired with the fact that meets
      it or marked as a gap with how the user would close it. Flag a salary
      range or location rule that conflicts with the profile.
@@ -48,7 +48,7 @@ before the form, and the form before submit.
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
    continue to form" and "Skip"; revisions come through Other. On a
    revision, redraft and pause again. On skip, record it (step 9) and stop. A revision that states
-   a fact or a writing preference also updates `profile.txt` — see step 8.
+   a fact or a writing preference also updates the profile — see step 8.
 
 5. **Render the PDFs.** Write `out/resume.html` and `out/cover_letter.html`,
    each linking `../jobs/templates/style.css`, which holds the look; the
@@ -120,12 +120,12 @@ before the form, and the form before submit.
    - **Skip** → record it (step 9) and stop without submitting.
 
 8. **Update the profile.** Each correction that states a fact or a writing
-   preference updates the one line in `profile.txt` that covers it, or adds
-   a line where none does; a fact never appears twice. When the run ends,
-   commit `jobs/profile/profile.txt` alone with a message naming each fact
-   changed:
+   preference updates the one line that covers it, or adds a line where
+   none does: a writing preference in `ethos.txt`, any other fact in
+   `profile.txt`. A fact never appears twice. When the run ends, commit
+   those two files alone with a message naming each fact changed:
    ```bash
-   git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt
+   git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt jobs/profile/ethos.txt
    ```
 
 9. **Record the outcome.** Every run ends with one journal entry under the

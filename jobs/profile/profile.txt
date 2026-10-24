@@ -133,9 +133,8 @@ I maintain three themed websites: "Urgh! A Coding War" (https://urgh.weebly.com/
 I also keep "Soot" (https://soothue.blogspot.com/), a blog of images and quotes, posted since 2023.
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
-My philosophy is: "Curiosity first, code second. The simple solution is on the other side of the right question."
+My philosophy, principles, mission, values and writing voice are in jobs/profile/ethos.txt.
 My best advice: automate tasks repeated 3 or more times.
-I value integrity, enthusiasm, and constant learning.
 I am motivated by challenges that require creativity and discipline.
 In high school, I studied digital electronics, microcontrollers and assembler.
 In high school, I solved an assembler problem my professor declared "unsolvable."
@@ -160,28 +159,7 @@ Matt McLean, Co-founder, Bread & Butter IO.
 Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip.
 Additional references available from Klein Systems Group, Vivonet, and PointyHat.
 
-Writing voice — for cover letters, screening answers, and any written communication:
-Smooth, professional, confident, lightly personal. Do not try too hard. Better concise but impactful; never pad to fill space.
-Never say "excited," "passionate," or "20+ years."
-Never use mission-driven language, abstract problem spaces, corporate enthusiasm, or meta commentary.
-Never say "I want to build that" or frame the company's own pitch back at them as a closing line.
-Do not oversell or frame the company's mission back at them.
-Do not open with sweeping career narratives ("I've spent most of my career...") — lead with concrete work.
-Do not frame the company's stage or opportunity back at them ("doing that work at a stage where...") — that's their pitch, not yours.
-Prefer "I've helped build" over "I've built" when describing team work.
-Do not list technical inventory (years of X, Y, Z) — it reads like a laundry list, not a person talking.
-Do not namedrop algorithms, publications, or awards to impress — let the work speak.
-Do not claim specific counts of languages or technologies — "various" reads more honest than "10+."
-Do not use explicit section headers ("What I bring:") — just flow naturally between paragraphs.
-Light framing is acceptable (impact, scope, ownership).
-Do not frame with jargon labels ("B2B platforms," "enterprise systems") — let the examples speak for themselves.
-Do not add closing lines that try to tie everything together ("I tend to end up owning...") — just state the facts and stop.
-Do not front-load with positioning statements — get into the work immediately.
-For personality questions, be genuine and brief — don't connect everything back to the job or add a "what it taught me" spin.
-Each sentence should just be a fact, not a pitch.
-Keep only numbers that show scale or impact (millions of transactions, 35+ identity providers, 40% faster). Leave out numbers that undersell: partial results, commit counts, small before-and-after figures.
-Cover letters sound like me talking, warm and plain, in short sentences with a little personality; never a resume turned into paragraphs.
-Write every sentence the way a person would say it aloud. No constructed summary sentences such as "The role pairs X with Y, which is how I have worked." or "C#/.NET and SQL Server are where I spent most of a decade."
+Application formats:
 Cover letters: single page maximum. Flow: Opening (role + why this company) → concrete project examples → honest about gaps + how you close them → close with "Thank you for your time and consideration."
 Screening answers: 3-5 sentences. State what you built. No framing, no pitch.
 Resumes: one page maximum, generated for each job. Header: name, tagline "20+ years building systems where correctness matters. A kernel of laughter.", address, phone, email, CV link. Sections: Skills, Experience (by employer and dates, without job titles, newest first, the bullets most relevant to the job first), Community, Philosophy, Education.
