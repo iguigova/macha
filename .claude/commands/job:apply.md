@@ -284,7 +284,8 @@ These add to the credo voice, for letters and screening answers.
   consideration."
 - **Screening answer** — 3–5 sentences stating what the user built.
 - **Resume** — one page at most, made for each job. Header: name, the
-  tagline from `profile.txt`, address, phone, email, CV link. Sections:
+  tagline from the credo, the address `profile.txt` gives the resume,
+  phone, email, CV link. Sections:
   Skills; Experience, by employer and dates, without job titles, newest
   first, the bullets most relevant to the job first; Community;
   Philosophy, from the credo; Education.
