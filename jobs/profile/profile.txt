@@ -4,7 +4,7 @@ My phone number is 604-338-4242.
 I live at 1253 Depot Rd, Brackendale, BC, Canada, V0N 1H0.
 My CV is at https://urgh.weebly.com/curriculum-vitae.html
 My LinkedIn is https://www.linkedin.com/in/iguigova/
-My GitHub is https://github.com/iguigova — Arctic Code Vault Contributor. Notable repositories: fribs.netcore (ServiceStack skeleton), snippets_js, snippets_r, snippets_cs.
+My GitHub is https://github.com/iguigova — Arctic Code Vault Contributor. Its hub is https://iguigova.github.io. Notable repositories: stitchback (offline-first field-level merge for plain REST, on npm), newton3 (behaviour-driven allocation engine with a live demo), macha (job applications run through Claude Code), ratelimiter (Go sliding-window rate limiter).
 My website is https://urgh.weebly.com/ — "Urgh! A Coding War", tech articles and resources.
 My literary website is https://urgh2.weebly.com/ — "Urgh! A Literary War", haiku poetry and literary excerpts in English and Bulgarian.
 My media website is https://oceanhue.blogspot.com/ — "Urgh! A Media War", philosophical quotes and visual art.
