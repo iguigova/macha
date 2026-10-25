@@ -9,3 +9,5 @@ README.md states the commands and how the profile changes.
 - `out/` is scratch for the current application and is never committed.
 - A note captured under a `job: ` topic is a queued job, and `/job:apply`
   is the command that does it and closes it. README.md states the job log.
+- A note captured under an `rfp: ` topic is a queued RFP. Jobs and RFPs
+  take the same outcomes; README.md states them.

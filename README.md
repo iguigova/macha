@@ -53,17 +53,25 @@ Every change is committed.
 
 ## The job log
 
-The session history, `.claude/session_history.md`, is the log of every job.
-Each job's entries share one topic, `job: <Company> — <Role>`, and each one's
-first bullet is the outcome and the link: `queued`, `applied`, `closed` or
-`skipped`, then the URL. `.claude/topic_kinds` lists `job`, so the journal
-writer takes that topic without a ticket key. `.claude/scripts/job_log.sh`
-prints every job at its latest outcome.
+The session history, `.claude/session_history.md`, is the log of every job
+and every RFP. Each job's entries share one topic, `job: <Company> — <Role>`,
+and each RFP's `rfp: <Buyer> — <Title>`. Each entry's first bullet is the
+outcome and the link: `queued`, `applied`, `closed` or `skipped`, then the
+URL. Jobs and RFPs take the same four outcomes. `.claude/topic_kinds` lists
+`job` and `rfp`, so the journal writer takes those topics without a ticket
+key. `.claude/scripts/job_log.sh` prints every job at its latest outcome, and
+`job_log.sh rfp` every RFP.
 
 A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`,
 which the search opens. `/job:apply` with no argument takes the oldest one
-and closes it when the job is applied to, found closed or skipped. The queue lists them:
+and closes it when the job is applied to, found closed or skipped. A queued
+RFP is a note under its `rfp: ` topic, `<Buyer> — <Title>: <url>`, closed the
+same way; no command applies to an RFP yet. The queue lists each kind:
 
 ```bash
 ~/.claude/scripts/journal_queue.sh --topic "job: " --show
+~/.claude/scripts/journal_queue.sh --topic "rfp: " --show
 ```
+
+A public-sector contract working through a firm on a federal supply list
+(TBIPS) is a job: it is found and applied to as one.
