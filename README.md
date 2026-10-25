@@ -49,7 +49,9 @@ global CLAUDE.md loads in every project. The application voice and formats
 live in `/job:apply`. A fact appears once: a change updates its line,
 never adds a second version. `/job:apply` asks for each fact a job weighs
 that the profile lacks, and writes the answers and corrections at once.
-Every change is committed.
+Every change is committed. The one exception is the "My GitHub is" line:
+`build.py` in the `iguigova.github.io` repo writes it from `hub.json`, so
+it changes there.
 
 ## The job log
 
