@@ -52,7 +52,7 @@ I have worked with many query languages, among them SQL, GraphQL, Datalog (Datom
 I have worked a lot with tabular data formats and exports: Excel, CSV and others.
 I have about 5 years of microservices architecture experience.
 I use Shell/Bash for scripting.
-I use Git, Jira, Slack, Teams and Discord.
+I use Git daily, and Jira, Slack, Teams and Discord.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
