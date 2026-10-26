@@ -6,12 +6,12 @@ allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*)
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
 Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
-`jobs/profile/profile.txt`, the hub page its GitHub line names, or the credo the global CLAUDE.md loads; nothing is invented, and a requirement no fact
+`jobs/profile/profile.txt`, the GitHub site it names, or the credo the global CLAUDE.md loads; nothing is invented, and a requirement no fact
 covers is a gap, not a sentence. The user approves twice: the documents
 before the form, and the form before submit.
 
 1. **Read the profile and pick the job.** Read `jobs/profile/profile.txt`
-   in full, and the hub page its GitHub line names. A queued job is a note, `<Company> — <Role>: <url>`, captured
+   in full, and the GitHub site it names. A queued job is a note, `<Company> — <Role>: <url>`, captured
    under a `job: <Company> — <Role>` topic; list them with
    ```bash
    ~/.claude/scripts/journal_queue.sh --topic "job: "
