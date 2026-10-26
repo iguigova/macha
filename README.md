@@ -36,7 +36,7 @@ For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resu
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
 fills the form, and pauses again before submitting. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
-entry recording the outcome (applied, closed or skipped), then checks the
+entry closing the job's note with what happened, then checks the
 profile for contradictions, duplicates and copies by the principles in
 the credo.
 
@@ -55,24 +55,22 @@ lists them, and `/job:apply` reads it there.
 
 ## The job log
 
-The session history, `.claude/session_history.md`, is the log of every job
-and every RFP. Each job's entries share one topic, `job: <Company> — <Role>`,
-and each RFP's `rfp: <Buyer> — <Title>`. Each entry's first bullet is the
-outcome and the link: `queued`, `applied`, `closed` or `skipped`, then the
-URL. Jobs and RFPs take the same four outcomes. `.claude/topic_kinds` lists
-`job` and `rfp`, so the journal writer takes those topics without a ticket
-key. `.claude/scripts/job_log.sh` prints every job at its latest outcome, and
-`job_log.sh rfp` every RFP.
+Every job and every RFP is a note in the journal's queue, written by
+`journal.sh -n` into `.claude/session_history.md`. A job's note is
+`<Company> — <Role>: <url>`, captured under the topic
+`job: <Company> — <Role>`; an RFP's is `<Buyer> — <Title>: <url>`, under
+`rfp: <Buyer> — <Title>`. `.claude/topic_kinds` lists `job` and `rfp`, so
+the journal writer takes those topics without a ticket key.
 
-A queued job is a note in the journal's queue, `<Company> — <Role>: <url>`,
-which the search opens. `/job:apply` with no argument takes the oldest one
-and closes it when the job is applied to, found closed or skipped. A queued
-RFP is a note under its `rfp: ` topic, `<Buyer> — <Title>: <url>`, closed the
-same way; no command applies to an RFP yet. The queue lists each kind:
+A note is open while the job or RFP waits, and closed by `--placed` with
+what happened: applied, the posting found closed, or skipped and why.
+`/job:apply` with no argument takes the oldest open job note and closes it;
+no command applies to an RFP yet. The queue lists each kind's open notes,
+and with `--closed` its closed ones; `rfp: ` lists the RFPs the same way:
 
 ```bash
 ~/.claude/scripts/journal_queue.sh --topic "job: " --show
-~/.claude/scripts/journal_queue.sh --topic "rfp: " --show
+~/.claude/scripts/journal_queue.sh --closed --topic "job: " --show
 ```
 
 A public-sector contract working through a firm on a federal supply list

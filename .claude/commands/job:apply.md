@@ -1,7 +1,7 @@
 ---
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_log.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
@@ -19,9 +19,11 @@ before the form, and the form before submit.
    The argument is a URL, or a queued job's id; with none, take the first
    row, the oldest. A URL that a queued job carries is that job. With no
    argument and no queued job, find jobs (below), queue the ones the user
-   approves, and take the first. A URL that
-   `.claude/scripts/job_log.sh` lists at any outcome but `queued` has been
-   seen before: name its row to the user and ask before going on.
+   approves, and take the first. A URL that a closed note carries,
+   `journal_queue.sh --closed --topic "job: "`, has been seen before: name
+   its note and where it went to the user and ask before going on. A URL
+   no note carries is queued first (Finding jobs, step 5), so every job
+   is a note.
 
 2. **Read the job.** `browser_navigate` to the URL and read the whole
    description with `browser_evaluate` returning `document.body.innerText`:
@@ -147,15 +149,14 @@ before the form, and the form before submit.
    ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
    ```
 
-9. **Record the outcome.** Every run ends with one journal entry under the
-   job's topic, its first bullet the outcome and the URL:
+9. **Close the note.** Every run ends with one journal entry under the
+   job's topic that closes the job's note, its reason what happened:
+   applied, the posting found closed, or skipped and why.
    ```bash
    ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "<applied|closed|skipped>: <url>" -b "<what the page showed, or why>" \
-     [--placed "<id>: - — <applied|closed|skipped>: <reason>"]
+     -b "<what happened, and what the page showed>" \
+     --placed "<id>: - — <what happened>"
    ```
-   `--placed` closes the queued job the run took; a URL nothing queued
-   has no note to close.
 
 10. **Check the profile's integrity**, by the principles in the credo.
     Read `profile.txt` whole and list, with line numbers
@@ -184,17 +185,18 @@ stack they prefer. The kind of work decides whether a posting fits; the
 preferred stack only ranks one posting above another and never excludes
 one. Nothing outside the profile narrows the search.
 
-1. **Read the job log.**
+1. **Read the jobs already seen**, open and closed; each note carries its
+   URL:
    ```bash
-   .claude/scripts/job_log.sh
+   ~/.claude/scripts/journal_queue.sh --topic "job: "
+   ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
    ```
-   Each row is a job already seen, at its latest outcome. The check below
-   holds every candidate against it.
+   The check below holds every candidate against them.
 
 2. **Search every source.** Collect candidates from each one, and note a
    source that failed rather than dropping it silently:
    - **Company boards.** List the whole board of every company a lead names
-     and every company in the log, since one fitting posting often has
+     and every company a job note names, since one fitting posting often has
      siblings:
      ```bash
      .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
@@ -232,12 +234,12 @@ one. Nothing outside the profile narrows the search.
    Keep it only if it is open, can be done remotely from where the user may
    work, has a salary range that reaches the expectation or states none, and
    is the kind of work the profile looks for, in any stack. A posting whose
-   URL the log holds is dropped. A posting at a company the log holds is
-   kept and marked with that row, so the user decides.
+   URL a note carries is dropped. A posting at a company a note names is
+   kept and marked with that note, so the user decides.
 
 4. **PAUSE — the shortlist.** Rank by fit, closest first: the kind of work
    first, then the preferred stack. Show one table: rank, company, role,
-   location rule, salary, the profile facts it fits, the log row it shares a
+   location rule, salary, the profile facts it fits, the note it shares a
    company with if any, and the URL. Under it, list each source and how many
    candidates it gave, and each source that failed. Then `AskUserQuestion`:
    "Queue which of these?" with options "All" and "None"; a choice of ranks
@@ -247,7 +249,7 @@ one. Nothing outside the profile narrows the search.
    best fit is the oldest note and the first one taken:
    ```bash
    ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "queued: <url>" -b "<location rule>, <salary>; fits <the facts it fits>" \
+     -b "<url> — <location rule>, <salary>; fits <the facts it fits>" \
      -n "<Company> — <Role>: <url>"
    ```
    Then show the queue with `journal_queue.sh --topic "job: " --show` and
