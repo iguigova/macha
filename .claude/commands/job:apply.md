@@ -13,7 +13,7 @@ the form, and the form before submit.
 
 2. **Read the job.** `browser_navigate` to the URL and read the whole
    description with `browser_evaluate` returning `document.body.innerText`:
-   title, location rule, salary range, requirements, preferred
+   title, location rule, employment type, pay, requirements, preferred
    qualifications. If the page needs a login, tell the user and stop. If
    the posting is gone or no longer open, the job is closed: close its
    note (step 9) and stop. A Greenhouse, Ashby or Lever posting is closed when
@@ -22,8 +22,8 @@ the form, and the form before submit.
 3. **Draft.** Write three things, each from profile facts only and each
    following the credo voice and the application voice below:
    - **Gap analysis** — each requirement, paired with the fact that meets
-     it or marked as a gap with how the user would close it. Flag a salary
-     range or location rule that conflicts with the profile.
+     it or marked as a gap with how the user would close it. Flag pay or a
+     location rule that conflicts with the profile.
    - **Resume** — in the resume format below.
    - **Cover letter** — in the cover-letter format below.
 
@@ -97,8 +97,9 @@ the form, and the form before submit.
 
 A search runs as Searching. It follows the profile's facts: where the
 user lives, where they may work without sponsorship, that they work only
-remotely, the salary expectation, the kind of work they look for, and the
-stack they prefer. The kind of work decides whether a posting fits; the
+remotely, the salary expectation, the freelance rate, the kind of work
+they look for, and the stack they prefer. A freelance or contract posting
+is a job like any other. The kind of work decides whether a posting fits; the
 preferred stack only ranks one posting above another and never excludes
 one.
 
@@ -136,14 +137,21 @@ one.
 **Check at source.** `.claude/scripts/job_board.sh <ats> <board> <id>`
 exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
 is closed. Anything else is checked on the posting page itself. Read the
-posting for its title, location rule, salary range and stack. It fits if
-it can be done remotely from where the user may work, has a salary range
-that reaches the expectation or states none, and is the kind of work the
-profile looks for, in any stack.
+posting for its title, location rule, employment type, pay and stack. It
+fits if it can be done remotely from where the user may work, its pay
+reaches the profile's (a salary range the salary expectation, a contract
+or freelance rate the freelance rate) or it states none, and it is the
+kind of work the profile looks for, in any stack.
 
 **Shortlist.** Rank by the kind of work first, then the preferred stack.
-The columns are company, role, location rule and salary. Each queued
-note's first bullet carries `<location rule>, <salary>`.
+The columns are company, role, location rule and pay. Each queued
+note's first bullet carries `<location rule>, <pay>`.
+
+**A contract won.** A public-sector RFP scores the bidder's own past
+contracts, so a freelance or contract job the user wins and finishes is
+recorded in `profile.txt` as one line: the client, its staff count, the
+dates, the value and a reference. Each comes from the user (Update the
+profile).
 
 ## Application voice
 

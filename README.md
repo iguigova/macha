@@ -78,5 +78,8 @@ and with `--closed` its closed ones; `rfp: ` lists the RFPs the same way:
 ~/.claude/scripts/journal_queue.sh --closed --topic "job: " --show
 ```
 
-A public-sector contract working through a firm on a federal supply list
-(TBIPS) is a job: it is found and applied to as one.
+A freelance or contract posting is a job, and so is a public-sector
+contract working through a firm on a federal supply list (TBIPS): each is
+found and applied to as one. A contract the user wins and finishes is
+recorded in the profile, since an RFP scores the bidder's own past
+contracts.

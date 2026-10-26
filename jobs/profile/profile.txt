@@ -18,6 +18,7 @@ I am authorized to work in Canada without sponsorship.
 My passport is Canadian.
 I am not authorized to work in the US — I would require sponsorship.
 My salary expectation is $100,000+ CAD.
+My freelance rate is $550 CAD a day: the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages, on distributed systems, and less in .NET.
