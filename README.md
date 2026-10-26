@@ -33,6 +33,9 @@ source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
 checks that one of its postings is open.
+`.claude/scripts/rfp_board.sh` does the same for public procurement: the
+open notices of CanadaBuys, the BC Digital Marketplace, one Bonfire portal or
+CivicInfo BC, or whether one notice is still open.
 
 For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
