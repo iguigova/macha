@@ -20,6 +20,7 @@ My salary expectation is $100,000+ CAD.
 I only work remotely.
 I want to work more in Go and functional languages, on distributed systems, and less in .NET.
 Interesting work is what I look for, and the stack is not a requirement. I am more of a nerd: technically deep problems suit me better.
+An RFP whose mandatory criteria require past contracts held as the bidder does not fit me.
 
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
 I am a polyglot — I have worked professionally in 10+ programming languages.
