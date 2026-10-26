@@ -1,4 +1,5 @@
 I am Ilka Guigova.
+I go by Ilka.
 My email is iguigova@gmail.com.
 My phone number is 604-338-4242.
 I live at 1253 Depot Rd, Brackendale, BC, Canada, V0N 1H0.
@@ -18,6 +19,7 @@ My passport is Canadian.
 I am not authorized to work in the US — I would require sponsorship.
 My salary expectation is $100,000+ CAD.
 I only work remotely.
+I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages, on distributed systems, and less in .NET.
 Interesting work is what I look for, and the stack is not a requirement. I am more of a nerd: technically deep problems suit me better.
 An RFP whose mandatory criteria require past contracts held as the bidder does not fit me.
