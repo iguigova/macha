@@ -12,7 +12,9 @@ cd ~/src/oceanhue/macha && claude
 ```
 
 The commands live in `.claude/commands/` and load when Claude Code starts
-in this directory.
+in this directory. The steps applying shares across kinds, from picking a
+queued posting to closing its note, live once in `.claude/shared/apply.md`,
+which each apply command reads first.
 
 The browser keeps its logins, so a site that needs one (LinkedIn, an ATS)
 is logged into by hand once.

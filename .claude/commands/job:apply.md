@@ -4,33 +4,19 @@ argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
 allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), AskUserQuestion
 ---
 
-Apply to one job: $ARGUMENTS. Macha lives at `~/src/oceanhue/macha`, where
-Claude Code is started; every path below is relative to it. Every claim in every document and answer comes from a fact in
-`jobs/profile/profile.txt`, the GitHub site it names, or the credo the global CLAUDE.md loads; nothing is invented, and a requirement no fact
-covers is a gap, not a sentence. The user approves twice: the documents
-before the form, and the form before submit.
+Apply to one job: $ARGUMENTS. Read `.claude/shared/apply.md` first: its
+sections are the steps below that name one, run for the kind `job`, the
+name `<Company> — <Role>`. The user approves twice: the documents before
+the form, and the form before submit.
 
-1. **Read the profile and pick the job.** Read `jobs/profile/profile.txt`
-   in full, and the GitHub site it names. A queued job is a note, `<Company> — <Role>: <url>`, captured
-   under a `job: <Company> — <Role>` topic; list them with
-   ```bash
-   ~/.claude/scripts/journal_queue.sh --topic "job: "
-   ```
-   The argument is a URL, or a queued job's id; with none, take the first
-   row, the oldest. A URL that a queued job carries is that job. With no
-   argument and no queued job, find jobs (below), queue the ones the user
-   approves, and take the first. A URL that a closed note carries,
-   `journal_queue.sh --closed --topic "job: "`, has been seen before: name
-   its note and where it went to the user and ask before going on. A URL
-   no note carries is queued first (Finding jobs, step 5), so every job
-   is a note.
+1. **Pick the job**, as Pick the posting.
 
 2. **Read the job.** `browser_navigate` to the URL and read the whole
    description with `browser_evaluate` returning `document.body.innerText`:
    title, location rule, salary range, requirements, preferred
    qualifications. If the page needs a login, tell the user and stop. If
-   the posting is gone or no longer open, the job is closed: record it
-   (step 9) and stop. A Greenhouse, Ashby or Lever posting is closed when
+   the posting is gone or no longer open, the job is closed: close its
+   note (step 9) and stop. A Greenhouse, Ashby or Lever posting is closed when
    `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
 
 3. **Draft.** Write three things, each from profile facts only and each
@@ -42,50 +28,18 @@ before the form, and the form before submit.
    - **Cover letter** — in the cover-letter format below.
 
    Then read both as the hiring manager for this role would, and revise
-   before showing them: the closest match to the role leads.
-
-   Then ask for what the profile lacks, before step 4 and never folded
-   into its approval: one `AskUserQuestion` with one question per fact the
-   role weighs that no fact covers, or that two facts state differently.
-   Each question names the requirement and offers concrete answers, each
-   option saying what it would write; a free answer comes through Other.
-   Write each answer into the profile at once (step 8) and redraft from
-   it. A fact is never written into a document before it is in the
-   profile.
+   before showing them: the closest match to the role leads. Then Ask for
+   what the profile lacks.
 
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
    continue to form" and "Skip"; revisions come through Other. On a
-   revision, redraft and pause again. On skip, record it (step 9) and stop. A revision that states
-   a fact or a writing preference also updates the profile — see step 8.
+   revision, redraft and pause again. On skip, close its note (step 9) and stop. A revision that states
+   a fact or a writing preference also updates the profile (step 8).
 
-5. **Render the PDFs.** Write `out/resume.html` and `out/cover_letter.html`,
-   each linking `../jobs/templates/style.css`, which holds the look; the
-   HTML holds only content in this markup:
-   - Both: `<header>` with `<h1>` name and `.contact`; `<main>`; `<footer>`
-     with `.sites` (the three themed websites the profile names) and an empty `.band`.
-   - Resume: under the name a `.tagline`; one `<section>` per resume
-     section, each an `<h2>` label and one content block; Skills as a
-     `<dl>`; each employer an `.entry` with a `.row` of `.org` and `.when`
-     and a `<ul>`. A second line of detail under an entry is a `<br>` and
-     a `.role` span.
-   - Cover letter: `<body class="letter">`, a `.meta` block with the date
-     and "{Company} — {Role}", the paragraphs, and `.sign`.
-
-   Print each, named for the user: `<Name>` is the profile's name with
-   its spaces removed.
-   ```bash
-   cd ~/src/oceanhue/macha/out
-   google-chrome --headless --no-pdf-header-footer \
-     --print-to-pdf=$PWD/<Name>_Resume.pdf file://$PWD/resume.html
-   ```
-   and the same for `<Name>_CoverLetter.pdf`. `pdfinfo` must report
-   `Pages: 1` for each; when it does not, `pdftotext -f 2` shows what
-   spilled. Fit by balance: reword a line that leaves one word on the next,
-   then adjust spacing in the stylesheet; a fact the job weighs is never
-   dropped to fit. Check the look with `pdftoppm -png` before the form: no
-   line ends with a lone word, and the space is even down to the footer. `out/` holds only the
-   current application and is overwritten each run.
+5. **Render the PDFs**, as Render the PDFs: `out/resume.html` and
+   `out/cover_letter.html`, printed as `<Name>_Resume.pdf` and
+   `<Name>_CoverLetter.pdf`, one page each.
 
 6. **Fill the form.** Click Apply (on LinkedIn prefer Easy Apply). A
    Greenhouse form embedded on the company's page sits in an iframe: fill
@@ -131,129 +85,65 @@ before the form, and the form before submit.
      confirmation the page shows.
    - **Correct** → change the form, update the profile (step 8), pause
      again.
-   - **Skip** → record it (step 9) and stop without submitting.
+   - **Skip** → close its note (step 9) and stop without submitting.
 
-8. **Update the profile.** Each answer or correction that states a fact or
-   a writing preference updates the one line that covers it, or adds a
-   line where none does: a fact about the user in `profile.txt`, a rule
-   for application writing under "Application voice" below, and any other
-   writing preference in `~/.claude/credo.md`. A fact never appears twice, and one that
-   contradicts another line is asked about, never written beside it. A
-   number is quoted exactly as the user or the source states it, and a
-   mixed result is stated whole. A fact drawn from work names no customer,
-   account ID, hostname or colleague. Commit at once, after each round of
-   answers or corrections, the files changed alone with a message naming
-   each fact changed:
-   ```bash
-   git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/job:apply.md
-   ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
-   ```
+8. **Update the profile**, as Update the profile.
 
-9. **Close the note.** Every run ends with one journal entry under the
-   job's topic that closes the job's note, its reason what happened:
-   applied, the posting found closed, or skipped and why.
-   ```bash
-   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "<what happened, and what the page showed>" \
-     --placed "<id>: - — <what happened>"
-   ```
+9. **Close the note**, as Close the note.
 
-10. **Check the profile's integrity**, by the principles in the credo.
-    Read `profile.txt` whole and list, with line numbers
-    and both lines quoted:
-    - two lines that contradict: a span of years against an employer's
-      dates, a claim against a "no experience" line, one fact stated two
-      ways;
-    - a fact stated twice;
-    - a fact copied outside `profile.txt`, found by grepping its value in
-      `CLAUDE.md`, `README.md` and `.claude/`.
-
-    Ask about each contradiction, one question each: which line is wrong.
-    The wrong line is deleted, or corrected only to what the user states;
-    the check that found it never supplies the replacement. A duplicate is
-    removed, and a copy becomes a pointer to its file. Commit as in
-    step 8. With nothing found, say what was checked. Then say it is
-    a safe point to `/compact`: the committed profile and the journal carry
-    what the next application needs.
+10. **Check the profile's integrity**, as Check the profile's integrity.
 
 ## Finding jobs
 
-A search fills an empty queue. It follows the profile's facts: where the
+A search runs as Searching. It follows the profile's facts: where the
 user lives, where they may work without sponsorship, that they work only
 remotely, the salary expectation, the kind of work they look for, and the
 stack they prefer. The kind of work decides whether a posting fits; the
 preferred stack only ranks one posting above another and never excludes
-one. Nothing outside the profile narrows the search.
+one.
 
-1. **Read the jobs already seen**, open and closed; each note carries its
-   URL:
-   ```bash
-   ~/.claude/scripts/journal_queue.sh --topic "job: "
-   ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
-   ```
-   The check below holds every candidate against them.
+**Sources:**
+- **Company boards.** List the whole board of every company a lead names
+  and every company a job note names, since one fitting posting often has
+  siblings:
+  ```bash
+  .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
+  ```
+  Keep the engineering roles whose location rule includes where the user
+  may work. A board that answers "no board" is under another ATS or
+  another name; say which.
+- **HN Who's Hiring.** The newest thread is the first hit of
+  `https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring&query=hiring`
+  whose title starts "Ask HN: Who is hiring?". Its comments come from
+  `https://hn.algolia.com/api/v1/items/<objectID>`; keep the ones naming
+  remote work open where the user may work.
+- **Remote job boards:**
+  `https://remoteok.com/api`,
+  `https://remotive.com/api/remote-jobs?category=software-development`,
+  `https://jobicy.com/api/v2/remote-jobs?count=50&industry=engineering`,
+  `https://www.workingnomads.com/api/exposed_jobs/`,
+  `https://weworkremotely.com/categories/remote-programming-jobs.rss`, and
+  the `https://canadajobs.works/` page.
+- **LinkedIn.** Its job search in the Playwright browser, remote only and
+  from the past week:
+  `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
+  Signed out, it still lists jobs; a login wall means the user logs in by
+  hand, so say so and go on.
+- **Anything else** a `WebSearch` turns up that fits, named by where it
+  came from. A `site:` filter in the query is ignored, so search by the
+  kind of work instead.
 
-2. **Search every source.** Collect candidates from each one, and note a
-   source that failed rather than dropping it silently:
-   - **Company boards.** List the whole board of every company a lead names
-     and every company a job note names, since one fitting posting often has
-     siblings:
-     ```bash
-     .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
-     ```
-     Keep the engineering roles whose location rule includes where the user
-     may work. A board that answers "no board" is under another ATS or
-     another name; say which.
-   - **HN Who's Hiring.** The newest thread is the first hit of
-     `https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring&query=hiring`
-     whose title starts "Ask HN: Who is hiring?". Its comments come from
-     `https://hn.algolia.com/api/v1/items/<objectID>`; keep the ones naming
-     remote work open where the user may work.
-   - **Remote job boards:**
-     `https://remoteok.com/api`,
-     `https://remotive.com/api/remote-jobs?category=software-development`,
-     `https://jobicy.com/api/v2/remote-jobs?count=50&industry=engineering`,
-     `https://www.workingnomads.com/api/exposed_jobs/`,
-     `https://weworkremotely.com/categories/remote-programming-jobs.rss`, and
-     the `https://canadajobs.works/` page.
-   - **LinkedIn.** Its job search in the Playwright browser, remote only and
-     from the past week:
-     `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
-     Signed out, it still lists jobs; a login wall means the user logs in by
-     hand, so say so and go on.
-   - **Anything else** a `WebSearch` turns up that fits, named by where it
-     came from. A `site:` filter in the query is ignored, so search by the
-     kind of work instead.
+**Check at source.** `.claude/scripts/job_board.sh <ats> <board> <id>`
+exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
+is closed. Anything else is checked on the posting page itself. Read the
+posting for its title, location rule, salary range and stack. It fits if
+it can be done remotely from where the user may work, has a salary range
+that reaches the expectation or states none, and is the kind of work the
+profile looks for, in any stack.
 
-3. **Check each candidate at its source.** A board listing is a lead; the
-   posting is the fact. Follow each lead to the company's own posting, and
-   confirm it is open: `.claude/scripts/job_board.sh <ats> <board> <id>`
-   exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
-   is closed. Anything else is checked on the posting page itself.
-   Read the posting for its title, location rule, salary range and stack.
-   Keep it only if it is open, can be done remotely from where the user may
-   work, has a salary range that reaches the expectation or states none, and
-   is the kind of work the profile looks for, in any stack. A posting whose
-   URL a note carries is dropped. A posting at a company a note names is
-   kept and marked with that note, so the user decides.
-
-4. **PAUSE — the shortlist.** Rank by fit, closest first: the kind of work
-   first, then the preferred stack. Show one table: rank, company, role,
-   location rule, salary, the profile facts it fits, the note it shares a
-   company with if any, and the URL. Under it, list each source and how many
-   candidates it gave, and each source that failed. Then `AskUserQuestion`:
-   "Queue which of these?" with options "All" and "None"; a choice of ranks
-   comes through Other. On None, the run stops with no job.
-
-5. **Queue the approved jobs**, one journal call each, best fit first, so the
-   best fit is the oldest note and the first one taken:
-   ```bash
-   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "<url> — <location rule>, <salary>; fits <the facts it fits>" \
-     -n "<Company> — <Role>: <url>"
-   ```
-   Then show the queue with `journal_queue.sh --topic "job: " --show` and
-   read its first row as the job, from step 2 above.
+**Shortlist.** Rank by the kind of work first, then the preferred stack.
+The columns are company, role, location rule and salary. Each queued
+note's first bullet carries `<location rule>, <salary>`.
 
 ## Application voice
 
