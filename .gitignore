@@ -1,5 +1,8 @@
 # Documents generated for the current application
 out/
 
+# What the SessionEnd hook's unattended /notes run did, rewritten each run
+.claude/session_end.last
+
 # Playwright MCP runtime files
 .playwright-mcp/
