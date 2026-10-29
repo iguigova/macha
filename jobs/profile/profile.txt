@@ -56,6 +56,7 @@ I have worked a lot with tabular data formats and exports: Excel, CSV and others
 I have about 5 years of microservices architecture experience.
 I use Shell/Bash for scripting.
 I use Git daily, and Jira, Slack, Teams and Discord.
+Earlier in my career I used UML (Enterprise Architect, Rational Rose), XML/XSLT, Subversion, Serena PVCS and AutomatedQA TestComplete.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3), and at Wayleadr also CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
@@ -106,27 +107,28 @@ At Willow Inc (Oct 2021–Oct 2024), I integrated insights, tickets, inspections
 
 At Willow, I worked on the rules engine that turns live building telemetry into insights: rules written in a domain expression language and evaluated against the digital-twin graph and its time series.
 
-At Bread & Butter IO, also known as Logonlabs (May 2019–Oct 2021), an early-stage startup, I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. I added backend support for session recording and heatmaps, and built a performance testing framework.
+At Bread & Butter IO, also known as Logonlabs (May 2019–Oct 2021), an early-stage startup building an SSO SaaS brokerage for easy integration into third-party applications, with turnkey authentication, user management and user journey analytics, I built the OAuth/OIDC/SAML authentication infrastructure from scratch, integrating 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO) with 98% code reuse across providers. I reduced unit test runtime from 2+ hours to under 20 minutes. I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers. I also built an Android Kotlin library, a Shopify API integration, and an ElasticPath Cloud API POC. I added backend support for session recording and heatmaps, and built a performance testing framework.
 
-At Email2 (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product.
+At Email2 (2011–2013), I built a configuration management framework reused in 4 projects, implemented FIPS 140-2 security practices, asynchronous email attachment handling, and a message processing appliance for data leak prevention. This was a protected email information exchange product. I extended its API infrastructure with more features while keeping backwards compatibility.
 
-At Cirius, later DeliverySlip (2013–2019), I designed a dynamic rules engine and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, and non-repudiable audit trails. The caching system is used in 3+ company products. I built a single-sign-on framework for 5,000+ login screens and a settings management framework. I improved maintainability by 80%. I centralized cross-cut logging and introduced a Jasmine test environment for smoke, regression and feature testing. DeliverySlip was acquired by Zix Corporation for $14 million.
+At Cirius, later DeliverySlip (2013–2019), I designed a dynamic rules engine, for event-driven notification configuration and execution, and an indexed caching layer from scratch for a secure email messaging system with large file sharing, electronic signatures, campaigns, and non-repudiable audit trails. The caching system is used in 3+ company products. I built a single-sign-on framework for 5,000+ login screens and a settings management framework. I created a fast data layer abstracting access to storage and caching, which improved maintainability by 80%. I centralized cross-cut logging and introduced a Jasmine test environment for smoke, regression and feature testing. DeliverySlip was acquired by Zix Corporation for $14 million.
 
 Email2, Cirius and DeliverySlip are one company line: I supervised its QA and testing teams for 8 years (2011–2019).
 
-At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring made responses up to 10x faster. I compiled a set of procedures to cover feature testing.
+At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring made responses up to 10x faster. I compiled a set of procedures to cover feature testing. I also built an interactive grid component for metadata and data manipulation and reporting, support for conflict analysis, French scene analysis, licensing, permissions and notifications, and a common interface for PayPal Website Payments Pro.
 
-At Klein Systems Group (2008–2010), I expanded KleinPort, a six-tier ERP system for port and vessel traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats. I took part in the go-live at three major ports and worked on 135 reports (grid, Fast Reports and Crystal Reports). I volunteered on the Content Management Committee.
+At Klein Systems Group (2008–2010), I expanded KleinPort, a six-tier Web Service ERP system for port and vessel traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats and communication protocols. I took part in the go-live at three major ports and worked on 135 reports (grid, Fast Reports and Crystal Reports). I applied business rule scripts to adapt the system to each customer's environment. I volunteered on the Content Management Committee.
 
-At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices.
+At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices. I was responsible for integrating all code from legacy, newly developed and third-party components; the Halo platform supported new and existing payment processors and the distribution of an unlimited number of POS terminals. I advised software development, product management and quality assurance team members.
 
 My title (from my CV) was Software Engineer at Willow, Bread & Butter, Email2, Cirius/DeliverySlip, Software Created, PointyHat, Klein and Vivonet.
 Earlier employers: PINpoint Information Systems, Burlington ON (Software Developer, 2002–2007); Intelsys Ltd, Toronto (Software Developer, 2000–2002); Epoch Integration, Toronto (Programmer, 2000); Expert Tutors, Toronto (Math and Computer Science Tutor, 1999–2002); Ministry of Tourism, Sofia (Assistant to Manager of Operations, 1996–1997); Datecs, Sofia (Assistant, 1995–1996).
 At Software Created (2011–2012), alongside Email2, I built custom Microsoft Office plug-ins for ACL Acerno/WorkPapers and Colligo Email Manager.
 My employers' cities, from my CV: Vancouver, BC for Flourish, Willow, Bread & Butter, Cirius/DeliverySlip, Email2, Software Created, PointyHat and Vivonet; Burnaby, BC for Klein.
 
-Earlier work (2000–2007): I implemented floor operations for automotive assembly plants (PINpoint SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I built a path-planning prototype that led to a Canadian Space Agency sub-contract, and worked on the resulting robot simulation system. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
-At PINpoint (2002–2007), I took part in the staged conversion from Delphi 7 to .NET, standardized tests and test harnesses to IEEE standards, started a documentation wiki, and planned the move to fully automated testing.
+Earlier work (2000–2002): I built a path-planning prototype that led to a Canadian Space Agency sub-contract, and worked on the resulting robot simulation system. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
+At PINpoint (2002–2007), I implemented solutions for the GUI, configuration, error proofing and process control of floor operations in automotive assembly plants across North America. I elicited software requirements, took part in product design reviews, wrote stored procedures and functions for storage, retrieval and reporting, and took part in the staged conversion from Delphi 7 to .NET, standardized tests and test harnesses to IEEE standards, started a documentation wiki, and planned the move to fully automated testing.
+At PINpoint, I implemented the SmartCart mobile fastening system interface from conception to integration, and led a feasibility study of ultrasound localization algorithms, such as RANSAC, for recalibrating the tool by its position, error-proofing the fastening operation and controlling the workflow.
 At PINpoint, I wrote the software that talked over the plant network, through sockets, to the PLCs controlling the assembly-line conveyors, and I built the communication between the workstation clients and the central server.
 At Intelsys (2000–2002), I built web-based and hosted 3D graphics and networking applications and a SolidWorks/AutoCAD plug-in for network communications.
 At the Ministry of Tourism in Sofia (1996–1997), I coordinated within PHARE, an EU program with €650 million in assistance for Bulgaria.
@@ -137,7 +139,7 @@ I have a Software Specialist high-school diploma from the College of Electronic 
 I have a Business Informatics Certificate from the University of Economics in Sofia (1997).
 I completed Stanford Online courses in Machine Learning, AI, and Databases (2011).
 I completed MIT OCW Dynamic Programming & Stochastic Control (2010).
-I hold a Microsoft Certification Exam 70-536 (2008) and a Project Management Certificate from Centennial College (2007).
+I hold a Microsoft Certification Exam 70-536 (2008) and a Project Management Certificate from Centennial College (2007). At Centennial I completed 5 of the 7 program courses in one semester while working full time, and my Project Selection and Registration assignment was selected for Blackboard's Gallery of Student Works.
 I completed a Technical Writing course at George Brown College (2006).
 I was a student at the School of Mathematics (SMG) in Sofia (1991).
 
@@ -149,17 +151,18 @@ I mentored high school students through the Microsoft TEALS program (Sep 2022–
 I was a member of Toastmasters International (District 60 Toronto, 2003).
 Groups, with the year my CV lists: 4clojure (2020), Philosopher's Cafe (2012), Project Euler (2008), Code Project (2007), and the Haskell (2010), Erlang, R and Data Visualization (2011) meetups.
 I organized "Urgh! A Coding Garden" (2011–2012), a software development debate group focused on automation, algorithms, and data structures.
+I have worked on process control and information systems for managing complex real-time processes.
 I have worked across industries: marine, automotive, hospitality, art, communications, regulatory compliance, real estate/infrastructure, identity/security, and payment processing.
 
 Who I am and how I work is in ~/.claude/credo.md.
 My best advice: automate tasks repeated 3 or more times.
 I am motivated by challenges that require creativity and discipline.
-In high school, I studied digital electronics, microcontrollers and assembler.
+In high school, I studied computer architecture, including digital circuit design, digital electronics, microcontrollers and assembler.
 In high school, I solved an assembler problem my professor declared "unsolvable."
-My favorite technical reading is Roy Fielding's dissertation on Architectural Styles.
+My favorite technical reading is Roy Fielding's dissertation, "Architectural Styles and the Design of Network-based Software Architectures".
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics." Also: "Stay curious." and "I am an agile problem solver."
 I write haiku poetry and curate philosophical quotes across multiple languages.
-My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, dancing, travel, reading, and writing.
+My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, dancing, travel, reading, writing, mountaineering, motorcycling, photography, and science fiction.
 I am more of a doer than a watcher of sports, and I don't use sports apps much.
 
 For "proudest achievement" questions: the Bread & Butter auth infrastructure (security), the Vivonet payment refactor (scale), or the FIFF algorithm (technical elegance).
