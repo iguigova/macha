@@ -28,7 +28,7 @@ An RFP whose mandatory criteria require past contracts held as the bidder does n
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
 I am a polyglot — I have worked professionally in 10+ programming languages.
 
-I have 1 year of professional Go experience, at Flourish.
+I have 1 year of professional Go experience, at Flourish. My programming language of choice is Go.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
 I have 5+ years of JavaScript/TypeScript experience, Flourish among them (Node.js backend, Angular frontend).
@@ -76,7 +76,7 @@ I have used Grafana and Prometheus at Flourish and at Wayleadr.
 At Wayleadr we started using Datadog in 2026; the Rails platform reports APM traces to it.
 I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, Airflow, or Git internals.
-I have some Kubernetes experience, from Flourish.
+I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP.
 I studied networking at university.
