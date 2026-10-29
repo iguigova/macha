@@ -75,7 +75,8 @@ I have experience working in the observability space.
 I have used Grafana and Prometheus at Flourish and at Wayleadr.
 At Wayleadr we started using Datadog in 2026; the Rails platform reports APM traces to it.
 I am on call at Wayleadr.
-I have no experience with Elasticsearch, Kafka, Airflow, Kubernetes, or Git internals.
+I have no experience with Elasticsearch, Kafka, Airflow, or Git internals.
+I have some Kubernetes experience, from Flourish.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP.
 I studied networking at university.
@@ -119,7 +120,7 @@ At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an on
 
 At Klein Systems Group (2008–2010), I expanded KleinPort, a six-tier Web Service ERP system for port and vessel traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats and communication protocols. I took part in the go-live at three major ports and worked on 135 reports (grid, Fast Reports and Crystal Reports). I applied business rule scripts to adapt the system to each customer's environment. I volunteered on the Content Management Committee.
 
-At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I designed a RESTful multiplex synchronization system. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices. I was responsible for integrating all code from legacy, newly developed and third-party components; the Halo platform supported new and existing payment processors and the distribution of an unlimited number of POS terminals. I advised software development, product management and quality assurance team members.
+At Vivonet (2007–2008), I refactored the Halo payment processing platform handling millions of transactions per month. I reduced complexity and removed 15,000+ lines of code. I improved performance: responses got 40% faster. I cut QA turnaround by 33% and improved early error detection by 5x through moderated software inspections. I took part in the design of a secure, distributed, RESTful multiplex synchronization system for real-time transactional and configuration data, built on Service-Oriented Architecture principles. The product was certified with Mercury Payment Systems, Global Payments and Moneris, in compliance with Visa CISP and PABP within PCI-DSS. I supported the adoption of Agile practices. I was responsible for integrating all code from legacy, newly developed and third-party components; the Halo platform supported new and existing payment processors and the distribution of an unlimited number of POS terminals. I advised software development, product management and quality assurance team members.
 
 My title (from my CV) was Software Engineer at Willow, Bread & Butter, Email2, Cirius/DeliverySlip, Software Created, PointyHat, Klein and Vivonet.
 Earlier employers: PINpoint Information Systems, Burlington ON (Software Developer, 2002–2007); Intelsys Ltd, Toronto (Software Developer, 2000–2002); Epoch Integration, Toronto (Programmer, 2000); Expert Tutors, Toronto (Math and Computer Science Tutor, 1999–2002); Ministry of Tourism, Sofia (Assistant to Manager of Operations, 1996–1997); Datecs, Sofia (Assistant, 1995–1996).
