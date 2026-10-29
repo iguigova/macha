@@ -21,7 +21,7 @@ My salary expectation is $100,000+ CAD.
 My freelance rate is $550 CAD a day: the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
-I want to work more in Go and functional languages, on distributed systems, and less in .NET.
+I want to work more in Go and functional languages, on distributed systems and networking, and less in .NET.
 Interesting work is what I look for, and the stack is not a requirement. I am more of a nerd: technically deep problems suit me better.
 An RFP whose mandatory criteria require past contracts held as the bidder does not fit me.
 
@@ -77,6 +77,8 @@ I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, Airflow, Kubernetes, or Git internals.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP.
+I studied networking at university.
+I have used Tailscale personally.
 I have no direct experience with Celery or RQ.
 I have used AI coding assistants in my daily work since Flourish (2025).
 At Wayleadr I work with Claude Code every day. I built our project's Claude Code tooling: skills and commands that wrap tested scripts behind a selftest gate, a session journal written by one script, and Jira and Confluence access. I run code audits as parallel read-only subagents and verify every finding myself before acting on it.
