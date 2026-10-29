@@ -127,6 +127,7 @@ My employers' cities, from my CV: Vancouver, BC for Flourish, Willow, Bread & Bu
 
 Earlier work (2000–2007): I implemented floor operations for automotive assembly plants (PINpoint SmartCart). I led an ultrasound localization feasibility study using RANSAC algorithms. I built a path-planning prototype that led to a Canadian Space Agency sub-contract, and worked on the resulting robot simulation system. I researched mobile web technologies and built VRML models for peer-to-peer 3D design collaboration.
 At PINpoint (2002–2007), I took part in the staged conversion from Delphi 7 to .NET, standardized tests and test harnesses to IEEE standards, started a documentation wiki, and planned the move to fully automated testing.
+At PINpoint, I wrote the software that talked over the plant network, through sockets, to the PLCs controlling the assembly-line conveyors, and I built the communication between the workstation clients and the central server.
 At Intelsys (2000–2002), I built web-based and hosted 3D graphics and networking applications and a SolidWorks/AutoCAD plug-in for network communications.
 At the Ministry of Tourism in Sofia (1996–1997), I coordinated within PHARE, an EU program with €650 million in assistance for Bulgaria.
 At Datecs (1995–1996), I did desktop publishing for 10 weekly newspapers and magazines.
