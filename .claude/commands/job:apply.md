@@ -175,6 +175,8 @@ These add to the credo voice, for letters and screening answers.
   line that ties everything together.
 - A personal question gets a genuine, short answer, not tied back to the
   job and with no "what it taught me".
+- The subject comes first and the verb early, as people speak: "I want to
+  write more Go", never "Go is the stack I want to work in".
 
 ## Application formats
 
