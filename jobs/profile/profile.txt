@@ -37,7 +37,7 @@ I have 2+ years of React experience.
 I have 2+ years of Angular experience.
 I have 2+ years of Node.js experience.
 I have 5+ years of Delphi/Pascal experience from Klein and earlier roles.
-I have 3+ years of C++ experience.
+I have 3+ years of professional C++ experience.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have studied Erlang but have less than 1 year of experience.
