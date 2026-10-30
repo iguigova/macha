@@ -17,7 +17,8 @@ I speak Bulgarian (native), English (fluent), French (Level 12, Institut França
 I am authorized to work in Canada without sponsorship.
 My passport is Canadian.
 I am not authorized to work in the US — I would require sponsorship.
-I hold no Canadian government security clearance and am eligible for one.
+I hold no Canadian government security clearance.
+I am eligible for a Canadian government security clearance.
 My salary expectation is $100,000+ CAD.
 My freelance rate is $550 CAD a day: the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
@@ -29,7 +30,7 @@ An RFP whose mandatory criteria require past contracts held as the bidder does n
 I am a Senior Software Engineer with 20+ years of experience building systems where correctness matters.
 I am a polyglot — I have worked professionally in 10+ programming languages.
 
-I have 1 year of professional Go experience, at Flourish. My programming language of choice is Go.
+I have 1 year of Go experience, at Flourish. My programming language of choice is Go.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
 I have 5+ years of JavaScript/TypeScript experience, Flourish among them (Node.js backend, Angular frontend).
@@ -37,20 +38,21 @@ I have 2+ years of React experience.
 I have 2+ years of Angular experience.
 I have 2+ years of Node.js experience.
 I have 5+ years of Delphi/Pascal experience from Klein and earlier roles.
-I have 3+ years of professional C++ experience.
+I have 3+ years of C++ experience.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have studied Erlang but have less than 1 year of experience.
-I have used Python professionally since Feb 2026 at Wayleadr: AWS Lambda services with Pydantic, SQLAlchemy and psycopg.
+I have used Python since Feb 2026 at Wayleadr: AWS Lambda services with Pydantic, SQLAlchemy and psycopg.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
-I have 8+ years of professional full-stack experience.
+I have 8+ years of full-stack experience.
 I have 15+ years of REST API design and development experience.
 I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Server, Oracle).
 I have 5+ years of Redis/Memcached experience.
 I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience, including designing and evolving GraphQL schemas.
+I have used WebSockets.
 I have used Datomic and graph databases.
 Every job I have had involved data migrations.
 I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
@@ -118,7 +120,7 @@ At Cirius, later DeliverySlip (2013–2019), I designed a dynamic rules engine, 
 
 Email2, Cirius and DeliverySlip are one company line: I supervised its QA and testing teams for 8 years (2011–2019).
 
-At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring made responses up to 10x faster. I compiled a set of procedures to cover feature testing. I also built an interactive grid component for metadata and data manipulation and reporting, support for conflict analysis, French scene analysis, licensing, permissions and notifications, and a common interface for PayPal Website Payments Pro. I used WebSockets on Scriptivate.
+At PointyHat (2010–2011), I designed an unlimited undo/redo solution for an online theater script editor (Scriptivate), reducing complexity by 50%. I delivered it in 2 weeks. It was later repurposed as the auto-recovery mechanism. Server-side refactoring made responses up to 10x faster. I compiled a set of procedures to cover feature testing. I also built an interactive grid component for metadata and data manipulation and reporting, support for conflict analysis, French scene analysis, licensing, permissions and notifications, and a common interface for PayPal Website Payments Pro.
 
 At Klein Systems Group (2008–2010), I expanded KleinPort, a six-tier Web Service ERP system for port and vessel traffic authorities, and built its self-learning mapping engine from scratch, processing 300+ calls per second. On the Cargo and Container Manager I built configurable data import and validation across multiple message formats and communication protocols. I took part in the go-live at three major ports and worked on 135 reports (grid, Fast Reports and Crystal Reports). I applied business rule scripts to adapt the system to each customer's environment. I volunteered on the Content Management Committee.
 
