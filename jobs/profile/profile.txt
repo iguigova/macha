@@ -17,6 +17,7 @@ I speak Bulgarian (native), English (fluent), French (Level 12, Institut França
 I am authorized to work in Canada without sponsorship.
 My passport is Canadian.
 I am not authorized to work in the US — I would require sponsorship.
+I hold no Canadian government security clearance and am eligible for one.
 My salary expectation is $100,000+ CAD.
 My freelance rate is $550 CAD a day: the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
@@ -43,6 +44,7 @@ I have studied Erlang but have less than 1 year of experience.
 I have used Python professionally since Feb 2026 at Wayleadr: AWS Lambda services with Pydantic, SQLAlchemy and psycopg.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
+I have 8+ years of professional full-stack experience.
 I have 15+ years of REST API design and development experience.
 I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Server, Oracle).
 I have 5+ years of Redis/Memcached experience.
