@@ -73,13 +73,15 @@ only the current application and is overwritten each run.
 ## Update the profile
 
 Each answer or correction that states a fact or a writing preference
-updates the one line that covers it, or adds a line where none does: a
-fact about the user in `profile.txt`, a rule for application writing under
-the command's voice, and any other writing preference in
-`~/.claude/credo.md`. A fact never appears twice, and one that contradicts
-another line is asked about, never written beside it. A number is quoted
-exactly as the user or the source states it, and a mixed result is stated
-whole. A fact drawn from work names no customer, account ID, hostname or
+updates the one line that covers it, or adds a line where none does, one
+fact to a line: a fact about the user in `profile.txt`, a rule for
+application writing under the command's voice, and any other writing
+preference in `~/.claude/credo.md`. A fact never appears twice, and one that contradicts
+another line is asked about, never written beside it. A place or a
+qualifier such as "professional" or "personally" is written only where it
+is the whole truth, since a line that has one reads as a limit on the
+lines that lack it. A number is quoted exactly as the user or the source
+states it, and a mixed result is stated whole. A fact drawn from work names no customer, account ID, hostname or
 colleague. Commit at once, after each round of answers or corrections, the
 files changed alone with a message naming each fact changed:
 ```bash
@@ -100,18 +102,25 @@ closed, or skipped and why.
 
 ## Check the profile's integrity
 
-By the principles in the credo. Read `profile.txt` whole and list, with
+By the principles in the credo. Run `.claude/scripts/profile_lint.sh`
+and judge each row it prints, then read `profile.txt` whole and list, with
 line numbers and both lines quoted:
 - two lines that contradict: a span of years against an employer's dates,
   a claim against a "no experience" line, one fact stated two ways;
 - a fact stated twice;
+- a line holding more than one fact;
+- a place or a qualifier one line carries and its like lines lack, which
+  reads as a limit nobody stated: "professional", "at <employer>",
+  "personally";
 - a fact copied outside `profile.txt`, found by grepping its value in
   `CLAUDE.md`, `README.md` and `.claude/`.
 
 Ask about each contradiction, one question each: which line is wrong. The
 wrong line is deleted, or corrected only to what the user states; the
-check that found it never supplies the replacement. A duplicate is
-removed, and a copy becomes a pointer to its file. Commit as in Update the
+check that found it never supplies the replacement. A line holding more
+than one fact is split, its wording kept. Ask about each qualifier, one
+question each: whether it is the whole truth; it is dropped or kept as
+the user states. A duplicate is removed, and a copy becomes a pointer to its file. Commit as in Update the
 profile. With nothing found, say what was checked. Then say it is a safe
 point to `/compact`: the committed profile and the journal carry what the
 next application needs.

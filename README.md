@@ -42,8 +42,10 @@ cover letter, and pauses for approval. It then renders the PDFs into `out/`,
 fills the form, and pauses again before submitting. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
 entry closing the job's note with what happened, then checks the
-profile for contradictions, duplicates and copies by the principles in
-the credo.
+profile for contradictions, duplicates, copies, lines holding more than
+one fact and qualifiers that read as a limit, by the principles in the
+credo. `.claude/scripts/profile_lint.sh` lists the lines that may hold
+more than one fact or a redundant "professional".
 
 ## The profile
 
