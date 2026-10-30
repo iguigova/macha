@@ -61,7 +61,8 @@ lists them, and `/job:apply` reads it there.
 ## The job log
 
 Every job and every RFP is a note in the journal's queue, written by
-`journal.sh -n` into `.claude/session_history.md`. A job's note is
+`journal.sh -n` into `.claude/session_history.md`, which git ignores, so
+the log stays on this machine. A job's note is
 `<Company> — <Role>: <url>`, captured under the topic
 `job: <Company> — <Role>`; an RFP's is `<Buyer> — <Title>: <url>`, under
 `rfp: <Buyer> — <Title>`. `.claude/topic_kinds` lists `job` and `rfp`, so
