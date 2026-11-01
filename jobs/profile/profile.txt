@@ -93,7 +93,7 @@ I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP.
 I studied networking at university.
-I have used Tailscale personally.
+I have used Tailscale.
 I have no direct experience with Celery or RQ.
 I have used AI coding assistants in my daily work since Flourish (2025).
 At Wayleadr I work with Claude Code every day.
