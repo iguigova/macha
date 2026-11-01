@@ -66,7 +66,7 @@ I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have studied Erlang.
 I have less than 1 year of Erlang experience.
-I have used Python since Feb 2026.
+I have used Python since 2025.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
 I have 8+ years of full-stack experience.
@@ -160,26 +160,50 @@ At Flourish Software (Jan 2025–Jan 2026), my title was Backend Engineer.
 At Flourish, I worked on a regulatory compliance platform.
 At Flourish, the platform served 1,000+ licensed facilities across multiple US states.
 At Flourish, the backend was Node.js/TypeScript and Go.
+At Flourish, most of my backend work was in Go.
 At Flourish, the frontend was Angular/TypeScript.
+At Flourish, the frontend used Angular 7 with Kendo UI components.
 At Flourish, the platform had 15+ microservices.
+At Flourish, I used MySQL, MongoDB, DynamoDB and Redis.
+At Flourish, I used Express.
+At Flourish, I used Cursor.
 At Flourish, I worked on ERP scaling.
 At Flourish, I built API integrations covering compliance, inventory, order tracking and delivery.
 
-At Flourish, I led 8 major feature initiatives.
-At Flourish, I led the enterprise platform enhancement.
-At Flourish, I led METRC trade-sample compliance with automatic METRC API synchronization.
-At Flourish, I led multi-state Biotrack compliance (AR, CT and others).
-At Flourish, I led an advanced manufacturing workflow.
-At Flourish, I led external system synchronization with retry and failure alerting.
-At Flourish, I led reporting and analytics.
-At Flourish, I led inventory optimization.
-At Flourish, I led a compliance audit framework with immutable logging.
+At Flourish, I worked on 8 major feature initiatives.
+At Flourish, I worked on the enterprise platform enhancement.
+At Flourish, I built METRC trade-sample compliance with automatic METRC API synchronization.
+At Flourish, I built multi-state Biotrack compliance (AR, CT and others).
+At Flourish, I built an advanced manufacturing workflow.
+At Flourish, I built external system synchronization with retry and failure alerting.
+At Flourish, I worked on reporting and analytics.
+At Flourish, I worked on inventory optimization.
+At Flourish, I built a compliance audit framework with immutable logging.
+At Flourish, I added plant-tag replacement to the nightly METRC plant sync.
+At Flourish, I added METRC Used By Date and Source Package Label support.
+At Flourish, I added Biotrack categories to bulk CSV item create, update and export.
+At Flourish, I added Biotrack support for waste packages scheduled for destruction.
+At Flourish, I enhanced lab result processing with expiration date tracking and compliance reporting.
 
-At Flourish, I built the Zapier integration layer end-to-end from scratch, exposing the platform API to customers.
-At Flourish, I integrated Bartender Cloud API using OAuth2 for automated label printing.
-At Flourish, I built a Data Fix CLI tool with 50+ commands for production data corrections.
-At Flourish, I built a PDF processing engine for regulatory compliance.
-At Flourish, I built service orchestration across 15+ services.
+At Flourish, I rebuilt and extended the Zapier integration, exposing the platform API to customers.
+At Flourish, the Zapier integration has 36 triggers, 19 actions and 13 searches.
+At Flourish, I moved the Zapier integration from basic auth to API-key auth.
+At Flourish, I integrated the BarTender Cloud API using OAuth2 for automated label printing.
+At Flourish, I built the BarTender label-printing integration end to end.
+At Flourish, I wrote the BarTender integration's Go service, which stores its integration records in DynamoDB.
+At Flourish, I built the BarTender integration's Angular UI.
+At Flourish, the BarTender integration manages printers and print jobs.
+At Flourish, the BarTender integration checks its connection.
+At Flourish, the BarTender integration prints product labels singly and in bulk.
+At Flourish, the BarTender integration prints retail METRC IDs on labels.
+At Flourish, I added REST endpoints to the external API in Go and MySQL: inventory adjustments, bills of materials, work orders, harvests and plant groups.
+At Flourish, I added Postman collections for the external API.
+At Flourish, I used and extended the Data Fix CLI, a Go tool with 50+ commands for production data corrections.
+At Flourish, I extended the Python service that parses lab-certificate PDFs for regulatory compliance.
+At Flourish, I added parsers for 15+ new lab-certificate formats, including labs in Arizona and New York.
+At Flourish, I fixed the lab-certificate extraction of mg/g against % values.
+At Flourish, I fixed the lab-certificate extraction of results below the limit of quantitation.
+At Flourish, I created deployment scripts and environment management across 15+ services.
 
 At Willow Inc (Oct 2021–Oct 2024), my title was Software Engineer.
 At Willow, I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL, over live and historical data.
