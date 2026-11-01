@@ -173,6 +173,8 @@ These add to the credo voice, for letters and screening answers.
 - Get into the work at once: no sweeping career opener, no positioning
   statement, no section headers such as "What I bring:", and no closing
   line that ties everything together.
+- An employer is described in the words its profile lines use, never by
+  an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
   job and with no "what it taught me".
 - The subject comes first and the verb early, as people speak: "I want to
