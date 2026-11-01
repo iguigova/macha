@@ -43,7 +43,8 @@ written into a document before it is in the profile.
 ## Render the PDFs
 
 Each document is an HTML file in `out/` linking
-`../jobs/templates/style.css`, which holds the look; the HTML holds only
+`../jobs/templates/style.css`, which holds the look, its colours and fonts
+imported from brand.css; the HTML holds only
 content in this markup:
 - Every document: `<header>` with `<h1>` name and `.contact`; `<main>`;
   `<footer>` with `.sites` (the three themed websites the profile names)

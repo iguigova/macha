@@ -1,29 +1,26 @@
-/* Shared look for the resume and cover letter, taken from urgh.weebly.com:
-   charcoal Arial title, taupe rule, burnt-orange links, a label column with
-   hairline dividers, and the dark footer band. */
+/* The print layout of the resume and cover letter. Their colours and fonts
+   come from brand.css, the look of urgh.weebly.com, imported into a layer so
+   every rule here wins over it; this file holds only the page sizes and the
+   layout. Rendering needs the network to fetch brand.css. */
+@import url("https://iguigova.github.io/brand.css") layer(brand);
 @page { size: Letter; margin: 0.5in 0.6in 0.45in; }
-:root {
-  --ink: #333333; --muted: #89817f; --link: #cc6714;
-  --taupe: #948979; --hair: #cccccc; --band: #575352;
-}
 * { box-sizing: border-box; }
 body {
   margin: 0; padding-bottom: 30pt;
-  font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
   font-size: 9.3pt; line-height: 1.42; color: var(--ink);
 }
 a { color: var(--link); text-decoration: none; }
-p { margin: 0; }
+p { margin: 0; max-width: none; }
 
 header { display: flex; justify-content: space-between; align-items: flex-end;
-  padding-bottom: 8pt; border-bottom: 3pt solid var(--taupe); margin-bottom: 12pt; }
+  padding-bottom: 8pt; border-bottom: 3pt solid var(--rule); margin-bottom: 12pt; }
 h1 { font-size: 24pt; font-weight: 400; margin: 0; line-height: 1; }
 .tagline { color: var(--muted); margin-top: 5pt; font-size: 9.5pt; }
 .contact { font-size: 8.3pt; color: var(--muted); text-align: right; line-height: 1.55; }
 
 section { display: grid; grid-template-columns: 0.95in 1fr; column-gap: 0.18in; margin-bottom: 11pt; }
 h2 { font-size: 8.8pt; font-weight: 400; color: var(--link); margin: 0;
-  padding: 0 0 2pt; border-bottom: 1px solid var(--hair); align-self: start; }
+  padding: 0 0 2pt; letter-spacing: normal; border-bottom: 1px solid var(--hair); align-self: start; }
 
 .entry { margin-bottom: 6.5pt; }
 .entry:last-child { margin-bottom: 0; }
@@ -31,9 +28,9 @@ h2 { font-size: 8.8pt; font-weight: 400; color: var(--link); margin: 0;
 .org { font-weight: 700; }
 .role { color: var(--muted); }
 .when { color: var(--muted); font-size: 8.3pt; white-space: nowrap; }
-ul { margin: 1.5pt 0 0; padding-left: 11pt; }
+ul { margin: 1.5pt 0 0; padding-left: 11pt; max-width: none; }
 li { margin-bottom: 2pt; }
-li::marker { color: var(--taupe); }
+li::marker { color: var(--rule); }
 dl { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 10pt; row-gap: 3pt; }
 dt { font-weight: 700; }
 dd { margin: 0; }
