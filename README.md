@@ -51,6 +51,8 @@ more than one fact or a redundant "professional".
 
 The profile is flat facts, one per line, in `jobs/profile/profile.txt`:
 identity, experience, career history, education and application answers.
+Experience is professional unless its line says otherwise, such as "from
+personal projects".
 Who the user is and how they work lives in `~/.claude/credo.md`, which the
 global CLAUDE.md loads in every project. The application voice and formats
 live in `/job:apply`. A fact appears once: a change updates its line,
