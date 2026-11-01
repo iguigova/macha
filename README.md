@@ -44,15 +44,16 @@ their look from `jobs/templates/style.css`. Every run ends with a journal
 entry closing the job's note with what happened, then checks the
 profile for contradictions, duplicates, copies, lines holding more than
 one fact and qualifiers that read as a limit, by the principles in the
-credo. `.claude/scripts/profile_lint.sh` lists the lines that may hold
-more than one fact or a redundant "professional".
+credo. `.claude/scripts/profile_lint.sh` lists the lines that join two
+sentences or two clauses, or carry a redundant "professional"; a list of
+facts joined by commas is found by reading.
 
 ## The profile
 
-The profile is flat facts, one per line, in `jobs/profile/profile.txt`:
-identity, experience, career history, education and application answers.
-Experience is professional unless its line says otherwise, such as "from
-personal projects".
+The profile is a set of single facts, one per line, in
+`jobs/profile/profile.txt`: identity, experience, career history, education
+and application answers. How a line's qualifiers are read is stated in
+`.claude/shared/apply.md` (Evidence).
 Who the user is and how they work lives in `~/.claude/credo.md`, which the
 global CLAUDE.md loads in every project. The application voice and formats
 live in `/job:apply`. A fact appears once: a change updates its line,

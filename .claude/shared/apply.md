@@ -11,7 +11,8 @@ where Claude Code is started.
 Every claim in every document and answer comes from a fact in
 `jobs/profile/profile.txt`, the GitHub site it names, or the credo the
 global CLAUDE.md loads; nothing is invented, and a requirement no fact
-covers is a gap, not a sentence.
+covers is a gap, not a sentence. Experience in the profile is paid work
+unless its line says otherwise, such as "from personal projects".
 
 ## Pick the posting
 
@@ -77,14 +78,16 @@ Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
 fact to a line: a fact about the user in `profile.txt`, a rule for
 application writing under the command's voice, and any other writing
-preference in `~/.claude/credo.md`. A fact never appears twice, and one that contradicts
-another line is asked about, never written beside it. A place or a
-qualifier such as "professional" or "personally" is written only where it
-is the whole truth, since a line that has one reads as a limit on the
-lines that lack it. A number is quoted exactly as the user or the source
-states it, and a mixed result is stated whole. A fact drawn from work names no customer, account ID, hostname or
-colleague. Commit at once, after each round of answers or corrections, the
-files changed alone with a message naming each fact changed:
+preference in `~/.claude/credo.md`. A fact never appears twice, and one
+that contradicts another line is asked about, never written beside it. A
+place, a date or a qualifier such as "professional" or "personally" is
+written only where it is the whole truth, since a line that has one reads
+as a limit on the lines that lack it. A number is quoted exactly as the
+user or the source states it, and a mixed result is stated whole. A fact
+drawn from work names no customer that is not public, and no account ID,
+hostname or colleague. Commit at once, after each round of answers or
+corrections, the files changed alone with a message naming each fact
+changed:
 ```bash
 git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/<kind>:apply.md
 ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
@@ -109,10 +112,11 @@ line numbers and both lines quoted:
 - two lines that contradict: a span of years against an employer's dates,
   a claim against a "no experience" line, one fact stated two ways;
 - a fact stated twice;
-- a line holding more than one fact;
-- a place or a qualifier one line carries and its like lines lack, which
-  reads as a limit nobody stated: "professional", "at <employer>",
-  "personally";
+- a line holding more than one fact, including facts joined into a list
+  by commas; a list of like things, such as interests, is one fact;
+- a place, a date or a qualifier that reads as a limit (Update the
+  profile);
+- a writing rule, which belongs where Update the profile puts it;
 - a fact copied outside `profile.txt`, found by grepping its value in
   `CLAUDE.md`, `README.md` and `.claude/`.
 
@@ -121,8 +125,9 @@ wrong line is deleted, or corrected only to what the user states; the
 check that found it never supplies the replacement. A line holding more
 than one fact is split, its wording kept. Ask about each qualifier, one
 question each: whether it is the whole truth; it is dropped or kept as
-the user states. A duplicate is removed, and a copy becomes a pointer to its file. Commit as in Update the
-profile. With nothing found, say what was checked. Then say it is a safe
+the user states. A duplicate is removed, a writing rule moved, and a copy
+becomes a pointer to its file. Commit as in Update the profile. With
+nothing found, say what was checked. Then say it is a safe
 point to `/compact`: the committed profile and the journal carry what the
 next application needs.
 

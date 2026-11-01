@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# profile_lint.sh — the lines of the profile that may break "one fact per
-# line", one row each: line number, rule, the line. It reports; the integrity
-# check judges each row, since a rule matches a pattern, not a meaning.
+# profile_lint.sh — the profile lines that match one of three shapes, one row
+# each: line number, rule, the line. It reports; the integrity check judges
+# each row, since a rule matches a pattern, not a meaning. Facts joined into
+# a list by commas match no rule; reading the profile finds those.
 #
 #   sentences     two sentences on one line. Quoted text and the
 #                 abbreviations B.Sc., St., Inc. and e.g. are skipped.
 #   clauses       a second clause joined by "and": ", and I", " and am".
 #   professional  "professional" on an experience line: "experience" or "I
-#                 have used". Experience is paid work unless its line says
-#                 otherwise, so the word reads as a limit on every line
-#                 without it.
+#                 have used". It reads as a limit, by the paid-work rule in
+#                 .claude/shared/apply.md (Evidence).
 #
 # Usage:
 #   profile_lint.sh [<profile>]   # default: jobs/profile/profile.txt
