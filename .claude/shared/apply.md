@@ -60,6 +60,7 @@ content in this markup:
 Print each, named for the user: `<Name>` is the profile's name with its
 spaces removed, and `<Doc>` the document, such as `Resume`.
 ```bash
+test -r ~/src/oceanhue/brand.css || { echo "no ~/src/oceanhue/brand.css: the PDFs would print unstyled" >&2; exit 1; }
 cd ~/src/oceanhue/macha/out
 google-chrome --headless --no-pdf-header-footer \
   --print-to-pdf=$PWD/<Name>_<Doc>.pdf file://$PWD/<doc>.html

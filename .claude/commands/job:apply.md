@@ -193,6 +193,5 @@ These add to the credo voice, for letters and screening answers.
   Skills; Experience, by employer and dates, without job titles, newest
   first, the bullets most relevant to the job first; Community;
   Philosophy, from the credo; Education.
-- Both documents share the look of the user's website urgh.weebly.com:
-  `jobs/templates/style.css` imports it from brand.css and adds the print
-  layout (step 5).
+- Both documents share the base style, `~/src/oceanhue/brand.css`:
+  `jobs/templates/style.css` imports it and adds the print layout (step 5).

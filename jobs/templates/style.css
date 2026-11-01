@@ -1,8 +1,8 @@
 /* The print layout of the resume and cover letter. Their colours and fonts
-   come from brand.css, the look of urgh.weebly.com, imported into a layer so
-   every rule here wins over it; this file holds only the page sizes and the
-   layout. Rendering needs the network to fetch brand.css. */
-@import url("https://iguigova.github.io/brand.css") layer(brand);
+   come from brand.css, the base style, at ~/src/oceanhue/brand.css, imported
+   into a layer, so every rule here wins over it.
+   This file holds only the page sizes and the layout. */
+@import url("../../../brand.css") layer(brand);
 @page { size: Letter; margin: 0.5in 0.6in 0.45in; }
 * { box-sizing: border-box; }
 body {
