@@ -1,10 +1,10 @@
 # Applying: the shared steps
 
-`/job:apply` and `/rfp:apply` read this file before their first step, and
-each of their steps that names a section here runs it as written. Each
-command names its kind, `job` or `rfp`, and its posting's name:
-`<Company> — <Role>` for a job, `<Buyer> — <Title>` for an RFP. Every path
-is relative to `~/src/oceanhue/macha`, where Claude Code is started.
+`/job:apply` reads this file before its first step, and each of its steps
+that names a section here runs it as written. A command that reads it
+names its kind and its posting's name: `/job:apply` names `job` and
+`<Company> — <Role>`. Every path is relative to `~/src/oceanhue/macha`,
+where Claude Code is started.
 
 ## Evidence
 
