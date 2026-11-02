@@ -307,11 +307,6 @@ My CV places PINpoint in Burlington, ON.
 My CV places Intelsys, Epoch Integration and Expert Tutors in Toronto.
 My CV places the Ministry of Tourism and Datecs in Sofia.
 
-In earlier work (2000–2002), I built a path-planning prototype.
-In earlier work (2000–2002), my path-planning prototype led to a Canadian Space Agency sub-contract.
-In earlier work (2000–2002), I worked on the robot simulation system that came from that sub-contract.
-In earlier work (2000–2002), I researched mobile web technologies.
-In earlier work (2000–2002), I built VRML models for peer-to-peer 3D design collaboration.
 At PINpoint, I implemented solutions for the GUI, configuration, error proofing and process control of floor operations in automotive assembly plants across North America.
 At PINpoint, I elicited software requirements.
 At PINpoint, I took part in product design reviews.
@@ -326,6 +321,11 @@ At PINpoint, I wrote the software that talked over the plant network, through so
 At PINpoint, I built the communication between the workstation clients and the central server.
 At Intelsys, I built web-based and hosted 3D graphics and networking applications.
 At Intelsys, I built a SolidWorks/AutoCAD plug-in for network communications.
+At Intelsys, I built a path-planning prototype.
+At Intelsys, my path-planning prototype led to a Canadian Space Agency sub-contract.
+At Intelsys, I worked on the robot simulation system that came from that sub-contract.
+At Intelsys, I built VRML models for peer-to-peer 3D design collaboration.
+At Epoch Integration, I researched mobile web technologies.
 At the Ministry of Tourism, I coordinated within PHARE.
 PHARE was an EU program with €650 million in assistance for Bulgaria.
 At Datecs, I did desktop publishing for 10 weekly newspapers and magazines.
@@ -397,6 +397,7 @@ Bennett Adams, CTO, Flourish Software.
 Esteban Astudillo, Co-founder, Bread & Butter IO.
 Matt McLean, Co-founder, Bread & Butter IO.
 Thierry LeVasseur, Founder & CEO, Logonlabs/DeliverySlip.
+Thierry LeVasseur founded both Logonlabs and DeliverySlip.
 Additional references available from Klein Systems Group, Vivonet, and PointyHat.
 
 My resume tagline is the one in ~/.claude/credo.md.
