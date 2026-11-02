@@ -1,7 +1,7 @@
 ---
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), Bash(.claude/scripts/profile_lint.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git -C ~/src/oceanhue/macha commit:*), Bash(test:*), Bash(exit:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), Bash(.claude/scripts/profile_lint.sh:*), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/shared/apply.md` first: its
@@ -15,9 +15,8 @@ the form, and the form before submit.
    description with `browser_evaluate` returning `document.body.innerText`:
    title, location rule, employment type, pay, requirements, preferred
    qualifications. If the page needs a login, tell the user and stop. If
-   the posting is gone or no longer open, the job is closed: close its
-   note (step 9) and stop. A Greenhouse, Ashby or Lever posting is closed when
-   `.claude/scripts/job_board.sh <ats> <board> <id>` exits 1.
+   the posting is gone or no longer open (Check at source), the job is
+   closed: close its note (step 9) and stop.
 
 3. **Draft.** Write three things, each from profile facts only and each
    following the credo voice and the application voice below:
@@ -34,8 +33,9 @@ the form, and the form before submit.
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
    continue to form" and "Skip"; revisions come through Other. On a
-   revision, redraft and pause again. On skip, close its note (step 9) and stop. A revision that states
-   a fact or a writing preference also updates the profile (step 8).
+   revision, redraft and pause again. On skip, close its note (step 9) and
+   stop. A revision that states a fact or a writing preference also
+   updates the profile (step 8).
 
 5. **Render the PDFs**, as Render the PDFs: `out/resume.html` and
    `out/cover_letter.html`, printed as `<Name>_Resume.pdf` and
@@ -58,8 +58,8 @@ the form, and the form before submit.
    never took and a label click can leave a radio unset; type into the
    field with `pressSequentially` and set a radio with
    `check({ force: true })` on its input. A refused submit lists each
-   field it found empty. A text field's `maxLength` is read before pasting into it, and
-   text that does not fit is shortened, never cut off. Then:
+   field it found empty. A text field's `maxLength` is read before pasting
+   into it, and text that does not fit is shortened, never cut off. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
    - Upload `out/<Name>_Resume.pdf`.
    - Cover letter: paste the text into a textarea, or upload
@@ -103,7 +103,8 @@ is a job like any other. The kind of work decides whether a posting fits; the
 preferred stack only ranks one posting above another and never excludes
 one.
 
-**Sources:**
+**Sources:** one that answers JSON is read with
+`curl -sS '<url>' | jq '<filter>'`.
 - **Company boards.** List the whole board of every company a lead names
   and every company a job note names, since one fitting posting often has
   siblings:
@@ -135,13 +136,15 @@ one.
   kind of work instead.
 
 **Check at source.** `.claude/scripts/job_board.sh <ats> <board> <id>`
-exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
-is closed. Anything else is checked on the posting page itself. Read the
-posting for its title, location rule, employment type, pay and stack. It
-fits if it can be done remotely from where the user may work, its pay
-reaches the profile's (a salary range the salary expectation, a contract
-or freelance rate the freelance rate) or it states none, and it is the
-kind of work the profile looks for, in any stack.
+exits 0 while a Greenhouse, Ashby or Lever posting is open, 1 once it is
+closed, and 4 when the board itself is not there, which says nothing
+about the posting: find the company's board under another ATS or name.
+Anything else is checked on the posting page itself. Read the posting for
+its title, location rule, employment type, pay and stack. It fits if it
+can be done remotely from where the user may work, its pay reaches the
+profile's (a salary range the salary expectation, a contract or freelance
+rate the freelance rate) or it states none, and it is the kind of work
+the profile looks for, in any stack.
 
 **Shortlist.** Rank by the kind of work first, then the preferred stack.
 The columns are company, role, location rule and pay. Each queued
