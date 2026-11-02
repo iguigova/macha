@@ -2,7 +2,6 @@ I am Ilka Guigova.
 I go by Ilka.
 My email is iguigova@gmail.com.
 My phone number is 604-338-4242.
-I live at 1253 Depot Rd, Brackendale, BC, Canada, V0N 1H0.
 The address I give on resumes, CVs and application forms is Vancouver, BC, Canada.
 My CV is at https://urgh.weebly.com/curriculum-vitae.html
 My LinkedIn is https://www.linkedin.com/in/iguigova/
@@ -45,7 +44,6 @@ I want to work less in .NET.
 Interesting work is what I look for.
 The stack is not a requirement for me.
 I am more of a nerd: technically deep problems suit me better.
-An RFP whose mandatory criteria require past contracts held as the bidder does not fit me.
 
 I work at a senior level.
 I have 20+ years of experience building systems where correctness matters.
@@ -65,7 +63,7 @@ I have 3+ years of C++ experience.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have studied Erlang.
-I have less than 1 year of Erlang experience.
+I have less than 1 year of Erlang experience from personal projects.
 I have used Python since 2025.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 

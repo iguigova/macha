@@ -8,5 +8,4 @@ README.md states the skills and how the profile changes.
   another file.
 - `out/` is scratch for the current application and is never committed.
 - A note captured under a `job: ` topic is a queued job, and `/job:apply`
-  is the skill that does it and closes it. A note under an `rfp: ` topic
-  is a queued RFP. README.md states the job log.
+  is the skill that does it and closes it. README.md states the job log.

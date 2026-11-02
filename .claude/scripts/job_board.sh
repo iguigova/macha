@@ -19,7 +19,8 @@
 #   job_board.sh <greenhouse|ashby|lever> <board> [<id>]
 #   job_board.sh --self-test   # checks the rows against fixtures, no network
 #   job_board.sh --help
-# Exit: 0 open, 1 closed, 2 usage, 3 any other HTTP answer, 4 no such board.
+# Exit: 0 open, 1 closed, 2 usage, 3 unreachable or any other HTTP answer,
+# 4 no such board.
 set -euo pipefail
 case "${1:-}" in -h|--help) awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, ""); print }' "$0"; exit 0 ;; esac
 
@@ -48,6 +49,10 @@ url() {
   esac
 }
 
+# get <url> [<body file>]: the HTTP code on stdout, 000 when curl got no answer,
+# so an unreachable host is a verdict rather than curl's own exit.
+get() { curl -sS -o "${2:-/dev/null}" -w '%{http_code}' "$1" || true; }
+
 # not_found <id> <board's HTTP code>: the verdict on a 404, its line on stderr
 # and its exit. Without an id, or with an Ashby id, the 404 was the board's own.
 not_found() {
@@ -66,11 +71,12 @@ if [[ "${1:-}" == "--self-test" ]]; then
   want+=$'a1\tSRE\tToronto; Canada\tRemote\tCA$150K - CA$190K\thttps://a.example/a1\n'
   lrow=$'l1\tBackend\tVancouver; Remote\tremote\tCAD 140000–180000 per-year-salary\thttps://l.example/l1'
   want+="$lrow"$'\n'"$lrow"
-  verdicts=$(for c in 9:200 9:404 9:500 :404; do
+  verdicts=$(for c in 9:200 9:404 9:500 9:000 :404; do
     v=$(not_found "${c%%:*}" "${c#*:}") && st=0 || st=$?; echo "$v $st"; done)
-  want_v=$'closed 1\nno board 4\nboard answered HTTP 500 3\nno board 4'
-  if [[ "$got" == "$want" && "$verdicts" == "$want_v" && "$(url ashby x 9)" != *9* ]]; then
-    echo "job_board self-test: PASS (a board and one posting to rows for each ATS; an Ashby id looked up in its board; a 404 is closed only when the board answers)"
+  want_v=$'closed 1\nno board 4\nboard answered HTTP 500 3\nboard answered HTTP 000 3\nno board 4'
+  if [[ "$got" == "$want" && "$verdicts" == "$want_v" && "$(url ashby x 9)" != *9* \
+        && "$(get http://127.0.0.1:9/ 2>/dev/null)" == 000 ]]; then
+    echo "job_board self-test: PASS (a board and one posting to rows for each ATS; an Ashby id looked up in its board; a 404 is closed only when the board answers; an unreachable host answers 000, never closed)"
     exit 0
   fi
   printf 'job_board self-test: FAIL\n  want:\n%s\n%s\n  got:\n%s\n%s\n' "$want" "$want_v" "$got" "$verdicts" >&2
@@ -82,15 +88,16 @@ fi
 ats=$1 board=$2 id=${3:-}
 
 body=$(mktemp); trap 'rm -f "$body"' EXIT
-code=$(curl -sS -o "$body" -w '%{http_code}' "$(url "$ats" "$board" "$id")")
+code=$(get "$(url "$ats" "$board" "$id")" "$body")
 case "$code" in
   200) ;;
   404) board_code=404
        if [[ -n "$id" && "$ats" != ashby ]]; then
-         board_code=$(curl -sS -o /dev/null -w '%{http_code}' "$(url "$ats" "$board")")
+         board_code=$(get "$(url "$ats" "$board")")
        fi
        st=0; verdict=$(not_found "$id" "$board_code") || st=$?
        echo "$verdict: $ats $board${id:+ $id}" >&2; exit "$st" ;;
+  000) echo "job_board.sh: $ats $board unreachable" >&2; exit 3 ;;
   *)   echo "job_board.sh: $ats $board answered HTTP $code" >&2; exit 3 ;;
 esac
 

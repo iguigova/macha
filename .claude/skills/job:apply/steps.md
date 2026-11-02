@@ -1,10 +1,8 @@
-# Applying: the shared steps
+# Applying: the named steps
 
-`/job:apply` reads this file before its first step, and each of its steps
-that names a section here runs it as written. A skill that reads it
-names its kind and its posting's name: `/job:apply` names `job` and
-`<Company> — <Role>`. Every path is relative to `~/src/oceanhue/macha`,
-where Claude Code is started.
+Each step of `/job:apply` that names a section here runs it as written.
+Every path is relative to `~/src/oceanhue/macha`, where Claude Code is
+started.
 
 ## Evidence
 
@@ -17,16 +15,16 @@ unless its line says otherwise, such as "from personal projects".
 ## Pick the posting
 
 Read `jobs/profile/profile.txt` in full, and the GitHub site it names. A
-queued posting is a note, `<name>: <url>`, captured under a
-`<kind>: <name>` topic; list them with
+queued posting is a note, `<Company> — <Role>: <url>`, captured under a
+`job: <Company> — <Role>` topic; list them with
 ```bash
-~/.claude/scripts/journal_queue.sh --topic "<kind>: "
+~/.claude/scripts/journal_queue.sh --topic "job: "
 ```
 The argument is a URL, or a queued note's id; with none, take the first
 row, the oldest. A URL that a queued note carries is that posting. With no
 argument and no queued posting, run the skill's search, queue the
 postings the user approves, and take the first. A URL that a closed note
-carries, `journal_queue.sh --closed --topic "<kind>: "`, has been seen
+carries, `journal_queue.sh --closed --topic "job: "`, has been seen
 before: name its note and where it went to the user and ask before going
 on. A URL no note carries is queued first (Queue the approved postings), so
 every posting is a note.
@@ -90,7 +88,7 @@ hostname or colleague. Commit at once, after each round of answers or
 corrections, the files changed alone with a message naming each fact
 changed:
 ```bash
-git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/skills/<kind>:apply/SKILL.md
+git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/skills/job:apply/SKILL.md
 ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
 ```
 
@@ -100,7 +98,7 @@ Every run ends with one journal entry under the posting's topic that
 closes its note, its reason what happened: applied, the posting found
 closed, or skipped and why.
 ```bash
-~/.claude/scripts/journal.sh --via /<kind>:apply -t "<kind>: <name>" \
+~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
   -b "<what happened, and what the page showed>" \
   --placed "<id>: - — <what happened>"
 ```
@@ -140,8 +138,8 @@ rules. Nothing outside the profile narrows it.
 1. **Read the postings already seen**, open and closed; each note carries
    its URL:
    ```bash
-   ~/.claude/scripts/journal_queue.sh --topic "<kind>: "
-   ~/.claude/scripts/journal_queue.sh --closed --topic "<kind>: "
+   ~/.claude/scripts/journal_queue.sh --topic "job: "
+   ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
    ```
    Every candidate is held against them.
 
@@ -152,13 +150,13 @@ rules. Nothing outside the profile narrows it.
    posting is the fact. Follow each lead to the posting itself, confirm it
    is open, and read it for what the skill's fit rules weigh. Keep it
    only if it is open and passes them. A posting whose URL a note carries
-   is dropped. A posting from a company or buyer a note names is kept and
+   is dropped. A posting from a company a note names is kept and
    marked with that note, so the user decides.
 
 4. **PAUSE — the shortlist.** Rank by fit, closest first, by the skill's
    ranking. Show one table: rank, the posting's name, the columns the
    skill names, the profile facts it fits, the note it shares a company
-   or buyer with if any, and the URL. Under it, list each source and how
+   with if any, and the URL. Under it, list each source and how
    many candidates it gave, and each source that failed. Then
    `AskUserQuestion`: "Queue which of these?" with options "All" and
    "None"; a choice of ranks comes through Other. On None, the run stops
@@ -167,9 +165,9 @@ rules. Nothing outside the profile narrows it.
 5. **Queue the approved postings**, one journal call each, best fit first,
    so the best fit is the oldest note and the first one taken:
    ```bash
-   ~/.claude/scripts/journal.sh --via /<kind>:apply -t "<kind>: <name>" \
+   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
      -b "<url> — <what the skill's fit rules found>; fits <the facts it fits>" \
-     -n "<name>: <url>"
+     -n "<Company> — <Role>: <url>"
    ```
-   Then show the queue with `journal_queue.sh --topic "<kind>: " --show`
+   Then show the queue with `journal_queue.sh --topic "job: " --show`
    and take its first row.

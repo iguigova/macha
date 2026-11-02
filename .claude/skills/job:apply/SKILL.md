@@ -5,10 +5,9 @@ argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
 allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git -C ~/src/oceanhue/macha commit:*), Bash(test:*), Bash(exit:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), Bash(.claude/scripts/profile_lint.sh:*), AskUserQuestion
 ---
 
-Apply to one job: $ARGUMENTS. Read `.claude/shared/apply.md` first: its
-sections are the steps below that name one, run for the kind `job`, the
-name `<Company> — <Role>`. The user approves twice: the documents before
-the form, and the form before submit.
+Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
+first: its sections are the steps below that name one. The user approves
+twice: the documents before the form, and the form before submit.
 
 1. **Pick the job**, as Pick the posting.
 
@@ -150,12 +149,6 @@ the profile looks for, in any stack.
 **Shortlist.** Rank by the kind of work first, then the preferred stack.
 The columns are company, role, location rule and pay. Each queued
 note's first bullet carries `<location rule>, <pay>`.
-
-**A contract won.** A public-sector RFP scores the bidder's own past
-contracts, so a freelance or contract job the user wins and finishes is
-recorded in `profile.txt` as one line: the client, its staff count, the
-dates, the value and a reference. Each comes from the user (Update the
-profile).
 
 ## Application voice
 

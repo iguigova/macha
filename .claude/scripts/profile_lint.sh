@@ -9,7 +9,7 @@
 #   clauses       a second clause joined by "and": ", and I", " and am".
 #   professional  "professional" on an experience line: "experience" or "I
 #                 have used". It reads as a limit, by the paid-work rule in
-#                 .claude/shared/apply.md (Evidence).
+#                 .claude/skills/job:apply/steps.md (Evidence).
 #
 # Usage:
 #   profile_lint.sh [<profile>]   # default: jobs/profile/profile.txt
