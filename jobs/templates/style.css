@@ -1,8 +1,10 @@
 /* The print layout of the resume and cover letter. Their colours and fonts
    come from brand.css, the base style, at ~/src/oceanhue/brand.css, imported
    into a layer, so every rule here wins over it.
-   This file holds only the page sizes and the layout. */
+   This file holds only the page sizes and the layout, and prints in the
+   light theme whatever theme the machine prefers. */
 @import url("../../../brand.css") layer(brand);
+:root { color-scheme: light; }
 @page { size: Letter; margin: 0.5in 0.6in 0.45in; }
 * { box-sizing: border-box; }
 body {
