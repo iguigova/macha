@@ -25,9 +25,10 @@ row, the oldest. A URL that a queued note carries is that posting. With no
 argument and no queued posting, run the search in `/job:apply`'s
 Finding jobs, which queues the postings the user approves and takes the
 first. A URL that a closed note carries,
-`journal_queue.sh --closed --topic "job: "`, has been seen before: name its note
-and where it went to the user and ask before going on. A URL no note carries is queued first, as Finding jobs queues an
-approved posting, so every posting is a note.
+`journal_queue.sh --closed --topic "job: "`, has been seen before:
+name its note and where it went to the user and ask before going on. A
+URL no note carries is queued first, as Finding jobs queues an approved
+posting, so every posting is a note.
 
 ## Ask for what the profile lacks
 
@@ -76,8 +77,8 @@ only the current application and is overwritten each run.
 Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
 fact to a line: a fact about the user in `profile.txt`, a rule for
-application writing under Application voice in `/job:apply`, and any other writing
-preference in `~/.claude/credo.md`. A fact never appears twice, and one
+application writing under Application voice in `/job:apply`, and any
+other writing preference in `~/.claude/credo.md`. A fact never appears twice, and one
 that contradicts another line is asked about, never written beside it. A
 place, a date or a qualifier such as "professional" or "personally" is
 written only where it is the whole truth, since a line that has one reads
