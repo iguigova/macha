@@ -78,16 +78,16 @@ Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
 fact to a line: a fact about the user in `profile.txt`, a rule for
 application writing under Application voice in `/job:apply`, and any
-other writing preference in `~/.claude/credo.md`. A fact never appears twice, and one
-that contradicts another line is asked about, never written beside it. A
-place, a date or a qualifier such as "professional" or "personally" is
-written only where it is the whole truth, since a line that has one reads
-as a limit on the lines that lack it. A number is quoted exactly as the
-user or the source states it, and a mixed result is stated whole. A fact
-drawn from work names no customer that is not public, and no account ID,
-hostname or colleague. Commit at once, after each round of answers or
-corrections, the files changed alone with a message naming each fact
-changed:
+other writing preference in `~/.claude/credo.md`. A fact never appears
+twice, and one that contradicts another line is asked about, never
+written beside it. A place, a date or a qualifier such as "professional"
+or "personally" is written only where it is the whole truth, since a
+line that has one reads as a limit on the lines that lack it. A number
+is quoted exactly as the user or the source states it, and a mixed
+result is stated whole. A fact drawn from work names no customer that is
+not public, and no account ID, hostname or colleague. Commit at once,
+after each round of answers or corrections, the files changed alone with
+a message naming each fact changed:
 ```bash
 git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/skills/job:apply/SKILL.md
 ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
