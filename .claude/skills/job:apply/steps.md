@@ -22,12 +22,12 @@ queued posting is a note, `<Company> — <Role>: <url>`, captured under a
 ```
 The argument is a URL, or a queued note's id; with none, take the first
 row, the oldest. A URL that a queued note carries is that posting. With no
-argument and no queued posting, run the skill's search, queue the
-postings the user approves, and take the first. A URL that a closed note
-carries, `journal_queue.sh --closed --topic "job: "`, has been seen
-before: name its note and where it went to the user and ask before going
-on. A URL no note carries is queued first (Queue the approved postings), so
-every posting is a note.
+argument and no queued posting, run the search in `/job:apply`'s
+Finding jobs, which queues the postings the user approves and takes the
+first. A URL that a closed note carries,
+`journal_queue.sh --closed --topic "job: "`, has been seen before: name its note
+and where it went to the user and ask before going on. A URL no note carries is queued first, as Finding jobs queues an
+approved posting, so every posting is a note.
 
 ## Ask for what the profile lacks
 
@@ -63,7 +63,7 @@ cd ~/src/oceanhue/macha/out
 google-chrome --headless --no-pdf-header-footer \
   --print-to-pdf=$PWD/<Name>_<Doc>.pdf file://$PWD/<doc>.html
 ```
-`pdfinfo` must report no more pages than the skill's format allows; when
+`pdfinfo` must report no more pages than Application formats allows; when
 it reports more, `pdftotext -f <first page over>` shows what spilled. Fit
 by balance: reword a line that leaves one word on the next, then adjust
 spacing in the stylesheet; a fact the posting weighs is never dropped to
@@ -76,7 +76,7 @@ only the current application and is overwritten each run.
 Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
 fact to a line: a fact about the user in `profile.txt`, a rule for
-application writing under the skill's voice, and any other writing
+application writing under Application voice in `/job:apply`, and any other writing
 preference in `~/.claude/credo.md`. A fact never appears twice, and one
 that contradicts another line is asked about, never written beside it. A
 place, a date or a qualifier such as "professional" or "personally" is
@@ -129,45 +129,3 @@ becomes a pointer to its file. Commit as in Update the profile. With
 nothing found, say what was checked. Then say it is a safe
 point to `/compact`: the committed profile and the journal carry what the
 next application needs.
-
-## Searching
-
-A search fills an empty queue, from the skill's sources and by its fit
-rules. Nothing outside the profile narrows it.
-
-1. **Read the postings already seen**, open and closed; each note carries
-   its URL:
-   ```bash
-   ~/.claude/scripts/journal_queue.sh --topic "job: "
-   ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
-   ```
-   Every candidate is held against them.
-
-2. **Search every source** the skill lists, and note a source that
-   failed rather than dropping it silently.
-
-3. **Check each candidate at its source.** A listing is a lead; the
-   posting is the fact. Follow each lead to the posting itself, confirm it
-   is open, and read it for what the skill's fit rules weigh. Keep it
-   only if it is open and passes them. A posting whose URL a note carries
-   is dropped. A posting from a company a note names is kept and
-   marked with that note, so the user decides.
-
-4. **PAUSE — the shortlist.** Rank by fit, closest first, by the skill's
-   ranking. Show one table: rank, the posting's name, the columns the
-   skill names, the profile facts it fits, the note it shares a company
-   with if any, and the URL. Under it, list each source and how
-   many candidates it gave, and each source that failed. Then
-   `AskUserQuestion`: "Queue which of these?" with options "All" and
-   "None"; a choice of ranks comes through Other. On None, the run stops
-   with nothing queued.
-
-5. **Queue the approved postings**, one journal call each, best fit first,
-   so the best fit is the oldest note and the first one taken:
-   ```bash
-   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "<url> — <what the skill's fit rules found>; fits <the facts it fits>" \
-     -n "<Company> — <Role>: <url>"
-   ```
-   Then show the queue with `journal_queue.sh --topic "job: " --show`
-   and take its first row.

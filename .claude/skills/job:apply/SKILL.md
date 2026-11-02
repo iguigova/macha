@@ -2,7 +2,7 @@
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl:*), Bash(jq:*), Read, Write, Edit, Bash(google-chrome:*), Bash(pdfinfo:*), Bash(pdftotext:*), Bash(pdftoppm:*), Bash(git -C ~/src/oceanhue/macha commit:*), Bash(test:*), Bash(exit:*), Bash(~/.claude/scripts/tooling_commit.sh:*), Bash(~/.claude/scripts/journal.sh:*), Bash(~/.claude/scripts/journal_queue.sh:*), Bash(.claude/scripts/job_board.sh:*), Bash(.claude/scripts/profile_lint.sh:*), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(git -C ~/src/oceanhue/macha commit *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
@@ -95,13 +95,48 @@ twice: the documents before the form, and the form before submit.
 
 ## Finding jobs
 
-A search runs as Searching. It follows the profile's facts: where the
+A search fills an empty queue. It follows the profile's facts: where the
 user lives, where they may work without sponsorship, that they work only
 remotely, the salary expectation, the freelance rate, the kind of work
-they look for, and the stack they prefer. A freelance or contract posting
-is a job like any other. The kind of work decides whether a posting fits; the
-preferred stack only ranks one posting above another and never excludes
-one.
+they look for, and the stack they prefer; nothing outside the profile
+narrows it. A freelance or contract posting is a job like any other. The
+kind of work decides whether a posting fits; the preferred stack only
+ranks one posting above another and never excludes one.
+
+1. **Read the postings already seen**, open and closed; each note carries
+   its URL:
+   ```bash
+   ~/.claude/scripts/journal_queue.sh --topic "job: "
+   ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
+   ```
+   Every candidate is held against them.
+
+2. **Search every source** under Sources, and note a source that failed
+   rather than dropping it silently.
+
+3. **Check each candidate at its source.** A listing is a lead; the
+   posting is the fact. Follow each lead to the posting itself and keep it
+   only if Check at source finds it open and fitting. A posting whose URL
+   a note carries is dropped. A posting from a company a note names is
+   kept and marked with that note, so the user decides.
+
+4. **PAUSE — the shortlist.** Rank as Shortlist states. Show one table:
+   rank, the posting's name, the columns Shortlist names, the profile
+   facts it fits, the note it shares a company with if any, and the URL.
+   Under it, list each source and how many candidates it gave, and each
+   source that failed. Then `AskUserQuestion`: "Queue which of these?"
+   with options "All" and "None"; a choice of ranks comes through Other.
+   On None, the run stops with nothing queued.
+
+5. **Queue the approved postings**, one journal call each, best fit first,
+   so the best fit is the oldest note and the first one taken:
+   ```bash
+   ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
+     -b "<url> — <location rule>, <pay>; fits <the facts it fits>" \
+     -n "<Company> — <Role>: <url>"
+   ```
+   Then show the queue with `journal_queue.sh --topic "job: " --show`
+   and take its first row.
 
 **Sources:** one that answers JSON is read with
 `curl -sS '<url>' | jq '<filter>'`.
@@ -136,10 +171,11 @@ one.
   kind of work instead.
 
 **Check at source.** `.claude/scripts/job_board.sh <ats> <board> <id>`
-exits 0 while a Greenhouse, Ashby or Lever posting is open, 1 once it is
-closed, and 4 when the board itself is not there, which says nothing
-about the posting: find the company's board under another ATS or name.
-Anything else is checked on the posting page itself. Read the posting for
+exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
+is closed. Exit 4, the board itself is not there, and exit 3, its API
+did not answer or answered otherwise, say nothing about the posting: on
+4 find the company's board under another ATS or name, and on 3 read the
+posting page. A posting on any other site is checked on its page. Read the posting for
 its title, location rule, employment type, pay and stack. It fits if it
 can be done remotely from where the user may work, its pay reaches the
 profile's (a salary range the salary expectation, a contract or freelance
@@ -147,8 +183,7 @@ rate the freelance rate) or it states none, and it is the kind of work
 the profile looks for, in any stack.
 
 **Shortlist.** Rank by the kind of work first, then the preferred stack.
-The columns are company, role, location rule and pay. Each queued
-note's first bullet carries `<location rule>, <pay>`.
+The columns are company, role, location rule and pay.
 
 ## Application voice
 

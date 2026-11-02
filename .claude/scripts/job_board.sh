@@ -59,6 +59,7 @@ not_found() {
   local id=$1 board_code=$2
   if [[ -n "$id" && "$board_code" == 200 ]]; then echo "closed"; return 1; fi
   if [[ "$board_code" == 404 ]]; then echo "no board"; return 4; fi
+  if [[ "$board_code" == 000 ]]; then echo "board unreachable"; return 3; fi
   echo "board answered HTTP $board_code"; return 3
 }
 
@@ -73,7 +74,7 @@ if [[ "${1:-}" == "--self-test" ]]; then
   want+="$lrow"$'\n'"$lrow"
   verdicts=$(for c in 9:200 9:404 9:500 9:000 :404; do
     v=$(not_found "${c%%:*}" "${c#*:}") && st=0 || st=$?; echo "$v $st"; done)
-  want_v=$'closed 1\nno board 4\nboard answered HTTP 500 3\nboard answered HTTP 000 3\nno board 4'
+  want_v=$'closed 1\nno board 4\nboard answered HTTP 500 3\nboard unreachable 3\nno board 4'
   if [[ "$got" == "$want" && "$verdicts" == "$want_v" && "$(url ashby x 9)" != *9* \
         && "$(get http://127.0.0.1:9/ 2>/dev/null)" == 000 ]]; then
     echo "job_board self-test: PASS (a board and one posting to rows for each ATS; an Ashby id looked up in its board; a 404 is closed only when the board answers; an unreachable host answers 000, never closed)"
