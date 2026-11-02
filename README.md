@@ -11,15 +11,15 @@ claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/m
 cd ~/src/oceanhue/macha && claude
 ```
 
-The commands live in `.claude/commands/` and load when Claude Code starts
+The skills live in `.claude/skills/` and load when Claude Code starts
 in this directory. The steps applying shares across kinds, from picking a
 queued posting to closing its note, live once in `.claude/shared/apply.md`,
-which each apply command reads first.
+which each apply skill reads first.
 
 The browser keeps its logins, so a site that needs one (LinkedIn, an ATS)
 is logged into by hand once.
 
-## Commands
+## Skills
 
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
@@ -76,7 +76,7 @@ the journal writer takes those topics without a ticket key.
 A note is open while the job or RFP waits, and closed by `--placed` with
 what happened: applied, the posting found closed, or skipped and why.
 `/job:apply` with no argument takes the oldest open job note and closes it;
-no command applies to an RFP yet. The queue lists each kind's open notes,
+no skill applies to an RFP yet. The queue lists each kind's open notes,
 and with `--closed` its closed ones; `rfp: ` lists the RFPs the same way:
 
 ```bash

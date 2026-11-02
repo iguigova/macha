@@ -1,7 +1,7 @@
 # Applying: the shared steps
 
 `/job:apply` reads this file before its first step, and each of its steps
-that names a section here runs it as written. A command that reads it
+that names a section here runs it as written. A skill that reads it
 names its kind and its posting's name: `/job:apply` names `job` and
 `<Company> — <Role>`. Every path is relative to `~/src/oceanhue/macha`,
 where Claude Code is started.
@@ -24,7 +24,7 @@ queued posting is a note, `<name>: <url>`, captured under a
 ```
 The argument is a URL, or a queued note's id; with none, take the first
 row, the oldest. A URL that a queued note carries is that posting. With no
-argument and no queued posting, run the command's search, queue the
+argument and no queued posting, run the skill's search, queue the
 postings the user approves, and take the first. A URL that a closed note
 carries, `journal_queue.sh --closed --topic "<kind>: "`, has been seen
 before: name its note and where it went to the user and ask before going
@@ -65,7 +65,7 @@ cd ~/src/oceanhue/macha/out
 google-chrome --headless --no-pdf-header-footer \
   --print-to-pdf=$PWD/<Name>_<Doc>.pdf file://$PWD/<doc>.html
 ```
-`pdfinfo` must report no more pages than the command's format allows; when
+`pdfinfo` must report no more pages than the skill's format allows; when
 it reports more, `pdftotext -f <first page over>` shows what spilled. Fit
 by balance: reword a line that leaves one word on the next, then adjust
 spacing in the stylesheet; a fact the posting weighs is never dropped to
@@ -78,7 +78,7 @@ only the current application and is overwritten each run.
 Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
 fact to a line: a fact about the user in `profile.txt`, a rule for
-application writing under the command's voice, and any other writing
+application writing under the skill's voice, and any other writing
 preference in `~/.claude/credo.md`. A fact never appears twice, and one
 that contradicts another line is asked about, never written beside it. A
 place, a date or a qualifier such as "professional" or "personally" is
@@ -90,7 +90,7 @@ hostname or colleague. Commit at once, after each round of answers or
 corrections, the files changed alone with a message naming each fact
 changed:
 ```bash
-git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/commands/<kind>:apply.md
+git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/skills/<kind>:apply/SKILL.md
 ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
 ```
 
@@ -134,7 +134,7 @@ next application needs.
 
 ## Searching
 
-A search fills an empty queue, from the command's sources and by its fit
+A search fills an empty queue, from the skill's sources and by its fit
 rules. Nothing outside the profile narrows it.
 
 1. **Read the postings already seen**, open and closed; each note carries
@@ -145,19 +145,19 @@ rules. Nothing outside the profile narrows it.
    ```
    Every candidate is held against them.
 
-2. **Search every source** the command lists, and note a source that
+2. **Search every source** the skill lists, and note a source that
    failed rather than dropping it silently.
 
 3. **Check each candidate at its source.** A listing is a lead; the
    posting is the fact. Follow each lead to the posting itself, confirm it
-   is open, and read it for what the command's fit rules weigh. Keep it
+   is open, and read it for what the skill's fit rules weigh. Keep it
    only if it is open and passes them. A posting whose URL a note carries
    is dropped. A posting from a company or buyer a note names is kept and
    marked with that note, so the user decides.
 
-4. **PAUSE — the shortlist.** Rank by fit, closest first, by the command's
+4. **PAUSE — the shortlist.** Rank by fit, closest first, by the skill's
    ranking. Show one table: rank, the posting's name, the columns the
-   command names, the profile facts it fits, the note it shares a company
+   skill names, the profile facts it fits, the note it shares a company
    or buyer with if any, and the URL. Under it, list each source and how
    many candidates it gave, and each source that failed. Then
    `AskUserQuestion`: "Queue which of these?" with options "All" and
@@ -168,7 +168,7 @@ rules. Nothing outside the profile narrows it.
    so the best fit is the oldest note and the first one taken:
    ```bash
    ~/.claude/scripts/journal.sh --via /<kind>:apply -t "<kind>: <name>" \
-     -b "<url> — <what the command's fit rules found>; fits <the facts it fits>" \
+     -b "<url> — <what the skill's fit rules found>; fits <the facts it fits>" \
      -n "<name>: <url>"
    ```
    Then show the queue with `journal_queue.sh --topic "<kind>: " --show`
