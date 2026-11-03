@@ -26,8 +26,9 @@ is logged into by hand once.
 
 With no argument and an empty queue, `/job:apply` first searches company
 boards, HN Who's Hiring, the remote job boards and LinkedIn. It keeps a
-posting for the kind of work the profile looks for, in any stack; the
-preferred stack only ranks it. It confirms each posting is open at its
+posting for the kind of work the profile looks for, in any stack. Niche
+postings, a small company with one specific, unusual problem, rank first;
+the preferred stack only ranks after that. It confirms each posting is open at its
 source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or

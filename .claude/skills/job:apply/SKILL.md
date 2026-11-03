@@ -134,9 +134,8 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 
 **Sources:** one that answers JSON is read with
 `curl -sS '<url>' | jq '<filter>'`.
-- **Company boards.** List the whole board of every company a lead names
-  and every company a job note names, since one fitting posting often has
-  siblings:
+- **Company boards.** List the whole board of every company a lead names,
+  since one fitting posting often has siblings:
   ```bash
   .claude/scripts/job_board.sh <greenhouse|ashby|lever> <board>
   ```
@@ -159,7 +158,10 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
   from the past week:
   `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
   Signed out, it still lists jobs; a login wall means the user logs in by
-  hand, so say so and go on.
+  hand, so say so and go on. Signed in, it redirects to
+  `/jobs/search-results/`, which can drop the location and remote filters,
+  so each card's location is read. Its "Posted" age counts a repost; the
+  posting's board gives its first date.
 - **Anything else** a `WebSearch` turns up that fits, named by where it
   came from. A `site:` filter in the query is ignored, so search by the
   kind of work instead.
@@ -176,8 +178,13 @@ profile's (a salary range the salary expectation, a contract or freelance
 rate the freelance rate) or it states none, and it is the kind of work
 the profile looks for, in any stack.
 
-**Shortlist.** Rank by the kind of work first, then the preferred stack.
-The columns are company, role, location rule and pay.
+**Shortlist.** Niche postings rank first: a small company, whose board
+lists about 30 open postings or fewer, with one specific, unusual
+problem. A posting from a larger board ranks below them unless its
+problem is itself rare. Then rank by the kind of work, then the
+preferred stack. A board's size is the row count of
+`job_board.sh <ats> <board>`, or the postings its careers page lists.
+The columns are company, role, board size, location rule and pay.
 
 ## Application voice
 
