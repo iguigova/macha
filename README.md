@@ -78,6 +78,4 @@ The queue lists the open job notes, and with `--closed` the closed ones:
 ~/.claude/scripts/journal_queue.sh --closed --topic "job: " --show
 ```
 
-A freelance or contract posting is a job, and so is a public-sector
-contract working through a firm on a federal supply list (TBIPS): each is
-found and applied to as one.
+A freelance or contract posting is a job: it is found and applied to as one.

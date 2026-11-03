@@ -95,13 +95,7 @@ twice: the documents before the form, and the form before submit.
 
 ## Finding jobs
 
-A search fills an empty queue. It follows the profile's facts: where the
-user lives, where they may work without sponsorship, that they work only
-remotely, the salary expectation, the freelance rate, the kind of work
-they look for, and the stack they prefer; nothing outside the profile
-narrows it. A freelance or contract posting is a job like any other. The
-kind of work decides whether a posting fits; the preferred stack only
-ranks one posting above another and never excludes one.
+A search fills an empty queue. Only the profile's facts narrow it, as Check at source and Shortlist apply them.
 
 1. **Read the postings already seen**, open and closed; each note carries
    its URL:
