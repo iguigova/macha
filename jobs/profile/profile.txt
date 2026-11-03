@@ -62,13 +62,16 @@ I have 5+ years of Delphi/Pascal experience from Klein and earlier roles.
 I have 3+ years of C++ experience.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
+I have used property-based testing in personal projects (Haskell/Clojure).
 I have studied Erlang.
 I have less than 1 year of Erlang experience from personal projects.
+I have no Rust experience.
 I have used Python since 2025.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
 I have 8+ years of full-stack experience.
 I have 15+ years of REST API design and development experience.
+I have working knowledge of HTTP and TLS.
 I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Server, Oracle).
 I have 5+ years of Redis/Memcached experience.
 I have 3+ years of MongoDB experience.
@@ -158,6 +161,7 @@ At Flourish, I worked on a regulatory compliance platform.
 At Flourish, the platform served 1,000+ licensed facilities across multiple US states.
 At Flourish, the backend was Node.js/TypeScript and Go.
 At Flourish, most of my backend work was in Go.
+At Flourish, I built concurrent Go services with goroutines, channels and context cancellation.
 At Flourish, the frontend was Angular/TypeScript.
 At Flourish, the frontend used Angular 7 with Kendo UI components.
 At Flourish, the platform had 15+ microservices.
