@@ -59,7 +59,9 @@ twice: the documents before the form, and the form before submit.
    field with `pressSequentially` and set a radio with
    `check({ force: true })` on its input. A refused submit lists each
    field it found empty. A text field's `maxLength` is read before pasting
-   into it, and text that does not fit is shortened, never cut off. Then:
+   into it, and text that does not fit is shortened, never cut off. Each
+   field's help text is read before it is filled, and a field that asks
+   bots not to answer goes to the user, who decides. Then:
    - Identity: name, email, phone, location, LinkedIn, GitHub, website.
    - Upload `out/<Name>_Resume.pdf`.
    - Cover letter: paste the text into a textarea, or upload
