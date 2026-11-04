@@ -224,12 +224,10 @@ These add to the credo voice, for letters and screening answers.
 
 ## Application formats
 
-- **Cover letter** — written for a busy reader, read in under a minute,
-  to make the user stand out. It is not a full account: the resume
-  carries the rest. Flow: the role in one line; then the two or three
-  highlights that matter most to this role, each a concrete thing the
-  user built or did and what came of it; then the gap that matters most,
-  in one sentence; then "Thank you for your time and consideration."
+- **Cover letter** — one page at most. Flow: the role and why this
+  company, then concrete project examples, then the gaps stated honestly
+  with how the user would close them, then "Thank you for your time and
+  consideration."
 - **Screening answer** — 3–5 sentences stating what the user built.
 - **Resume** — one page at most, made for each job. Header: name, the
   tagline from the credo, the address `profile.txt` gives the resume,
