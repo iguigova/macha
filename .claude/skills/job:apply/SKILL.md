@@ -212,6 +212,13 @@ These add to the credo voice, for letters and screening answers.
   job and with no "what it taught me".
 - The subject comes first and the verb early, as people speak: "I want to
   write more Go", never "Go is the stack I want to work in".
+- Every sentence carries its weight: it tells this reader something new
+  that matters to this role, or it is cut.
+- Read each sentence aloud as the user, saying it to one person. A
+  sentence she would not say is rewritten or cut.
+- A letter shows who the user is through one of the profile's lines about
+  herself — what suits her, what she reads, how she describes herself —
+  where it truly connects to the role. No feeling is invented.
 
 ## Application formats
 
