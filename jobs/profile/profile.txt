@@ -51,6 +51,7 @@ I am a polyglot.
 I have worked professionally in 10+ programming languages.
 
 I have 1 year of Go experience, at Flourish.
+I learned Go at Flourish.
 My programming language of choice is Go.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
@@ -66,6 +67,8 @@ I have used property-based testing in personal projects (Haskell/Clojure).
 I have studied Erlang.
 I have less than 1 year of Erlang experience from personal projects.
 I have no Rust experience.
+I have used Cloudflare Workers in personal projects.
+I have used WebAssembly in personal projects.
 I have used Python since 2025.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
 
@@ -130,6 +133,8 @@ At Wayleadr, I verify every audit finding myself before acting on it.
 At Wayleadr (Feb 2026–present), my title is Software Engineer.
 Wayleadr is a parking and workplace-mobility SaaS.
 At Wayleadr, I am the primary engineer on the greenfield Wayleadr 2.0 Occupancy Service.
+At Wayleadr, I led the Occupancy Service.
+At Wayleadr, other engineers contributed to the Occupancy Service.
 At Wayleadr, the Occupancy Service collects occupancy events from access-control systems, sensors and bookings.
 At Wayleadr, the Occupancy Service rolls the occupancy events up.
 At Wayleadr, the Occupancy Service serves the rollups through an HTTP API.
