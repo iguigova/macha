@@ -27,8 +27,11 @@ twice: the documents before the form, and the form before submit.
    - **Cover letter** — in the cover-letter format below.
 
    Then read both as the hiring manager for this role would, and revise
-   before showing them: the closest match to the role leads. Then Ask for
-   what the profile lacks.
+   before showing them: the closest match to the role leads. Then check
+   the letter one sentence at a time against the credo voice and the
+   application voice, the read-aloud test first; a sentence that fails is
+   rewritten or cut, and the drafts are shown with each sentence's verdict.
+   Then Ask for what the profile lacks.
 
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
@@ -220,7 +223,9 @@ These add to the credo voice, for letters and screening answers.
   sentence she would not say is rewritten or cut.
 - A letter shows who the user is through one of the profile's lines about
   herself — what suits her, what she reads, how she describes herself —
-  where it truly connects to the role. No feeling is invented.
+  where it truly connects to the role. It is said from her side and names
+  the role; it never describes the company's project back to it. No
+  feeling is invented.
 
 ## Application formats
 
