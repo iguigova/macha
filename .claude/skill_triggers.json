@@ -1,0 +1,7 @@
+{
+  "job:apply": [
+    {"prompt": "apply to this job: https://job-boards.greenhouse.io/acme/jobs/123", "fires": true},
+    {"prompt": "take the next job from the queue and apply", "fires": true},
+    {"prompt": "what languages are listed in my profile?", "fires": false}
+  ]
+}

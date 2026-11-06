@@ -89,7 +89,7 @@ not public, and no account ID, hostname or colleague. Commit at once,
 after each round of answers or corrections, the files changed alone with
 a message naming each fact changed:
 ```bash
-git -C ~/src/oceanhue/macha commit -m "<message>" -- jobs/profile/profile.txt .claude/skills/job:apply/SKILL.md
+~/.claude/scripts/tooling_commit.sh -m "fix(profile): <message>" -- jobs/profile/profile.txt .claude/skills/job:apply/SKILL.md
 ~/.claude/scripts/tooling_commit.sh -m "<message>" -- ~/.claude/credo.md
 ```
 

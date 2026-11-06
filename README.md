@@ -56,7 +56,9 @@ global CLAUDE.md loads in every project. The application voice and formats
 live in `/job:apply`. A fact appears once: a change updates its line,
 never adds a second version. `/job:apply` asks for each fact a job weighs
 that the profile lacks, and writes the answers and corrections at once.
-Every change is committed. The notable repositories are not listed in the
+Every change is committed through `~/.claude/scripts/tooling_commit.sh`,
+gated by `.claude/scripts/selftest.sh`, and a changed skill description by
+its prompts in `.claude/skill_triggers.json`. The notable repositories are not listed in the
 profile: it names the GitHub site, https://iguigova.github.io, which
 lists them, and `/job:apply` reads it there.
 

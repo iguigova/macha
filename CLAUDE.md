@@ -7,5 +7,7 @@ README.md states the skills and how the profile changes.
   in `~/.claude/credo.md`. Read them there; never copy a fact into
   another file.
 - `out/` is scratch for the current application and is never committed.
+- This repo commits through `~/.claude/scripts/tooling_commit.sh`, gated by
+  `.claude/scripts/selftest.sh`; this clone is opted in. It never pushes.
 - A note captured under a `job: ` topic is a queued job, and `/job:apply`
   is the skill that does it and closes it. README.md states the job log.

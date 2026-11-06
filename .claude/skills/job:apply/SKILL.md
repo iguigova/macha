@@ -2,7 +2,7 @@
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(git -C ~/src/oceanhue/macha commit *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
