@@ -140,6 +140,7 @@ At Wayleadr, the Occupancy Service rolls the occupancy events up.
 At Wayleadr, the Occupancy Service serves the rollups through an HTTP API.
 At Wayleadr, the stack is Python on AWS Lambda, CDK, Aurora Postgres and a TypeScript/React 19 web app.
 At Wayleadr, I build AWS Lambda services in Python with Pydantic, SQLAlchemy and psycopg.
+At Wayleadr, my work is split about 70% backend development and 30% infrastructure and operations.
 
 At Wayleadr, I took the Occupancy Service to production in Sep 2026.
 At Wayleadr, I ran the Occupancy Service cutover in phases.
