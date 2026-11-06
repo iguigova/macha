@@ -32,23 +32,21 @@ lint() {
 }
 
 self_test() {
-  local f out want
-  f=$(mktemp); trap 'rm -f "$f"' RETURN
-  cat > "$f" <<'EOF'
-I have 3+ years of C++ experience.
-I hold no clearance and am eligible for one.
-I built a thing. I also built another.
-I describe myself as: "A kernel. Of laughter."
-I have a B.Sc. Mathematics from St. Andrews.
-I have 2 years of professional Go experience.
-I have worked professionally in 10+ languages.
-I have used Python professionally since 2026.
-I wrote the client, and I built the server.
-EOF
-  want=$'2\tclauses\n3\tsentences\n6\tprofessional\n8\tprofessional\n9\tclauses'
-  out=$(lint "$f" | cut -f1,2 | sort -n)
-  if [[ "$out" == "$want" ]]; then echo "self-test: ok"; else
-    echo "self-test: FAIL"; diff <(echo "$want") <(echo "$out") || true; return 1; fi
+  # shellcheck source=/dev/null
+  . "$HOME/.claude/scripts/tap.sh"
+  rule() { lint <(printf '%s\n' "$1") | cut -f2; }
+  tap_is "a plain line matches no rule" "$(rule 'I have 3+ years of C++ experience.')" ""
+  tap_is "a second clause on and am is a clause" "$(rule 'I hold no clearance and am eligible for one.')" clauses
+  tap_is "a second clause on and I is a clause" "$(rule 'I wrote the client, and I built the server.')" clauses
+  tap_is "two sentences on one line are found" "$(rule 'I built a thing. I also built another.')" sentences
+  tap_is "quoted text is skipped" "$(rule 'I describe myself as: "A kernel. Of laughter."')" ""
+  tap_is "the listed abbreviations are skipped" "$(rule 'I have a B.Sc. Mathematics from St. Andrews.')" ""
+  tap_is "professional on an experience line is found" "$(rule 'I have 2 years of professional Go experience.')" professional
+  tap_is "professional on an I have used line is found" "$(rule 'I have used Python professionally since 2026.')" professional
+  tap_is "professional on any other line is not" "$(rule 'I have worked professionally in 10+ languages.')" ""
+  tap_is "a hit reports its line number and the line" "$(lint <(printf 'x\nI built a thing. I also built another.\n'))" \
+    $'2\tsentences\tI built a thing. I also built another.'
+  tap_end
 }
 
 case "${1:-}" in

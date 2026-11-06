@@ -64,24 +64,29 @@ not_found() {
 }
 
 if [[ "${1:-}" == "--self-test" ]]; then
-  gh='{"jobs":[{"id":7,"title":"Go Engineer","location":{"name":"Remote, Canada"},"absolute_url":"https://g.example/7"}]}'
+  # shellcheck source=/dev/null
+  . "$HOME/.claude/scripts/tap.sh"
+  gh='{"id":7,"title":"Go Engineer","location":{"name":"Remote, Canada"},"absolute_url":"https://g.example/7"}'
   ash='{"jobs":[{"id":"a1","title":"SRE","location":"Toronto","secondaryLocations":[{"location":"Canada"}],"workplaceType":"Remote","compensation":{"scrapeableCompensationSalarySummary":"CA$150K - CA$190K"},"jobUrl":"https://a.example/a1"}]}'
   lev='{"id":"l1","text":"Backend","categories":{"location":"Vancouver","allLocations":["Vancouver","Remote"]},"workplaceType":"remote","salaryRange":{"currency":"CAD","min":140000,"max":180000,"interval":"per-year-salary"},"hostedUrl":"https://l.example/l1"}'
-  got=$(rows greenhouse <<<"$gh"; rows ashby <<<"$ash"; rows lever <<<"[$lev]"; rows lever <<<"$lev")
-  want=$'7\tGo Engineer\tRemote, Canada\t\t\thttps://g.example/7\n'
-  want+=$'a1\tSRE\tToronto; Canada\tRemote\tCA$150K - CA$190K\thttps://a.example/a1\n'
+  grow=$'7\tGo Engineer\tRemote, Canada\t\t\thttps://g.example/7'
   lrow=$'l1\tBackend\tVancouver; Remote\tremote\tCAD 140000–180000 per-year-salary\thttps://l.example/l1'
-  want+="$lrow"$'\n'"$lrow"
-  verdicts=$(for c in 9:200 9:404 9:500 9:000 :404; do
-    v=$(not_found "${c%%:*}" "${c#*:}") && st=0 || st=$?; echo "$v $st"; done)
-  want_v=$'closed 1\nno board 4\nboard answered HTTP 500 3\nboard unreachable 3\nno board 4'
-  if [[ "$got" == "$want" && "$verdicts" == "$want_v" && "$(url ashby x 9)" != *9* \
-        && "$(get http://127.0.0.1:9/ 2>/dev/null)" == 000 ]]; then
-    echo "job_board self-test: PASS (a board and one posting to rows for each ATS; an Ashby id looked up in its board; a 404 is closed only when the board answers; an unreachable host answers 000, never closed)"
-    exit 0
-  fi
-  printf 'job_board self-test: FAIL\n  want:\n%s\n%s\n  got:\n%s\n%s\n' "$want" "$want_v" "$got" "$verdicts" >&2
-  exit 1
+  tap_is "a Greenhouse board gives a row with no workplace or pay" "$(rows greenhouse <<<"{\"jobs\":[$gh]}")" "$grow"
+  tap_is "one Greenhouse posting gives the same row" "$(rows greenhouse <<<"$gh")" "$grow"
+  tap_is "an Ashby board joins its locations and states workplace and pay" "$(rows ashby <<<"$ash")" \
+    $'a1\tSRE\tToronto; Canada\tRemote\tCA$150K - CA$190K\thttps://a.example/a1'
+  tap_is "a Lever board joins its locations and states workplace and pay" "$(rows lever <<<"[$lev]")" "$lrow"
+  tap_is "one Lever posting gives the same row" "$(rows lever <<<"$lev")" "$lrow"
+  tap_is "an Ashby id is looked up in its board, not in the URL" "$(url ashby x 9)" \
+    "https://api.ashbyhq.com/posting-api/job-board/x?includeCompensation=true"
+  verdict() { local v st=0; v=$(not_found "$1" "$2") || st=$?; echo "$v $st"; }
+  tap_is "a posting's 404 under a board that answers is closed" "$(verdict 9 200)" "closed 1"
+  tap_is "a posting's 404 under a board that 404s is no board" "$(verdict 9 404)" "no board 4"
+  tap_is "a posting's 404 under a board erroring is never closed" "$(verdict 9 500)" "board answered HTTP 500 3"
+  tap_is "a posting's 404 under an unreachable board is never closed" "$(verdict 9 000)" "board unreachable 3"
+  tap_is "a 404 with no id is no board" "$(verdict '' 404)" "no board 4"
+  tap_is "an unreachable host answers 000" "$(get http://127.0.0.1:9/ 2>/dev/null)" 000
+  tap_end
 fi
 
 [[ $# -eq 2 || $# -eq 3 ]] && [[ "$1" =~ ^(greenhouse|ashby|lever)$ ]] \
