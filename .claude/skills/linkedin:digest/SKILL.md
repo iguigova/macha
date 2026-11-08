@@ -18,13 +18,14 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
    `! ~/.claude/scripts/playwright_login.sh https://www.linkedin.com/login`.
 2. **Read it.** `browser_evaluate` with the function in
    `.claude/skills/linkedin:digest/feed_read.js`, saved with `filename`
-   `linkedin_digest/<date>-feed.json`. It scrolls the feed and
-   returns each post's text and link, comments included in the text.
-   An `n` of 0 is a failed read: stop and say so.
+   `linkedin_digest/<date>-feed.json`. It scrolls the feed, drops the
+   follow-suggestion boxes, and returns each post's text, comments
+   included, and its link: the author's recent posts, since a post box
+   carries no post ID. An `n` of 0 is a failed read: stop and say so.
 3. **Rank it.** Read `<date>-feed.json` and `jobs/profile/profile.txt`
    with the Read tool, the only tool the skill reads files with. Comments
-   are ignored; a post marked Promoted is an ad, and a follow suggestion
-   is not a post. Every figure comes from a post as written. Write
+   are ignored, and a post marked Promoted is an ad. Every figure comes
+   from a post as written. Write
    `linkedin_digest/<date>.json` in the shape
    `.claude/scripts/digest_mail.py --help` states:
    - **title** — the day's main claim as one sentence with a verb, not a
@@ -35,11 +36,12 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
      most ten: a headline that states the point, who posted it and when,
      what it says in two or three sentences, why it matters to the user
      by the profile (job leads, interview material, their own work), and
-     its link when the read has one.
+     the post's link from the read.
    - **skip** — what looks important and is not, each `<label>: <reason>`:
      ads posing as news, an empty hiring block, claims not verified.
-   - **note** — whose figures they are, and that the counts come from one
-     scroll, so LinkedIn's ranking chose what showed.
+   - **note** — whose figures they are, that the counts come from one
+     scroll, so LinkedIn's ranking chose what showed, and that each link
+     opens the author's recent posts, where the post sits near the top.
 4. **Send.**
    ```bash
    .claude/scripts/digest_mail.py linkedin_digest/<date>.json \
