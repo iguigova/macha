@@ -12,6 +12,7 @@ My GitHub site, https://iguigova.github.io, lists my notable repositories.
 My website is https://urgh.weebly.com/.
 My website is titled "Urgh! A Coding War".
 My website holds tech articles and resources.
+My website has an interview page, https://urgh.weebly.com/interview.html.
 My literary website is https://urgh2.weebly.com/.
 My literary website is titled "Urgh! A Literary War".
 My literary website holds haiku poetry and literary excerpts in English and Bulgarian.
