@@ -88,22 +88,28 @@ The queue lists the open job notes, and with `--closed` the closed ones:
 
 A freelance or contract posting is a job: it is found and applied to as one.
 
-## The LinkedIn digest
+## The digests
 
-`/linkedin:digest` reads the LinkedIn feed in the saved login, ranks the
-posts that matter, and mails the list with `.claude/scripts/digest_mail.py`:
-the subject is the day's main claim, and each item says who posted it, what
-it says and why it matters to the user, followed by what is safe to skip.
-It goes from and to the address the profile's email line states, through
-smtp.gmail.com:587 with a Gmail app password in
-`.secrets/gmail-app-password`, mode 600; git ignores `.secrets/`. Each
-day's feed and list stay in `linkedin_digest/`, also ignored.
+A digest skill, `/<name>:digest`, reads one source, ranks what matters in
+it, and mails the list with `.claude/scripts/digest_mail.py`: the subject
+is the day's main claim, and each item says who said it, what it says and
+why it matters, followed by what is safe to skip. It goes from and to the
+address the profile's email line states, through smtp.gmail.com:587 with a
+Gmail app password in `.secrets/gmail-app-password`, mode 600; git ignores
+`.secrets/`. Each day's read and list stay in `digest/<name>/`, also
+ignored.
 
-`.claude/scripts/linkedin_digest.sh install` sets a systemd user timer
-that runs the skill at 07:00 each day, headless, and catches up on a
-missed morning. A timer reads no shell profile, so `install` writes the
-directory of the playwright server's command (`npx`) into the timer's
-PATH; a new node version is followed by `install` again. A run that
-sends nothing opens a journal note naming why;
-`.claude/linkedin_digest.log` holds each run, and
-`linkedin_digest.sh status` shows the timer and the last send.
+`/linkedin:digest` reads the LinkedIn feed in the saved login. Each item
+links to its author's recent posts, since LinkedIn's feed markup carries
+no post ID.
+
+`.claude/scripts/digest.sh install <name>…` enables the systemd user timer
+`digest@<name>.timer`, which runs the skill at 07:00 each day, headless,
+and catches up on a missed morning. A timer reads no shell profile, so
+`install` writes the directory of the playwright server's command (`npx`)
+into the service's PATH; a new node version is followed by `install`
+again. A run authenticates with the one-year token `claude setup-token`
+prints, saved as `.secrets/claude-oauth-token`, mode 600, and with the
+saved login while that file is absent. A run that sends nothing opens a
+journal note naming why; `.claude/digest/<name>.log` holds each run, and
+`digest.sh status` shows each timer and each last send.

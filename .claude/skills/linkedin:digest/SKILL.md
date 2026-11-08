@@ -6,9 +6,9 @@ allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snaps
 ---
 
 Read the LinkedIn feed and mail a ranked list of what matters in it.
-`<date>` is `date +%F`, and every file goes in `linkedin_digest/`.
+`<date>` is `date +%F`, and every file goes in `digest/linkedin/`.
 Every run ends with `browser_close`, whichever step it stops at. Every
-run sends: an earlier send, `.claude/linkedin_digest.last` included, is
+run sends: an earlier send, `.claude/digest/linkedin.last` included, is
 no reason to stop. A run that stops before sending ends its reply with
 one line `Not sent: <reason>`, which the timer's failure note quotes.
 
@@ -18,7 +18,7 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
    `! ~/.claude/scripts/playwright_login.sh https://www.linkedin.com/login`.
 2. **Read it.** `browser_evaluate` with the function in
    `.claude/skills/linkedin:digest/feed_read.js`, saved with `filename`
-   `linkedin_digest/<date>-feed.json`. It scrolls the feed, drops the
+   `digest/linkedin/<date>-feed.json`. It scrolls the feed, drops the
    follow-suggestion boxes, and returns each post's text, comments
    included, and its link: the author's recent posts, since a post box
    carries no post ID. An `n` of 0 is a failed read: stop and say so.
@@ -26,7 +26,7 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
    with the Read tool, the only tool the skill reads files with. Comments
    are ignored, and a post marked Promoted is an ad. Every figure comes
    from a post as written. Write
-   `linkedin_digest/<date>.json` in the shape
+   `digest/linkedin/<date>.json` in the shape
    `.claude/scripts/digest_mail.py --help` states:
    - **title** — the day's main claim as one sentence with a verb, not a
      topic.
@@ -44,7 +44,7 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
      opens the author's recent posts, where the post sits near the top.
 4. **Send.**
    ```bash
-   .claude/scripts/digest_mail.py linkedin_digest/<date>.json \
-     --stamp .claude/linkedin_digest.last
+   .claude/scripts/digest_mail.py digest/linkedin/<date>.json \
+     --stamp .claude/digest/linkedin.last
    ```
    A refusal is reported as it prints, and nothing is retried.
