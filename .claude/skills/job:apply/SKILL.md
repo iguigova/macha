@@ -31,7 +31,7 @@ browser is freed for the next session.
    Then read both as the hiring manager for this role would, and revise
    before showing them: the closest match to the role leads. Then check
    the letter one sentence at a time against the credo voice and the
-   application voice, the read-aloud test first; a sentence that fails is
+   application voice, the credo's out-loud test first; a sentence that fails is
    rewritten or cut, and the drafts are shown with each sentence's verdict.
    Then Ask for what the profile lacks.
 
@@ -189,9 +189,9 @@ profile's (a salary range the salary expectation, a contract or freelance
 rate the freelance rate) or it states none, and it is the kind of work
 the profile looks for, in any stack.
 
-**Shortlist.** Niche postings rank first: a small company, whose board
-lists about 30 open postings or fewer, with one specific, unusual
-problem. A posting from a larger board ranks below them unless its
+**Shortlist.** Postings the profile's niche line describes rank first;
+a small company is one whose board lists about 30 open postings or
+fewer. A posting from a larger board ranks below them unless its
 problem is itself rare. Then rank by the kind of work, then the
 preferred stack. A board's size is the row count of
 `job_board.sh <ats> <board>`, or the postings its careers page lists.
@@ -223,13 +223,10 @@ These add to the credo voice, for letters and screening answers.
   job and with no "what it taught me".
 - The subject comes first and the verb early, as people speak: "I want to
   write more Go", never "Go is the stack I want to work in".
-- Every sentence carries its weight: it tells this reader something new
-  that matters to this role, or it is cut.
-- Read each sentence aloud as the user, saying it to one person. A
-  sentence she would not say is rewritten or cut.
-- A letter shows who the user is through one of the profile's lines about
-  herself — what suits her, what she reads, how she describes herself —
-  where it truly connects to the role. It is said from her side and names
+- A letter shows who the user is through one of the profile's lines
+  about the user — what suits them, what they read, how they describe
+  themselves — where it truly connects to the role. It is said from the
+  user's side and names
   the role; it never describes the company's project back to it. No
   feeling is invented.
 

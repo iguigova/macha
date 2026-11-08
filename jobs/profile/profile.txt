@@ -45,6 +45,7 @@ I want to work less in .NET.
 Interesting work is what I look for.
 The stack is not a requirement for me.
 I am more of a nerd: technically deep problems suit me better.
+Niche postings suit me best: a small company with one specific, unusual problem.
 
 I work at a senior level.
 I have 20+ years of experience building systems where correctness matters.
@@ -94,7 +95,7 @@ I use Jira, Slack, Teams and Discord.
 Earlier in my career I used UML (Enterprise Architect, Rational Rose), XML/XSLT, Subversion, Serena PVCS and AutomatedQA TestComplete.
 
 I have 5+ years of AWS experience (EC2, Lambda, S3).
-At Wayleadr, I have also used CDK, Aurora Postgres with RDS Proxy, SQS, EventBridge and CloudWatch.
+At Wayleadr, I have also used RDS Proxy, SQS, EventBridge and CloudWatch.
 I have experience with Azure (Pulumi, Azure Pipelines) from Willow.
 I have used Azure Service Bus.
 At Wayleadr, we started using Terraform in 2026.
