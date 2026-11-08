@@ -26,6 +26,7 @@ for every later session.
 
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
+/linkedin:digest              # mail the user the gist of their LinkedIn feed
 ```
 
 With no argument and an empty queue, `/job:apply` first searches company
@@ -86,3 +87,20 @@ The queue lists the open job notes, and with `--closed` the closed ones:
 ```
 
 A freelance or contract posting is a job: it is found and applied to as one.
+
+## The LinkedIn digest
+
+`/linkedin:digest` reads the LinkedIn feed in the saved login, distils it
+into a one-page gist PDF by the `gist` skill, and mails it with
+`.claude/scripts/gist_mail.py`: the subject is the gist's title, the body
+its text, the PDF attached, from and to the address the profile's email
+line states. The mail goes through smtp.gmail.com:587 with a Gmail app
+password in `.secrets/gmail-app-password`, mode 600; git ignores
+`.secrets/`. Each day's feed, gist and PDF stay in
+`.claude/linkedin_digest/`, also ignored.
+
+`.claude/scripts/linkedin_digest.sh install` sets a systemd user timer
+that runs the skill at 07:00 each day, headless, and catches up on a
+missed morning. A run that sends nothing opens a journal note naming why;
+`.claude/linkedin_digest.log` holds each run, and
+`linkedin_digest.sh status` shows the timer and the last send.

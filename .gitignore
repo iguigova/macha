@@ -12,3 +12,11 @@ out/
 
 # The session history: journal.sh writes it, and it stays on this machine
 .claude/session_history.md
+
+# The LinkedIn digest: each day's feed, gist and PDF, the run log and the last send
+.claude/linkedin_digest/
+.claude/linkedin_digest.log
+.claude/linkedin_digest.last
+
+# Credentials secret_file.sh reads, such as gmail-app-password
+.secrets/
