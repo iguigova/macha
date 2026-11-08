@@ -11,8 +11,12 @@ DIGEST.json is:
   {"title": "...",                  # the day's main claim: the subject
    "subtitle": "...",               # what was read, when, and its counts
    "items": [{"headline": "...", "source": "...", "what": "...",
-              "why": "...", "link": "..."}],   # most consequential first;
-                                               # link may be ""
+              "why": "...", "link": "...",     # most consequential first;
+              "section": "..."}],              # link may be ""; section is
+                                               # optional, a heading over the
+                                               # items that share it
+   "why_label": "...",                         # optional; "Why it matters
+                                               # to you" when absent
    "skip": ["<label>: <reason>", ...],         # may be []
    "note": "..."}                              # optional
 
@@ -72,11 +76,19 @@ def split_label(line: str):
     return (label, rest) if sep else ("", line)
 
 
+def why_label(d: dict) -> str:
+    return d.get("why_label") or "Why it matters to you"
+
+
 def body_text(d: dict) -> str:
     out = [d["subtitle"], ""]
+    section = None
     for n, it in enumerate(d["items"], 1):
+        if it.get("section") and it["section"] != section:
+            section = it["section"]
+            out += [section.upper(), ""]
         out.append(f"{n}. {it['headline']}")
-        out += [f"   {it['source']}", f"   {it['what']}", f"   Why it matters to you: {it['why']}"]
+        out += [f"   {it['source']}", f"   {it['what']}", f"   {why_label(d)}: {it['why']}"]
         if it.get("link"):
             out.append(f"   {it['link']}")
         out.append("")
@@ -92,11 +104,15 @@ def body_text(d: dict) -> str:
 def body_html(d: dict) -> str:
     e = html.escape
     parts = [f"<p>{e(d['subtitle'])}</p>", "<ol>"]
-    for it in d["items"]:
+    section = None
+    for n, it in enumerate(d["items"], 1):
+        if it.get("section") and it["section"] != section:
+            section = it["section"]
+            parts += ["</ol>", f"<h3>{e(section)}</h3>", f'<ol start="{n}">']
         link = (f'<br><a href="{e(it["link"], quote=True)}">{e(it["link"])}</a>'
                 if it.get("link") else "")
         parts.append(f"<li><p><b>{e(it['headline'])}</b><br>{e(it['source'])}<br>"
-                     f"{e(it['what'])}<br><i>Why it matters to you:</i> {e(it['why'])}{link}</p></li>")
+                     f"{e(it['what'])}<br><i>{e(why_label(d))}:</i> {e(it['why'])}{link}</p></li>")
     parts.append("</ol>")
     if d["skip"]:
         parts.append("<p><b>Safe to skip</b></p><ul>")
@@ -189,6 +205,15 @@ def self_test() -> int:
     page = body_html(d)
     t.check("<b>CI &lt;gap&gt; grew</b>" in page and "<b>No job leads:</b> the block was empty" in page
             and "<li>plain line</li>" in page, "the HTML bolds headlines and skip labels, escaped", page)
+
+    news = {**d, "why_label": "Who it affects",
+            "items": [{**d["items"][0], "section": "World"}, {**d["items"][1], "section": "Science"}]}
+    text = body_text(news)
+    t.check(text.index("WORLD") < text.index("1. CI") < text.index("SCIENCE") < text.index("2. Review")
+            and "Who it affects: Interview metric." in text and "Why it matters" not in text,
+            "items carry their section headings and the digest's own why label", text)
+    t.check('<h3>Science</h3>\n<ol start="2">' in body_html(news),
+            "the HTML numbering runs on across sections", body_html(news))
 
     msg = message(d, "a@example.com")
     t.check(msg["Subject"] == "Top teams pull away on CI", "the subject is the title")

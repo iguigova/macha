@@ -27,6 +27,7 @@ for every later session.
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /linkedin:digest              # mail the user a ranked list of what matters in their LinkedIn feed
+/news:digest                  # mail the day's world, tech and science news, ranked by breadth of coverage
 ```
 
 With no argument and an empty queue, `/job:apply` first searches company
@@ -102,6 +103,14 @@ ignored.
 `/linkedin:digest` reads the LinkedIn feed in the saved login. Each item
 links to its author's recent posts, since LinkedIn's feed markup carries
 no post ID.
+
+`/news:digest` reads the RSS feeds `.claude/skills/news:digest/sources.tsv`
+lists, world, tech and science outlets across countries and owners,
+through `.claude/scripts/feed_fetch.py`. It ranks a story by how many of
+those outlets, in how many countries, carry it, so no one outlet's choice
+decides; a story one outlet carries is left out, except a science story
+whose peer-reviewed paper is found and linked. Each item states what the
+outlets agree on and attributes any claim one side makes.
 
 `.claude/scripts/digest.sh install <name>…` enables the systemd user timer
 `digest@<name>.timer`, which runs the skill at 07:00 each day, headless,

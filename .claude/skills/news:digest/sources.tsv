@@ -1,0 +1,28 @@
+# The feeds /news:digest reads. kind is who owns or funds the outlet; hours,
+# when set, is the feed's window: science outlets publish less often.
+section	outlet	country	kind	url	hours
+world	BBC News	UK	public broadcaster	https://feeds.bbci.co.uk/news/world/rss.xml	
+world	The Guardian	UK	commercial	https://www.theguardian.com/world/rss	
+world	DW	Germany	public broadcaster	https://rss.dw.com/rdf/rss-en-world	
+world	France 24	France	public broadcaster	https://www.france24.com/en/rss	
+world	Al Jazeera	Qatar	state-funded	https://www.aljazeera.com/xml/rss/all.xml	
+world	NPR	US	public broadcaster	https://feeds.npr.org/1004/rss.xml	
+world	Fox News	US	commercial	https://moxie.foxnews.com/google-publisher/world.xml	
+world	New York Post	US	commercial	https://nypost.com/world-news/feed/	
+world	CBC News	Canada	public broadcaster	https://www.cbc.ca/webfeed/rss/rss-world	
+world	The Hindu	India	commercial	https://www.thehindu.com/news/international/feeder/default.rss	
+world	South China Morning Post	Hong Kong	commercial	https://www.scmp.com/rss/91/feed/	
+world	The Japan Times	Japan	commercial	https://www.japantimes.co.jp/feed/	
+world	ABC News	Australia	public broadcaster	https://www.abc.net.au/news/feed/2942460/rss.xml	
+world	AllAfrica	Africa	aggregator	https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf	
+tech	Ars Technica	US	commercial	https://feeds.arstechnica.com/arstechnica/index	
+tech	The Verge	US	commercial	https://www.theverge.com/rss/index.xml	
+tech	The Register	UK	commercial	https://www.theregister.com/headlines.atom	
+tech	TechCrunch	US	commercial	https://techcrunch.com/feed/	
+tech	Wired	US	commercial	https://www.wired.com/feed/rss	
+tech	Hacker News front page	US	community	https://hnrss.org/frontpage	
+science	Nature	UK	journal	https://www.nature.com/nature.rss	72
+science	Science	US	journal	https://www.science.org/rss/news_current.xml	72
+science	ScienceDaily	US	aggregator	https://www.sciencedaily.com/rss/all.xml	72
+science	Phys.org	UK	aggregator	https://phys.org/rss-feed/	72
+science	Quanta Magazine	US	foundation-funded	https://www.quantamagazine.org/feed/	72

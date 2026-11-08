@@ -33,6 +33,9 @@ case "${1:-}" in -h|--help) awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, "
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
 STATE="$ROOT/.claude/digest"
+# The session rules ask for a journal entry, an audit and a question dialog;
+# a timer run has no one to answer, and this script records its outcome.
+UNATTENDED="This run is unattended, started by digest.sh from a systemd timer: nobody reads its reply until later and nobody can approve a call. Write no journal entry, run no audit, and ask nothing; digest.sh logs the reply and opens a note when nothing was sent."
 
 unit_dir() { echo "${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"; }
 
@@ -113,8 +116,8 @@ run_digest() {
         && [[ $(stat -c %a "$secret") == 600 ]]; then
       CLAUDE_CODE_OAUTH_TOKEN=$(< "$secret"); export CLAUDE_CODE_OAUTH_TOKEN
     fi
-    "${CLAUDE_BIN:-claude}" -p "/$name:digest" --mcp-config "$cfg" --strict-mcp-config \
-      --allowedTools "${tools[@]}" >> "$log" 2>&1 || rc=$?
+    "${CLAUDE_BIN:-claude}" -p "/$name:digest" --append-system-prompt "$UNATTENDED" \
+      --mcp-config "$cfg" --strict-mcp-config --allowedTools "${tools[@]}" >> "$log" 2>&1 || rc=$?
   fi
   if [[ -e "$stamp" && "$stamp" -nt "$mark" ]]; then
     echo "== sent: $(cat "$stamp")" >> "$log"; return 0
@@ -168,6 +171,8 @@ EOF
   tap_is "claude runs the skill with only the tools its allowed-tools names" \
     "$(sed -n '/^--allowedTools$/,$p' "$fx/args" | tail -n +2 | paste -sd '|')" \
     'mcp__playwright__browser_navigate|Read|Bash(.claude/scripts/digest_mail.py *)'
+  tap_is "the run is told it is unattended" \
+    "$(grep -A1 -x -- --append-system-prompt "$fx/args" | tail -n 1 | grep -c 'Write no journal entry')" 1
   tap_is "the log records the send" "$(tail -n 1 "$fx/repo/.claude/digest/web.log")" \
     "== sent: 2026-11-08 07:00 -0700 sent: Feed title"
   tap_is "with no token secret it runs on the saved login" "$(cat "$fx/token")" none

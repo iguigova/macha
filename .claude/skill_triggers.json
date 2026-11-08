@@ -26,5 +26,19 @@
       "prompt": "search linkedin for remote backend jobs",
       "fires": false
     }
+  ],
+  "news:digest": [
+    {
+      "prompt": "email me today's top world, tech and science news without the media spin",
+      "fires": true
+    },
+    {
+      "prompt": "send me the news digest",
+      "fires": true
+    },
+    {
+      "prompt": "read my LinkedIn feed and email me what matters",
+      "fires": false
+    }
   ]
 }

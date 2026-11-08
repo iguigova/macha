@@ -2,7 +2,7 @@
 name: linkedin:digest
 description: Read the user's LinkedIn feed and email them a ranked list of what matters in it, with the day's main claim as the subject
 argument-hint: "(no arguments: it reads the feed as it is now)"
-allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_close, Read, Write, Bash(date *), Bash(.claude/scripts/digest_mail.py *)
+allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_close, Read, Write, Edit, Bash(date *), Bash(.claude/scripts/digest_mail.py *)
 ---
 
 Read the LinkedIn feed and mail a ranked list of what matters in it.
