@@ -386,6 +386,7 @@ My favorite technical reading is Roy Fielding's dissertation, "Architectural Sty
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics."
 I also describe myself as: "Stay curious."
 I also describe myself as: "I am an agile problem solver."
+I index the information I come across rather than store all of it.
 I write haiku poetry.
 I curate philosophical quotes across multiple languages.
 My interests include climbing, scrambling, hiking, swimming, kayaking, skiing, dancing, travel, reading, writing, mountaineering, motorcycling, photography, and science fiction.
