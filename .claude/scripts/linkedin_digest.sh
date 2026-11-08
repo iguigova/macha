@@ -7,7 +7,7 @@
 # next active. Each run starts `claude -p /linkedin:digest` in this repo with
 # the playwright server ~/.claude.json configures plus --headless, since a
 # timer has no display, and the skill's tools allowed. A run is sent when
-# gist_mail.py rewrote .claude/linkedin_digest.last during it; any other end
+# digest_mail.py rewrote .claude/linkedin_digest.last during it; any other end
 # (an expired login, a refused password, a failed claude) opens one journal
 # note naming the log's last line. The run appends to
 # .claude/linkedin_digest.log.
@@ -24,14 +24,14 @@ case "${1:-}" in -h|--help) awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, "
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
 UNIT=linkedin-digest
-TOOLS="mcp__playwright__browser_navigate mcp__playwright__browser_snapshot mcp__playwright__browser_evaluate mcp__playwright__browser_close Read Write Bash(date:*) Bash(~/.claude/scripts/gist.py:*) Bash(pdftoppm:*) Bash(.claude/scripts/gist_mail.py:*)"
+TOOLS="mcp__playwright__browser_navigate mcp__playwright__browser_snapshot mcp__playwright__browser_evaluate mcp__playwright__browser_close Read Write Bash(date:*) Bash(.claude/scripts/digest_mail.py:*)"
 
 unit_dir() { echo "${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"; }
 
 service_text() {
   cat <<EOF
 [Unit]
-Description=Mail the LinkedIn feed's gist (linkedin_digest.sh run)
+Description=Mail the LinkedIn feed's ranked digest (linkedin_digest.sh run)
 
 [Service]
 Type=oneshot
@@ -118,7 +118,7 @@ EOF
   tap_is "claude runs the skill with the playwright server headless" \
     "$(jq -c '.mcpServers.playwright.args' "$fx/mcp")" '["-y","@playwright/mcp","--isolated","--headless"]'
   tap_is "claude runs only that server and the skill's tools" \
-    "$(grep -qx -- --strict-mcp-config "$fx/args" && grep -qxF 'Bash(.claude/scripts/gist_mail.py:*)' "$fx/args" && echo y)" y
+    "$(grep -qx -- --strict-mcp-config "$fx/args" && grep -qxF 'Bash(.claude/scripts/digest_mail.py:*)' "$fx/args" && echo y)" y
   tap_is "the log records the send" "$(tail -n 1 "$fx/repo/.claude/linkedin_digest.log")" \
     "== sent: 2026-11-08T14:00Z sent: Feed title"
 

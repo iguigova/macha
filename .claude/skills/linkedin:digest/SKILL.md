@@ -1,13 +1,13 @@
 ---
 name: linkedin:digest
-description: Read the user's LinkedIn feed, distil what matters into a one-page gist PDF, and email it to them with its title as the subject
+description: Read the user's LinkedIn feed and email them a ranked list of what matters in it, with the day's main claim as the subject
 argument-hint: "(no arguments: it reads the feed as it is now)"
-allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_close, Read, Write, Bash(date *), Bash(~/.claude/scripts/gist.py *), Bash(pdftoppm *), Bash(.claude/scripts/gist_mail.py *)
+allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_close, Read, Write, Bash(date *), Bash(.claude/scripts/digest_mail.py *)
 ---
 
-Read the LinkedIn feed and mail its gist. `<date>` is `date +%F`, and
-every file goes in `.claude/linkedin_digest/`. Every run ends with
-`browser_close`, whichever step it stops at.
+Read the LinkedIn feed and mail a ranked list of what matters in it.
+`<date>` is `date +%F`, and every file goes in `.claude/linkedin_digest/`.
+Every run ends with `browser_close`, whichever step it stops at.
 
 1. **Open the feed.** `browser_navigate` to `https://www.linkedin.com/feed/`.
    A login, authwall or checkpoint page means the saved login has expired:
@@ -18,29 +18,27 @@ every file goes in `.claude/linkedin_digest/`. Every run ends with
    `.claude/linkedin_digest/<date>-feed.json`. It scrolls the feed and
    returns each post's text and link, comments included in the text.
    An `n` of 0 is a failed read: stop and say so.
-3. **Distil it.** Read the posts and `jobs/profile/profile.txt`. Comments
-   are ignored; a post marked Promoted is an ad. Write
-   `.claude/linkedin_digest/<date>.json` by `~/.claude/skills/gist/SKILL.md`
-   (Write the content), with these parts fixed:
+3. **Rank it.** Read the posts and `jobs/profile/profile.txt`. Comments
+   are ignored; a post marked Promoted is an ad, and a follow suggestion
+   is not a post. Every figure comes from a post as written. Write
+   `.claude/linkedin_digest/<date>.json` in the shape
+   `.claude/scripts/digest_mail.py --help` states:
+   - **title** — the day's main claim as one sentence with a verb, not a
+     topic.
    - **subtitle** — `<first name>'s LinkedIn feed, read <date> at <time>:
-     <n> unique items, comments ignored`.
-   - **metrics** — the posts' own headline numbers, and the count of real
-     posts and of ads among the `n` items.
-   - **columns** — What mattered, What it means for you (by the profile:
-     job leads, interview material, the user's own work), and Noise to
-     discard.
+     <n> unique items, <posts> posts, <ads> ads; comments ignored`.
+   - **items** — the consequential posts, most consequential first, at
+     most ten: a headline that states the point, who posted it and when,
+     what it says in two or three sentences, why it matters to the user
+     by the profile (job leads, interview material, their own work), and
+     its link when the read has one.
+   - **skip** — what looks important and is not, each `<label>: <reason>`:
+     ads posing as news, an empty hiring block, claims not verified.
    - **note** — whose figures they are, and that the counts come from one
      scroll, so LinkedIn's ranking chose what showed.
-4. **Render and look.**
+4. **Send.**
    ```bash
-   ~/.claude/scripts/gist.py .claude/linkedin_digest/<date>.json .claude/linkedin_digest/<date>_gist.pdf
-   pdftoppm -png -r 110 -singlefile .claude/linkedin_digest/<date>_gist.pdf .claude/linkedin_digest/<date>_gist
-   ```
-   An error names the part that does not fit: cut words from it and render
-   again. Read the PNG and check that no label crowds the one beside it.
-5. **Send.**
-   ```bash
-   .claude/scripts/gist_mail.py .claude/linkedin_digest/<date>.json \
-     .claude/linkedin_digest/<date>_gist.pdf --stamp .claude/linkedin_digest.last
+   .claude/scripts/digest_mail.py .claude/linkedin_digest/<date>.json \
+     --stamp .claude/linkedin_digest.last
    ```
    A refusal is reported as it prints, and nothing is retried.

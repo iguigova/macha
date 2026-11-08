@@ -26,7 +26,7 @@ for every later session.
 
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
-/linkedin:digest              # mail the user the gist of their LinkedIn feed
+/linkedin:digest              # mail the user a ranked list of what matters in their LinkedIn feed
 ```
 
 With no argument and an empty queue, `/job:apply` first searches company
@@ -90,14 +90,14 @@ A freelance or contract posting is a job: it is found and applied to as one.
 
 ## The LinkedIn digest
 
-`/linkedin:digest` reads the LinkedIn feed in the saved login, distils it
-into a one-page gist PDF by the `gist` skill, and mails it with
-`.claude/scripts/gist_mail.py`: the subject is the gist's title, the body
-its text, the PDF attached, from and to the address the profile's email
-line states. The mail goes through smtp.gmail.com:587 with a Gmail app
-password in `.secrets/gmail-app-password`, mode 600; git ignores
-`.secrets/`. Each day's feed, gist and PDF stay in
-`.claude/linkedin_digest/`, also ignored.
+`/linkedin:digest` reads the LinkedIn feed in the saved login, ranks the
+posts that matter, and mails the list with `.claude/scripts/digest_mail.py`:
+the subject is the day's main claim, and each item says who posted it, what
+it says and why it matters to the user, followed by what is safe to skip.
+It goes from and to the address the profile's email line states, through
+smtp.gmail.com:587 with a Gmail app password in
+`.secrets/gmail-app-password`, mode 600; git ignores `.secrets/`. Each
+day's feed and list stay in `.claude/linkedin_digest/`, also ignored.
 
 `.claude/scripts/linkedin_digest.sh install` sets a systemd user timer
 that runs the skill at 07:00 each day, headless, and catches up on a
