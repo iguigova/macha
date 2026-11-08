@@ -163,7 +163,10 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
   from the past week:
   `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
   Signed out, it still lists jobs; a login wall means the user logs in by
-  hand, so say so and go on. Signed in, it redirects to
+  hand, so say so and go on. Each session's browser is isolated and starts
+  from the logins in `~/.config/playwright-mcp/state.json`, so after a
+  login by hand, `browser_run_code_unsafe` saves them back with
+  `page.context().storageState({ path })`. Signed in, it redirects to
   `/jobs/search-results/`, which can drop the location and remote filters,
   so each card's location is read. Its "Posted" age counts a repost; the
   posting's board gives its first date.
