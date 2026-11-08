@@ -8,6 +8,8 @@ allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *)
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
 first: its sections are the steps below that name one. The user approves
 twice: the documents before the form, and the form before submit.
+Every run ends with `browser_close`, whichever step it stops at, so the
+browser is freed for the next session.
 
 1. **Pick the job**, as Pick the posting.
 

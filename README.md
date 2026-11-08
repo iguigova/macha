@@ -7,7 +7,8 @@ and form answer is generated from it for the job at hand.
 ## Setup
 
 ```bash
-claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/mcp
+claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/mcp \
+  --isolated --storage-state ~/.config/playwright-mcp/state.json
 cd ~/src/oceanhue/macha && claude
 ```
 
@@ -15,8 +16,11 @@ The skills live in `.claude/skills/` and load when Claude Code starts
 in this directory. The steps `/job:apply` names, from picking a queued
 posting to closing its note, live in `.claude/skills/job:apply/steps.md`.
 
-The browser keeps its logins, so a site that needs one (LinkedIn, an ATS)
-is logged into by hand once.
+Each session's browser starts from the logins saved in the file that
+`~/.claude.json` passes the playwright server as `--storage-state`. A site
+that needs one (LinkedIn, an ATS) is logged into with
+`~/.claude/scripts/playwright_login.sh <login-url>`, which saves the login
+for every later session.
 
 ## Skills
 
