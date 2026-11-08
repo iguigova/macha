@@ -36,9 +36,11 @@ Before the drafts are shown, and never folded into their approval: one
 `AskUserQuestion` with one question per fact the posting weighs that no
 fact covers, or that two facts state differently. Each question names the
 requirement and offers concrete answers, each option saying what it would
-write; a free answer comes through Other. Write each answer into the
-profile at once (Update the profile) and redraft from it. A fact is never
-written into a document before it is in the profile.
+write; a free answer comes through Other. Write each answer that is a
+profile line (Update the profile) at once and redraft from it; an answer
+that the user lacks it writes nothing, and the requirement stays a gap of
+this application. A fact is never written into a document before it is in
+the profile.
 
 ## Render the PDFs
 
@@ -76,7 +78,10 @@ only the current application and is overwritten each run.
 
 Each answer or correction that states a fact or a writing preference
 updates the one line that covers it, or adds a line where none does, one
-fact to a line: a fact about the user in `profile.txt`, a rule for
+fact to a line. A profile line states what the user has done, knows or
+is, and is one an application could use; a lack, or a remark that says
+nothing about the work, is never written. Each goes where it belongs: a
+fact about the user in `profile.txt`, a rule for
 application writing under Application voice in `/job:apply`, and any
 other writing preference in `~/.claude/credo.md`. A fact never appears
 twice, and one that contradicts another line is asked about, never
@@ -116,6 +121,7 @@ line numbers and both lines quoted:
   by commas; a list of like things, such as interests, is one fact;
 - a place, a date or a qualifier that reads as a limit (Update the
   profile);
+- a lack, or a line no application could use (Update the profile);
 - a writing rule, which belongs where Update the profile puts it;
 - a fact copied outside `profile.txt`, found by grepping its value in
   `CLAUDE.md`, `README.md` and `.claude/`.
