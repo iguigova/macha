@@ -6,7 +6,7 @@ allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snaps
 ---
 
 Read the LinkedIn feed and mail a ranked list of what matters in it.
-`<date>` is `date +%F`, and every file goes in `.claude/linkedin_digest/`.
+`<date>` is `date +%F`, and every file goes in `linkedin_digest/`.
 Every run ends with `browser_close`, whichever step it stops at. Every
 run sends: an earlier send, `.claude/linkedin_digest.last` included, is
 no reason to stop. A run that stops before sending ends its reply with
@@ -18,13 +18,14 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
    `! ~/.claude/scripts/playwright_login.sh https://www.linkedin.com/login`.
 2. **Read it.** `browser_evaluate` with the function in
    `.claude/skills/linkedin:digest/feed_read.js`, saved with `filename`
-   `.claude/linkedin_digest/<date>-feed.json`. It scrolls the feed and
+   `linkedin_digest/<date>-feed.json`. It scrolls the feed and
    returns each post's text and link, comments included in the text.
    An `n` of 0 is a failed read: stop and say so.
-3. **Rank it.** Read the posts and `jobs/profile/profile.txt`. Comments
+3. **Rank it.** Read `<date>-feed.json` and `jobs/profile/profile.txt`
+   with the Read tool, the only tool the skill reads files with. Comments
    are ignored; a post marked Promoted is an ad, and a follow suggestion
    is not a post. Every figure comes from a post as written. Write
-   `.claude/linkedin_digest/<date>.json` in the shape
+   `linkedin_digest/<date>.json` in the shape
    `.claude/scripts/digest_mail.py --help` states:
    - **title** — the day's main claim as one sentence with a verb, not a
      topic.
@@ -41,7 +42,7 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
      scroll, so LinkedIn's ranking chose what showed.
 4. **Send.**
    ```bash
-   .claude/scripts/digest_mail.py .claude/linkedin_digest/<date>.json \
+   .claude/scripts/digest_mail.py linkedin_digest/<date>.json \
      --stamp .claude/linkedin_digest.last
    ```
    A refusal is reported as it prints, and nothing is retried.

@@ -97,7 +97,7 @@ it says and why it matters to the user, followed by what is safe to skip.
 It goes from and to the address the profile's email line states, through
 smtp.gmail.com:587 with a Gmail app password in
 `.secrets/gmail-app-password`, mode 600; git ignores `.secrets/`. Each
-day's feed and list stay in `.claude/linkedin_digest/`, also ignored.
+day's feed and list stay in `linkedin_digest/`, also ignored.
 
 `.claude/scripts/linkedin_digest.sh install` sets a systemd user timer
 that runs the skill at 07:00 each day, headless, and catches up on a

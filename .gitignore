@@ -14,7 +14,7 @@ out/
 .claude/session_history.md
 
 # The LinkedIn digest: each day's feed, gist and PDF, the run log and the last send
-.claude/linkedin_digest/
+linkedin_digest/
 .claude/linkedin_digest.log
 .claude/linkedin_digest.last
 
