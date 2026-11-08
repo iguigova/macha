@@ -115,6 +115,7 @@ At Wayleadr, we started using Datadog in 2026.
 At Wayleadr, the Rails platform reports APM traces to Datadog.
 I am on call at Wayleadr.
 I have no experience with Elasticsearch, Kafka, Airflow, or Git internals.
+I have not built vulnerability or internet scanning systems.
 I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects (GitHub: snippets_r).
 I have no experience with GCP.
