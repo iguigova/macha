@@ -7,7 +7,10 @@ allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snaps
 
 Read the LinkedIn feed and mail a ranked list of what matters in it.
 `<date>` is `date +%F`, and every file goes in `.claude/linkedin_digest/`.
-Every run ends with `browser_close`, whichever step it stops at.
+Every run ends with `browser_close`, whichever step it stops at. Every
+run sends: an earlier send, `.claude/linkedin_digest.last` included, is
+no reason to stop. A run that stops before sending ends its reply with
+one line `Not sent: <reason>`, which the timer's failure note quotes.
 
 1. **Open the feed.** `browser_navigate` to `https://www.linkedin.com/feed/`.
    A login, authwall or checkpoint page means the saved login has expired:

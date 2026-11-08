@@ -20,9 +20,9 @@ The body is the list as plain text, with an HTML copy in which each
 headline and each skip label is bold. It logs in to smtp.gmail.com:587
 over STARTTLS with the Gmail app password in the project secret
 `gmail-app-password` (`~/.claude/scripts/secret_file.sh`), a file that
-must be mode 600. A send that succeeds writes "<UTC time> sent:
-<subject>" to the --stamp file; any failure exits 1 naming it, and
-writes no stamp.
+must be mode 600. A send that succeeds writes "<local time and its UTC
+offset> sent: <subject>" to the --stamp file; any failure exits 1 naming
+it, and writes no stamp.
 """
 import html
 import json
@@ -32,7 +32,7 @@ import stat
 import subprocess
 import sys
 import tempfile
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
 
@@ -127,6 +127,10 @@ def send(msg: EmailMessage, password: str, smtp=smtplib.SMTP) -> None:
         s.send_message(msg)
 
 
+def stamp_line(subject: str, now: datetime) -> str:
+    return f"{now:%Y-%m-%d %H:%M %z} sent: {subject}\n"
+
+
 def main(argv: list) -> int:
     dry = argv[:1] == ["--dry-run"]
     args = argv[1:] if dry else argv
@@ -148,8 +152,7 @@ def main(argv: list) -> int:
         print(f"digest_mail.py: {type(e).__name__}: {e}", file=sys.stderr)
         return 1
     if stamp:
-        now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-        stamp.write_text(f"{now} sent: {msg['Subject']}\n")
+        stamp.write_text(stamp_line(msg["Subject"], datetime.now().astimezone()))
     print(f"digest_mail.py: sent \"{msg['Subject']}\" to {msg['To']}", file=sys.stderr)
     return 0
 
@@ -198,6 +201,10 @@ def self_test() -> int:
         t.check(False, "a digest with no items is refused")
     except Refused:
         t.check(True, "a digest with no items is refused")
+
+    mst = timezone(timedelta(hours=-7))
+    t.check(stamp_line("T", datetime(2026, 11, 7, 22, 2, tzinfo=mst)) == "2026-11-07 22:02 -0700 sent: T\n",
+            "the stamp gives the local date and time with its offset")
 
     calls = []
 

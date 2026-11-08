@@ -101,6 +101,9 @@ day's feed and list stay in `.claude/linkedin_digest/`, also ignored.
 
 `.claude/scripts/linkedin_digest.sh install` sets a systemd user timer
 that runs the skill at 07:00 each day, headless, and catches up on a
-missed morning. A run that sends nothing opens a journal note naming why;
+missed morning. A timer reads no shell profile, so `install` writes the
+directory of the playwright server's command (`npx`) into the timer's
+PATH; a new node version is followed by `install` again. A run that
+sends nothing opens a journal note naming why;
 `.claude/linkedin_digest.log` holds each run, and
 `linkedin_digest.sh status` shows the timer and the last send.
