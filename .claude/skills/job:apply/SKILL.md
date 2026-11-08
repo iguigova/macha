@@ -53,7 +53,10 @@ browser is freed for the next session.
    Greenhouse demand an emailed code. A company that links to its
    `job-boards.greenhouse.io` page instead has the form on that page.
    Its dropdowns open with focus and `pressSequentially` (or `ArrowDown`),
-   then a click on the option; `fill()` shows no options. After the resume
+   then a click on an option matched with `[role=option]:visible`, since
+   the phone field's hidden country list also has options; `fill()` shows
+   no options. A demographic answer adds a required consent box for that
+   data, which goes to the user with any other policy. After the resume
    upload its first file input is gone, so the cover letter goes to
    `#cover_letter`. On Rippling, a radio or the SMS opt-in is clicked
    through the label its `aria-labelledby` names, a file chip is removed by
@@ -221,6 +224,9 @@ These add to the credo voice, for letters and screening answers.
   an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
   job and with no "what it taught me".
+- A question asking why this company gets a personal answer: one thing
+  about the user, from the user's own pages such as the interview page,
+  that connects to the role and repeats neither the letter nor the resume.
 - The subject comes first and the verb early, as people speak: "I want to
   write more Go", never "Go is the stack I want to work in".
 - A letter shows who the user is through one of the profile's lines
