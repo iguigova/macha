@@ -162,11 +162,12 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 - **LinkedIn.** Its job search in the Playwright browser, remote only and
   from the past week:
   `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
-  Signed out, it still lists jobs; a login wall means the user logs in by
-  hand, so say so and go on. Each session's browser is isolated and starts
-  from the logins in `~/.config/playwright-mcp/state.json`, so after a
-  login by hand, `browser_run_code_unsafe` saves them back with
-  `page.context().storageState({ path })`. Signed in, it redirects to
+  Signed out, it still lists jobs. Each session's browser is isolated and
+  starts from the saved logins; a login wall means the user runs
+  `! ~/.claude/scripts/playwright_login.sh https://www.linkedin.com/login`,
+  logs in and closes that window, which saves the login for every later
+  session. Then `browser_close`, so the next call opens a browser that has
+  the login. Signed in, it redirects to
   `/jobs/search-results/`, which can drop the location and remote filters,
   so each card's location is read. Its "Posted" age counts a repost; the
   posting's board gives its first date.
