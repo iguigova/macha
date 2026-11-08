@@ -69,7 +69,6 @@ I have 1 year of Clojure experience from personal projects.
 I have used property-based testing in personal projects (Haskell/Clojure).
 I have studied Erlang.
 I have less than 1 year of Erlang experience from personal projects.
-I have no Rust experience.
 I have used Cloudflare Workers in personal projects.
 I have used WebAssembly in personal projects.
 I have used Python since 2025.
@@ -117,13 +116,10 @@ I have used Grafana and Prometheus at Flourish and at Wayleadr.
 At Wayleadr, we started using Datadog in 2026.
 At Wayleadr, the Rails platform reports APM traces to Datadog.
 I am on call at Wayleadr.
-I have no experience with Elasticsearch, Kafka, Airflow, or Git internals.
 I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects (GitHub: snippets_r).
-I have no experience with GCP.
 I studied networking at university.
 I have used Tailscale.
-I have no direct experience with Celery or RQ.
 I have used AI coding assistants in my daily work since Flourish (2025).
 At Wayleadr, I work with Claude Code every day.
 At Wayleadr, I built our project's Claude Code tooling.
