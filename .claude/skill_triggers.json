@@ -40,5 +40,19 @@
       "prompt": "read my LinkedIn feed and email me what matters",
       "fires": false
     }
+  ],
+  "painpoints:digest": [
+    {
+      "prompt": "email me the problems people need help with that technology could solve",
+      "fires": true
+    },
+    {
+      "prompt": "send me today's pain points digest",
+      "fires": true
+    },
+    {
+      "prompt": "email me today's top world news",
+      "fires": false
+    }
   ]
 }

@@ -28,6 +28,7 @@ for every later session.
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /linkedin:digest              # mail the user a ranked list of what matters in their LinkedIn feed
 /news:digest                  # mail the day's world, tech and science news, ranked by breadth of coverage
+/painpoints:digest            # mail the problems people asked strangers for help with, and what tech could do
 ```
 
 With no argument and an empty queue, `/job:apply` first searches company
@@ -111,6 +112,15 @@ those outlets, in how many countries, carry it, so no one outlet's choice
 decides; a story one outlet carries is left out, except a science story
 whose peer-reviewed paper is found and linked. Each item states what the
 outlets agree on and attributes any claim one side makes.
+
+`/painpoints:digest` reads the last seven days of questions on the
+Stack Exchange life sites `.claude/skills/painpoints:digest/sites.tsv`
+lists, through `.claude/scripts/stackexchange_fetch.py` and the public API
+with no key. It keeps the problems people have in their own lives, groups
+the questions that ask the same one, ranks them by how many ask it and
+how many read it, and says what a tool could do about each; a question
+an earlier digest mailed is not mailed again. Reddit was the first
+choice of source, but its API now needs Reddit's approval first.
 
 `.claude/scripts/digest.sh install <name>…` enables the systemd user timer
 `digest@<name>.timer`, which runs the skill at 07:00 each day, headless,
