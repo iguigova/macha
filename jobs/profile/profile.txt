@@ -381,7 +381,7 @@ My best advice: automate tasks repeated 3 or more times.
 I am motivated by challenges that require creativity and discipline.
 In high school, I studied computer architecture, including digital circuit design, digital electronics, microcontrollers and assembler.
 In high school, I solved an assembler problem my professor declared "unsolvable."
-My favorite technical reading is Roy Fielding's dissertation, "Architectural Styles and the Design of Network-based Software Architectures".
+One of my favorite technical readings is Roy Fielding's dissertation, "Architectural Styles and the Design of Network-based Software Architectures".
 I describe myself as: "A kernel of laughter. I find freedom in the second law of thermodynamics."
 I also describe myself as: "Stay curious."
 I also describe myself as: "I am an agile problem solver."
