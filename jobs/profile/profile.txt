@@ -84,6 +84,7 @@ I have 2+ years of DynamoDB experience.
 I have 2+ years of GraphQL experience.
 I have designed and evolved GraphQL schemas.
 I have used WebSockets.
+I have used gRPC in personal projects.
 I have used Datomic and graph databases.
 Every job I have had involved data migrations.
 I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
@@ -327,6 +328,7 @@ At PINpoint, I planned the move to fully automated testing.
 At PINpoint, I implemented the SmartCart mobile fastening system interface from conception to integration.
 At PINpoint, I led a feasibility study of ultrasound localization algorithms, such as RANSAC, for recalibrating the tool by its position, error-proofing the fastening operation and controlling the workflow.
 At PINpoint, I wrote the software that talked over the plant network, through sockets, to the PLCs controlling the assembly-line conveyors.
+At PINpoint, the PLC communication used BACnet.
 At PINpoint, I built the communication between the workstation clients and the central server.
 At Intelsys, I built web-based and hosted 3D graphics and networking applications.
 At Intelsys, I built a SolidWorks/AutoCAD plug-in for network communications.
