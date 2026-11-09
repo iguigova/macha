@@ -65,7 +65,12 @@ browser is freed for the next session.
    like any other value. On Ashby, `fill()` can show a value the form
    never took and a label click can leave a radio unset; type into the
    field with `pressSequentially` and set a radio with
-   `check({ force: true })` on its input. A refused submit lists each
+   `check({ force: true })` on its input. On Kula, a dropdown opens like
+   Greenhouse's from its hidden input, with focus and `ArrowDown`; a text
+   field is typed with `pressSequentially` after `focus()`, since a click
+   can time out; the file inputs are `#resume` and `#cover_letter`; and a
+   file replaced by one of the same name is cleared with
+   `setInputFiles([])` before it is set again. A refused submit lists each
    field it found empty. A text field's `maxLength` is read before pasting
    into it, and text that does not fit is shortened, never cut off. Each
    field's help text is read before it is filled, and a field that asks
@@ -185,9 +190,8 @@ exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
 is closed. Exit 4, the board itself is not there, and exit 3, its API
 did not answer or answered otherwise, say nothing about the posting: on
 4 find the company's board under another ATS or name, and on 3 read the
-posting page. A posting on any other site is checked on its page. Read the posting for
-its title, location rule, employment type, pay and stack. It fits if it
-can be done remotely from where the user may work, its pay reaches the
+posting page. A posting on any other site is checked on its page.
+Read the posting as step 2 does. It fits if it can be done remotely from where the user may work, its pay reaches the
 profile's (a salary range the salary expectation, a contract or freelance
 rate the freelance rate) or it states none, and it is the kind of work
 the profile looks for, in any stack.
