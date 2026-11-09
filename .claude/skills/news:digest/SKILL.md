@@ -7,10 +7,7 @@ allowed-tools: Read, Write, Edit, WebFetch, Bash(date *), Bash(.claude/scripts/f
 
 Mail the day's world, tech and science news, chosen by how widely it is
 covered rather than by any one outlet's choice. `<date>` is `date +%F`,
-and every file goes in `digest/news/`. Every run sends: an earlier send,
-`.claude/digest/news.last` included, is no reason to stop. A run that
-stops before sending ends its reply with one line `Not sent: <reason>`,
-which the timer's failure note quotes.
+and every file goes in `digest/news/`.
 
 1. **Fetch.**
    ```bash
@@ -18,8 +15,7 @@ which the timer's failure note quotes.
      --out digest/news/<date>-feeds.json
    ```
    Fewer than half the feeds read is a failed fetch: stop and say so.
-2. **Group.** Read `digest/news/<date>-feeds.json` with the Read tool,
-   the only tool the skill reads files with. A story is one event: items
+2. **Group.** Read `digest/news/<date>-feeds.json`. A story is one event: items
    from different outlets about the same event are one story. For each
    story count its outlets and their countries, within its section.
 3. **Rank.** Within each section, the stories most widely covered come
@@ -50,8 +46,7 @@ which the timer's failure note quotes.
      **what** whether it is peer-reviewed or a preprint; a story whose
      paper cannot be found keeps the article's link and says so.
    - **section** — `World`, `Tech` or `Science`.
-5. **Compose** `digest/news/<date>.json` in the shape
-   `.claude/scripts/digest_mail.py --help` states:
+5. **Compose** `digest/news/<date>.json` (`digest_mail.py --help`):
    - **title** — the most widely covered story, as one sentence with a
      verb, in the same plain words as its headline.
    - **subtitle** — `News for <date>, read at <time> from <read> of

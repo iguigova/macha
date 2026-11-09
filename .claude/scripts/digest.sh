@@ -35,7 +35,7 @@ ROOT=$(cd "$HERE/../.." && pwd)
 STATE="$ROOT/.claude/digest"
 # The session rules ask for a journal entry, an audit and a question dialog;
 # a timer run has no one to answer, and this script records its outcome.
-UNATTENDED="This run is unattended, started by digest.sh from a systemd timer: nobody reads its reply until later and nobody can approve a call. Write no journal entry, run no audit, and ask nothing; digest.sh logs the reply and opens a note when nothing was sent."
+UNATTENDED="This run is unattended, started by digest.sh from a systemd timer: nobody reads its reply until later and nobody can approve a call. Every run sends: an earlier send, the stamp file included, is no reason to stop. Read files with the Read tool; Bash runs only the commands the skill names. Write no journal entry, run no audit, and ask nothing. A run that stops before sending ends its reply with one line \"Not sent: <reason>\", which digest.sh quotes in the note it opens."
 
 unit_dir() { echo "${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"; }
 

@@ -7,10 +7,7 @@ allowed-tools: Read, Write, Edit, Bash(date *), Bash(.claude/scripts/stackexchan
 
 Mail the problems people are asking strangers to help them with, ranked
 by how many people they reach, with what a tool could do about each.
-`<date>` is `date +%F`, and every file goes in `digest/painpoints/`. Every
-run sends: an earlier send, `.claude/digest/painpoints.last` included, is
-no reason to stop. A run that stops before sending ends its reply with one
-line `Not sent: <reason>`, which the timer's failure note quotes.
+`<date>` is `date +%F`, and every file goes in `digest/painpoints/`.
 
 1. **Fetch.**
    ```bash
@@ -18,8 +15,8 @@ line `Not sent: <reason>`, which the timer's failure note quotes.
      --mailed digest/painpoints --out digest/painpoints/<date>-questions.json
    ```
    No question read is a failed fetch: stop and say so.
-2. **Keep the pain points.** Read `digest/painpoints/<date>-questions.json`
-   with the Read tool, the only tool the skill reads files with. A pain
+2. **Keep the pain points.** Read `digest/painpoints/<date>-questions.json`.
+   A pain
    point is a problem in someone's own life they cannot solve alone: a
    bill they cannot track, a parent they cannot reach, a landlord who
    will not answer. A question asked out of curiosity, about theory, or
@@ -29,8 +26,7 @@ line `Not sent: <reason>`, which the timer's failure note quotes.
    are one pain point, across sites. Rank by how many questions ask it,
    then by their views; at a tie, one with no accepted answer ranks
    first, since nobody has solved it.
-4. **Compose** `digest/painpoints/<date>.json` in the shape
-   `.claude/scripts/digest_mail.py --help` states:
+4. **Compose** `digest/painpoints/<date>.json` (`digest_mail.py --help`):
    - **title** — the top pain point as one sentence with a verb, in the
      askers' terms.
    - **subtitle** — `Pain points from <sites> Stack Exchange sites,

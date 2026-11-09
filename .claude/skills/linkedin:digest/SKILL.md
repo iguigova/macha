@@ -7,10 +7,7 @@ allowed-tools: mcp__playwright__browser_navigate, mcp__playwright__browser_snaps
 
 Read the LinkedIn feed and mail a ranked list of what matters in it.
 `<date>` is `date +%F`, and every file goes in `digest/linkedin/`.
-Every run ends with `browser_close`, whichever step it stops at. Every
-run sends: an earlier send, `.claude/digest/linkedin.last` included, is
-no reason to stop. A run that stops before sending ends its reply with
-one line `Not sent: <reason>`, which the timer's failure note quotes.
+Every run ends with `browser_close`, whichever step it stops at.
 
 1. **Open the feed.** `browser_navigate` to `https://www.linkedin.com/feed/`.
    A login, authwall or checkpoint page means the saved login has expired:
@@ -22,12 +19,10 @@ one line `Not sent: <reason>`, which the timer's failure note quotes.
    follow-suggestion boxes, and returns each post's text, comments
    included, and its link: the author's recent posts, since a post box
    carries no post ID. An `n` of 0 is a failed read: stop and say so.
-3. **Rank it.** Read `<date>-feed.json` and `jobs/profile/profile.txt`
-   with the Read tool, the only tool the skill reads files with. Comments
-   are ignored, and a post marked Promoted is an ad. Every figure comes
-   from a post as written. Write
-   `digest/linkedin/<date>.json` in the shape
-   `.claude/scripts/digest_mail.py --help` states:
+3. **Rank it.** Read `<date>-feed.json` and `jobs/profile/profile.txt`.
+   Comments are ignored, and a post marked Promoted is an ad. Every
+   figure comes from a post as written. Write
+   `digest/linkedin/<date>.json` (`digest_mail.py --help`):
    - **title** — the day's main claim as one sentence with a verb, not a
      topic.
    - **subtitle** — `<first name>'s LinkedIn feed, read <date> at <time>:
