@@ -39,6 +39,7 @@ My salary expectation is $100,000+ CAD.
 My freelance rate is $550 CAD a day.
 My freelance rate is the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
+I will travel for occasional on-site meetings.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages.
 I want to work more on distributed systems and networking.
