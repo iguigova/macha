@@ -1,9 +1,12 @@
 I am Ilka Guigova.
 I go by Ilka.
+The title I use on forms is Ms.
+I was born in August 1977.
 My email is iguigova@gmail.com.
 My phone number is 604-338-4242.
 The address I give on resumes, CVs and application forms is Vancouver, BC, Canada.
 The postal code I give on application forms is V0N 1H0.
+The street line I give on application forms is "Vancouver, BC".
 My CV is at https://urgh.weebly.com/curriculum-vitae.html
 My LinkedIn is https://www.linkedin.com/in/iguigova/
 My GitHub is https://github.com/iguigova.
@@ -31,6 +34,7 @@ I passed the Goethe-Institut Toronto Level 4 German final exam with 82%.
 
 I am authorized to work in Canada without sponsorship.
 My passport is Canadian.
+My nationalities are Canadian and Bulgarian.
 I am not authorized to work in the US.
 I would require sponsorship to work in the US.
 I hold no Canadian government security clearance.
