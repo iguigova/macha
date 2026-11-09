@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_evaluate",
+      "Bash(pgrep *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:urgh.weebly.com)",
+      "WebFetch(domain:oceanhue.blogspot.com)",
+      "WebFetch(domain:urgh2.weebly.com)",
+      "WebFetch(domain:soothue.blogspot.com)"
+    ]
+  }
+}
