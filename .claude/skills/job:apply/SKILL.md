@@ -70,7 +70,14 @@ browser is freed for the next session.
    field is typed with `pressSequentially` after `focus()`, since a click
    can time out; the file inputs are `#resume` and `#cover_letter`; and a
    file replaced by one of the same name is cleared with
-   `setInputFiles([])` before it is set again. A refused submit lists each
+   `setInputFiles([])` before it is set again. On PageUp, a dropdown is
+   a click on its `-edit` input, then on the visible `li`; an institution
+   or company is chosen in a search popup, where a name its list lacks is
+   "Other"; a file uploads as soon as its input is set; and the session
+   times out within hours, keeping each page saved with Continue, and is
+   resumed through the emailed one-time code, whose Login button is
+   matched by role, then the application's `buildForm.asp` link. A
+   refused submit lists each
    field it found empty. A text field's `maxLength` is read before pasting
    into it, and text that does not fit is shortened, never cut off. Each
    field's help text is read before it is filled, and a field that asks
