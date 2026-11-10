@@ -55,6 +55,8 @@ Interesting work is what I look for.
 The stack is not a requirement for me.
 I am more of a nerd: technically deep problems suit me better.
 Niche postings suit me best: a small company with one specific, unusual problem.
+I am interested in trading and markets.
+I have been interested in actuarial studies.
 
 I work at a senior level.
 I have 20+ years of experience building systems where correctness matters.
@@ -357,6 +359,7 @@ I have a Software Specialist high-school diploma from the College of Electronic 
 I started at the College of Electronic Systems in 1992.
 I graduated from the College of Electronic Systems with Top 3 Student Distinction.
 I have a Business Informatics Certificate from the University of Economics in Sofia (1997).
+I studied economics at the University of Economics in Sofia.
 I completed Stanford Online courses in Machine Learning, AI, and Databases (2011).
 I completed MIT OCW Dynamic Programming & Stochastic Control (2010).
 I hold a Microsoft Certification Exam 70-536 (2008).
