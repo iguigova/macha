@@ -43,7 +43,9 @@ checks that one of its postings is open.
 
 For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
-fills the form, and pauses again before submitting. The documents take
+fills the form, and pauses again before submitting. A posting that takes
+applications by email gets one, sent from the user's address by
+`.claude/scripts/apply_mail.py` through the digests' Gmail login. The documents take
 their look from `jobs/templates/style.css`. Every run ends with a journal
 entry closing the job's note with what happened, then checks the
 profile for contradictions, duplicates, copies, lines holding more than

@@ -2,7 +2,7 @@
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
@@ -46,7 +46,13 @@ browser is freed for the next session.
    `out/cover_letter.html`, printed as `<Name>_Resume.pdf` and
    `<Name>_CoverLetter.pdf`, one page each.
 
-6. **Fill the form.** Click Apply (on LinkedIn prefer Easy Apply). A
+6. **Fill the form.** A posting that asks for applications by email has
+   the email as its form: the letter is its body, then the name, phone,
+   email, GitHub and LinkedIn, in `out/email.txt`; the resume PDF is its
+   attachment; and its subject is "<Role> — <Name>". Its review shows
+   `.claude/scripts/apply_mail.py --dry-run`, and Approve sends it with
+   the same arguments, the confirmation being the script's "sent" line.
+   Otherwise click Apply (on LinkedIn prefer Easy Apply). A
    Greenhouse form embedded on the company's page sits in an iframe: fill
    it there through `page.frameLocator('iframe[src*="greenhouse"]')`,
    never by opening the iframe's URL, which blocks reCAPTCHA and makes
