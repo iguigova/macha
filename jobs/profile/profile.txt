@@ -65,6 +65,7 @@ I have worked professionally in 10+ programming languages.
 
 I have 1 year of Go experience, at Flourish.
 I learned Go at Flourish.
+I learn a new language by solving small puzzles in it, like Project Euler or 4clojure.
 My programming language of choice is Go.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
@@ -101,6 +102,7 @@ I have worked with many query languages, among them SQL, GraphQL, Datalog (Datom
 I have worked a lot with tabular data formats and exports: Excel, CSV and others.
 I have about 5 years of microservices architecture experience.
 I use Shell/Bash for scripting.
+I use Linux as my daily development machine.
 I use Git daily.
 I use Jira, Slack, Teams and Discord.
 Earlier in my career I used UML (Enterprise Architect, Rational Rose), XML/XSLT, Subversion, Serena PVCS and AutomatedQA TestComplete.
@@ -368,6 +370,8 @@ At Centennial I completed 5 of the 7 program courses in one semester while worki
 At Centennial, my Project Selection and Registration assignment was selected for Blackboard's Gallery of Student Works.
 I completed a Technical Writing course at George Brown College (2006).
 I was a student at the School of Mathematics (SMG) in Sofia (1991).
+I started programming at 14, at the School of Mathematics in Sofia.
+My first programming language was Pascal.
 
 I published the FIFF file comparison algorithm ("Code Lean and Mean File DIFF (FIFF) Application", 2009).
 FIFF runs as fast as LCS.
