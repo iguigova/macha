@@ -49,7 +49,8 @@ browser is freed for the next session.
 6. **Fill the form.** A posting that asks for applications by email has
    the email as its form: the letter is its body, then the name, phone,
    email, GitHub and LinkedIn, in `out/email.txt`; the resume PDF is its
-   attachment; and its subject is "<Role> — <Name>". Its review shows
+   attachment; and its subject is the one the posting asks for, word for
+   word, else "<Role> — <Name>". Its review shows
    `.claude/scripts/apply_mail.py --dry-run`, and Approve sends it with
    the same arguments, the confirmation being the script's "sent" line.
    Otherwise click Apply (on LinkedIn prefer Easy Apply). A
