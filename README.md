@@ -134,3 +134,11 @@ prints, saved as `.secrets/claude-oauth-token`, mode 600, and with the
 saved login while that file is absent. A run that sends nothing opens a
 journal note naming why; `.claude/digest/<name>.log` holds each run, and
 `digest.sh status` shows each timer and each last send.
+
+## The page
+
+https://iguigova.github.io/macha/ shows what macha does. `index.html` and
+`demo/` are the page: it reads `jobs/profile/profile.txt` and the news
+digest's `sources.tsv` from this repo as it loads, finds the profile's
+work facts by a word from a posting, and lists the outlets. `.nojekyll`
+has Pages serve the repo as it is, `.claude/` included.

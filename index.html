@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>macha: applications from one profile</title>
+<meta name="description" content="Job applications generated from one profile of facts, run through Claude Code: every resume, cover letter and form answer is drawn from it, and the profile learns from every application.">
+<link rel="stylesheet" href="../brand.css">
+<link rel="stylesheet" href="demo/index.css">
+<script src="../brand.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>macha</h1>
+      <p class="tag">Job applications from one profile of facts, run through Claude Code.</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>What it is</h2>
+      <div>
+        <p>A set of Claude Code skills that apply to jobs. Every resume, cover
+          letter and form answer is written for the job at hand, from one
+          file of facts about the person applying,
+          <a href="https://github.com/iguigova/macha/blob/main/jobs/profile/profile.txt"><code>profile.txt</code></a>.
+          One fact sits on one line, and each fact is written once.</p>
+        <ul>
+          <li><strong>Nothing is made up.</strong> Every claim in every
+            document comes from a line of the profile. A requirement that no
+            line covers is listed as a gap, never turned into a sentence.</li>
+          <li><strong>The profile learns.</strong> When a job asks for
+            something the profile doesn't say, macha asks. The answer goes
+            into the profile and is committed before any document uses it.
+            Corrections go the same way.</li>
+          <li><strong>The profile stays honest.</strong> After every run, it
+            is checked for lines that contradict each other, facts said
+            twice, lines that hold two facts, words that read as a limit,
+            and copies outside the file. The check finds the problem; the
+            person says what is true.</li>
+          <li><strong>Nothing goes out without a yes.</strong> The person
+            approves twice: the drafts before the form is filled, and the
+            filled form before it is sent.</li>
+          <li><strong>A listing is a lead, the posting is the fact.</strong>
+            Every job is checked open at its source and against every
+            posting already seen, before it is offered.</li>
+          <li><strong>Every job is a note.</strong> It sits in the journal's
+            queue while it waits and is closed with what happened: applied,
+            found closed, or skipped and why.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div>
+        <p><code>/job:apply</code> takes one job from the queue, or searches
+          company boards, HN Who's Hiring, remote job boards and LinkedIn
+          when the queue is empty. Then:</p>
+        <ol class="flow">
+          <li><span class="step">Read</span> the posting, all of it.</li>
+          <li><span class="step">Ask</span> for any fact it weighs that the
+            profile lacks, and write the answer to the profile.</li>
+          <li><span class="step">Draft</span> a gap analysis, a one-page
+            resume and a cover letter, then reread them as the hiring
+            manager would.</li>
+          <li class="you"><span class="step">You approve</span> the drafts,
+            or revise them.</li>
+          <li><span class="step">Fill</span> the form: the PDFs, the answers,
+            every value read back.</li>
+          <li class="you"><span class="step">You approve</span> the form,
+            and only then is it sent.</li>
+          <li><span class="step">Close</span> the job's note with what
+            happened, and check the profile.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Try it</h2>
+      <div>
+        <p>These are the profile's work facts, the lines that start with an
+          employer, read live from the repo. Type a word from a job posting
+          to see the facts a resume could draw on.</p>
+        <form id="find" class="find" role="search">
+          <label for="word">A word from a posting</label>
+          <input id="word" type="search" value="Go" autocomplete="off" spellcheck="false">
+        </form>
+        <p id="summary" class="summary" aria-live="polite"></p>
+        <div id="facts" class="facts"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The digests</h2>
+      <div>
+        <p>Three more skills read one source each, rank what matters in it,
+          and email the list, with the day's main point as the subject. A
+          timer can run each one at 07:00 every day.</p>
+        <ul>
+          <li><strong><code>/news:digest</code></strong> ranks a story by how
+            many outlets carry it, in how many countries. No single outlet's
+            choice decides. A story only one outlet carries is left out,
+            unless it's science and the paper behind it is found and
+            linked.</li>
+          <li><strong><code>/painpoints:digest</code></strong> collects the
+            week's questions on Stack Exchange's everyday-life sites, groups
+            the ones asking the same thing, ranks them by how many people
+            ask and read, and says what a tool could do about each.</li>
+          <li><strong><code>/linkedin:digest</code></strong> reads the LinkedIn
+            feed and keeps what matters in it.</li>
+        </ul>
+        <p>The outlets the news digest reads, live from
+          <a href="https://github.com/iguigova/macha/blob/main/.claude/skills/news%3Adigest/sources.tsv"><code>sources.tsv</code></a>:</p>
+        <p id="outlets-summary" class="summary"></p>
+        <div class="scroll" tabindex="0" role="region" aria-label="News outlets">
+          <table id="outlets" class="outlets"></table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Use it</h2>
+      <div>
+        <p>It needs <a href="https://claude.com/claude-code">Claude Code</a>
+          and the Playwright MCP server for the browser:</p>
+        <pre><code>claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/mcp \
+  --isolated --storage-state ~/.config/playwright-mcp/state.json
+cd macha &amp;&amp; claude
+/job:apply https://…</code></pre>
+        <p>Write your own facts in <code>jobs/profile/profile.txt</code>, one
+          to a line. The <a href="https://github.com/iguigova/macha#readme">README</a>
+          covers the job log, the digests and their daily timers.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Edges</h2>
+      <div>
+        <ul>
+          <li>It runs in Claude Code, with a person at both approvals. It
+            never sends anything on its own.</li>
+          <li>A site behind a login stops the run until you log in once.
+            The login is saved for every later run.</li>
+          <li>LinkedIn's feed carries no post IDs, so a digest item links to
+            its author's recent posts.</li>
+          <li>Reddit isn't a source: its API needs Reddit's approval
+            first.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="line"><a href="/">Ilka Guigova</a> · <a href="https://github.com/iguigova/macha">github.com/iguigova/macha</a></div>
+    <div class="band" aria-hidden="true"></div>
+  </footer>
+</div>
+<script type="module" src="demo/index.js"></script>
+</body>
+</html>

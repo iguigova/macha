@@ -1,0 +1,31 @@
+/* The page's own rules, over brand.css: the steps of an application, the
+   word search with its facts, and the table of outlets. */
+
+:root {
+  --line: light-dark(#767676, #8a8a8a);
+  --mark: light-dark(#fde7d4, #4a2a10);
+}
+
+.flow { padding-left: 1.4em; }
+.flow li { margin: 4px 0; }
+.flow .step { font-weight: 700; }
+.flow li.you { padding: 2px 8px; border-left: 3px solid var(--link); }
+
+.find { display: flex; flex-direction: column; gap: 2px; max-width: 320px; }
+input {
+  min-height: 44px; padding: 0 10px; font: inherit; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 3px;
+}
+
+.summary { margin: 16px 0 8px; font-weight: 700; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 12px; }
+.employer { border: 1px solid var(--hair); border-radius: 3px; padding: 10px 12px; min-width: 0; }
+.employer h3 { margin: 0 0 4px; }
+.employer ul { margin: 0; padding-left: 1.2em; }
+mark { background: var(--mark); color: var(--ink); padding: 0 2px; }
+
+.scroll { overflow-x: auto; }
+.outlets { border-collapse: collapse; font-size: 14px; }
+.outlets th, .outlets td { padding: 4px 10px 4px 0; text-align: left; border-bottom: 1px solid var(--hair); }
+.outlets th { color: var(--muted); font-weight: 400; }
