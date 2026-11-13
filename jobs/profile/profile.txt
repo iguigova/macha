@@ -241,6 +241,8 @@ Willow won "AI Startup of the Year" from AI Breakthrough Awards.
 At Willow, I worked on the rules engine that turns live building telemetry into insights.
 At Willow, the rules engine's rules are written in a domain expression language.
 At Willow, the rules engine evaluates rules against the digital-twin graph and its time series.
+At Willow, I used Snowflake.
+At Willow, I designed schemas for semi-structured building telemetry.
 
 At Bread & Butter (May 2019–Oct 2021), my title was Software Engineer.
 Bread & Butter IO is also known as Logonlabs.
