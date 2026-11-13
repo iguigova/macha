@@ -151,7 +151,7 @@ At Wayleadr, I verify every audit finding myself before acting on it.
 
 At Wayleadr (Feb 2026–present), my title is Software Engineer.
 Wayleadr is a parking and workplace-mobility SaaS.
-At Wayleadr, I am the primary engineer on the greenfield Wayleadr 2.0 Occupancy Service.
+At Wayleadr, I am the primary engineer on the Wayleadr 2.0 Occupancy Service, a rewrite of the original occupancy service.
 At Wayleadr, I led the Occupancy Service.
 At Wayleadr, other engineers contributed to the Occupancy Service.
 At Wayleadr, the Occupancy Service collects occupancy events from access-control systems, sensors and bookings.
