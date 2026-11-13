@@ -227,6 +227,7 @@ At Flourish, I created deployment scripts and environment management across 15+ 
 
 At Willow Inc (Oct 2021–Oct 2024), my title was Software Engineer.
 At Willow, I integrated insights, tickets, inspections, notifications, and reports on digitized environments with Asset Digital Twin (ADT) models using GraphQL, over live and historical data.
+At Willow, I moved APIs from REST to GraphQL.
 At Willow, the clients included Walmart, DFW Airport, Northern Arizona University, Georgia Southern University, and BNP Paribas Real Estate.
 At Willow, I enacted QA standards in CI/CD infrastructure using Pulumi and Azure Pipelines.
 At Willow, I joined the customer support incident resolution team.
