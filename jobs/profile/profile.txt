@@ -436,6 +436,7 @@ When asked about gender on applications: Female.
 When asked about veteran status: No.
 When asked about disability status: No.
 When asked about race/ethnicity: White / Caucasian.
+When asked if I am Hispanic/Latino: No.
 When asked about transgender identity: No.
 When asked about sexual orientation: Heterosexual / straight.
 I am a parent.
