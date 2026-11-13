@@ -157,6 +157,7 @@ At Wayleadr, other engineers contributed to the Occupancy Service.
 At Wayleadr, the Occupancy Service collects occupancy events from access-control systems, sensors and bookings.
 At Wayleadr, the Occupancy Service rolls the occupancy events up.
 At Wayleadr, the Occupancy Service serves the rollups through an HTTP API.
+At Wayleadr, I published the Occupancy Service's API as an OpenAPI document, rendered by Swagger UI.
 At Wayleadr, the stack is Python on AWS Lambda, CDK, Aurora Postgres and a TypeScript/React 19 web app.
 At Wayleadr, I build AWS Lambda services in Python with Pydantic, SQLAlchemy and psycopg.
 At Wayleadr, my work is split about 70% backend development and 30% infrastructure and operations.
@@ -170,6 +171,9 @@ At Wayleadr, I built the AMAG access-control integration.
 At Wayleadr, I extracted the AMAG SOAP client into a reusable SDK.
 At Wayleadr, I migrated the AMAG integration to the REST API, with OAuth token caching behind a feature flag.
 At Wayleadr, I cut the AMAG REST migration over in production with a written runbook.
+At Wayleadr, my AMAG REST client retries rate-limited calls, honouring Retry-After.
+At Wayleadr, I put the key checks of incoming partner webhooks into one shared check.
+At Wayleadr, every refused partner-webhook call is logged, counted and alarmed.
 At Wayleadr, I built a Flash/ParkWhiz access-control integration.
 
 At Wayleadr, I added observability to the occupancy pipeline.
