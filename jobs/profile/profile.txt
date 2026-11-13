@@ -85,6 +85,12 @@ I have used Cloudflare Workers in personal projects.
 I have used WebAssembly in personal projects.
 I have used Python since 2025.
 I have worked in Ruby on Rails at Wayleadr (2026), on the legacy platform.
+At Wayleadr, I build features and fixes in the Rails platform.
+At Wayleadr, I wrote Sidekiq workers in the Rails platform.
+At Wayleadr, I wrote Pundit authorization policies in the Rails platform.
+At Wayleadr, I write RSpec specs for the Rails platform.
+At Wayleadr, in the Rails platform I built scheduled team moves for parking permits.
+At Wayleadr, in the Rails platform I built the mobile app's checkout for pending permits.
 
 I have 8+ years of full-stack experience.
 I have 15+ years of REST API design and development experience.
@@ -246,6 +252,7 @@ At Bread & Butter, the authentication infrastructure integrated 35+ identity pro
 At Bread & Butter, the authentication infrastructure reused 98% of its code across providers.
 At Bread & Butter, the authentication infrastructure issued and validated JWTs.
 At Bread & Butter, the authentication infrastructure managed sessions and cookies.
+At Bread & Butter, I built role-based access control for a multi-tenant SaaS.
 At Bread & Butter, I reduced unit test runtime from 2+ hours to under 20 minutes.
 At Bread & Butter, I built comprehensive unit and user acceptance test suites enabling rapid deployments and easy onboarding of new providers.
 At Bread & Butter, I built an Android Kotlin library.
@@ -304,6 +311,7 @@ At Klein, I volunteered on the Content Management Committee.
 
 At Vivonet (2007–2008), my title was Software Engineer.
 At Vivonet, I refactored the Halo payment processing platform.
+At Vivonet, I rescued the Halo payment platform refactor.
 At Vivonet, the Halo platform handled millions of transactions per month.
 At Vivonet, I reduced complexity.
 At Vivonet, I removed 15,000+ lines of code.
