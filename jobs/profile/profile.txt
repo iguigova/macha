@@ -248,7 +248,7 @@ Bread & Butter was an early-stage startup.
 Bread & Butter built an SSO SaaS brokerage for easy integration into third-party applications.
 Bread & Butter's brokerage offered turnkey authentication, user management and user journey analytics.
 At Bread & Butter, I built the OAuth/OIDC/SAML authentication infrastructure from scratch.
-At Bread & Butter, the authentication infrastructure integrated 35+ identity providers (Google, Microsoft, Apple, social platforms, enterprise SSO).
+At Bread & Butter, the authentication infrastructure integrated 35+ identity providers (Google, Microsoft, Apple, Auth0, Okta, social platforms, enterprise SSO).
 At Bread & Butter, the authentication infrastructure reused 98% of its code across providers.
 At Bread & Butter, the authentication infrastructure issued and validated JWTs.
 At Bread & Butter, the authentication infrastructure managed sessions and cookies.
