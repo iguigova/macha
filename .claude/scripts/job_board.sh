@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # job_board.sh — one company's job board through its ATS's public API, one TSV
-# row per posting: id, title, location, workplace, pay, url. Workplace and pay
-# are what the board states and empty where it states nothing; Greenhouse lists
-# neither, so its posting is read for them. The location joins every location
-# the posting names with "; ".
+# row per posting: id, title, location, workplace, pay, url, posted. Workplace
+# and pay are what the board states and empty where it states nothing; Greenhouse
+# lists neither, so its posting is read for them. The location joins every
+# location the posting names with "; ". Posted is the day the posting was first
+# published, YYYY-MM-DD, empty where the board states none.
 #
 # Given an id, it checks that one posting: the row and exit 0 while it is open,
 # exit 1 once it is closed. A posting's 404 means closed only when its board
@@ -28,15 +29,16 @@ case "${1:-}" in -h|--help) awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, "
 rows() {
   case "$1" in
     greenhouse) jq -r '(.jobs // [.])[]
-      | [ .id, .title, .location.name, "", "", .absolute_url ] | @tsv' ;;
+      | [ .id, .title, .location.name, "", "", .absolute_url, (.first_published // "")[:10] ] | @tsv' ;;
     ashby) jq -r '.jobs[]
       | [ .id, .title, ([.location] + [.secondaryLocations[]?.location] | join("; ")),
-          (.workplaceType // ""), (.compensation.scrapeableCompensationSalarySummary // ""), .jobUrl ] | @tsv' ;;
+          (.workplaceType // ""), (.compensation.scrapeableCompensationSalarySummary // ""), .jobUrl,
+          (.publishedAt // "")[:10] ] | @tsv' ;;
     lever) jq -r '(if type == "array" then .[] else . end)
       | [ .id, .text, (.categories.allLocations // [.categories.location] | join("; ")),
           (.workplaceType // ""),
           (.salaryRange | if . then "\(.currency) \(.min)–\(.max) \(.interval)" else "" end),
-          .hostedUrl ] | @tsv' ;;
+          .hostedUrl, (if .createdAt then (.createdAt / 1000 | floor | todate)[:10] else "" end) ] | @tsv' ;;
   esac
 }
 
@@ -66,15 +68,15 @@ not_found() {
 if [[ "${1:-}" == "--self-test" ]]; then
   # shellcheck source=/dev/null
   . "$HOME/.claude/scripts/tap.sh"
-  gh='{"id":7,"title":"Go Engineer","location":{"name":"Remote, Canada"},"absolute_url":"https://g.example/7"}'
-  ash='{"jobs":[{"id":"a1","title":"SRE","location":"Toronto","secondaryLocations":[{"location":"Canada"}],"workplaceType":"Remote","compensation":{"scrapeableCompensationSalarySummary":"CA$150K - CA$190K"},"jobUrl":"https://a.example/a1"}]}'
-  lev='{"id":"l1","text":"Backend","categories":{"location":"Vancouver","allLocations":["Vancouver","Remote"]},"workplaceType":"remote","salaryRange":{"currency":"CAD","min":140000,"max":180000,"interval":"per-year-salary"},"hostedUrl":"https://l.example/l1"}'
-  grow=$'7\tGo Engineer\tRemote, Canada\t\t\thttps://g.example/7'
-  lrow=$'l1\tBackend\tVancouver; Remote\tremote\tCAD 140000–180000 per-year-salary\thttps://l.example/l1'
+  gh='{"id":7,"title":"Go Engineer","location":{"name":"Remote, Canada"},"absolute_url":"https://g.example/7","first_published":"2026-11-02T17:10:13-05:00"}'
+  ash='{"jobs":[{"id":"a1","title":"SRE","location":"Toronto","secondaryLocations":[{"location":"Canada"}],"workplaceType":"Remote","compensation":{"scrapeableCompensationSalarySummary":"CA$150K - CA$190K"},"jobUrl":"https://a.example/a1","publishedAt":"2026-10-01T12:00:00.000+00:00"}]}'
+  lev='{"id":"l1","text":"Backend","categories":{"location":"Vancouver","allLocations":["Vancouver","Remote"]},"workplaceType":"remote","salaryRange":{"currency":"CAD","min":140000,"max":180000,"interval":"per-year-salary"},"hostedUrl":"https://l.example/l1","createdAt":1762300800000}'
+  grow=$'7\tGo Engineer\tRemote, Canada\t\t\thttps://g.example/7\t2026-11-02'
+  lrow=$'l1\tBackend\tVancouver; Remote\tremote\tCAD 140000–180000 per-year-salary\thttps://l.example/l1\t2025-11-05'
   tap_is "a Greenhouse board gives a row with no workplace or pay" "$(rows greenhouse <<<"{\"jobs\":[$gh]}")" "$grow"
   tap_is "one Greenhouse posting gives the same row" "$(rows greenhouse <<<"$gh")" "$grow"
   tap_is "an Ashby board joins its locations and states workplace and pay" "$(rows ashby <<<"$ash")" \
-    $'a1\tSRE\tToronto; Canada\tRemote\tCA$150K - CA$190K\thttps://a.example/a1'
+    $'a1\tSRE\tToronto; Canada\tRemote\tCA$150K - CA$190K\thttps://a.example/a1\t2026-10-01'
   tap_is "a Lever board joins its locations and states workplace and pay" "$(rows lever <<<"[$lev]")" "$lrow"
   tap_is "one Lever posting gives the same row" "$(rows lever <<<"$lev")" "$lrow"
   tap_is "an Ashby id is looked up in its board, not in the URL" "$(url ashby x 9)" \

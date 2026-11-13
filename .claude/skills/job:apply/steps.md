@@ -21,7 +21,8 @@ queued posting is a note, `<Company> — <Role>: <url>`, captured under a
 ~/.claude/scripts/journal_queue.sh --topic "job: "
 ```
 The argument is a URL, or a queued note's id; with none, take the first
-row, the oldest. A URL that a queued note carries is that posting. With no
+row, the oldest. An argument `reply <id> <what happened>` is a reply to
+an application: Record a reply, and stop. A URL that a queued note carries is that posting. With no
 argument and no queued posting, run the search in `/job:apply`'s
 Finding jobs, which queues the postings the user approves and takes the
 first. A URL that a closed note carries,
@@ -108,6 +109,19 @@ closed, or skipped and why.
   -b "<what happened, and what the page showed>" \
   --placed "<id>: - — <what happened>"
 ```
+
+## Record a reply
+
+A reply is one journal entry under the topic of the note the id names,
+open or closed (`journal_queue.sh --closed --topic "job: "`), its first
+bullet `Reply: <kind> — <what happened>`, the kind one word: interview,
+rejection, offer or silence.
+```bash
+~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
+  -b "Reply: <kind> — <what happened>"
+```
+`.claude/scripts/job_log.py` then counts it under the source the job was
+found on.
 
 ## Check the profile's integrity
 

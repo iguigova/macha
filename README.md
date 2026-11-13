@@ -26,20 +26,29 @@ for every later session.
 
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
+/job:apply reply <id> <what>  # record an employer's reply to an application
+/jobs:digest                  # mail the new postings on the niche company boards that fit the profile
 /linkedin:digest              # mail the user a ranked list of what matters in their LinkedIn feed
 /news:digest                  # mail the day's world, tech and science news, ranked by breadth of coverage
 /painpoints:digest            # mail the problems people asked strangers for help with, and what tech could do
 ```
 
-With no argument and an empty queue, `/job:apply` first searches company
-boards, HN Who's Hiring, the remote job boards and LinkedIn. It keeps a
+With no argument and an empty queue, `/job:apply` first searches the
+niche boards, `.claude/skills/jobs:digest/boards.tsv`: the companies
+behind open-source projects and unusual problems in the profile's
+interests, which aggregators rarely carry. Each search can add companies
+to that list, with the user's approval. Then it searches company boards,
+HN Who's Hiring, the remote job boards and LinkedIn, with search words
+taken from the profile's interests. It keeps a
 posting for the kind of work the profile looks for, in any stack. The
 postings the profile calls niche rank first; the preferred stack only
 ranks after that. It confirms each posting is open at its
 source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
-checks that one of its postings is open.
+checks that one of its postings is open. `.claude/scripts/board_watch.py`
+reads every niche board through it and marks the postings it has not
+seen.
 
 For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
@@ -90,6 +99,11 @@ The queue lists the open job notes, and with `--closed` the closed ones:
 ~/.claude/scripts/journal_queue.sh --closed --topic "job: " --show
 ```
 
+A queued job's first entry names where it was found. `/job:apply reply
+<id> <what happened>` records an employer's reply under the job's topic,
+and `.claude/scripts/job_log.py` counts, per source, the jobs found,
+applied to and replied to, so the sources that lead to interviews show.
+
 A freelance or contract posting is a job: it is found and applied to as one.
 
 ## The digests
@@ -123,6 +137,13 @@ the questions that ask the same one, ranks them by how many ask it and
 how many read it, and says what a tool could do about each; a question
 an earlier digest mailed is not mailed again. Reddit was the first
 choice of source, but its API now needs Reddit's approval first.
+
+`/jobs:digest` reads the niche boards through `board_watch.py`, keeps the
+postings first seen since its last send and posted in the last 14 days,
+checks each at its source as `/job:apply` does, and mails the ones that
+fit, ranked as `/job:apply`'s shortlist, each with the profile facts it
+fits and its gaps. A posting is marked seen only after a send, so a failed
+send leaves it for the next morning.
 
 `.claude/scripts/digest.sh install <name>…` enables the systemd user timer
 `digest@<name>.timer`, which runs the skill at 07:00 each day, headless,

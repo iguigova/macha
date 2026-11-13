@@ -1,8 +1,8 @@
 ---
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
-argument-hint: "[<job-url> | <job-id>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), AskUserQuestion
+argument-hint: "[<job-url> | <job-id> | reply <job-id> <what happened>]   (default: the oldest queued job)"
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/board_watch.py *), Bash(.claude/scripts/job_log.py *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
@@ -102,6 +102,14 @@ browser is freed for the next session.
      with each question and its options.
    Read every value back from the form before the next step.
 
+   A posting at a company whose board lists about 30 postings or fewer,
+   where the posting or the post that led to it names a person or an
+   address to write to, also gets a direct note: three to five sentences
+   to that person in the application voice, naming the role and the one
+   project of the letter that matches it best, in `out/note.txt`, with
+   the resume PDF attached. Step 7 shows it through
+   `.claude/scripts/apply_mail.py --dry-run` beside the form.
+
 7. **PAUSE — review the form.** `AskUserQuestion`: "Ready to submit to
    {Company} — {Role}" with a summary of every answer and every blank, and
    options "Approve — submit" and "Skip"; corrections come through Other.
@@ -111,7 +119,9 @@ browser is freed for the next session.
      overnight comes back on `about:blank`; reopen the page, refill the
      approved values, read them back and submit again. A letter drafted on
      an earlier day is redated and re-rendered before upload. Report the
-     confirmation the page shows.
+     confirmation the page shows. A direct note is sent after the
+     submit, with the dry run's arguments, only when the user approved it
+     too; its "sent" line is reported with the confirmation.
    - **Correct** → change the form, update the profile (step 8), pause
      again.
    - **Skip** → close its note (step 9) and stop without submitting.
@@ -132,7 +142,8 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
    ~/.claude/scripts/journal_queue.sh --topic "job: "
    ~/.claude/scripts/journal_queue.sh --closed --topic "job: "
    ```
-   Every candidate is held against them.
+   Every candidate is held against them. Then show what each source has
+   led to so far, the table `.claude/scripts/job_log.py` prints.
 
 2. **Search every source** under Sources, and note a source that failed
    rather than dropping it silently.
@@ -146,16 +157,21 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 4. **PAUSE — the shortlist.** Rank as Shortlist states. Show one table:
    rank, the posting's name, the columns Shortlist names, the profile
    facts it fits, the note it shares a company with if any, and the URL.
-   Under it, list each source and how many candidates it gave, and each
-   source that failed. Then `AskUserQuestion`: "Queue which of these?"
-   with options "All" and "None"; a choice of ranks comes through Other.
-   On None, the run stops with nothing queued.
+   Under it, list each source and how many candidates it gave, each
+   source that failed, and each company Niche boards found that is not in
+   its list yet, with its board and the area it serves. Then one
+   `AskUserQuestion`: "Queue which of these?" with options "All" and
+   "None", a choice of ranks coming through Other; and, when it found any,
+   "Add which companies to the niche boards?" with options "All" and
+   "None". On None, the run stops with nothing queued. Each company the
+   user adds becomes a row of the list, committed alone as Update the
+   profile commits.
 
 5. **Queue the approved postings**, one journal call each, best fit first,
    so the best fit is the oldest note and the first one taken:
    ```bash
    ~/.claude/scripts/journal.sh --via /job:apply -t "job: <Company> — <Role>" \
-     -b "<url> — <location rule>, <pay>; fits <the facts it fits>" \
+     -b "<url> — found on <source>; <location rule>, <pay>; fits <the facts it fits>" \
      -n "<Company> — <Role>: <url>"
    ```
    Then show the queue with `journal_queue.sh --topic "job: " --show`
@@ -163,6 +179,18 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 
 **Sources:** one that answers JSON is read with
 `curl -sS '<url>' | jq '<filter>'`.
+- **Niche boards.** Every board in `.claude/skills/jobs:digest/boards.tsv`,
+  the companies behind open-source projects and unusual problems in the
+  profile's interests, which aggregators rarely carry:
+  ```bash
+  .claude/scripts/board_watch.py fetch .claude/skills/jobs:digest/boards.tsv --seen digest/jobs/seen.tsv
+  ```
+  Every posting it lists is a candidate, new or not. Then grow the list
+  from the work itself: for each of the profile's "I want" and "I am
+  interested in" lines, a `WebSearch` for the companies building
+  open-source projects or products in that area; a company whose board
+  answers `job_board.sh` and is not in the list goes to the shortlist
+  pause.
 - **Company boards.** List the whole board of every company a lead names,
   since one fitting posting often has siblings:
   ```bash
@@ -185,7 +213,9 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
   the `https://canadajobs.works/` page.
 - **LinkedIn.** Its job search in the Playwright browser, remote only and
   from the past week:
-  `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`.
+  `https://www.linkedin.com/jobs/search/?keywords=<words>&location=<where the user may work>&f_WT=2&f_TPR=r604800`,
+  one search for each of the profile's "I want" and "I am interested in"
+  lines, its words the line's subject, such as "distributed systems".
   Signed out, it still lists jobs. Each session's browser is isolated and
   starts from the saved logins; a login wall means the user runs
   `! ~/.claude/scripts/playwright_login.sh https://www.linkedin.com/login`,
@@ -196,8 +226,9 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
   so each card's location is read. Its "Posted" age counts a repost; the
   posting's board gives its first date.
 - **Anything else** a `WebSearch` turns up that fits, named by where it
-  came from. A `site:` filter in the query is ignored, so search by the
-  kind of work instead.
+  came from, with one search for each of the profile's "I want" and "I am
+  interested in" lines. A `site:` filter in the query is ignored, so
+  search by the kind of work instead.
 
 **Check at source.** `.claude/scripts/job_board.sh <ats> <board> <id>`
 exits 0 while a Greenhouse, Ashby or Lever posting is open and 1 once it
@@ -207,16 +238,21 @@ did not answer or answered otherwise, say nothing about the posting: on
 posting page. A posting on any other site is checked on its page.
 Read the posting as step 2 does. It fits if it can be done remotely from where the user may work, its pay reaches the
 profile's (a salary range the salary expectation, a contract or freelance
-rate the freelance rate) or it states none, and it is the kind of work
-the profile looks for, in any stack.
+rate the freelance rate) or it states none, it is the kind of work
+the profile looks for, in any stack, and neither it nor its application
+form forbids AI-generated content.
 
 **Shortlist.** Postings the profile's niche line describes rank first;
 a small company is one whose board lists about 30 open postings or
 fewer. A posting from a larger board ranks below them unless its
 problem is itself rare. Then rank by the kind of work, then the
-preferred stack. A board's size is the row count of
-`job_board.sh <ats> <board>`, or the postings its careers page lists.
-The columns are company, role, board size, location rule and pay.
+preferred stack, then by the day first posted, newest first. A board's
+size is the row count of `job_board.sh <ats> <board>`, or the postings
+its careers page lists. The day first posted is the board's posted
+column, else the posting page's date. The columns are company, role,
+source, board size, location rule, pay, first posted, and the applicant
+count where a listing shows one, such as LinkedIn's "Over 100
+applicants".
 
 ## Application voice
 

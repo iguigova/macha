@@ -57,8 +57,10 @@
       <h2>How it works</h2>
       <div>
         <p><code>/job:apply</code> takes one job from the queue, or searches
-          company boards, HN Who's Hiring, remote job boards and LinkedIn
-          when the queue is empty. Then:</p>
+          when the queue is empty. The search starts with the boards of
+          small companies behind open-source projects and unusual problems,
+          where few people look, then company boards, HN Who's Hiring,
+          remote job boards and LinkedIn. Then:</p>
         <ol class="flow">
           <li><span class="step">Read</span> the posting, all of it.</li>
           <li><span class="step">Ask</span> for any fact it weighs that the
@@ -96,7 +98,7 @@
     <section>
       <h2>The digests</h2>
       <div>
-        <p>Three more skills read one source each, rank what matters in it,
+        <p>Four more skills read one source each, rank what matters in it,
           and email the list, with the day's main point as the subject. A
           timer can run each one at 07:00 every day.</p>
         <ul>
@@ -111,6 +113,9 @@
             ask and read, and says what a tool could do about each.</li>
           <li><strong><code>/linkedin:digest</code></strong> reads the LinkedIn
             feed and keeps what matters in it.</li>
+          <li><strong><code>/jobs:digest</code></strong> watches the niche
+            company boards and mails each new posting that fits the profile
+            the day it appears, before the aggregators carry it.</li>
         </ul>
         <p>The outlets the news digest reads, live from
           <a href="https://github.com/iguigova/macha/blob/main/.claude/skills/news%3Adigest/sources.tsv"><code>sources.tsv</code></a>:</p>

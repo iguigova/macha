@@ -1,0 +1,41 @@
+# The company boards /jobs:digest watches and /job:apply's search lists first:
+# companies behind open-source projects or unusual problems in the profile's
+# interests, each answering `job_board.sh <ats> <board>`. ats is greenhouse,
+# ashby or lever; area is the interest it serves.
+ats	board	company	area
+greenhouse	tailscale	Tailscale	networking
+ashby	netbird	NetBird	networking
+lever	twingate	Twingate	networking
+ashby	livekit	LiveKit	real-time networking
+lever	fly	Fly.io	distributed systems
+greenhouse	cockroachlabs	Cockroach Labs	distributed databases
+greenhouse	planetscale	PlanetScale	distributed databases
+ashby	materialize	Materialize	streaming databases
+ashby	tigerdata	Tiger Data	time-series databases
+ashby	influxdata	InfluxData	time-series databases
+ashby	temporal	Temporal	durable execution
+ashby	restate	Restate	durable execution
+ashby	inngest	Inngest	durable execution
+ashby	triggerdev	Trigger.dev	durable execution
+ashby	supabase	Supabase	databases and auth
+ashby	authzed	AuthZed	authorization
+ashby	workos	WorkOS	identity
+ashby	clerk	Clerk	identity
+greenhouse	bitwarden	Bitwarden	identity and security
+ashby	1password	1Password	identity and security
+ashby	nango	Nango	integrations
+greenhouse	honeycomb	Honeycomb	observability
+ashby	posthog	PostHog	product analytics
+ashby	sentry	Sentry	observability
+ashby	zed	Zed	developer tools
+ashby	coder	Coder	developer tools
+ashby	railway	Railway	infrastructure
+ashby	render	Render	infrastructure
+ashby	modal	Modal	infrastructure
+lever	metabase	Metabase	Clojure
+greenhouse	mercury	Mercury	Haskell
+greenhouse	tweag	Tweag	functional languages
+greenhouse	databento	Databento	market data
+greenhouse	alpaca	Alpaca	trading
+ashby	polymarket	Polymarket	markets
+ashby	kalshi	Kalshi	markets
