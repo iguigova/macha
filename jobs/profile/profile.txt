@@ -430,6 +430,9 @@ When asked about gender on applications: Female.
 When asked about veteran status: No.
 When asked about disability status: No.
 When asked about race/ethnicity: White / Caucasian.
+When asked about transgender identity: No.
+When asked about sexual orientation: Heterosexual / straight.
+I am a parent.
 
 Bruno Diniz, CTO, Wayleadr, +353 89 976 3250.
 Bennett Adams, CTO, Flourish Software, bennett@flourishsoftware.com.
