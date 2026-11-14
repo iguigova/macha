@@ -67,6 +67,7 @@ I have worked professionally in 10+ programming languages.
 I have 1 year of Go experience, at Flourish.
 I learned Go at Flourish.
 I learn a new language by solving small puzzles in it, like Project Euler or 4clojure.
+I pick up new languages quickly.
 My programming language of choice is Go.
 I have 10+ years of C#/.NET experience, primarily at DeliverySlip and earlier roles.
 I have 4+ years of Java/Kotlin experience.
