@@ -46,9 +46,8 @@ the profile.
 ## Check the voice
 
 Every sentence written for an employer, the letter, each free-form
-answer and the direct note, passes the voice review the global
-CLAUDE.md states, with Application voice in `/job:apply`'s SKILL.md
-named as the other voice section. The text is shown with what it
+answer and the direct note, passes the `voice` skill, with Application
+voice in `/job:apply`'s SKILL.md named as the other voice section. The text is shown with what it
 flagged and how each was fixed.
 
 ## Render the PDFs
