@@ -2,7 +2,7 @@
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id> | reply <job-id> <what happened>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/board_watch.py *), Bash(.claude/scripts/job_log.py *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/board_watch.py *), Bash(.claude/scripts/job_log.py *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), Agent, AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
@@ -29,11 +29,8 @@ browser is freed for the next session.
    - **Cover letter** — in the cover-letter format below.
 
    Then read both as the hiring manager for this role would, and revise
-   before showing them: the closest match to the role leads. Then check
-   the letter one sentence at a time against the credo voice and the
-   application voice, the credo's out-loud test first; a sentence that fails is
-   rewritten or cut, and the drafts are shown with each sentence's verdict.
-   Then Ask for what the profile lacks.
+   before showing them: the closest match to the role leads. Then Check
+   the voice of the letter. Then Ask for what the profile lacks.
 
 4. **PAUSE — review the drafts.** Show all three, then `AskUserQuestion`:
    "Approve, revise, or skip {Company} — {Role}?" with options "Approve —
@@ -95,7 +92,7 @@ browser is freed for the next session.
      `out/<Name>_CoverLetter.pdf`. No field, no cover letter.
    - Screening questions: factual ones (yes/no, years, dropdowns) from the
      matching fact; free-form ones in the screening-answer format below,
-     from career facts.
+     from career facts, each through Check the voice.
    - Demographics: from the profile's EEO facts.
    - A question no fact answers (how you heard of the job, a policy to
      agree to): leave it blank and ask the user, one `AskUserQuestion`
@@ -107,12 +104,12 @@ browser is freed for the next session.
    address to write to, also gets a direct note: three to five sentences
    to that person in the application voice, naming the role and the one
    project of the letter that matches it best, in `out/note.txt`, with
-   the resume PDF attached. Step 7 shows it through
+   the resume PDF attached, through Check the voice. Step 7 shows it through
    `.claude/scripts/apply_mail.py --dry-run` beside the form.
 
 7. **PAUSE — review the form.** `AskUserQuestion`: "Ready to submit to
    {Company} — {Role}" with a summary of every answer and every blank, and
-   options "Approve — submit" and "Skip"; corrections come through Other.
+   each free-form answer shown whole above the dialog, and options "Approve — submit" and "Skip"; corrections come through Other.
    - **Approve** → submit and read the page. If it asks for an emailed
      security code, ask the user for it at once: the code expires. A form
      left open for hours fails on submit, and a browser left idle
@@ -256,7 +253,7 @@ applicants".
 
 ## Application voice
 
-These add to the credo voice, for letters and screening answers.
+These add to the credo voice, for every sentence written for an employer.
 
 - Let the work speak. Examples, not labels: no jargon such as "B2B
   platforms" or "enterprise systems", no list of years and tools, no
