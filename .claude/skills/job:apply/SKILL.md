@@ -271,8 +271,10 @@ These add to the credo voice, for letters and screening answers.
   opportunity back to it, and never close on "I want to build that". No
   mission talk, no corporate enthusiasm, no meta commentary, and never
   "excited", "passionate" or "20+ years".
-- Get into the work at once: no sweeping career opener, no positioning
-  statement, no section headers such as "What I bring:", and no closing
+- Get into the work at once, in every paragraph: no sweeping career
+  opener, no positioning statement, no section headers such as "What I
+  bring:", no sentence that sums up or labels the examples around it,
+  such as "I've built pieces other developers stand on", and no closing
   line that ties everything together.
 - An employer is described in the words its profile lines use, never by
   an industry they leave out.
