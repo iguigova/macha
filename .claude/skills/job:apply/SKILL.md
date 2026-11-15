@@ -268,11 +268,10 @@ These add to the credo voice, for every sentence written for an employer.
   opportunity back to it, and never close on "I want to build that". No
   mission talk, no corporate enthusiasm, no meta commentary, and never
   "excited", "passionate" or "20+ years".
-- Get into the work at once, in every paragraph: no sweeping career
-  opener, no positioning statement, no section headers such as "What I
-  bring:", no sentence that sums up or labels the examples around it,
-  such as "I've built pieces other developers stand on", and no closing
-  line that ties everything together.
+- No section headers such as "What I bring:", no sentence that sums up
+  or labels the examples around it, such as "I've built pieces other
+  developers stand on", and no closing line that ties everything
+  together.
 - An employer is described in the words its profile lines use, never by
   an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
@@ -280,8 +279,6 @@ These add to the credo voice, for every sentence written for an employer.
 - A question asking why this company gets a personal answer: one thing
   about the user, from the user's own pages such as the interview page,
   that connects to the role and repeats neither the letter nor the resume.
-- The subject comes first and the verb early, as people speak: "I want to
-  write more Go", never "Go is the stack I want to work in".
 - A letter shows who the user is through one of the profile's lines
   about the user — what suits them, what they read, how they describe
   themselves — where it truly connects to the role. It is said from the
