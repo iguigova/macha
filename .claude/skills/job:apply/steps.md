@@ -46,14 +46,10 @@ the profile.
 ## Check the voice
 
 Every sentence written for an employer, the letter, each free-form
-answer and the direct note, is checked by a reviewer that did not write
-it: one read-only `Explore` agent, given the text and told to read My
-voice in `~/.claude/credo.md` and Application voice in `/job:apply`'s
-SKILL.md, and nothing else: no profile, no posting. It judges how the
-text sounds, never whether it is true. It returns each sentence that
-fails and the rule it breaks; each is rewritten or cut, and the changed
-text goes back to it until it returns none. The text is shown with what
-it flagged and how each was fixed.
+answer and the direct note, passes the voice review the global
+CLAUDE.md states, with Application voice in `/job:apply`'s SKILL.md
+named as the other voice section. The text is shown with what it
+flagged and how each was fixed.
 
 ## Render the PDFs
 

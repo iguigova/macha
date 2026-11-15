@@ -259,7 +259,6 @@ These add to the credo voice, for every sentence written for an employer.
   platforms" or "enterprise systems", no list of years and tools, no
   algorithms, publications or awards dropped to impress, and no count of
   languages or technologies ("various" reads more honest than "10+").
-  Light framing (impact, scope, ownership) is fine.
 - Keep a number only when it shows scale or impact (millions of
   transactions, 35+ identity providers, 40% faster). Leave out numbers
   that undersell: partial results, commit counts, small before-and-after
@@ -276,9 +275,9 @@ These add to the credo voice, for every sentence written for an employer.
   an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
   job and with no "what it taught me".
-- A question asking why this company gets a personal answer: one thing
-  about the user, from the user's own pages such as the interview page,
-  that connects to the role and repeats neither the letter nor the resume.
+- A question asking why this company gets one thing about the user, from
+  the user's own pages such as the interview page, said plainly; it
+  repeats neither the letter nor the resume.
 - A letter shows who the user is through one of the profile's lines
   about the user — what suits them, what they read, how they describe
   themselves — where it truly connects to the role. It is said from the
