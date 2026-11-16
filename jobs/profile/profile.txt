@@ -141,6 +141,7 @@ I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects.
 I studied networking at university.
 I have used Tailscale.
+I contributed to dhat.news, a news aggregation platform clustering stories by their embeddings, as a reviewer and advisor.
 I have used AI coding assistants in my daily work since Flourish (2025).
 At Wayleadr, I work with Claude Code every day.
 At Wayleadr, I built our project's Claude Code tooling.
