@@ -277,9 +277,9 @@ These add to the credo voice, for every sentence written for an employer.
   brings to it. Then the project closest to that need, then one more at
   most, each told through the problem, what the user decided and the
   result, which the resume has no room for, and ending on what it means
-  for this job; no sentence restates a resume bullet. Then each gap in
-  one sentence with how the user would close it, inside a paragraph,
-  never one of its own. Then "Thank you for your time and consideration."
+  for this job; no sentence restates a resume bullet. Then the gaps
+  together in one short paragraph, each in one sentence with how the
+  user would close it. Then "Thank you for your time and consideration."
 - **Screening answer** — 3–5 sentences stating what the user built.
 - **Resume** — one page at most, made for each job. Header: name, the
   tagline from the credo, the address `profile.txt` gives the resume,
