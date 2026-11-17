@@ -259,6 +259,9 @@ These add to the credo voice, for every sentence written for an employer.
   transactions, 35+ identity providers, 40% faster). Leave out numbers
   that undersell: partial results, commit counts, small before-and-after
   figures.
+- Naming what the team needs and the work of the user's that meets it
+  is a fact, not a pitch; a letter that never says it reads as a
+  biography.
 - An employer is described in the words its profile lines use, never by
   an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
@@ -269,12 +272,14 @@ These add to the credo voice, for every sentence written for an employer.
 
 ## Application formats
 
-- **Cover letter** — one page at most. Flow: the role and the project
-  closest to it, then one more at most, each told through the problem
-  and what the user decided, which the resume has no room for; no
-  sentence restates a resume bullet. Then the gaps stated honestly with
-  how the user would close them, then "Thank you for your time and
-  consideration."
+- **Cover letter** — one page at most. Flow: the role, then what the
+  posting says the team needs most and, in one sentence, what the user
+  brings to it. Then the project closest to that need, then one more at
+  most, each told through the problem, what the user decided and the
+  result, which the resume has no room for, and ending on what it means
+  for this job; no sentence restates a resume bullet. Then each gap in
+  one sentence with how the user would close it, inside a paragraph,
+  never one of its own. Then "Thank you for your time and consideration."
 - **Screening answer** — 3–5 sentences stating what the user built.
 - **Resume** — one page at most, made for each job. Header: name, the
   tagline from the credo, the address `profile.txt` gives the resume,
