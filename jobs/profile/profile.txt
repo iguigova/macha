@@ -149,7 +149,6 @@ At Wayleadr, our Claude Code skills and commands wrap tested scripts behind a se
 At Wayleadr, our Claude Code tooling keeps a session journal written by one script.
 At Wayleadr, our Claude Code tooling has Jira and Confluence access.
 At Wayleadr, I run code audits as parallel read-only subagents.
-At Wayleadr, I verify every audit finding myself before acting on it.
 
 At Wayleadr (Feb 2026–present), my title is Software Engineer.
 Wayleadr is a parking and workplace-mobility SaaS.
