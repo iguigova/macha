@@ -255,6 +255,11 @@ applicants".
 
 These add to the credo voice, for every sentence written for an employer.
 
+- Each sentence, other than the role and the closing that Application
+  formats fixes, tells the hiring manager for this posting something
+  about the user's work they would weigh; a slogan, a verdict on the
+  user, or a habit every experienced engineer has tells them nothing,
+  and is cut.
 - Keep a number only when it shows scale or impact (millions of
   transactions, 35+ identity providers, 40% faster). Leave out numbers
   that undersell: partial results, commit counts, small before-and-after

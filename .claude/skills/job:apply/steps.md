@@ -48,7 +48,10 @@ the profile.
 Every sentence written for an employer, the letter, each free-form
 answer and the direct note, is read against My voice in the credo and
 Application voice in `/job:apply`'s SKILL.md, and one that fails is
-rewritten or cut before it is shown.
+rewritten or cut before it is shown. The letter then passes the `voice`
+skill, a reviewer that did not write it, handed Application voice as the
+other voice section and the posting's text as the reader; it is shown
+with what the reviewer flagged and how each was fixed.
 
 ## Render the PDFs
 
