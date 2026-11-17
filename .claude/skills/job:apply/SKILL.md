@@ -255,22 +255,10 @@ applicants".
 
 These add to the credo voice, for every sentence written for an employer.
 
-- Let the work speak. Examples, not labels: no jargon such as "B2B
-  platforms" or "enterprise systems", no list of years and tools, no
-  algorithms, publications or awards dropped to impress, and no count of
-  languages or technologies ("various" reads more honest than "10+").
 - Keep a number only when it shows scale or impact (millions of
   transactions, 35+ identity providers, 40% faster). Leave out numbers
   that undersell: partial results, commit counts, small before-and-after
   figures.
-- Their pitch is theirs. Never repeat a company's mission, stage or
-  opportunity back to it, and never close on "I want to build that". No
-  mission talk, no corporate enthusiasm, no meta commentary, and never
-  "excited", "passionate" or "20+ years".
-- No section headers such as "What I bring:", no sentence that sums up
-  or labels the examples around it, such as "I've built pieces other
-  developers stand on", and no closing line that ties everything
-  together.
 - An employer is described in the words its profile lines use, never by
   an industry they leave out.
 - A personal question gets a genuine, short answer, not tied back to the
