@@ -278,18 +278,14 @@ These add to the credo voice, for every sentence written for an employer.
 - A question asking why this company gets one thing about the user, from
   the user's own pages such as the interview page, said plainly; it
   repeats neither the letter nor the resume.
-- A letter shows who the user is through one of the profile's lines
-  about the user — what suits them, what they read, how they describe
-  themselves — where it truly connects to the role. It is said from the
-  user's side and names
-  the role; it never describes the company's project back to it. No
-  feeling is invented.
 
 ## Application formats
 
-- **Cover letter** — one page at most. Flow: the role and why this
-  company, then concrete project examples, then the gaps stated honestly
-  with how the user would close them, then "Thank you for your time and
+- **Cover letter** — one page at most. Flow: the role and the project
+  closest to it, then one more at most, each told through the problem
+  and what the user decided, which the resume has no room for; no
+  sentence restates a resume bullet. Then the gaps stated honestly with
+  how the user would close them, then "Thank you for your time and
   consideration."
 - **Screening answer** — 3–5 sentences stating what the user built.
 - **Resume** — one page at most, made for each job. Header: name, the
