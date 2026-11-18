@@ -27,7 +27,7 @@ for every later session.
 ```
 /job:apply [<job-url> | <id>] # apply to one job; no argument takes the oldest queued one
 /job:apply reply <id> <what>  # record an employer's reply to an application
-/jobs:digest                  # mail the new postings on the niche company boards that fit the profile
+/jobs:digest                  # mail the new postings at niche companies, found anew each run, that fit the profile
 /linkedin:digest              # mail the user a ranked list of what matters in their LinkedIn feed
 /news:digest                  # mail the day's world, tech and science news, ranked by breadth of coverage
 /painpoints:digest            # mail the problems people asked strangers for help with, and what tech could do
@@ -46,8 +46,8 @@ source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
 checks that one of its postings is open. `.claude/scripts/board_watch.py`
-reads every board `/jobs:digest` watches through it and marks the
-postings it has not seen.
+reads the boards `/jobs:digest` found that morning through it and
+marks the postings it has not seen.
 
 For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
@@ -137,10 +137,11 @@ how many read it, and says what a tool could do about each; a question
 an earlier digest mailed is not mailed again. Reddit was the first
 choice of source, but its API now needs Reddit's approval first.
 
-`/jobs:digest` reads the niche boards through `board_watch.py`, keeps the
-postings first seen since its last send and posted in the last 14 days,
-checks each at its source as `/job:apply` does, and mails the ones that
-fit, ranked as `/job:apply`'s shortlist, each with the profile facts it
+`/jobs:digest` finds niche companies anew each morning by web search
+from the profile's interests, reads their boards through
+`board_watch.py`, keeps the postings first seen since its last send
+and posted in the last 14 days, checks each at its source as
+`/job:apply` does, and mails the ones that fit, ranked as `/job:apply`'s shortlist, each with the profile facts it
 fits and its gaps. A posting is marked seen only after a send, so a failed
 send leaves it for the next morning.
 

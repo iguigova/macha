@@ -57,7 +57,7 @@
   ],
   "jobs:digest": [
     {
-      "prompt": "email me the new jobs on the niche company boards",
+      "prompt": "email me the new jobs at niche companies",
       "fires": true
     },
     {
