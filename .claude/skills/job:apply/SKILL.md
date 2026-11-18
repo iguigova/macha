@@ -2,7 +2,7 @@
 name: job:apply
 description: Apply to one job, from its link or the queue; an empty queue is filled by a search first
 argument-hint: "[<job-url> | <job-id> | reply <job-id> <what happened>]   (default: the oldest queued job)"
-allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/board_watch.py *), Bash(.claude/scripts/job_log.py *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), Agent, AskUserQuestion
+allowed-tools: mcp__playwright__*, WebSearch, WebFetch, Bash(curl *), Bash(jq *), Read, Write, Edit, Bash(google-chrome *), Bash(pdfinfo *), Bash(pdftotext *), Bash(pdftoppm *), Bash(test *), Bash(exit *), Bash(~/.claude/scripts/tooling_commit.sh *), Bash(~/.claude/scripts/journal.sh *), Bash(~/.claude/scripts/journal_queue.sh *), Bash(.claude/scripts/job_board.sh *), Bash(.claude/scripts/job_log.py *), Bash(.claude/scripts/profile_lint.sh *), Bash(.claude/scripts/apply_mail.py *), Agent, AskUserQuestion
 ---
 
 Apply to one job: $ARGUMENTS. Read `.claude/skills/job:apply/steps.md`
@@ -154,15 +154,10 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 4. **PAUSE — the shortlist.** Rank as Shortlist states. Show one table:
    rank, the posting's name, the columns Shortlist names, the profile
    facts it fits, the note it shares a company with if any, and the URL.
-   Under it, list each source and how many candidates it gave, each
-   source that failed, and each company Niche boards found that is not in
-   its list yet, with its board and the area it serves. Then one
-   `AskUserQuestion`: "Queue which of these?" with options "All" and
-   "None", a choice of ranks coming through Other; and, when it found any,
-   "Add which companies to the niche boards?" with options "All" and
-   "None". On None, the run stops with nothing queued. Each company the
-   user adds becomes a row of the list, committed alone as Update the
-   profile commits.
+   Under it, list each source and how many candidates it gave, and each
+   source that failed. Then one `AskUserQuestion`: "Queue which of
+   these?" with options "All" and "None", a choice of ranks coming
+   through Other. On None, the run stops with nothing queued.
 
 5. **Queue the approved postings**, one journal call each, best fit first,
    so the best fit is the oldest note and the first one taken:
@@ -176,18 +171,12 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 
 **Sources:** one that answers JSON is read with
 `curl -sS '<url>' | jq '<filter>'`.
-- **Niche boards.** Every board in `.claude/skills/jobs:digest/boards.tsv`,
-  the companies behind open-source projects and unusual problems in the
-  profile's interests, which aggregators rarely carry:
-  ```bash
-  .claude/scripts/board_watch.py fetch .claude/skills/jobs:digest/boards.tsv --seen digest/jobs/seen.tsv
-  ```
-  Every posting it lists is a candidate, new or not. Then grow the list
-  from the work itself: for each of the profile's "I want" and "I am
+- **Niche companies.** Found anew each run, from the work itself and
+  never from a kept list: for each of the profile's "I want" and "I am
   interested in" lines, a `WebSearch` for the companies building
-  open-source projects or products in that area; a company whose board
-  answers `job_board.sh` and is not in the list goes to the shortlist
-  pause.
+  open-source projects, products or unusual problems in that area, which
+  aggregators rarely carry. Each company found is a lead, its board
+  listed as Company boards states.
 - **Company boards.** List the whole board of every company a lead names,
   since one fitting posting often has siblings:
   ```bash

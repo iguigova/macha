@@ -34,10 +34,9 @@ for every later session.
 ```
 
 With no argument and an empty queue, `/job:apply` first searches the
-niche boards, `.claude/skills/jobs:digest/boards.tsv`: the companies
-behind open-source projects and unusual problems in the profile's
-interests, which aggregators rarely carry. Each search can add companies
-to that list, with the user's approval. Then it searches company boards,
+web, anew each run, for the companies behind open-source projects and
+unusual problems in the profile's interests, which aggregators rarely
+carry, and reads their boards. Then it searches company boards,
 HN Who's Hiring, the remote job boards and LinkedIn, with search words
 taken from the profile's interests. It keeps a
 posting for the kind of work the profile looks for, in any stack. The
@@ -47,8 +46,8 @@ source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.
 `.claude/scripts/job_board.sh` reads a Greenhouse, Ashby or Lever board, or
 checks that one of its postings is open. `.claude/scripts/board_watch.py`
-reads every niche board through it and marks the postings it has not
-seen.
+reads every board `/jobs:digest` watches through it and marks the
+postings it has not seen.
 
 For each job, `/job:apply` reads the job, drafts a gap analysis, a one-page resume and a
 cover letter, and pauses for approval. It then renders the PDFs into `out/`,
