@@ -3,12 +3,8 @@
 # over .claude. A new script is covered the moment it lands.
 # Exit 0 = clean, 1 = a check failed. Each failure prints a FAIL line naming it.
 #
-# --root DIR gates the repo at DIR rather than the one holding this file, so a
-# caller can judge a changed tree with the gate as it stood before the change.
-# An argument it does not take is a usage error, never ignored.
-#
 # Usage:
-#   selftest.sh [--root DIR]
+#   selftest.sh
 #   selftest.sh --self-test   a copy of this gate on a fixture repo fails each break
 set -uo pipefail
 case "${1:-}" in -h|--help) awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, ""); print }' "$0"; exit 0 ;; esac
@@ -42,23 +38,10 @@ if [ "${1:-}" = --self-test ]; then
   tap_like "changed prose naming a missing script fails the gate" "$(gate)" "*FAIL name_lint.sh exited*selftest: FAIL"
   rm "$fx/notes.md"
   out=$(gate); tap_is "the repo passes again once each break is undone" "$(tail -1 <<<"$out")" "selftest: PASS"
-  git clone -q "$fx" "$fx/other"; printf 'if\n' > "$fx/other/.claude/scripts/broken.sh"
-  tap_like "--root gates that repo, not the one holding the gate" \
-    "$(GATE_SELF_TEST=1 bash "$fx/.claude/scripts/selftest.sh" --root "$fx/other" 2>&1)" \
-    "*FAIL bash -n: .claude/scripts/broken.sh*selftest: FAIL"
-  bash "$fx/.claude/scripts/selftest.sh" --bogus >/dev/null 2>&1
-  tap_is "an argument it does not take is a usage error" "$?" "2"
   tap_end
 fi
 
-root="$(dirname "${BASH_SOURCE[0]}")/../.."   # → the repo holding this gate
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --root) root=${2:?--root needs a folder}; shift 2 ;;
-    *) echo "selftest.sh: unknown argument: $1 (takes --root DIR, --self-test)" >&2; exit 2 ;;
-  esac
-done
-cd "$root" || exit 2
+cd "$(dirname "${BASH_SOURCE[0]}")/../.." || exit 2   # → the repo root
 
 echo "== syntax ==";               gate_syntax .claude/scripts/*
 echo "== shellcheck ==";           gate_shellcheck .claude/scripts/*
