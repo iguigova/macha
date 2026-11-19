@@ -105,6 +105,7 @@ I have designed and evolved GraphQL schemas.
 I have used WebSockets.
 I have used gRPC in personal projects.
 I have used Datomic and graph databases.
+I have studied database internals.
 Every job I have had involved data migrations.
 I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
 I have worked a lot with tabular data formats and exports: Excel, CSV and others.
@@ -134,9 +135,11 @@ I have 1 year of experience with METRC and Biotrack regulatory compliance, at Fl
 
 I have experience working in the observability space.
 I have used Grafana and Prometheus at Flourish and at Wayleadr.
+I have used OpenTelemetry.
 At Wayleadr, we started using Datadog in 2026.
 At Wayleadr, the Rails platform reports APM traces to Datadog.
 I am on call at Wayleadr.
+At Wayleadr, I write blameless post-mortems for incidents.
 I have about 1 year of Kubernetes experience, from Flourish.
 I have some experience with R from personal projects.
 I studied networking at university.
@@ -163,6 +166,7 @@ At Wayleadr, I published the Occupancy Service's API as an OpenAPI document, ren
 At Wayleadr, the stack is Python on AWS Lambda, CDK, Aurora Postgres and a TypeScript/React 19 web app.
 At Wayleadr, I build AWS Lambda services in Python with Pydantic, SQLAlchemy and psycopg.
 At Wayleadr, my work is split about 70% backend development and 30% infrastructure and operations.
+At Wayleadr, I review my teammates' pull requests.
 
 At Wayleadr, I took the Occupancy Service to production in Sep 2026.
 At Wayleadr, I ran the Occupancy Service cutover in phases.
