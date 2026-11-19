@@ -40,7 +40,8 @@ carry, and reads their boards. Then it searches company boards,
 HN Who's Hiring, the remote job boards and LinkedIn, with search words
 taken from the profile's interests. It keeps a
 posting for the kind of work the profile looks for, in any stack. The
-postings the profile calls niche rank first; the preferred stack only
+postings at a small team with one specific, unusual problem, as the
+profile describes, rank first; the preferred stack only
 ranks after that. It confirms each posting is open at its
 source and drops the ones the job log already holds. It shows a ranked
 shortlist, queues the jobs the user approves, and takes the first.

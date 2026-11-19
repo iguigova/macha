@@ -228,7 +228,7 @@ rate the freelance rate) or it states none, it is the kind of work
 the profile looks for, in any stack, and neither it nor its application
 form forbids AI-generated content.
 
-**Shortlist.** Postings the profile's niche line describes rank first;
+**Shortlist.** Postings at a small team with one specific, unusual problem, as the profile's line on it describes, rank first;
 a small company is one whose board lists about 30 open postings or
 fewer. A posting from a larger board ranks below them unless its
 problem is itself rare. Then rank by the kind of work, then the
