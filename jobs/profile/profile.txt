@@ -92,6 +92,9 @@ At Wayleadr, I wrote Pundit authorization policies in the Rails platform.
 At Wayleadr, I write RSpec specs for the Rails platform.
 At Wayleadr, in the Rails platform I built scheduled team moves for parking permits.
 At Wayleadr, in the Rails platform I built the mobile app's checkout for pending permits.
+At Wayleadr, the Rails platform runs on Heroku.
+At Wayleadr, I moved a Rails platform job onto its own daily Cron To Go schedule on Heroku.
+At Wayleadr, I made the script that applies the Rails platform's Cron To Go schedule refuse duplicate cron jobs.
 
 I have 8+ years of full-stack experience.
 I have 15+ years of REST API design and development experience.
