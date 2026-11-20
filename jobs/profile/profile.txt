@@ -46,6 +46,7 @@ My salary expectation is $100,000+ CAD.
 My freelance rate is $550 CAD a day.
 My freelance rate is the salary expectation, plus the employer's half of CPP and business costs, over 200 billable days a year.
 I only work remotely.
+Every job I have had since 2012 has been remote.
 I will travel for occasional on-site meetings.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages.
@@ -77,6 +78,7 @@ I have 2+ years of Angular experience.
 I have 2+ years of Node.js experience.
 I have 5+ years of Delphi/Pascal experience from Klein and earlier roles.
 I have 3+ years of C++ experience.
+I have managed memory by hand in C++.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have used property-based testing in personal projects (Haskell/Clojure).
@@ -100,6 +102,7 @@ I have 8+ years of full-stack experience.
 I have 15+ years of REST API design and development experience.
 I have working knowledge of HTTP and TLS.
 I have 10+ years of relational database experience (PostgreSQL, MySQL, MS SQL Server, Oracle).
+I have tuned PostgreSQL queries and indexes in production.
 I have 5+ years of Redis/Memcached experience.
 I have 3+ years of MongoDB experience.
 I have 2+ years of DynamoDB experience.
@@ -109,6 +112,7 @@ I have used WebSockets.
 I have used gRPC in personal projects.
 I have used Datomic and graph databases.
 I have studied database internals.
+I have studied operating system internals.
 Every job I have had involved data migrations.
 I have worked with many query languages, among them SQL, GraphQL, Datalog (Datomic) and Prolog.
 I have worked a lot with tabular data formats and exports: Excel, CSV and others.
