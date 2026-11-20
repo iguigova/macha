@@ -148,8 +148,9 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
 3. **Check each candidate at its source.** A listing is a lead; the
    posting is the fact. Follow each lead to the posting itself and keep it
    only if Check at source finds it open and fitting. A posting whose URL
-   a note carries is dropped. A posting from a company a note names is
-   kept and marked with that note, so the user decides.
+   a note carries is dropped, and so is one from a company that a note
+   closed as applied names. A posting from a company any other note
+   names is kept and marked with that note, so the user decides.
 
 4. **PAUSE — the shortlist.** Rank as Shortlist states. Show one table:
    rank, the posting's name, the columns Shortlist names, the profile
