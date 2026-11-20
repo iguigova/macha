@@ -248,6 +248,9 @@ These add to the credo voice, for every sentence written for an employer.
   manager reasons to hire the user. Each document is read whole against
   it, as well as sentence by sentence. An honest letter that gives no
   reason to hire fails.
+- The user's work is stated, and the reader draws its link to the
+  posting. A sentence that draws the link for them, framing the
+  employer's problem as like one the user had, is too cute, and is cut.
 - Each sentence, other than the role and the closing that Application
   formats fixes, tells the hiring manager for this posting something
   about the user's work they would weigh; a slogan, a verdict on the
