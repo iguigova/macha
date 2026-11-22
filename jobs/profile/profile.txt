@@ -209,6 +209,7 @@ At Flourish, the platform served 1,000+ licensed facilities across multiple US s
 At Flourish, the backend was Node.js/TypeScript and Go.
 At Flourish, most of my backend work was in Go.
 At Flourish, I built concurrent Go services with goroutines, channels and context cancellation.
+At Flourish, I profiled and tuned Go services.
 At Flourish, the frontend was Angular/TypeScript.
 At Flourish, the frontend used Angular 7 with Kendo UI components.
 At Flourish, the platform had 15+ microservices.
