@@ -376,7 +376,8 @@ At PINpoint, I planned the move to fully automated testing.
 At PINpoint, I implemented the SmartCart mobile fastening system interface from conception to integration.
 At PINpoint, I led a feasibility study of ultrasound localization algorithms, such as RANSAC, for recalibrating the tool by its position, error-proofing the fastening operation and controlling the workflow.
 At PINpoint, I wrote the software that talked over the plant network, through sockets, to the PLCs controlling the assembly-line conveyors.
-At PINpoint, the PLC communication used BACnet.
+At PINpoint, the fastening software was for torquing on automotive assembly lines in Ontario.
+At PINpoint, I connected the software to a plant-floor display sign to report data.
 At PINpoint, I built the communication between the workstation clients and the central server.
 At Intelsys, I built web-based and hosted 3D graphics and networking applications.
 At Intelsys, I built a SolidWorks/AutoCAD plug-in for network communications.
