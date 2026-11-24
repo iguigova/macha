@@ -51,6 +51,7 @@ I will travel for occasional on-site meetings.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages.
 I want to work more on distributed systems and networking.
+I want to work in operational technology: software for industrial control, plants, PLCs and robotics.
 I want to work less in .NET.
 Interesting work is what I look for.
 The stack is not a requirement for me.
