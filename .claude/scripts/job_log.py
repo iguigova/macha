@@ -120,11 +120,11 @@ def self_test() -> int:
     rows = tally(js)
     t.check(rows == ["HN Who's Hiring\t1\t1\t1\tinterview=1", "(not recorded)\t1\t1\t0", "LinkedIn\t1\t0\t0"],
             "rows tally each source, the most applied first", "\n".join(rows))
-    with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False) as f:
-        f.write(hist)
     import contextlib, io
-    with contextlib.redirect_stdout(io.StringIO()) as buf:
-        st = main([f.name])
+    with tempfile.TemporaryDirectory() as d, contextlib.redirect_stdout(io.StringIO()) as buf:
+        path = Path(d) / "history.md"
+        path.write_text(hist)
+        st = main([str(path)])
     t.check(st == 0 and buf.getvalue().startswith("source\tfound"), "a history file reads and prints", buf.getvalue())
     return t.end()
 
