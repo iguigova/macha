@@ -214,6 +214,11 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
   `/jobs/search-results/`, which can drop the location and remote filters,
   so each card's location is read. Its "Posted" age counts a repost; the
   posting's board gives its first date.
+- **Hiring without whiteboards.** The companies in
+  `https://raw.githubusercontent.com/poteto/hiring-without-whiteboards/main/README.md`
+  whose entry says remote and names a paid project, a take-home or a
+  review of past work; each is a lead, its board listed as Company boards
+  states.
 - **Anything else** a `WebSearch` turns up that fits, named by where it
   came from, with one search for each of the profile's "I want" and "I am
   interested in" lines. A `site:` filter in the query is ignored, so
@@ -234,12 +239,14 @@ form forbids AI-generated content.
 **Shortlist.** Postings at the kind of team the profile's line on it says the user likes working in rank first;
 a small company is one whose board lists about 30 open postings or
 fewer. A posting from a larger board ranks below them unless its
-problem is itself rare. Then rank by the kind of work, then the
-preferred stack, then by the day first posted, newest first. A board's
+problem is itself rare. Then rank by how the company hires, as the
+profile's line on how the user shows skill states it, read from the
+posting or the company's page on hiring; then by the kind of work, then
+the preferred stack, then by the day first posted, newest first. A board's
 size is the row count of `job_board.sh <ats> <board>`, or the postings
 its careers page lists. The day first posted is the board's posted
 column, else the posting page's date. The columns are company, role,
-source, board size, location rule, pay, first posted, and the applicant
+source, board size, location rule, pay, first posted, how it hires, and the applicant
 count where a listing shows one, such as LinkedIn's "Over 100
 applicants".
 
