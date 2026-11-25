@@ -150,7 +150,9 @@ A search fills an empty queue. Only the profile's facts narrow it, as Check at s
    only if Check at source finds it open and fitting. A posting whose URL
    a note carries is dropped, and so is one from a company that a note
    closed as applied names. A posting from a company any other note
-   names is kept and marked with that note, so the user decides.
+   names is kept and marked with that note, so the user decides. The user
+   applies to a company once, so of a company's fitting postings only the
+   best fit is kept, and the others are listed as dropped beside it.
 
 4. **PAUSE — the shortlist.** Rank as Shortlist states. Show one table:
    rank, the posting's name, the columns Shortlist names, the profile
