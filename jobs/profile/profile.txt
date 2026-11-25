@@ -48,6 +48,7 @@ My freelance rate is the salary expectation, plus the employer's half of CPP and
 I only work remotely.
 Every job I have had since 2012 has been remote.
 I will travel for occasional on-site meetings.
+I can work hours that overlap Central European Time.
 I am not subject to any employment agreement or post-employment restriction with a current or past employer.
 I want to work more in Go and functional languages.
 I want to work more on distributed systems and networking.
