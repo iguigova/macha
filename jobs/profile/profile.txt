@@ -422,6 +422,7 @@ My poker hand evaluation avoids sorting and lookups.
 My poker hand evaluation works for both 5-card and 7-card games.
 My other articles: "Efficiently accumulate Sliding Window Percentage Changes of large dataset" (2014), "Tips and Tricks" (2010), "What When How Association (WWHA) In a Task Tracking Spreadsheet" (2009), "Approaches, Styles, or Philosophies in Software Development" (2009), "Cross-cut Logging" (2009), and "From Requirements To Design" (2008).
 I have mentored junior engineers.
+I have mentored experienced engineers.
 I have coordinated cross-team development across backend, frontend and integration teams.
 I mentored high school students through the Microsoft TEALS program (Sep 2022–Jun 2023).
 Through TEALS, I built sustainable CS curricula.
