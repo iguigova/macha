@@ -88,6 +88,9 @@ I have managed memory by hand in C++.
 I have 1 year of Haskell experience from personal projects.
 I have 1 year of Clojure experience from personal projects.
 I have used property-based testing in personal projects (Haskell/Clojure).
+In personal projects, my commit gate fails any function above cyclomatic complexity 10, as lizard counts it.
+In personal projects, my commit gate runs mutation testing on changed lines, and fails on any mutant the tests don't kill.
+In personal projects, I built an evaluation harness for an LLM review skill: each of 20 judged samples is reviewed three times in fresh sessions, and the majority must match my verdict.
 I have studied Erlang.
 I have less than 1 year of Erlang experience from personal projects.
 I have used Cloudflare Workers in personal projects.
