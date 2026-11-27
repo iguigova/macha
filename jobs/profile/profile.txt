@@ -93,6 +93,7 @@ In personal projects, my commit gate runs mutation testing on changed lines, and
 In personal projects, I built an evaluation harness for an LLM review skill: each of 20 judged samples is reviewed three times in fresh sessions, and the majority must match my verdict.
 I have studied Erlang.
 I have less than 1 year of Erlang experience from personal projects.
+I contributed a feature and a bug fix to a Rust CLI (prooflinedev/cli PRs #104 and #106).
 I have used Cloudflare Workers in personal projects.
 I have used WebAssembly in personal projects.
 I have used Python since 2025.
